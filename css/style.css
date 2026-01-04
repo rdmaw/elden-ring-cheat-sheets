@@ -23,14 +23,11 @@
 
   /* SPACING 
   ---------- */
-  --r1: .25rem;
-  --r2: .5rem;
-  --r3: .75rem;
-  --r4: 1rem;
-  --r5: 1.25rem;
-  --r6: 1.5rem;
-  --r7: 1.75rem;
-  --r8: 2.5rem;
+  --r1: .5rem;
+  --r2: .75rem;
+  --r3: 1rem;
+  --r4: 1.25rem;
+  --r5: 1.75rem;
 }
 
 /* DARK MODE
@@ -141,41 +138,41 @@ body {
 }
 
 header {
-  margin: var(--r8) 0;
+  margin: 2.5rem 0;
 
 }
 
 h1 {
   font-size: clamp(1.5rem, 1.6rem + 1vw, 2.3rem);
-  margin-bottom: var(--r7);
+  margin-bottom: var(--r5);
 }
 
 .lead {
   font-size: clamp(1rem, 1.1rem + .4vw, 1.4rem);
   font-weight: 300;
-  margin-bottom: var(--r7);
+  margin-bottom: var(--r5);
 }
 
 h2 + h3, p {
-  margin-top: var(--r3);
+  margin-top: var(--r2);
 }
 
 h2, h3 {
   font-size: 1.5rem;
-  margin: var(--r7) 0 var(--r2);
+  margin: var(--r5) 0 var(--r1);
 }
 
 h4 {
   font-size: 1.125rem;
-  margin: var(--r6) 0 var(--r2);
+  margin: 1.5rem 0 var(--r1);
 }
 
 ol {
-  margin: var(--r3) 0 var(--r2) var(--r7);
+  margin: var(--r2) 0 var(--r1) var(--r5);
 
   & ul {
     list-style-type: disc;
-    margin: var(--r2) 0;
+    margin: var(--r1) 0;
   }
 }
 
@@ -184,7 +181,7 @@ ul {
 }
 
 li ul {
-  padding-left: var(--r7);
+  padding-left: var(--r5);
 }
 
 a {
@@ -221,7 +218,7 @@ button, .btn {
 }
 
 .btn {
-  padding: var(--r1) var(--r2);
+  padding: .25rem var(--r1);
   height: 2rem;
   color: var(--kt);
   background-color: var(--k);
@@ -235,9 +232,9 @@ button, .btn {
 
 #up {
   position: fixed;
-  right: var(--r5);
-  bottom: var(--r5);
-  padding: var(--r2);
+  right: var(--r4);
+  bottom: var(--r4);
+  padding: var(--r1);
   height: auto;
   border: 2px solid var(--2);
   border-radius: 50%;
@@ -250,8 +247,8 @@ button, .btn {
   }
 
   & svg {
-    width: var(--r7);
-    height: var(--r7);
+    width: var(--r5);
+    height: var(--r5);
   }
 }
 
@@ -266,7 +263,7 @@ button, .btn {
 }
 
 #search, .options h2, select {
-  margin-bottom: var(--r3);
+  margin-bottom: var(--r2);
 }
 
 /* NAVIGATION 
@@ -283,17 +280,17 @@ nav {
 .nav {
   width: 100%;
   min-height: 3.75rem;
-  margin-inline: var(--r2);
+  margin-inline: var(--r1);
   align-items: center;
 
   & ul {
     margin-left: auto;
-    gap: var(--r2);
+    gap: var(--r1);
   }
 
   & a {
     display: inline-flex;
-    padding-inline: var(--r2);
+    padding-inline: var(--r1);
     align-items: center;
     height: 2.7rem;
 
@@ -356,7 +353,7 @@ nav {
 
 .close {
   position: absolute;
-  top: var(--r3);
+  top: var(--r2);
   right: .3125rem;
   width: 2.375rem;
   height: 2.125rem;
@@ -374,7 +371,7 @@ nav {
 }
 
 .sheets {
-  padding: var(--r2);
+  padding: var(--r1);
   overflow-y: auto;
   overscroll-behavior: contain;
 
@@ -389,19 +386,19 @@ nav {
 
   & a {
     display: block;
-    padding: var(--r3);
+    padding: var(--r2);
   }
 }
 
 /* CONTAINERS 
 ------------- */
 main {
-  width: min(100% - var(--r5), 87rem);
+  width: min(100% - var(--r4), 87rem);
   margin-inline: auto;
 }
 
 footer {
-  padding: var(--r5) 0 var(--r2);
+  padding: var(--r4) 0 var(--r1);
   font-size: .8rem;
 }
 
@@ -410,21 +407,21 @@ footer {
 .filter {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--r2);
+  gap: var(--r1);
 }
 
 .options label {
-  padding: .3rem 0 var(--r2) 0;
+  padding: .3rem 0 var(--r1) 0;
 }
 
 .mgm {
-  margin-bottom: var(--r4);
+  margin-bottom: var(--r3);
 }
 
 /* CHECKLISTS
 ------------- */
 .toc {
-  margin-bottom: var(--r7);
+  margin-bottom: var(--r5);
   background: none;
   border-bottom: none;
 
@@ -460,7 +457,7 @@ hr::after {
 }
 
 nav span, h2 span, h3 span {
-  margin-left: var(--r2);
+  margin-left: var(--r1);
   padding: 0 .2em .065em .2em;
   color: var(--b);
   background-color: var(--x);
@@ -487,7 +484,7 @@ nav span, h2 span, h3 span {
 
 .col {
   position: relative;
-  margin-right: var(--r2);
+  margin-right: var(--r1);
   width: 2.2rem;
   height: 1.75rem;
   flex-shrink: 0;
@@ -516,7 +513,7 @@ label {
 
 input[type="checkbox"] {
   position: absolute;
-  left: var(--r4);
+  left: var(--r3);
   top: .4rem;
   width: 20px;
   height: 20px;
@@ -542,11 +539,11 @@ input[type="checkbox"] {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: var(--r4)
+  margin-top: var(--r3)
 }
 
 caption {
-  margin-bottom: var(--r2);
+  margin-bottom: var(--r1);
 }
 
 th, td {
@@ -573,7 +570,7 @@ tr:hover {
 .flex { display: flex; }
 .ac { align-items: center; }
 .jc { justify-content: center; }
-.list { list-style-type: disc; margin: var(--r3) 0 var(--r2) var(--r7); }
+.list { list-style-type: disc; margin: var(--r2) 0 var(--r1) var(--r5); }
 .r { color: var(--r); }
 .g { color: var(--g); }
 .p { color: var(--p); }
@@ -586,8 +583,7 @@ caption, th[scope="row"] { text-align: left; }
 ol, kbd { font-size: .9rem; }
 html, label, .sh h2, .toc { line-height: 1.6; }
 h3, h4, nav a { line-height: 1.15; }
-header h1 { font-weight: 700; }
-nav a, nav span { font-weight: 600; }
+.sh h2, h2, h3, h4, nav a, nav span, caption, strong { font-weight: 600; }
 select, button, input[type="checkbox"], label { cursor: pointer; }
 .f, .hide .c > label, .hide .c > input[type="checkbox"] { display: none !important; }
 li { position: relative; }
