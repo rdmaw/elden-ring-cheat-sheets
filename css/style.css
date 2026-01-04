@@ -126,7 +126,7 @@ html {
   scrollbar-color: var(--1) var(--b);
 }
 
-input, button, q, select {
+input, button, select {
   font-family: inherit;
   font-size: inherit;
 }
@@ -191,12 +191,6 @@ a {
   &:hover {
     text-decoration: underline;
   }
-}
-
-q {
-  padding: .0625rem .1875rem;
-  background-color: var(--3);
-  border-radius: 3px;
 }
 
 kbd {
@@ -269,7 +263,6 @@ button, .btn {
 /* NAVIGATION 
 ------------- */
 nav {
-  background-color: var(--1);
   border-bottom: 2px solid var(--2);
 
   & a:hover {
@@ -342,7 +335,6 @@ nav {
 
 .sh {
   min-height: 3.3125rem;
-  background-color: var(--1);
   border-top-right-radius: 7px;
   border-bottom: 2px solid var(--2);
 
@@ -551,10 +543,6 @@ th, td {
   border: 1px solid var(--2);
 }
 
-th[scope="col"] {
-  background-color: var(--1);
-}
-
 tr:nth-child(even) {
   background-color: var(--4);
 }
@@ -575,6 +563,7 @@ tr:hover {
 .g { color: var(--g); }
 .p { color: var(--p); }
 .h, h1, h2, h3, h3 a, h4, h4 a, strong, nav a, footer a, caption, th[scope="col"], .lead, .toc a, #menu svg, .close svg { color: var(--h); }
+nav, .sh, th[scope="col"] { background-color: var(--1); }
 
 /* REPEATED 
 ------------- */
