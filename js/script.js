@@ -157,16 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Open every external link in new tab
-  const links = document.querySelectorAll('a[href^="http"]');
+  const links = document.querySelectorAll('a[href^="https"]');
 
   for (let i = 0, len = links.length; i < len; i++) {
     const link = links[i];
     link.target = '_blank';
   }
 
-  // Handle color theme switching - t = theme, d = dark, l = light, cb = colorblind
+  // Handle color theme switching
   const theme = document.getElementById('theme');
-  const cb = document.getElementById('cb');
 
   if (theme) {
     theme.value = localStorage.getItem('t') || 'l';
@@ -176,21 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
       root.classList.toggle('dark', dark);
       localStorage.setItem('t', theme.value);
     });
-  }
-
-  if (cb) {
-    const cbRemove = ['pro', 'deu', 'tri', 'ach'];
-
-    const cbUpdate = () => {
-      const value = cb.value;
-      root.classList.remove(...cbRemove);
-      if (value !== '0') root.classList.add(value);
-      localStorage.setItem('cb', value);
-    };
-
-    cb.value = localStorage.getItem('cb') || '0';
-    cbUpdate();
-    cb.addEventListener('change', cbUpdate);
   }
 
   // Populate profiles

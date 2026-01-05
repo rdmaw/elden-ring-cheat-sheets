@@ -9,7 +9,7 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://eldenring.redmaw.dev/options">
-  <script>const d=document.documentElement,t="d"===localStorage.getItem("t"),c=localStorage.getItem("cb");t&&d.classList.add("dark"),c&&"0"!==c&&d.classList.add(c);</script>
+  <script>const d=document.documentElement,t="d"===localStorage.getItem("t");t&&d.classList.add("dark");</script>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -111,14 +111,6 @@
       <select id="theme" name="color-theme">
         <option value="l">Light</option>
         <option value="d">Dark</option>
-      </select>
-      <label for="cb">Color Blindness:</label>
-      <select id="cb" name="color-blindness">
-        <option value="0">None (Default)</option>
-        <option value="pro">Protanopia</option>
-        <option value="deu">Deuteranopia</option>
-        <option value="tri">Tritanopia</option>
-        <option value="ach">Achromatopsia</option>
       </select>
       <h2 id="prof-h">Profile Management:</h2>
       <label for="profile">Select profile:</label>
