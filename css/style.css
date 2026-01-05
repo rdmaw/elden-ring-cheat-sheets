@@ -10,11 +10,11 @@
   --2: #4a3728;
   --3: #e6dbcaf2;
   --4: #eadccd33;
-  --r: #cc0000;
-  --a: #0b52d5;
-  --x: #c24d29;
-  --d: #2e7f6a;
-  --s: #ffffff;
+  --r: #c00;
+  --a: #0b4fd5;
+  --x: #c74a23;
+  --d: #2d806e;
+  --s: #fff;
   --k: #efefef;
   --kt: #2c1810;
   --kh: #d2d2d2;
@@ -32,17 +32,17 @@
 ------------  */
 .dark {
   color-scheme: dark;
-  --b: #222426;
-  --t: #fafafa;
+  --b: #1d1f20;
+  --t: #ededed;
   --h: #f8f7f7;
   --1: #303030;
   --2: #808080;
   --3: #404040;
-  --4: #292a2c4d;
-  --r: #ea6173;
-  --a: #6590c8;
-  --x: #e9586b;
-  --d: #11a78b;
+  --4: #1a1d1e;
+  --r: #e15668;
+  --a: #5c88c1;
+  --x: #d66b79;
+  --d: #1a9e86;
   --s: #3b3b3b;
   --k: #404040;
   --kt: #f8f7f7;
@@ -140,7 +140,7 @@ a {
   color: var(--a);
   text-decoration: none;
 
-  &:hover {
+  &:hover, &:focus {
     text-decoration: underline;
   }
 }
