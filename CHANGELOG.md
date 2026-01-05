@@ -3,6 +3,18 @@
 This document lists notable changes to the site with each deployment.
 Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
+## 2026-01-05
+
+### Changed
+- Text to be slightly denser for legibility.
+- Light and dark mode to be more readable.
+- Links to regular font weight to improve readability.
+
+### Removed
+- Scrollbar styling.
+- Purple and green links that cluttered readability.
+- Half implemented Colorblind support (may implement a proper solution later).
+
 ## 2026-01-03
 
 ### Changed
