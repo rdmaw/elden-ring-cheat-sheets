@@ -510,71 +510,90 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Search checklists
-  function filterChecklist(searchTerm) {
-    const sections = [...document.querySelectorAll('main h3')];
-    const cleanTerm = searchTerm.toLowerCase().trim();
-    
-    if (!cleanTerm) {
-      const allElements = document.querySelectorAll('main h3, main li');
-      allElements.forEach(el => el.style.display = '');
-      return;
-    }
-  
-    const terms = cleanTerm.split(/\s+/);
-    const matchCache = new Map();
-    const matches = text => {
-      if (!matchCache.has(text)) {
-        matchCache.set(text, terms.every(term => text.includes(term)));
-      }
-      return matchCache.get(text);
-    };
-  
-    for (const section of sections) {
-      const list = section.nextElementSibling;
-      if (!list) continue;
-
-      const sectionText = section.textContent.toLowerCase();
-      const sectionMatches = matches(sectionText);
-  
-      let sectionVisible = sectionMatches;
-      const mainItems = list.children;
-
-      if (sectionMatches) {
-        section.style.display = '';
-        list.querySelectorAll('li').forEach(li => li.style.display = '');
-        continue;
-      }
-  
-      for (const item of mainItems) {
-        const mainText = item.textContent.toLowerCase();
-        let showItem = matches(mainText);
-  
-        if (!showItem) {
-          const nestedItems = item.querySelectorAll('ul li');
-          for (const nested of nestedItems) {
-            const nestedText = nested.textContent.toLowerCase();
-            if (matches(nestedText)) {
-              nested.style.display = '';
-              showItem = true;
-            } else {
-              nested.style.display = 'none';
-            }
-          }
-        } else {
-          item.querySelectorAll('ul li').forEach(nested => {
-            nested.style.display = '';
-          });
-        }
-  
-        item.style.display = showItem ? '' : 'none';
-        sectionVisible ||= showItem;
-      }
-      section.style.display = sectionVisible ? '' : 'none';
-    }
-  }
-  
   const search = document.getElementById('search');
   if (search) {
-    search.addEventListener('input', e => filterChecklist(e.target.value));
+    let cachedElements = null;
+    let lastTerm = null;
+    let debounceTimer;
+    
+    function filterChecklist(searchTerm) {
+      const cleanTerm = searchTerm.toLowerCase().trim();
+      if (cleanTerm === lastTerm) return;
+      lastTerm = cleanTerm;
+      
+      if (!cachedElements) {
+        const sections = [...document.querySelectorAll('main h3')];
+        cachedElements = sections.map(section => {
+          const list = section.nextElementSibling;
+          if (!list) return null;
+          
+          const sectionText = section.textContent.toLowerCase();
+          const mainItems = [...list.children];
+          const itemData = mainItems.map(item => {
+            const nestedList = item.querySelector('ul');
+            const nestedItems = nestedList ? [...nestedList.querySelectorAll('li')] : [];
+            const mainText = item.textContent.toLowerCase();
+            const nestedTexts = nestedItems.map(nested => nested.textContent.toLowerCase());
+            return { item, nestedItems, mainText, nestedTexts };
+          });
+          
+          return { section, sectionText, itemData };
+        }).filter(Boolean);
+      }
+      
+      if (!cleanTerm) {
+        cachedElements.forEach(({ section, itemData }) => {
+          section.style.display = '';
+          itemData.forEach(({ item, nestedItems }) => {
+            item.style.display = '';
+            nestedItems.forEach(nested => nested.style.display = '');
+          });
+        });
+        return;
+      }
+    
+      const terms = cleanTerm.split(/\s+/);
+      const matches = text => terms.every(term => text.includes(term));
+    
+      for (const { section, sectionText, itemData } of cachedElements) {
+        const sectionMatches = matches(sectionText);
+        let sectionVisible = sectionMatches;
+
+        if (sectionMatches) {
+          section.style.display = '';
+          itemData.forEach(({ item, nestedItems }) => {
+            item.style.display = '';
+            nestedItems.forEach(nested => nested.style.display = '');
+          });
+          continue;
+        }
+    
+        for (const { item, nestedItems, mainText, nestedTexts } of itemData) {
+          let showItem = matches(mainText);
+    
+          if (!showItem) {
+            for (let i = 0; i < nestedItems.length; i++) {
+              if (matches(nestedTexts[i])) {
+                nestedItems[i].style.display = '';
+                showItem = true;
+              } else {
+                nestedItems[i].style.display = 'none';
+              }
+            }
+          } else {
+            nestedItems.forEach(nested => nested.style.display = '');
+          }
+    
+          item.style.display = showItem ? '' : 'none';
+          sectionVisible ||= showItem;
+        }
+        section.style.display = sectionVisible ? '' : 'none';
+      }
+    }
+    
+    search.addEventListener('input', e => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => filterChecklist(e.target.value), 1);
+    });
   }
 });
