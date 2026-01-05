@@ -6,9 +6,13 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 ## 2026-01-05
 
 ### Changed
-- Text to be slightly denser for legibility.
-- Light and dark mode to be more readable.
+- Text should be slightly denser for legibility.
+- Light and dark mode should be much more readable and accessible to all users (though the colors have yet to grow on me).
 - Links to regular font weight to improve readability.
+- Sidebar will should no longer extend past the viewport height on smaller screens.
+
+### Fixed
+- First column links in tables on the Resources sheet are no longer bold.
 
 ### Removed
 - Scrollbar styling.
