@@ -28,7 +28,7 @@ const mgr = {
     if (!id) return;
     if (!p[A]) p[A] = { data: {}, col: {} };
     checked ? p[A].data[id] = 1 : delete p[A].data[id];
-    localStorage.setItem(key, JSON.stringify(p));
+    mgr.scheduleSave();
   },
 
   setCol(id, expanded) {
@@ -53,24 +53,34 @@ const mgr = {
 
   col() {
     return this.get().col || {};
+  },
+
+  saveTimer: null,
+  scheduleSave() {
+    clearTimeout(this.saveTimer);
+    this.saveTimer = setTimeout(() => {
+      localStorage.setItem(key, JSON.stringify(p));
+    }, 100);
   }
 };
 
 // Restore checked state from storage
 const checkboxMap = new WeakMap();
+let cachedCheckboxes = null;
+let cachedTotalElements = null;
 
 function cacheCheckboxes() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  checkboxes.forEach(checkbox => {
+  cachedCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+  cachedCheckboxes.forEach(checkbox => {
     checkboxMap.set(checkbox, checkbox.closest('li'));
   });
 }
 
 function restoreCheckboxes() {
   const { data } = mgr.get();
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  if (!cachedCheckboxes) return;
 
-  checkboxes.forEach(checkbox => {
+  cachedCheckboxes.forEach(checkbox => {
     const checked = !!data[checkbox.id];
     const li = checkboxMap.get(checkbox);
     
@@ -83,25 +93,44 @@ function restoreCheckboxes() {
 
 // Calculate totals
 function calculateTotals() {
-  const firstCheckbox = document.querySelector('input[type="checkbox"]');
-  if (!firstCheckbox) return;
-  const prefix = firstCheckbox.id.charAt(0);
-  const totalAll = document.getElementById(`${prefix}-ot`);
-  if (!totalAll) return;
-  const sectionSpans = document.querySelectorAll(`span[id^="${prefix}-t"]`);
-  const allCheckboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
-
-  const sectionMap = allCheckboxes.reduce((map, checkbox) => {
-    const section = checkbox.id.match(/^[wdnqmbaerhskcp](\d+)-/)[1];
-    map.has(section) ? map.get(section).push(checkbox) : map.set(section, [checkbox]);
-    return map;
-  }, new Map());
-
+  if (!cachedCheckboxes || cachedCheckboxes.length === 0) return;
+  
+  if (!cachedTotalElements) {
+    const firstCheckbox = cachedCheckboxes[0];
+    const prefix = firstCheckbox.id.charAt(0);
+    const totalAll = document.getElementById(`${prefix}-ot`);
+    if (!totalAll) return;
+    
+    const sectionSpans = document.querySelectorAll(`span[id^="${prefix}-t"]`);
+    const sectionMap = new Map();
+    const tocSpanMap = new Map();
+    
+    Array.from(cachedCheckboxes).forEach(checkbox => {
+      const section = checkbox.id.match(/^[wdnqmbaerhskcp](\d+)-/)[1];
+      if (!sectionMap.has(section)) {
+        sectionMap.set(section, []);
+      }
+      sectionMap.get(section).push(checkbox);
+    });
+    
+    sectionSpans.forEach(span => {
+      const section = span.id.match(/t(\d+)$/)[1];
+      tocSpanMap.set(section, document.getElementById(`${prefix}-nt${section}`));
+    });
+    
+    cachedTotalElements = {
+      totalAll,
+      sectionSpans: Array.from(sectionSpans),
+      sectionMap,
+      tocSpanMap
+    };
+  }
+  const { totalAll, sectionSpans, sectionMap, tocSpanMap } = cachedTotalElements;
   let overallChecked = 0, overallTotal = 0;
 
   sectionSpans.forEach(span => {
     const section = span.id.match(/t(\d+)$/)[1];
-    const tocSpan = document.getElementById(`${prefix}-nt${section}`);
+    const tocSpan = tocSpanMap.get(section);
     const checkboxes = sectionMap.get(section) || [];
     const checked = checkboxes.filter(cb => cb.checked).length;
     const total = checkboxes.length;
@@ -140,6 +169,13 @@ document.addEventListener('change', e => {
 window.addEventListener('pageshow', (event) => {
   if (event.persisted) {
     window.location.reload();
+  }
+});
+
+window.addEventListener('beforeunload', () => {
+  if (mgr.saveTimer) {
+    clearTimeout(mgr.saveTimer);
+    localStorage.setItem(key, JSON.stringify(p));
   }
 });
 
@@ -223,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = prompt('Enter a name for your profile:')?.trim();
     if (!name) return;
     if (name.toLowerCase() === 'default' || p[name]) {
-      alert(name.toLowerCase() === 'default' ? 'Profile name cannot be default.' : 'Profile already exists.');
+      alert(name.toLowerCase() === 'default' ? "Can't use default as the profile name." : 'Profile already exists.');
       return;
     }
 
@@ -239,14 +275,14 @@ document.addEventListener('DOMContentLoaded', () => {
   edit?.addEventListener('click', () => {
     const current = select.value;
     if (current === D) {
-      alert('Cannot edit default profile.');
+      alert("Can't edit the default profile.");
       return;
     }
 
-    const name = prompt(`Enter a new name for "${current}":`, current)?.trim();
+    const name = prompt(`Enter a new name for ${current}:`, current)?.trim();
     if (!name || name === current) return;
     if (name.toLowerCase() === 'default' || p[name]) {
-      alert(name.toLowerCase() === 'default' ? 'Cannot use default as profile name.' : 'Profile already exists.');
+      alert(name.toLowerCase() === 'default' ? "Can't use default as the profile name." : 'Profile already exists.');
       return;
     }
 
@@ -262,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // NG+ Reset
   ngp?.addEventListener('click',  () => {
     const current = select.value;
-    if (!confirm('Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game+ for the selected profile?')) return;
+    if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${current === D ? 'the default profile' : current}?`)) return;
     const prefixes = ['w', 'd', 'n', 'q', 'b', 'p'];
     const filterData = Object.entries(p[current].data).reduce((acc, [id, value]) => {
       if (!prefixes.includes(id.charAt(0))) {
@@ -278,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Delete profile
   del?.addEventListener('click', () => {
     const current = select.value;
-    if (!confirm(`Are you sure you want to ${current === D ? 'reset the default profile' : `delete "${current}"`}?`)) return;
+    if (!confirm(`Are you sure you want to ${current === D ? 'reset the default profile' : 'delete ' + current}?`)) return;
 
     if (current === D) {
       p[D] = { data: {}, col: {} };
