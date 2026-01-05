@@ -57,14 +57,27 @@ const mgr = {
 };
 
 // Restore checked state from storage
+const checkboxMap = new WeakMap();
+
+function cacheCheckboxes() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkboxMap.set(checkbox, checkbox.closest('li'));
+  });
+}
+
 function restoreCheckboxes() {
   const { data } = mgr.get();
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
   checkboxes.forEach(checkbox => {
     const checked = !!data[checkbox.id];
+    const li = checkboxMap.get(checkbox);
+    
     checkbox.checked = checked;
-    checkbox.closest('li').classList.toggle('c', checked);
+    if (li) {
+      li.classList.toggle('c', checked);
+    }
   });
 }
 
@@ -114,8 +127,11 @@ function calculateTotals() {
 document.addEventListener('change', e => {
   if (e.target.matches('input[type="checkbox"]')) {
     const checkbox = e.target;
-    const checked = checkbox.checked;
-    checkbox.closest('li').classList.toggle('c', checked);
+    const li = checkboxMap.get(checkbox);
+    
+    if (li) {
+      li.classList.toggle('c', checkbox.checked);
+    }
     mgr.setCl(checkbox.id, checkbox.checked);
     calculateTotals();
   }
@@ -129,6 +145,7 @@ window.addEventListener('pageshow', (event) => {
 
 // After DOM load
 document.addEventListener('DOMContentLoaded', () => {
+  cacheCheckboxes();
   restoreCheckboxes();
   calculateTotals();
 
@@ -434,17 +451,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle to-top button logic
   const up = document.getElementById('up');
+  const scroll = document.getElementById('scroll');
 
-  if (up) {
-    const scroll = () => {
-      const show = window.scrollY > 500;
-      up.classList.toggle('show', show);
-      up.setAttribute('aria-hidden', show ? 'false' : 'true');
-      up.setAttribute('tabindex', show ? '0' : '-1');
-    };
-
-    window.addEventListener('scroll', scroll, { passive: true });
-    scroll();
+  if (up && scroll) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const show = !entry.isIntersecting;
+        up.classList.toggle('show', show);
+        up.setAttribute('aria-hidden', show ? 'false' : 'true');
+        up.setAttribute('tabindex', show ? '0' : '-1');
+      },
+      { threshold: [0] }
+    );
+    observer.observe(scroll);
 
     up.addEventListener('click', () => {
       window.scrollTo({ top: 0 });

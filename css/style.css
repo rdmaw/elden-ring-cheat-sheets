@@ -175,6 +175,14 @@ button, .btn {
   }
 }
 
+#scroll {
+  position: absolute;
+  top: 500px;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
 #up {
   position: fixed;
   right: var(--r4);
