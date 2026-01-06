@@ -101,11 +101,6 @@ select, button, input[type="checkbox"], label {
   cursor: pointer;
 }
 
-.list {
-  list-style-type: disc;
-  margin: var(--r2) 0 var(--r1) var(--r5);
-}
-
 @media (hover: hover) {
   input[type="checkbox"]:hover {
     transform: scale(1.1);

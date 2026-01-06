@@ -96,6 +96,11 @@ ul {
   list-style-type: none;
 }
 
+.list {
+  list-style-type: disc;
+  margin: var(--r2) 0 var(--r1) var(--r5);
+}
+
 a {
   color: var(--a);
   text-decoration: none;
