@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function populateProfiles() {
     if (!select) return;
-    select.innerHTML = '';
+    select.replaceChildren();
     select.add(new Option('Default', D));
     Object.keys(p).sort().filter(name => name !== D).forEach(name => select.add(new Option(name, name)));
     select.value = A;
