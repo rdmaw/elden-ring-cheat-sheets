@@ -1,0 +1,174 @@
+@media (prefers-reduced-motion: no-preference) {
+  .sidebar {
+    transition: transform .3s ease;
+  }
+
+  #up {
+    transition: opacity .2s ease-out, transform .2s ease-out;
+  }
+}
+
+kbd {
+  font-size: .9rem;
+  padding: .15em .45em;
+  color: var(--kt);
+  background-color: var(--k);
+  border: 1px solid var(--2);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 var(--2);
+}
+
+#scroll {
+  position: absolute;
+  top: 500px;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+#up {
+  position: fixed;
+  right: var(--r4);
+  bottom: var(--r4);
+  padding: var(--r1);
+  height: auto;
+  border: 2px solid var(--2);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+#up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#up svg {
+  width: var(--r5);
+  height: var(--r5);
+}
+
+:focus-visible {
+  outline: 2px solid var(--h);
+  border-radius: 2px;
+}
+
+.sh {
+  min-height: 3.3125rem;
+  border-top-right-radius: 7px;
+  border-bottom: 2px solid var(--2);
+}
+
+.sh h2 {
+  margin: 0;
+}
+
+.close {
+  position: absolute;
+  top: var(--r2);
+  right: .3125rem;
+  width: 2.375rem;
+  height: 2.125rem;
+  background: none;
+  border: none;
+}
+
+.close svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.sheets {
+  padding: var(--r1);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.sheets a {
+  display: block;
+  padding: var(--r2);
+}
+
+.sheets li {
+  border-bottom: 1px dotted var(--2);
+}
+
+nav a:hover {
+  text-decoration: none;
+}
+
+.nav a:hover {
+  background-color: var(--b);
+  border-radius: 5px;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+.btn:hover {
+  background-color: var(--kh);
+}
+
+.close:hover {
+  background-color: var(--b);
+}
+
+.sheets li:hover {
+  background-color: var(--3);
+  border-radius: .25em;
+}
+
+footer {
+  padding: var(--r4) 0 var(--r1);
+  font-size: .8rem;
+}
+
+select, button, input[type="checkbox"], label {
+  cursor: pointer;
+}
+
+.list {
+  list-style-type: disc;
+  margin: var(--r2) 0 var(--r1) var(--r5);
+}
+
+@media (hover: hover) {
+  input[type="checkbox"]:hover {
+    transform: scale(1.1);
+  }
+}
+
+@media print {
+  :root {
+    --b: #fff;
+    --t: #000;
+    --h: #000;
+    --r: #000;
+    --d: #000;
+    --a: #000;
+    --k: #fff;
+    --kt: #000;
+  }
+
+  nav, .toc h2, .toc span, input[type="checkbox"], footer, search, .filter, h3 button, h3 span, #up, .alert {
+    display: none !important;
+  }
+
+  label {
+    padding: 0;
+    text-decoration: none !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  .toc {
+    display: block !important;
+  }
+}

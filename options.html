@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://eldenring.redmaw.dev/options">
   <script>const d=document.documentElement,t="d"===localStorage.getItem("t");t&&d.classList.add("dark");</script>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/legacy.css">
 </head>
 <body>
   <nav class="flex" aria-label="Global navigation">
@@ -50,13 +50,15 @@
       <h1>Options</h1>
       <p class="lead">Manage your profiles and color options.</p>
     </header>
-    <section class="options">
-      <h2>Color Options:</h2>
+    <section aria-labelledby="color-h">
+      <h2 id="color-h">Color Options:</h2>
       <label for="theme">Color Theme:</label>
       <select id="theme" name="color-theme">
         <option value="l">Light</option>
         <option value="d">Dark</option>
       </select>
+    </section>
+    <section aria-labelledby="prof-h">
       <h2 id="prof-h">Profile Management:</h2>
       <label for="profile">Select profile:</label>
       <select id="profile" name="profile"></select>
