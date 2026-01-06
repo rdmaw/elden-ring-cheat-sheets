@@ -8,36 +8,6 @@
   }
 }
 
-kbd {
-  font-size: .9rem;
-  padding: .15em .45em;
-  color: var(--kt);
-  background-color: var(--k);
-  border: 1px solid var(--2);
-  border-radius: 3px;
-  box-shadow: 0 1px 0 var(--2);
-}
-
-#scroll {
-  position: absolute;
-  top: 500px;
-  width: 1px;
-  height: 1px;
-  pointer-events: none;
-}
-
-#up {
-  position: fixed;
-  right: var(--r4);
-  bottom: var(--r4);
-  padding: var(--r1);
-  height: auto;
-  border: 2px solid var(--2);
-  border-radius: 50%;
-  opacity: 0;
-  transform: translateY(100px);
-}
-
 #up.show {
   opacity: 1;
   transform: translateY(0);
@@ -91,6 +61,10 @@ kbd {
 
 .sheets li {
   border-bottom: 1px dotted var(--2);
+}
+
+button, .btn {
+  touch-action: manipulation;
 }
 
 nav a:hover {

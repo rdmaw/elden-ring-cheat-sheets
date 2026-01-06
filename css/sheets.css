@@ -104,10 +104,6 @@ svg {
   display: block;
 }
 
-button, .btn {
-  touch-action: manipulation;
-}
-
 .btn {
   padding: .25rem var(--r1);
   height: 2rem;
@@ -190,6 +186,16 @@ nav {
 main {
   width: min(100% - var(--r4), 87rem);
   margin-inline: auto;
+}
+
+kbd {
+  font-size: .9rem;
+  padding: .15em .45em;
+  color: var(--kt);
+  background-color: var(--k);
+  border: 1px solid var(--2);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 var(--2);
 }
 
 .filter {
@@ -300,6 +306,26 @@ hr::after {
   padding: 0 1rem;
   color: var(--h);
   background: var(--b);
+}
+
+#scroll {
+  position: absolute;
+  top: 500px;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+#up {
+  position: fixed;
+  right: var(--r4);
+  bottom: var(--r4);
+  padding: var(--r1);
+  height: auto;
+  border: 2px solid var(--2);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(100px);
 }
 
 .f, .hide .c > label, .hide .c > input[type="checkbox"] {
