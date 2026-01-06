@@ -379,3 +379,8 @@ h1, h2, h3, h3 a, nav a, #menu svg, .close svg {
 form > ul, .sidebar, .toc {
   contain: layout;
 }
+
+footer {
+  padding: var(--r4) 0 var(--r1);
+  font-size: .8rem;
+}

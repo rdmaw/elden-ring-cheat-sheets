@@ -97,11 +97,6 @@ a:hover, a:focus {
   border-radius: .25em;
 }
 
-footer {
-  padding: var(--r4) 0 var(--r1);
-  font-size: .8rem;
-}
-
 select, button, input[type="checkbox"], label {
   cursor: pointer;
 }
