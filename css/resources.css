@@ -254,10 +254,8 @@ tr:nth-child(even) {
   background-color: var(--c4);
 }
 
-tr:hover {
-  td, th[scope="row"] {
-    background-color: var(--c3);
-  }
+tr:hover td, tr:hover th[scope="row"] {
+  background-color: var(--c3);
 }
 
 #scroll {
