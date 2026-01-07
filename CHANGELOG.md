@@ -12,10 +12,12 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 - Sidebar will should no longer extend past the viewport height on smaller screens.
 
 ### Fixed
+- Missable tags to Margit, Draconic Tree Sentinel, and steps in Fia's questline.
 - First column links in tables on the Resources sheet are no longer bold.
 - Collapse buttons appearing too low on mobile.
 
 ### Removed
+- Optional tags in Diallos's and Yura's questline.
 - Scrollbar styling.
 - Purple and green links that cluttered readability.
 - Half implemented colorblind support (may implement a proper solution later).
