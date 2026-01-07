@@ -13,6 +13,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
 ### Fixed
 - First column links in tables on the Resources sheet are no longer bold.
+- Collapse buttons appearing too low on mobile.
 
 ### Removed
 - Scrollbar styling.

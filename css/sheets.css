@@ -242,6 +242,7 @@ nav span, h2 span, h3 span {
   width: 2.2rem;
   height: 1.75rem;
   flex-shrink: 0;
+  vertical-align: text-bottom;
 }
 
 .col::before {
