@@ -533,7 +533,7 @@ select, button, input[type=checkbox], label { cursor: pointer; }
 .f, .hide .c > label, .hide .c > input[type=checkbox] { display: none !important; }
 li { position: relative; }
 form > ul, .sidebar, .toc, .tw { contain: layout; }
-h1, h2, h3, h3 a, h4, nav a, caption, th[scope=col], #menu svg, .close svg { color: var(--h); }
+h1, h2, h3, h4, nav a, caption, th[scope=col], #menu svg, .close svg { color: var(--h); }
 nav, .sh, th[scope=col] { background-color: var(--c1); }
 
 /* PRINT

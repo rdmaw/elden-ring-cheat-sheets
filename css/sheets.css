@@ -373,7 +373,7 @@ nav, .sh {
   background-color: var(--c1);
 }
 
-h1, h2, h3, h3 a, nav a, #menu svg, .close svg {
+h1, h2, h3, nav a, #menu svg, .close svg {
   color: var(--h);
 }
 
