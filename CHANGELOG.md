@@ -21,6 +21,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 - Collapse buttons appearing too low on mobile.
 
 ### Removed
+- Multiple duplicate links across all sheets.
 - Optional tags in Diallos's and Yura's questline.
 - Scrollbar styling.
 - Purple and green links that cluttered readability.
