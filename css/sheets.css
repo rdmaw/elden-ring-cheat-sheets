@@ -179,7 +179,7 @@ nav {
   z-index: 2;
 }
 
-.sidebar[aria-hidden="false"] {
+.sidebar[aria-hidden=false] {
   transform: translateX(0);
 }
 
@@ -257,7 +257,7 @@ nav span, h2 span, h3 span {
   transform: translateY(-2px) rotate(45deg);
 }
 
-.col[aria-expanded="true"]::before {
+.col[aria-expanded=true]::before {
   transform: translateY(2px) rotate(-135deg);
 }
 
@@ -270,7 +270,7 @@ label {
   padding: .16rem 0 .16rem 2.75rem;
 }
 
-input[type="checkbox"] {
+input[type=checkbox] {
   position: absolute;
   left: var(--r3);
   top: .4rem;
@@ -292,7 +292,7 @@ hr {
 }
 
 hr::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 0;
@@ -329,7 +329,7 @@ hr::after {
   transform: translateY(100px);
 }
 
-.f, .hide .c > label, .hide .c > input[type="checkbox"] {
+.f, .hide .c > label, .hide .c > input[type=checkbox] {
   display: none !important;
 }
 

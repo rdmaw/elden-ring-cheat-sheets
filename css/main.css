@@ -97,12 +97,12 @@ a:hover, a:focus {
   border-radius: .25em;
 }
 
-select, button, input[type="checkbox"], label {
+select, button, input[type=checkbox], label {
   cursor: pointer;
 }
 
 @media (hover: hover) {
-  input[type="checkbox"]:hover {
+  input[type=checkbox]:hover {
     transform: scale(1.1);
   }
 }
@@ -119,7 +119,7 @@ select, button, input[type="checkbox"], label {
     --kt: #000;
   }
 
-  nav, .toc h2, .toc span, input[type="checkbox"], footer, search, .filter, h3 button, h3 span, #up, .alert {
+  nav, .toc h2, .toc span, input[type=checkbox], footer, search, .filter, h3 button, h3 span, #up, .alert {
     display: none !important;
   }
 

@@ -286,7 +286,7 @@ nav {
   transform: translateX(-103%);
   z-index: 2;
 
-  &[aria-hidden="false"] {
+  &[aria-hidden=false] {
     transform: translateX(0);
   }
 }
@@ -389,7 +389,7 @@ hr {
 }
 
 hr::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 0;
@@ -451,7 +451,7 @@ nav span, h2 span, h3 span {
     transform: translateY(-2px) rotate(45deg);
   }
 
-  &[aria-expanded="true"]::before {
+  &[aria-expanded=true]::before {
     transform: translateY(2px) rotate(-135deg);
   }
 }
@@ -461,7 +461,7 @@ label {
   padding: .16rem 0 .16rem 2.75rem;
 }
 
-input[type="checkbox"] {
+input[type=checkbox] {
   position: absolute;
   left: var(--r3);
   top: .4rem;
@@ -471,7 +471,7 @@ input[type="checkbox"] {
 }
 
 @media (hover: hover) {
-  input[type="checkbox"]:hover {
+  input[type=checkbox]:hover {
     transform: scale(1.1);
   }
 }
@@ -507,7 +507,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-  td, th[scope="row"] {
+  td, th[scope=row] {
     background-color: var(--c3);
   }
 }
@@ -524,17 +524,17 @@ tr:hover {
 /* REPEATED 
 ------------- */
 header, footer, th, td { text-align: center; }
-caption, th[scope="row"] { text-align: left; }
+caption, th[scope=row] { text-align: left; }
 ol, kbd { font-size: .9rem; }
 html, label, .sh h2, .toc { line-height: 1.6; }
 h3, h4, nav a { line-height: 1.15; }
 .sh h2, h2, h3, h4, nav a, nav span, caption, strong { font-weight: 600; }
-select, button, input[type="checkbox"], label { cursor: pointer; }
-.f, .hide .c > label, .hide .c > input[type="checkbox"] { display: none !important; }
+select, button, input[type=checkbox], label { cursor: pointer; }
+.f, .hide .c > label, .hide .c > input[type=checkbox] { display: none !important; }
 li { position: relative; }
 form > ul, .sidebar, .toc, .tw { contain: layout; }
-h1, h2, h3, h3 a, h4, nav a, caption, th[scope="col"], #menu svg, .close svg { color: var(--h); }
-nav, .sh, th[scope="col"] { background-color: var(--c1); }
+h1, h2, h3, h3 a, h4, nav a, caption, th[scope=col], #menu svg, .close svg { color: var(--h); }
+nav, .sh, th[scope=col] { background-color: var(--c1); }
 
 /* PRINT
 -------- */
@@ -550,7 +550,7 @@ nav, .sh, th[scope="col"] { background-color: var(--c1); }
     --kt: #000;
   }
 
-  nav, .toc h2, .toc span, input[type="checkbox"], footer, search, .filter, h3 button, h3 span, #up, .alert {
+  nav, .toc h2, .toc span, input[type=checkbox], footer, search, .filter, h3 button, h3 span, #up, .alert {
     display: none !important;
   }
 

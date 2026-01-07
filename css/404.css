@@ -168,7 +168,7 @@ nav {
   z-index: 2;
 }
 
-.sidebar[aria-hidden="false"] {
+.sidebar[aria-hidden=false] {
   transform: translateX(0);
 }
 
