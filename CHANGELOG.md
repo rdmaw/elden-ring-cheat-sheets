@@ -5,7 +5,11 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
 ## 2026-01-07
 
+### Added
+- Scadutree Fragment and Revered Spirit Ash tables to Resources.
+
 ### Changed
+- Moved Remembrance table out of Runes section in Resources.
 - Text should be slightly denser for legibility.
 - Light and dark mode should be much more readable and accessible to all users.
 - Links to regular font weight to improve readability.

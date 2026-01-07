@@ -66,16 +66,19 @@
       <h2>Resources</h2>
       <ul>
         <li><a href="#stats">Stats and Build</a></li>
-        <li><a href="#smithing-upgrades">Smithing Upgrades</a></li>
-        <li><a href="#glovewort-upgrades">Glovewort Upgrades</a></li>
-        <li><a href="#rune-items">Rune Items</a></li>
+        <li><a href="#smithing-stones">Smithing Stones</a></li>
+        <li><a href="#gloveworts">Gloveworts</a></li>
+        <li><a href="#runes">Runes</a></li>
+        <li><a href="#remembrances">Remembrances</a></li>
+        <li><a href="#scadu-fragments">Scadutree Fragments</a></li>
+        <li><a href="#revered-ashes">Revered Spirit Ashes</a></li>
       </ul>
     </nav>
     <div class="filter">
       <button type="button" id="exp-a" class="btn">Expand all</button>
       <button type="button" id="col-a" class="btn">Collapse all</button>
     </div>
-    <h3 id="stats"><button type="button" class="col btn" aria-label="Toggle Stats and Build section" aria-controls="x1" aria-expanded="true"></button><a href="https://eldenring.wiki.gg/wiki/Stats_and_Attributes">Stats and Build</a></h3>
+    <h3 id="stats"><button type="button" class="col btn" aria-label="Toggle Stats and Build" aria-controls="x1" aria-expanded="true"></button>Stats and Build</h3>
     <div id="x1" class="tw" role="region" aria-labelledby="stats">
       <table>
         <caption>Soft Caps</caption>
@@ -139,7 +142,7 @@
             <td></td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Intelligence">Intelligence (Sorcery)</a></th>
+            <th scope="row">Intelligence (Sorcery)</th>
             <td>60</td>
             <td>80</td>
             <td></td>
@@ -153,7 +156,7 @@
             <td></td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Faith">Faith (Incantation)</a></th>
+            <th scope="row">Faith (Incantation)</th>
             <td>60</td>
             <td>80</td>
             <td></td>
@@ -175,25 +178,25 @@
           </tr>
         </tbody>
       </table>
-      <p><strong>Vigor:</strong> The stat you should focus on first. Getting 40 Vigor early makes the early-mid game much easier. Combined with the fact you can always start the game with a +5 Somber weapon and plenty of upgraded Flasks, you can be tanking and killing most enemies with little investment. It's not recommended to level past 60 due to diminishing returns.</p>
-      <p><strong>Mind:</strong> Most builds will be fine around 20-40 Mind depending on how many spells or weapon skills you use.</p>
-      <p><strong>Endurance:</strong> Level based on how much stamina and equip load your armor and weapons need. You typically want to end around 40-50 Endurance.</p>
-      <p><strong>Strength:</strong> Largely depends on your weapon and its scaling when infused with an Ash of War affinity. For accurate numbers, use a <a href="https://eip.gg/elden-ring/build-planner/">Build Planner</a>, add your weapon and play with the stats until you see diminishing returns. Note that two-handing <kbd>Hold Y/△ + LB/R1</kbd> or <kbd>Hold E + Left/Right Click</kbd> multiplies your Strength stat by 1,5, allowing you to use weapons that require more Strength than you have.</p>
-      <p><strong>Dexterity:</strong> Largely depends on your weapon and its individual scaling. Use the abovementioned Build Planner, add your weapon of choice and play with the Dexterity stat until you see diminishing returns.</p>
-      <p><strong>Intelligence:</strong> For the individual scaling on each staff, I recommend checking out <a href="https://eldenring.wiki.fextralife.com/Intelligence">Fextra's page</a> about Intelligence.</p>
-      <p><strong>Faith:</strong> For the individual scaling on each seal, I recommend checking out <a href="https://eldenring.wiki.fextralife.com/Faith">Fextra's page</a> about Faith.</p>
-      <p><strong>Arcane:</strong> Level this stat to increase the damage of weapons scaling with Arcane. The amount of Blood Loss, Poison, Sleep, and Madness buildup your weapon inflicts will also increase. A list of weapons that scale with Arcane can be found on <a href="https://eldenring.wiki.fextralife.com/Arcane">Fextra's page</a>. Arcane is the only stat to increase your <a href="https://eldenring.wiki.gg/wiki/Discovery">Discovery</a> (1 per point, up to 99).</p>
-      <p><strong>Note:</strong> For calculating the Attack Rating of your weapon, try tarnished.dev's <a href="https://www.tarnished.dev/weapon-calculator">Weapon Calculator</a>. If you're unsure about which staves or seals are best for your stats, try Jerp's <a href="https://jerp.tv/eldenring/spelltools/">Casting Tool Comparator</a>.</p>
+      <p><strong>Vigor:</strong> Increases your HP. Getting 40 Vigor early makes the early-mid game much easier. Combined with the fact you can always start the game with a +5 Somber weapon and upgraded flasks, you can be tanking and killing most enemies with little investment. It's not recommended to level past 60 due to diminishing returns.</p>
+      <p><strong>Mind:</strong> Increases your mana bar. Most builds will be fine around 20-40 Mind depending on how many spells or weapon skills you use.</p>
+      <p><strong>Endurance:</strong> Increases your stamina and equip load. Level based on how much stamina and equip load your armor and weapons need. You typically want to end around 40-50 Endurance.</p>
+      <p><strong>Strength:</strong> Increases your strength and when two-handing, multiplies your strength by 50% <kbd>Hold △ + R1</kbd> or <kbd>Hold E + Right Click</kbd>. For accurate stats, use a <a href="https://www.tarnished.dev/weapon-calculator">Weapon Calculator</a>, select a weapon with "Heavy" as the affinity, and play with the strength stat until you see diminishing returns.</p>
+      <p><strong>Dexterity:</strong> Increases your dexterity and spell casting speed. Use the abovementioned weapon calculator with a "Keen" affinity to find your weapons soft cap. Casting speed caps at 70 dexterity.</p>
+      <p><strong>Intelligence:</strong> Increases your ability to cast sorceries. Use a <a href="https://jerp.tv/eldenring/spelltools/">Casting Tool Comparator</a> to find out which staff is best for your build.</p>
+      <p><strong>Faith:</strong> Increases your ability to cast incantations. Use the abovementioned casting tool comparator to find out which seal is best for your build.</p>
+      <p><strong>Arcane:</strong> Increases the damage of arcane-scaling weapons and the amount of status buildup it inflicts. Additionally, leveling this stat increases your <a href="https://eldenring.wiki.gg/wiki/Discovery">Item Discovery</a> (1 per point, up to 99).</p>
+      <p><strong>Build:</strong> If you know what equipment you'll use beforehand, you can min-max your stats and starting class using a <a href="https://eip.gg/elden-ring/build-planner/">Build Planner</a>.</p>
       <h4>General recommendation:</h4>
       <ul class="list">
-        <li>Reach level requirements for your desired weapon</li>
-        <li>Focus on vigor early. Leveling damage stats yield little value, since most weapons have bad scaling at low upgrade levels</li>
-        <li>Get enough endurance to reach medium roll equip load with your preferred loadout</li>
-        <li>Level the damage stats after you've upgraded your weapon a few times</li>
+        <li>Reach level requirements for your desired weapon, casting tool, or spell</li>
+        <li>Focus on vigor early. Leveling damage stats yield little value, since most weapons have bad scaling at low upgrades</li>
+        <li>Get enough stamina to comfortably use your weapons and reach medium roll equip load with your loadout</li>
+        <li>Level damage stats after you've upgraded your weapon a few times</li>
       </ul>
     </div>
-    <h3 id="smithing-upgrades"><button type="button" class="col btn" aria-label="Toggle Smithing Upgrades section" aria-controls="x2" aria-expanded="true"></button><a href="https://eldenring.wiki.gg/wiki/Bolstering_Materials#Smithing_Stones">Smithing Upgrades</a></h3>
-    <div id="x2" class="tw" role="region" aria-labelledby="smithing-upgrades">
+    <h3 id="smithing-stones"><button type="button" class="col btn" aria-label="Toggle Smithing Stones" aria-controls="x2" aria-expanded="true"></button>Smithing Stones</h3>
+    <div id="x2" class="tw" role="region" aria-labelledby="smithing-stones">
       <table>
         <caption>Smithing Stones</caption>
         <thead>
@@ -366,8 +369,8 @@
         </tbody>
       </table>
     </div>
-    <h3 id="glovewort-upgrades"><button type="button" class="col btn" aria-label="Toggle Glovewort Upgrades section" aria-controls="x3" aria-expanded="true"></button><a href="https://eldenring.wiki.gg/wiki/Bolstering_Materials#Grave_Glovewort">Glovewort Upgrades</a></h3>
-    <div id="x3" class="tw" role="region" aria-labelledby="glovewort-upgrades">
+    <h3 id="gloveworts"><button type="button" class="col btn" aria-label="Toggle Gloveworts" aria-controls="x3" aria-expanded="true"></button>Gloveworts</h3>
+    <div id="x3" class="tw" role="region" aria-labelledby="gloveworts">
       <table>
         <caption>Grave Gloveworts</caption>
         <thead>
@@ -537,8 +540,8 @@
         </tbody>
       </table>
     </div>
-    <h3 id="rune-items"><button type="button" class="col btn" aria-label="Toggle Rune Items section" aria-controls="x4" aria-expanded="true"></button><a href="https://eldenring.wiki.gg/wiki/Golden_Runes">Rune Items</a></h3>
-    <div id="x4" class="tw" role="region" aria-labelledby="rune-items">
+    <h3 id="runes"><button type="button" class="col btn" aria-label="Toggle Runes" aria-controls="x4" aria-expanded="true"></button>Runes</h3>
+    <div id="x4" class="tw" role="region" aria-labelledby="runes">
       <table>
         <caption>Base Game</caption>
         <thead>
@@ -635,7 +638,65 @@
         </tbody>
       </table>
       <table>
-        <caption>Remembrances</caption>
+        <caption>DLC</caption>
+        <thead>
+          <tr>
+            <th scope="col">DLC Consumable</th>
+            <th scope="col">Runes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Broken_Rune">Broken Rune</a></th>
+            <td>500</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_1">Shadow Realm Rune [1]</a></th>
+            <td>7,500</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_2">Shadow Realm Rune [2]</a></th>
+            <td>10,000</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_3">Shadow Realm Rune [3]</a></th>
+            <td>12,500</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_4">Shadow Realm Rune [4]</a></th>
+            <td>15,000</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_5">Shadow Realm Rune [5]</a></th>
+            <td>17,500</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_6">Shadow Realm Rune [6]</a></th>
+            <td>22,500</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_7">Shadow Realm Rune [7]</a></th>
+            <td>30,000</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Leda%27s_Rune">Leda's Rune</a></th>
+            <td>40,000</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Rune_of_an_Unsung_Hero">Rune of an Unsung Hero</a></th>
+            <td>50,000</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Marika%27s_Rune">Marika's Rune</a></th>
+            <td>80,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 id="remembrances"><button type="button" class="col btn" aria-label="Toggle Remembrances" aria-controls="x5" aria-expanded="true"></button>Remembrances</h3>
+    <div id="x5" class="tw" role="region" aria-labelledby="remembrances">
+      <table>
+        <caption>Base Game</caption>
         <thead>
           <tr>
             <th scope="col">Remembrance</th>
@@ -705,58 +766,269 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <h3 id="scadu-fragments"><button type="button" class="col btn" aria-label="Toggle Scadutree Fragments" aria-controls="x6" aria-expanded="true"></button>Scadutree Fragments</h3>
+    <div id="x6" class="tw" role="region" aria-labelledby="scadu-fragments">
       <table>
-        <caption>DLC</caption>
+        <caption>Scadutree Fragments</caption>
         <thead>
           <tr>
-            <th scope="col">DLC Consumable</th>
-            <th scope="col">Runes</th>
+            <th scope="col">Level</th>
+            <th scope="col">Required</th>
+            <th scope="col">Total Required</th>
+            <th scope="col">Damage Multiplier</th>
+            <th scope="col">Damage Negation</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Broken_Rune">Broken Rune</a></th>
-            <td>500</td>
+            <th scope="row">1</th>
+            <td>1</td>
+            <td>1</td>
+            <td>1.10x</td>
+            <td>9.09%</td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_1">Shadow Realm Rune [1]</a></th>
-            <td>7,500</td>
+            <th scope="row">2</th>
+            <td>2</td>
+            <td>3</td>
+            <td>1.20x</td>
+            <td>16.67%</td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_2">Shadow Realm Rune [2]</a></th>
-            <td>10,000</td>
+            <th scope="row">3</th>
+            <td>2</td>
+            <td>5</td>
+            <td>1.25x</td>
+            <td>20.00%</td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_3">Shadow Realm Rune [3]</a></th>
-            <td>12,500</td>
+            <th scope="row">4</th>
+            <td>2</td>
+            <td>7</td>
+            <td>1.30x</td>
+            <td>23.08%</td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_4">Shadow Realm Rune [4]</a></th>
-            <td>15,000</td>
+            <th scope="row">5</th>
+            <td>2</td>
+            <td>9</td>
+            <td>1.35x</td>
+            <td>25.93%</td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_5">Shadow Realm Rune [5]</a></th>
-            <td>17,500</td>
+            <th scope="row">6</th>
+            <td>2</td>
+            <td>11</td>
+            <td>1.42x</td>
+            <td>29.82%</td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_6">Shadow Realm Rune [6]</a></th>
-            <td>22,500</td>
+            <th scope="row">7</th>
+            <td>2</td>
+            <td>13</td>
+            <td>1.50x</td>
+            <td>33.33%</td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Shadow_Realm_Rune_7">Shadow Realm Rune [7]</a></th>
-            <td>30,000</td>
+            <th scope="row">8</th>
+            <td>2</td>
+            <td>15</td>
+            <td>1.55x</td>
+            <td>35.48%</td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Leda%27s_Rune">Leda's Rune</a></th>
-            <td>40,000</td>
+            <th scope="row">9</th>
+            <td>2</td>
+            <td>17</td>
+            <td>1.60x</td>
+            <td>37.50%</td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Rune_of_an_Unsung_Hero">Rune of an Unsung Hero</a></th>
-            <td>50,000</td>
+            <th scope="row">10</th>
+            <td>3</td>
+            <td>20</td>
+            <td>1.65x</td>
+            <td>39.39%</td>
           </tr>
           <tr>
-            <th scope="row"><a href="https://eldenring.wiki.gg/wiki/Marika%27s_Rune">Marika's Rune</a></th>
-            <td>80,000</td>
+            <th scope="row">11</th>
+            <td>3</td>
+            <td>23</td>
+            <td>1.75x</td>
+            <td>42.86%</td>
+          </tr>
+          <tr>
+            <th scope="row">12</th>
+            <td>3</td>
+            <td>26</td>
+            <td>1.85x</td>
+            <td>45.95%</td>
+          </tr>
+          <tr>
+            <th scope="row">13</th>
+            <td>3</td>
+            <td>29</td>
+            <td>1.88x</td>
+            <td>46.67%</td>
+          </tr>
+          <tr>
+            <th scope="row">14</th>
+            <td>3</td>
+            <td>32</td>
+            <td>1.90x</td>
+            <td>47.37%</td>
+          </tr>
+          <tr>
+            <th scope="row">15</th>
+            <td>3</td>
+            <td>35</td>
+            <td>1.92x</td>
+            <td>48.05%</td>
+          </tr>
+          <tr>
+            <th scope="row">16</th>
+            <td>3</td>
+            <td>38</td>
+            <td>1.95x</td>
+            <td>48.72%</td>
+          </tr>
+          <tr>
+            <th scope="row">17</th>
+            <td>3</td>
+            <td>41</td>
+            <td>1.98x</td>
+            <td>49.37%</td>
+          </tr>
+          <tr>
+            <th scope="row">18</th>
+            <td>3</td>
+            <td>44</td>
+            <td>2.00x</td>
+            <td>50.00%</td>
+          </tr>
+          <tr>
+            <th scope="row">19</th>
+            <td>3</td>
+            <td>47</td>
+            <td>2.02x</td>
+            <td>50.62%</td>
+          </tr>
+          <tr>
+            <th scope="row">20</th>
+            <td>3</td>
+            <td>50</td>
+            <td>2.05x</td>
+            <td>51.22%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 id="revered-ashes"><button type="button" class="col btn" aria-label="Toggle Revered Spirit Ashes" aria-controls="x7" aria-expanded="true"></button>Revered Spirit Ashes</h3>
+    <div id="x7" class="tw" role="region" aria-labelledby="revered-ashes">
+      <table>
+        <caption>Revered Spirit Ashes</caption>
+        <thead>
+          <tr>
+            <th scope="col">Level</th>
+            <th scope="col">Required</th>
+            <th scope="col">Total Required</th>
+            <th scope="col">Damage Multiplier</th>
+            <th scope="col">Mimic Tear Damage</th>
+            <th scope="col">Damage Negation</th>
+            <th scope="col">Mimic Tear Negation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>1</td>
+            <td>1</td>
+            <td>1.08x</td>
+            <td>1.08x</td>
+            <td>6.82%</td>
+            <td>6.82%</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>1</td>
+            <td>2</td>
+            <td>1.15x</td>
+            <td>1.15x</td>
+            <td>12.50%</td>
+            <td>12.50%</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>1</td>
+            <td>3</td>
+            <td>1.22x</td>
+            <td>1.22x</td>
+            <td>17.31%</td>
+            <td>17.31%</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>2</td>
+            <td>5</td>
+            <td>1.30x</td>
+            <td>1.30x</td>
+            <td>21.43%</td>
+            <td>21.43%</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>2</td>
+            <td>7</td>
+            <td>1.40x</td>
+            <td>1.38x</td>
+            <td>27.00%</td>
+            <td>25.00%</td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>3</td>
+            <td>10</td>
+            <td>1.57x</td>
+            <td>1.45x</td>
+            <td>33.88%</td>
+            <td>28.12%</td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>3</td>
+            <td>13</td>
+            <td>1.65x</td>
+            <td>1.52x</td>
+            <td>36.41%</td>
+            <td>30.88%</td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td>3</td>
+            <td>16</td>
+            <td>1.73x</td>
+            <td>1.60</td>
+            <td>38.67%</td>
+            <td>33.33%</td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td>4</td>
+            <td>20</td>
+            <td>1.81x</td>
+            <td>1.68x</td>
+            <td>40.68%</td>
+            <td>35.53%</td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td>5</td>
+            <td>25</td>
+            <td>1.89x</td>
+            <td>1.75x</td>
+            <td>42.50%</td>
+            <td>37.50%</td>
           </tr>
         </tbody>
       </table>
