@@ -83,10 +83,6 @@ h2, h3 {
   margin: var(--r5) 0 var(--r1);
 }
 
-h2 + h3, p {
-  margin-top: var(--r2);
-}
-
 ul {
   list-style-type: none;
 }
