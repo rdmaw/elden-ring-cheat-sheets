@@ -75,21 +75,21 @@ header h1 {
   margin: 0;
 }
 
-.err {
-  font-size: 1.4rem;
-}
-
 h1 {
   font-size: clamp(1.5rem, 1.6rem + 1vw, 2.3rem);
 }
 
-h2, h3 {
+h2 {
   font-size: 1.5rem;
   margin: var(--r5) 0 var(--r1);
 }
 
-h2 + h3, p {
+p {
   margin-top: var(--r2);
+}
+
+.err {
+  font-size: 1.4rem;
 }
 
 ul {
@@ -97,7 +97,6 @@ ul {
 }
 
 a {
-  color: var(--a);
   text-decoration: none;
 }
 
@@ -199,7 +198,7 @@ html, .sh h2 {
   line-height: 1.6;
 }
 
-h3, nav a {
+nav a {
   line-height: 1.15;
 }
 
