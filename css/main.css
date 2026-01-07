@@ -26,7 +26,7 @@
 .sh {
   min-height: 3.3125rem;
   border-top-right-radius: 7px;
-  border-bottom: 2px solid var(--2);
+  border-bottom: 2px solid var(--c2);
 }
 
 .sh h2 {
@@ -60,7 +60,7 @@
 }
 
 .sheets li {
-  border-bottom: 1px dotted var(--2);
+  border-bottom: 1px dotted var(--c2);
 }
 
 button, .btn {
@@ -93,7 +93,7 @@ a:hover, a:focus {
 }
 
 .sheets li:hover {
-  background-color: var(--3);
+  background-color: var(--c3);
   border-radius: .25em;
 }
 

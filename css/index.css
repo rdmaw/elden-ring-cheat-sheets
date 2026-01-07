@@ -2,10 +2,10 @@
   --b: #fff9eb;
   --t: #070403;
   --h: #423124;
-  --1: #ad9c7f;
-  --2: #4a3728;
-  --3: #e6dbcaf2;
-  --4: #eadccd33;
+  --c1: #ad9c7f;
+  --c2: #4a3728;
+  --c3: #e6dbcaf2;
+  --c4: #eadccd33;
   --r: #c00;
   --a: #0b4fd5;
   --x: #c74a23;
@@ -26,10 +26,10 @@
   --b: #1d1f20;
   --t: #ededed;
   --h: #f8f7f7;
-  --1: #303030;
-  --2: #808080;
-  --3: #404040;
-  --4: #1a1d1e;
+  --c1: #303030;
+  --c2: #808080;
+  --c3: #404040;
+  --c4: #1a1d1e;
   --r: #e15668;
   --a: #5c88c1;
   --x: #d66b79;
@@ -119,12 +119,12 @@ svg {
   height: 2rem;
   color: var(--kt);
   background-color: var(--k);
-  border: 1px solid var(--2);
+  border: 1px solid var(--c2);
   border-radius: 5px;
 }
 
 nav {
-  border-bottom: 2px solid var(--2);
+  border-bottom: 2px solid var(--c2);
 }
 
 .nav {
@@ -155,7 +155,7 @@ nav {
   width: 3.4375rem;
   height: 2.8rem;
   background-color: var(--b);
-  border: 2px solid var(--2);
+  border: 2px solid var(--c2);
   border-radius: 5px;
 }
 
@@ -171,7 +171,7 @@ nav {
   max-height: calc(100vh - .875rem);
   flex-direction: column;
   background-color: var(--b);
-  border: 2px solid var(--2);
+  border: 2px solid var(--c2);
   border-left-width: 0;
   border-radius: 0 10px 10px 0;
   transform: translateX(-103%);
@@ -192,9 +192,9 @@ kbd {
   padding: .15em .45em;
   color: var(--kt);
   background-color: var(--k);
-  border: 1px solid var(--2);
+  border: 1px solid var(--c2);
   border-radius: 3px;
-  box-shadow: 0 1px 0 var(--2);
+  box-shadow: 0 1px 0 var(--c2);
 }
 
 ol {
@@ -220,7 +220,7 @@ ol ul {
   bottom: var(--r4);
   padding: var(--r1);
   height: auto;
-  border: 2px solid var(--2);
+  border: 2px solid var(--c2);
   border-radius: 50%;
   opacity: 0;
   transform: translateY(100px);
@@ -263,7 +263,7 @@ h3, h4, nav a {
 }
 
 nav, .sh {
-  background-color: var(--1);
+  background-color: var(--c1);
 }
 
 h1, h2, h3, h4, nav a, #menu svg, .close svg {
