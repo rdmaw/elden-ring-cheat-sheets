@@ -168,7 +168,7 @@ nav {
   position: fixed;
   top: .4375rem;
   width: 17rem;
-  max-height: calc(100vh - .875rem);
+  max-height: calc(100svh - .875rem);
   flex-direction: column;
   background-color: var(--b);
   border: 2px solid var(--c2);
