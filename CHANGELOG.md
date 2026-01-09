@@ -6,7 +6,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 ## 2026-01-09
 
 ### Added
-- Sticky notes to multiple Walkthrough, NPC Walkthrough, and Questline sections.
+- Sticky notes to multiple Walkthrough, NPC Walkthrough, Questline, Merchant, and New Game Plus sections.
 - Night labels to night bosses in Bosses.
 - All melee armaments to Weapons.
 - All ranged weapons, catalysts, and shields to Weapons.
