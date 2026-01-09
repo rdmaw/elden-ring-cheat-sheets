@@ -6,6 +6,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 ## 2026-01-09
 
 ### Added
+- Night labels to night bosses in Bosses.
 - All melee armaments to Weapons.
 - All ranged weapons, catalysts, and shields to Weapons.
 
