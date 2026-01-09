@@ -265,6 +265,10 @@ li {
   position: relative;
 }
 
+.i {
+  margin: .16rem 0 .16rem .92rem;
+}
+
 label {
   display: inline-block;
   padding: .16rem 0 .16rem 2.75rem;

@@ -7,6 +7,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
 ### Added
 - All melee armaments to Weapons.
+- All ranged weapons, catalysts, and shields to Weapons.
 
 ## 2026-01-07
 
