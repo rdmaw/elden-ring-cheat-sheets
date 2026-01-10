@@ -4,7 +4,7 @@
 _headers
 wrangler.jsonc
 
-#crawling
+# crawling
 robots.txt
 sitemap.xml
 
@@ -23,9 +23,10 @@ options.css
 resources.css
 sheets.css
 
-#js
+# js
 main.*.js
 goatcounter.js
 
 # html
 404.html
+index.html
