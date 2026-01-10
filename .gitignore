@@ -1,7 +1,7 @@
 # tools
-.wrangler
-.assetsignore
 _headers
+.assetsignore
+.wrangler
 wrangler.jsonc
 
 # crawling
@@ -15,17 +15,17 @@ favicon.ico
 favicon.svg
 
 # css
-main.*.css
 404.css
 index.css
 legacy.css
+main.*.css
 options.css
 resources.css
 sheets.css
 
 # js
-main.*.js
 goatcounter.js
+main.*.js
 
 # html
 404.html
