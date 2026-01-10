@@ -60,11 +60,48 @@
     <header>
       <h1>Armor</h1>
       <p class="lead">Track all armor types in Elden Ring.</p>
-      <p>Will be worked on after <a href="/sheets/weapons">Weapons</a>…</p>
     </header>
+    <nav class="toc">
+      <h2>Current Progress<span id="r-ot"></span></h2>
+      <ul>
+        <li><a href="#head">Head</a><span id="r-nt1"></span></li>
+      </ul>
+    </nav>
+    <search><input type="search" id="search" aria-label="Filter armor pieces" placeholder="Type to filter armor pieces…"></search>
+    <div class="filter">
+      <button type="button" id="exp-a" class="btn">Expand all</button>
+      <button type="button" id="col-a" class="btn">Collapse all</button>
+      <button type="button" id="hide" class="btn flex ac" aria-label="Hide completed steps" aria-pressed="false"><svg id="showSvg" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/><path d="M11.102 17.957Q6.297 17.495 3 12q3.6-6 9-6t9 6a20 20 0 0 1-.663 1.032M15 19l2 2 4-4"/></svg><svg id="hideSvg" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 9q-3.6 4-9 4T3 9m0 6 2.5-3.8M21 14.976 18.508 11.2M9 17l.5-4m5.5 4-.5-4"/></svg></button>
+    </div>
+    <form role="none" autocomplete="off">
+      <h3 id="head"><button type="button" class="col btn" aria-label="Toggle Head" aria-controls="r1" aria-expanded="true"></button>Head<span id="r-t1"></span></h3>
+      <ul id="r1" aria-labelledby="head">
+        <li><label><input type="checkbox" id="r1-1"><a href="https://eldenring.wiki.gg/wiki/Commoner%27s_Headband">Commoner's Headband</a></label></li>
+        <li><label><input type="checkbox" id="r1-2"><a href="https://eldenring.wiki.gg/wiki/Commoner%27s_Headband_(Altered)">Commoner's Headband (Altered)</a></label></li>
+        <li><label><input type="checkbox" id="r1-3"><a href="https://eldenring.wiki.gg/wiki/Aristocrat_Headband">Aristocrat Headband</a></label></li>
+        <li><label><input type="checkbox" id="r1-4"><a href="https://eldenring.wiki.gg/wiki/Aristocrat_Hat">Aristocrat Hat</a></label></li>
+        <li><label><input type="checkbox" id="r1-5"><a href="https://eldenring.wiki.gg/wiki/Old_Aristocrat_Cowl">Old Aristocrat Cowl</a></label></li>
+        <li><label><input type="checkbox" id="r1-6"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-7"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-8"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-9"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-10"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-11"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-12"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-13"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-14"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-15"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-16"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-17"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-18"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-19"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-20"><a href=""></a></label></li>
+        <li><label><input type="checkbox" id="r1-21"><a href=""></a></label></li>
+      </ul>
+    </form>
   </main>
   <div id="scroll" aria-hidden="true"></div>
   <button type="button" id="up" class="btn" aria-label="Scroll to top of page" aria-hidden="true"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7m-7 7V5"/></svg></button>
-  <!-- <footer>Made with ❤️ by <a href="https://contact.redmaw.dev">Redmaw</a></footer> -->
+  <footer>Made with ❤️ by <a href="https://contact.redmaw.dev">Redmaw</a></footer>
 </body>
 </html>
