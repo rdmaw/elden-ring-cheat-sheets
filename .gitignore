@@ -1,4 +1,31 @@
+# tools
 .wrangler
 .assetsignore
 _headers
 wrangler.jsonc
+
+#crawling
+robots.txt
+sitemap.xml
+
+# assets
+images/*
+apple-touch-icon.png
+favicon.ico
+favicon.svg
+
+# css
+main.*.css
+404.css
+index.css
+legacy.css
+options.css
+resources.css
+sheets.css
+
+#js
+main.*.js
+goatcounter.js
+
+# html
+404.html
