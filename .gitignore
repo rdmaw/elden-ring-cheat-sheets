@@ -1,20 +1,20 @@
-# tools
+# Tools
 _headers
 .assetsignore
 .wrangler
 wrangler.jsonc
 
-# crawling
+# Crawling
 robots.txt
 sitemap.xml
 
-# assets
+# Assets
 images/*
 apple-touch-icon.png
 favicon.ico
 favicon.svg
 
-# css
+# CSS
 404.css
 index.css
 legacy.css
@@ -23,10 +23,10 @@ options.css
 resources.css
 sheets.css
 
-# js
+# JS
 goatcounter.js
 main.*.js
 
-# html
+# HTML
 404.html
 index.html

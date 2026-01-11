@@ -63,7 +63,8 @@
   border-bottom: 1px dotted var(--c2);
 }
 
-button, .btn {
+button,
+.btn {
   touch-action: manipulation;
 }
 
@@ -76,7 +77,8 @@ nav a:hover {
   border-radius: 5px;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   text-decoration: underline;
 }
 
@@ -97,7 +99,10 @@ a:hover, a:focus {
   border-radius: .25em;
 }
 
-select, button, input[type=checkbox], label {
+select,
+button,
+input[type=checkbox],
+label {
   cursor: pointer;
 }
 
@@ -119,7 +124,17 @@ select, button, input[type=checkbox], label {
     --kt: #000;
   }
 
-  nav, .toc h2, .toc span, input[type=checkbox], footer, search, .filter, h3 button, h3 span, #up, .alert {
+  nav,
+  .toc h2,
+  .toc span,
+  input[type=checkbox],
+  footer,
+  search,
+  .filter,
+  h3 button,
+  h3 span,
+  #up,
+  .alert {
     display: none !important;
   }
 
