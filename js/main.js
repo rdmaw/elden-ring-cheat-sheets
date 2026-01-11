@@ -83,7 +83,7 @@ function restoreCheckboxes() {
   cachedCheckboxes.forEach(checkbox => {
     const checked = !!data[checkbox.id];
     const li = checkboxMap.get(checkbox);
-    
+
     checkbox.checked = checked;
     if (li) {
       li.classList.toggle('c', checked);
@@ -94,17 +94,17 @@ function restoreCheckboxes() {
 // Calculate totals
 function calculateTotals() {
   if (!cachedCheckboxes || cachedCheckboxes.length === 0) return;
-  
+
   if (!cachedTotalElements) {
     const firstCheckbox = cachedCheckboxes[0];
     const prefix = firstCheckbox.id.charAt(0);
     const totalAll = document.getElementById(`${prefix}-ot`);
     if (!totalAll) return;
-    
+
     const sectionSpans = document.querySelectorAll(`span[id^="${prefix}-t"]`);
     const sectionMap = new Map();
     const tocSpanMap = new Map();
-    
+
     Array.from(cachedCheckboxes).forEach(checkbox => {
       const section = checkbox.id.match(/^[wdnqmbaerhskcp](\d+)-/)[1];
       if (!sectionMap.has(section)) {
@@ -112,12 +112,12 @@ function calculateTotals() {
       }
       sectionMap.get(section).push(checkbox);
     });
-    
+
     sectionSpans.forEach(span => {
       const section = span.id.match(/t(\d+)$/)[1];
       tocSpanMap.set(section, document.getElementById(`${prefix}-nt${section}`));
     });
-    
+
     cachedTotalElements = {
       totalAll,
       sectionSpans: Array.from(sectionSpans),
@@ -157,7 +157,7 @@ document.addEventListener('change', e => {
   if (e.target.matches('input[type="checkbox"]')) {
     const checkbox = e.target;
     const li = checkboxMap.get(checkbox);
-    
+
     if (li) {
       li.classList.toggle('c', checkbox.checked);
     }
@@ -570,18 +570,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let cachedElements = null;
     let lastTerm = null;
     let debounceTimer;
-    
+
     function filterChecklist(searchTerm) {
       const cleanTerm = searchTerm.toLowerCase().trim();
       if (cleanTerm === lastTerm) return;
       lastTerm = cleanTerm;
-      
+
       if (!cachedElements) {
         const sections = [...document.querySelectorAll('main h3')];
         cachedElements = sections.map(section => {
           const list = section.nextElementSibling;
           if (!list) return null;
-          
+
           const sectionText = section.textContent.toLowerCase();
           const mainItems = [...list.children];
           const itemData = mainItems.map(item => {
@@ -591,11 +591,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const nestedTexts = nestedItems.map(nested => nested.textContent.toLowerCase());
             return { item, nestedItems, mainText, nestedTexts };
           });
-          
+
           return { section, sectionText, itemData };
         }).filter(Boolean);
       }
-      
+
       if (!cleanTerm) {
         cachedElements.forEach(({ section, itemData }) => {
           section.style.display = '';
@@ -606,10 +606,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         return;
       }
-    
+
       const terms = cleanTerm.split(/\s+/);
       const matches = text => terms.every(term => text.includes(term));
-    
+
       for (const { section, sectionText, itemData } of cachedElements) {
         const sectionMatches = matches(sectionText);
         let sectionVisible = sectionMatches;
@@ -622,10 +622,10 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           continue;
         }
-    
+
         for (const { item, nestedItems, mainText, nestedTexts } of itemData) {
           let showItem = matches(mainText);
-    
+
           if (!showItem) {
             for (let i = 0; i < nestedItems.length; i++) {
               if (matches(nestedTexts[i])) {
@@ -638,14 +638,14 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             nestedItems.forEach(nested => nested.style.display = '');
           }
-    
+
           item.style.display = showItem ? '' : 'none';
           sectionVisible ||= showItem;
         }
         section.style.display = sectionVisible ? '' : 'none';
       }
     }
-    
+
     search.addEventListener('input', e => {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => filterChecklist(e.target.value), 1);
