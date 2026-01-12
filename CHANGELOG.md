@@ -3,6 +3,11 @@
 This document lists notable changes to the site with each deployment.
 Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
+## 2026-01-12
+
+### Added
+- All headgear pieces to the Armor sheet.
+
 ## 2026-01-09
 
 ### Added
