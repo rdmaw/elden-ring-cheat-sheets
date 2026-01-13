@@ -6,6 +6,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 ## 2026-01-12
 
 ### Added
+- All remaining armor pieces.
 - All chest pieces to the Armor sheet.
 - All headgear pieces to the Armor sheet.
 
