@@ -36,8 +36,8 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 - [x] Create Steam guide
 - [x] West Gravesite Plain
 - [x] Weapons
-- [ ] Armor
-- [ ] Ashes
+- [x] Armor
+- [x] Ashes
 - [ ] Spells
 - [ ] East Gravesite Plain
 - [ ] Belurat

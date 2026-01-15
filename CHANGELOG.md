@@ -3,6 +3,11 @@
 This document lists notable changes to the site with each deployment.
 Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
+## 2026-01-15
+
+### Added
+- All Spirit Ashes and Ashes of War to the Ashes sheet.
+
 ## 2026-01-12
 
 ### Added
