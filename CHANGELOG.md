@@ -3,10 +3,12 @@
 This document lists notable changes to the site with each deployment.
 Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
-## 2026-01-15
+## 2026-01-16
 
 ### Added
+- All sorceries and incantations to the Spells sheet.
 - All Spirit Ashes and Ashes of War to the Ashes sheet.
+- Simplified lead text across pages
 
 ## 2026-01-12
 

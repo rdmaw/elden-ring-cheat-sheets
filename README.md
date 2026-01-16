@@ -38,6 +38,6 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 - [x] Weapons
 - [x] Armor
 - [x] Ashes
-- [ ] Spells
+- [x] Spells
 - [ ] East Gravesite Plain
 - [ ] Belurat
