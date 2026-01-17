@@ -21,10 +21,6 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 
 ## To Do
 
-- [x] Mohgwyn Palace
-- [x] Haligtree
-- [x] Elphael
-- [x] Farum Azula
 - [x] Ashen Capital
 - [x] Endings
 - [x] New Game Plus Preparation
@@ -39,5 +35,9 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 - [x] Armor
 - [x] Ashes
 - [x] Spells
+- [ ] Misc Items
+- [ ] Key Items
+- [ ] New Game Plus
+- [ ] Talismans
 - [ ] East Gravesite Plain
 - [ ] Belurat
