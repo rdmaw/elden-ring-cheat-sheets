@@ -3,6 +3,14 @@
 This document lists notable changes to the site with each deployment.
 Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
+## Unknown...
+
+### Added
+- New Talismans sheet.
+- "SOTE" tags on items from the DLC.
+- Content to the Misc, New Game Plus, and Key Items sheets.
+
+
 ## 2026-01-16
 
 ### Added

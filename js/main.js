@@ -106,7 +106,7 @@ function calculateTotals() {
         const tocSpanMap = new Map();
 
         Array.from(cachedCheckboxes).forEach(checkbox => {
-            const section = checkbox.id.match(/^[wdnqmbaerhskcp](\d+)-/)[1];
+            const section = checkbox.id.match(/^[wdnqbmaerhstkcp](\d+)-/)[1];
             if (!sectionMap.has(section)) {
                 sectionMap.set(section, []);
             }
@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'elden-ring-cheat-sheet.json';
+            a.download = 'elden-ring-cheat-sheets.json';
             a.click();
             URL.revokeObjectURL(url);
         } catch (e) {
