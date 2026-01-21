@@ -7,8 +7,8 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
 ### Added
 - New Talismans sheet.
+- New content in the Miscellaneous Items, Key Items, and New Game Plus sheets (will receive more updates after DLC is written).
 - "SOTE" tags on items from the DLC.
-- Content to the Misc, New Game Plus, and Key Items sheets.
 
 
 ## 2026-01-16

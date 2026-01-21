@@ -35,9 +35,9 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 - [x] Armor
 - [x] Ashes
 - [x] Spells
-- [ ] Misc Items
-- [ ] Key Items
-- [ ] New Game Plus
-- [ ] Talismans
+- [x] Misc Items
+- [x] Key Items
+- [x] New Game Plus
+- [x] Talismans
 - [ ] East Gravesite Plain
 - [ ] Belurat
