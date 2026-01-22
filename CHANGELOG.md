@@ -10,6 +10,8 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 - New content in the Miscellaneous Items, Key Items, and New Game Plus sheets (will receive more updates after DLC is written).
 - "SOTE" tags on items from the DLC.
 
+# Changed
+- The color theme now defaults to the user's system preference if not set explicitly.
 
 ## 2026-01-16
 
