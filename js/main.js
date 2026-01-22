@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     restoreCheckboxes();
     calculateTotals();
 
-    // Sync storage between tabs
+    // Live-sync storage between open tabs
     window.addEventListener('storage', (e) => {
         if (e.key === key || e.key === 'current') {
             try {
@@ -206,10 +206,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (hide) {
                 hide.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
             }
+        } else if (e.key === 'theme') {
+            setTheme(e.newValue || 'system');
+            if (theme) theme.value = e.newValue || 'system';
         }
     });
 
-    // Open every external link in new tab
+    // Open external links in new tab
     const links = document.querySelectorAll('a[href^="https"]');
 
     for (let i = 0, len = links.length; i < len; i++) {
@@ -217,18 +220,43 @@ document.addEventListener('DOMContentLoaded', () => {
         link.target = '_blank';
     }
 
-    // Handle color theme switching
+    // Color theme switching
     const theme = document.getElementById('theme');
+    const preferredTheme = localStorage.getItem('theme');
+    const activeTheme = preferredTheme || 'system';
+
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            root.setAttribute('data-theme', 'dark');
+            return;
+        }
+
+        if (theme === 'system') {
+            const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            root.setAttribute('data-theme', isSystemDark ? 'dark' : 'light');
+            return;
+        }
+
+        root.setAttribute('data-theme', 'light');
+    }
+
+    setTheme(activeTheme);
 
     if (theme) {
-        theme.value = localStorage.getItem('t') || 'l';
+        theme.value = activeTheme;
 
         theme.addEventListener('change', () => {
-            const dark = theme.value === 'd';
-            root.classList.toggle('dark', dark);
-            localStorage.setItem('t', theme.value);
+            const value = theme.value;
+            localStorage.setItem('theme', value);
+            setTheme(value);
         });
     }
+
+    // Auto-update based on user's system
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        const theme = localStorage.getItem('theme') || 'system';
+        if (theme === 'system') setTheme('system');
+    });
 
     // Populate profiles
     const select = document.getElementById('profile');
