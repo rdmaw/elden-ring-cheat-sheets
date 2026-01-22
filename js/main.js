@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     p = JSON.parse(e.newValue);
                 } else if (e.key === 'current') {
                     A = e.newValue || D;
-                    populateProfiles?.();
+                    refreshProfiles?.();
                 }
                 restoreCheckboxes();
                 calculateTotals();
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.target = '_blank';
     }
 
-    // Color theme switching
+    // Color Theme
     const theme = document.getElementById('theme');
     const preferredTheme = localStorage.getItem('theme');
     const activeTheme = preferredTheme || 'system';
@@ -258,21 +258,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (theme === 'system') setTheme('system');
     });
 
-    // Populate profiles
+    // Profile Management
     const select = document.getElementById('profile');
     const add = document.getElementById('add');
     const edit = document.getElementById('edit');
     const ngp = document.getElementById('ngp');
     const del = document.getElementById('del');
 
-    function populateProfiles() {
+    // Refresh profiles
+    function refreshProfiles() {
         if (!select) return;
-        select.replaceChildren();
-        select.add(new Option('Default', D));
-        Object.keys(p).sort().filter(name => name !== D).forEach(name => select.add(new Option(name, name)));
+
+        select.replaceChildren(
+            new Option('Default', D),
+            ...Object.keys(p)
+                .filter(name => name !== D)
+                .sort()
+                .map(name => new Option(name, name))
+        );
+
         select.value = A;
     }
-    populateProfiles();
+
+    refreshProfiles();
 
     // Switch profile
     select?.addEventListener('change', () => {
@@ -296,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(key, JSON.stringify(p));
         localStorage.setItem('current', name);
         select.value = name;
-        populateProfiles();
+        refreshProfiles();
     });
 
     // Edit profile
@@ -320,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
         A = name;
         localStorage.setItem(key, JSON.stringify(p));
         localStorage.setItem('current', name);
-        populateProfiles();
+        refreshProfiles();
     });
 
     // NG+ Reset
@@ -382,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
             A = data.current;
             localStorage.setItem('current', A);
         }
-        populateProfiles();
+        refreshProfiles();
         alert('Successfully imported profile data.');
     }
 
