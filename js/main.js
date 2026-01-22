@@ -4,7 +4,7 @@ const DEFAULT_PROFILE = 'default';
 const PROFILE_TEMPLATE = { [DEFAULT_PROFILE]: { data: {}, col: {} } };
 const root = document.documentElement;
 let activeProfile = localStorage.getItem('active-profile') || DEFAULT_PROFILE;
-let p = initProfile();
+let profiles = initProfile();
 
 //! Clean up old keys
 localStorage.removeItem('cb');
@@ -27,10 +27,10 @@ function transferProfileKeyData() {
 // Initialize default profile
 function initProfile() {
     try {
-        const p = JSON.parse(localStorage.getItem(PROFILES_KEY)) ?? PROFILE_TEMPLATE;
-        p[DEFAULT_PROFILE] = { ...PROFILE_TEMPLATE[DEFAULT_PROFILE], ...p[DEFAULT_PROFILE] };
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
-        return p;
+        const profiles = JSON.parse(localStorage.getItem(PROFILES_KEY)) ?? PROFILE_TEMPLATE;
+        profiles[DEFAULT_PROFILE] = { ...PROFILE_TEMPLATE[DEFAULT_PROFILE], ...profiles[DEFAULT_PROFILE] };
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+        return profiles;
     } catch (e) {
         console.error('Error initializing profile:', e);
         return PROFILE_TEMPLATE;
@@ -40,34 +40,34 @@ function initProfile() {
 // Manage profile data
 const mgr = {
     get() {
-        return p[activeProfile] || p[DEFAULT_PROFILE];
+        return profiles[activeProfile] || profiles[DEFAULT_PROFILE];
     },
 
     setCl(id, checked) {
         if (!id) return;
-        if (!p[activeProfile]) p[activeProfile] = { data: {}, col: {} };
-        checked ? p[activeProfile].data[id] = 1 : delete p[activeProfile].data[id];
+        if (!profiles[activeProfile]) profiles[activeProfile] = { data: {}, col: {} };
+        checked ? profiles[activeProfile].data[id] = 1 : delete profiles[activeProfile].data[id];
         mgr.scheduleSave();
     },
 
     setCol(id, expanded) {
         if (!id) return;
-        if (!p[activeProfile]) p[activeProfile] = { data: {}, col: {} };
-        if (!p[activeProfile].col) p[activeProfile].col = {};
-        expanded ? delete p[activeProfile].col[id] : p[activeProfile].col[id] = 1;
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
+        if (!profiles[activeProfile]) profiles[activeProfile] = { data: {}, col: {} };
+        if (!profiles[activeProfile].col) profiles[activeProfile].col = {};
+        expanded ? delete profiles[activeProfile].col[id] : profiles[activeProfile].col[id] = 1;
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
     },
 
     setBatch(updates) {
         if (!updates?.length) return;
-        if (!p[activeProfile]) p[activeProfile] = { data: {}, col: {} };
-        if (!p[activeProfile].col) p[activeProfile].col = {};
+        if (!profiles[activeProfile]) profiles[activeProfile] = { data: {}, col: {} };
+        if (!profiles[activeProfile].col) profiles[activeProfile].col = {};
 
         updates.forEach(({ id, expanded }) => {
             if (!id) return;
-            expanded ? delete p[activeProfile].col[id] : p[activeProfile].col[id] = 1;
+            expanded ? delete profiles[activeProfile].col[id] : profiles[activeProfile].col[id] = 1;
         });
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
     },
 
     col() {
@@ -78,7 +78,7 @@ const mgr = {
     scheduleSave() {
         clearTimeout(this.saveTimer);
         this.saveTimer = setTimeout(() => {
-            localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
+            localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
         }, 100);
     }
 };
@@ -194,7 +194,7 @@ window.addEventListener('pageshow', (event) => {
 window.addEventListener('beforeunload', () => {
     if (mgr.saveTimer) {
         clearTimeout(mgr.saveTimer);
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
     }
 });
 
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === PROFILES_KEY || e.key === 'active-profile') {
             try {
                 if (e.key === PROFILES_KEY) {
-                    p = JSON.parse(e.newValue);
+                    profiles = JSON.parse(e.newValue);
                 } else if (e.key === 'active-profile') {
                     activeProfile = e.newValue || DEFAULT_PROFILE;
                     refreshProfiles?.();
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         select.replaceChildren(
             new Option('Default', DEFAULT_PROFILE),
-            ...Object.keys(p)
+            ...Object.keys(profiles)
                 .filter(name => name !== DEFAULT_PROFILE)
                 .sort()
                 .map(name => new Option(name, name))
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('active-profile', selectedProfile);
         }
 
-        p[selectedProfile] ??= { data: {}, col: {} };
+        profiles[selectedProfile] ??= { data: {}, col: {} };
     }
 
     if (select) {
@@ -325,14 +325,14 @@ document.addEventListener('DOMContentLoaded', () => {
     add?.addEventListener('click', () => {
         const name = prompt('Enter a name for your profile:')?.trim();
         if (!name) return;
-        if (name.toLowerCase() === 'default' || p[name]) {
+        if (name.toLowerCase() === 'default' || profiles[name]) {
             alert(name.toLowerCase() === 'default' ? "Can't use default as the profile name." : 'Profile already exists.');
             return;
         }
 
-        p[name] = { data: {}, col: {} };
+        profiles[name] = { data: {}, col: {} };
         activeProfile = name;
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
         localStorage.setItem('active-profile', name);
         select.value = name;
         refreshProfiles();
@@ -348,16 +348,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const name = prompt(`Enter a new name for ${current}:`, current)?.trim();
         if (!name || name === current) return;
-        if (name.toLowerCase() === 'default' || p[name]) {
+        if (name.toLowerCase() === 'default' || profiles[name]) {
             alert(name.toLowerCase() === 'default' ? "Can't use default as the profile name." : 'Profile already exists.');
             return;
         }
 
-        const data = p[current];
-        delete p[current];
-        p[name] = data;
+        const data = profiles[current];
+        delete profiles[current];
+        profiles[name] = data;
         activeProfile = name;
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
         localStorage.setItem('active-profile', name);
         refreshProfiles();
     });
@@ -367,15 +367,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const current = select.value;
         if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${current === DEFAULT_PROFILE ? 'the default profile' : current}?`)) return;
         const prefixes = ['w', 'd', 'n', 'q', 'b', 'p'];
-        const filterData = Object.entries(p[current].data).reduce((acc, [id, value]) => {
+        const filterData = Object.entries(profiles[current].data).reduce((acc, [id, value]) => {
             if (!prefixes.includes(id.charAt(0))) {
                 acc[id] = value;
             }
             return acc;
         }, {});
 
-        p[current].data = filterData;
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
+        profiles[current].data = filterData;
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
     });
 
     // Delete profile
@@ -384,11 +384,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!confirm(`Are you sure you want to ${current === DEFAULT_PROFILE ? 'reset the default profile' : 'delete ' + current}?`)) return;
 
         if (current === DEFAULT_PROFILE) {
-            p[DEFAULT_PROFILE] = { data: {}, col: {} };
-            localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
+            profiles[DEFAULT_PROFILE] = { data: {}, col: {} };
+            localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
         } else {
-            delete p[current];
-            localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
+            delete profiles[current];
+            localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
             if (current === activeProfile) {
                 activeProfile = DEFAULT_PROFILE;
                 localStorage.removeItem('active-profile');
@@ -408,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getData() {
         return {
             current: activeProfile,
-            [PROFILES_KEY]: p
+            [PROFILES_KEY]: profiles
         };
     }
 
@@ -416,7 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!data?.[PROFILES_KEY]?.[DEFAULT_PROFILE]) throw new Error('Invalid profile data.');
         if (!confirm('Importing a new profile will overwrite all current data.')) return;
         localStorage.setItem(PROFILES_KEY, JSON.stringify(data[PROFILES_KEY]));
-        p = data[PROFILES_KEY];
+        profiles = data[PROFILES_KEY];
         if (data.current) {
             activeProfile = data.current;
             localStorage.setItem('active-profile', activeProfile);
