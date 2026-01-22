@@ -1,7 +1,7 @@
-const key = 'er';
+const key = 'er'; //! To be removed
 const PROFILES_KEY = 'eldenring-profiles';
 const DEFAULT_PROFILE = 'default';
-const DEFAULT_PROFILE_TEMPLATE = { [DEFAULT_PROFILE]: { data: {}, col: {} } };
+const PROFILE_TEMPLATE = { [DEFAULT_PROFILE]: { data: {}, col: {} } };
 const root = document.documentElement;
 let A = localStorage.getItem('current') || DEFAULT_PROFILE;
 let p = initProfile();
@@ -21,17 +21,18 @@ function transferProfileKeyData() {
 
     localStorage.removeItem(key)
 }
+//! End of cleanup
 
 // Initialize default profile
 function initProfile() {
     try {
-        const p = JSON.parse(localStorage.getItem(PROFILES_KEY)) ?? def;
-        p[DEFAULT_PROFILE] = { ...def[DEFAULT_PROFILE], ...p[DEFAULT_PROFILE] };
+        const p = JSON.parse(localStorage.getItem(PROFILES_KEY)) ?? PROFILE_TEMPLATE;
+        p[DEFAULT_PROFILE] = { ...PROFILE_TEMPLATE[DEFAULT_PROFILE], ...p[DEFAULT_PROFILE] };
         localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
         return p;
     } catch (e) {
         console.error('Error initializing profile:', e);
-        return def;
+        return PROFILE_TEMPLATE;
     }
 }
 
