@@ -2,15 +2,18 @@ const key = 'er'; //! To be removed
 const PROFILES_KEY = 'eldenring-profiles';
 const DEFAULT_PROFILE = 'default';
 const PROFILE_TEMPLATE = { [DEFAULT_PROFILE]: { data: {}, col: {} } };
+
 const root = document.documentElement;
+
 let activeProfile = localStorage.getItem('active-profile') || DEFAULT_PROFILE;
-let profiles = initProfile();
+let profiles = loadProfiles();
 
 //! Clean up old keys
 localStorage.removeItem('cb');
 localStorage.removeItem('t');
 localStorage.removeItem('h');
 localStorage.removeItem('current');
+
 transferProfileKeyData();
 
 function transferProfileKeyData() {
@@ -24,15 +27,22 @@ function transferProfileKeyData() {
 }
 //! End of cleanup
 
-// Initialize default profile
-function initProfile() {
+// Load profiles from localStorage
+function loadProfiles() {
     try {
         const profiles = JSON.parse(localStorage.getItem(PROFILES_KEY)) ?? PROFILE_TEMPLATE;
-        profiles[DEFAULT_PROFILE] = { ...PROFILE_TEMPLATE[DEFAULT_PROFILE], ...profiles[DEFAULT_PROFILE] };
+
+        profiles[DEFAULT_PROFILE] = {
+            ...PROFILE_TEMPLATE[DEFAULT_PROFILE],
+            ...profiles[DEFAULT_PROFILE]
+        };
+
         localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+
         return profiles;
-    } catch (e) {
-        console.error('Error initializing profile:', e);
+
+    } catch (error) {
+        console.error('Error loading profiles:', error);
         return PROFILE_TEMPLATE;
     }
 }
