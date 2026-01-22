@@ -1,16 +1,33 @@
 const key = 'er';
-const D = 'default';
+const PROFILES_KEY = 'eldenring-profiles';
+const DEFAULT_PROFILE = 'default';
+const DEFAULT_PROFILE_TEMPLATE = { [DEFAULT_PROFILE]: { data: {}, col: {} } };
 const root = document.documentElement;
-const def = { [D]: { data: {}, col: {} } };
-let A = localStorage.getItem('current') || D;
+let A = localStorage.getItem('current') || DEFAULT_PROFILE;
 let p = initProfile();
 
-// Initialize default profile, p = profile, def = default, A = active
+//! Clean up old keys
+localStorage.removeItem('cb');
+localStorage.removeItem('t');
+localStorage.removeItem('h');
+transferProfileKeyData();
+
+function transferProfileKeyData() {
+    const oldData = localStorage.getItem(key);
+
+    if (oldData && !localStorage.getItem(PROFILES_KEY)) {
+        localStorage.setItem(PROFILES_KEY, oldData);
+    }
+
+    localStorage.removeItem(key)
+}
+
+// Initialize default profile
 function initProfile() {
     try {
-        const p = JSON.parse(localStorage.getItem(key)) ?? def;
-        p[D] = { ...def[D], ...p[D] };
-        localStorage.setItem(key, JSON.stringify(p));
+        const p = JSON.parse(localStorage.getItem(PROFILES_KEY)) ?? def;
+        p[DEFAULT_PROFILE] = { ...def[DEFAULT_PROFILE], ...p[DEFAULT_PROFILE] };
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
         return p;
     } catch (e) {
         console.error('Error initializing profile:', e);
@@ -21,7 +38,7 @@ function initProfile() {
 // Manage profile data
 const mgr = {
     get() {
-        return p[A] || p[D];
+        return p[A] || p[DEFAULT_PROFILE];
     },
 
     setCl(id, checked) {
@@ -36,7 +53,7 @@ const mgr = {
         if (!p[A]) p[A] = { data: {}, col: {} };
         if (!p[A].col) p[A].col = {};
         expanded ? delete p[A].col[id] : p[A].col[id] = 1;
-        localStorage.setItem(key, JSON.stringify(p));
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
     },
 
     setBatch(updates) {
@@ -48,7 +65,7 @@ const mgr = {
             if (!id) return;
             expanded ? delete p[A].col[id] : p[A].col[id] = 1;
         });
-        localStorage.setItem(key, JSON.stringify(p));
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
     },
 
     col() {
@@ -59,7 +76,7 @@ const mgr = {
     scheduleSave() {
         clearTimeout(this.saveTimer);
         this.saveTimer = setTimeout(() => {
-            localStorage.setItem(key, JSON.stringify(p));
+            localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
         }, 100);
     }
 };
@@ -175,7 +192,7 @@ window.addEventListener('pageshow', (event) => {
 window.addEventListener('beforeunload', () => {
     if (mgr.saveTimer) {
         clearTimeout(mgr.saveTimer);
-        localStorage.setItem(key, JSON.stringify(p));
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
     }
 });
 
@@ -187,12 +204,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Live-sync storage between open tabs
     window.addEventListener('storage', (e) => {
-        if (e.key === key || e.key === 'current') {
+        if (e.key === PROFILES_KEY || e.key === 'current') {
             try {
-                if (e.key === key) {
+                if (e.key === PROFILES_KEY) {
                     p = JSON.parse(e.newValue);
                 } else if (e.key === 'current') {
-                    A = e.newValue || D;
+                    A = e.newValue || DEFAULT_PROFILE;
                     refreshProfiles?.();
                 }
                 restoreCheckboxes();
@@ -270,9 +287,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!select) return;
 
         select.replaceChildren(
-            new Option('Default', D),
+            new Option('Default', DEFAULT_PROFILE),
             ...Object.keys(p)
-                .filter(name => name !== D)
+                .filter(name => name !== DEFAULT_PROFILE)
                 .sort()
                 .map(name => new Option(name, name))
         );
@@ -286,10 +303,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function switchProfile() {
         if (!select) return;
 
-        const selectedProfile = select.value || D;
+        const selectedProfile = select.value || DEFAULT_PROFILE;
         A = selectedProfile;
 
-        if (selectedProfile === D) {
+        if (selectedProfile === DEFAULT_PROFILE) {
             localStorage.removeItem('current');
         } else {
             localStorage.setItem('current', selectedProfile);
@@ -313,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         p[name] = { data: {}, col: {} };
         A = name;
-        localStorage.setItem(key, JSON.stringify(p));
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
         localStorage.setItem('current', name);
         select.value = name;
         refreshProfiles();
@@ -322,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Edit profile
     edit?.addEventListener('click', () => {
         const current = select.value;
-        if (current === D) {
+        if (current === DEFAULT_PROFILE) {
             alert("Can't edit the default profile.");
             return;
         }
@@ -338,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
         delete p[current];
         p[name] = data;
         A = name;
-        localStorage.setItem(key, JSON.stringify(p));
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
         localStorage.setItem('current', name);
         refreshProfiles();
     });
@@ -346,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // NG+ Reset
     ngp?.addEventListener('click', () => {
         const current = select.value;
-        if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${current === D ? 'the default profile' : current}?`)) return;
+        if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${current === DEFAULT_PROFILE ? 'the default profile' : current}?`)) return;
         const prefixes = ['w', 'd', 'n', 'q', 'b', 'p'];
         const filterData = Object.entries(p[current].data).reduce((acc, [id, value]) => {
             if (!prefixes.includes(id.charAt(0))) {
@@ -356,22 +373,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }, {});
 
         p[current].data = filterData;
-        localStorage.setItem(key, JSON.stringify(p));
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
     });
 
     // Delete profile
     del?.addEventListener('click', () => {
         const current = select.value;
-        if (!confirm(`Are you sure you want to ${current === D ? 'reset the default profile' : 'delete ' + current}?`)) return;
+        if (!confirm(`Are you sure you want to ${current === DEFAULT_PROFILE ? 'reset the default profile' : 'delete ' + current}?`)) return;
 
-        if (current === D) {
-            p[D] = { data: {}, col: {} };
-            localStorage.setItem(key, JSON.stringify(p));
+        if (current === DEFAULT_PROFILE) {
+            p[DEFAULT_PROFILE] = { data: {}, col: {} };
+            localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
         } else {
             delete p[current];
-            localStorage.setItem(key, JSON.stringify(p));
+            localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
             if (current === A) {
-                A = D;
+                A = DEFAULT_PROFILE;
                 localStorage.removeItem('current');
             }
             const option = select.querySelector(`option[value="${current}"]`);
@@ -389,15 +406,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function getData() {
         return {
             current: A,
-            [key]: p
+            [PROFILES_KEY]: p
         };
     }
 
     function validate(data) {
-        if (!data?.[key]?.[D]) throw new Error('Invalid profile data.');
+        if (!data?.[PROFILES_KEY]?.[DEFAULT_PROFILE]) throw new Error('Invalid profile data.');
         if (!confirm('Importing a new profile will overwrite all current data.')) return;
-        localStorage.setItem(key, JSON.stringify(data[key]));
-        p = data[key];
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(data[PROFILES_KEY]));
+        p = data[PROFILES_KEY];
         if (data.current) {
             A = data.current;
             localStorage.setItem('current', A);
