@@ -3,13 +3,14 @@ const PROFILES_KEY = 'eldenring-profiles';
 const DEFAULT_PROFILE = 'default';
 const PROFILE_TEMPLATE = { [DEFAULT_PROFILE]: { data: {}, col: {} } };
 const root = document.documentElement;
-let activeProfile = localStorage.getItem('current') || DEFAULT_PROFILE;
+let activeProfile = localStorage.getItem('active-profile') || DEFAULT_PROFILE;
 let p = initProfile();
 
 //! Clean up old keys
 localStorage.removeItem('cb');
 localStorage.removeItem('t');
 localStorage.removeItem('h');
+localStorage.removeItem('current');
 transferProfileKeyData();
 
 function transferProfileKeyData() {
@@ -205,11 +206,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Live-sync storage between open tabs
     window.addEventListener('storage', (e) => {
-        if (e.key === PROFILES_KEY || e.key === 'current') {
+        if (e.key === PROFILES_KEY || e.key === 'active-profile') {
             try {
                 if (e.key === PROFILES_KEY) {
                     p = JSON.parse(e.newValue);
-                } else if (e.key === 'current') {
+                } else if (e.key === 'active-profile') {
                     activeProfile = e.newValue || DEFAULT_PROFILE;
                     refreshProfiles?.();
                 }
@@ -308,9 +309,9 @@ document.addEventListener('DOMContentLoaded', () => {
         activeProfile = selectedProfile;
 
         if (selectedProfile === DEFAULT_PROFILE) {
-            localStorage.removeItem('current');
+            localStorage.removeItem('active-profile');
         } else {
-            localStorage.setItem('current', selectedProfile);
+            localStorage.setItem('active-profile', selectedProfile);
         }
 
         p[selectedProfile] ??= { data: {}, col: {} };
@@ -332,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
         p[name] = { data: {}, col: {} };
         activeProfile = name;
         localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
-        localStorage.setItem('current', name);
+        localStorage.setItem('active-profile', name);
         select.value = name;
         refreshProfiles();
     });
@@ -357,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
         p[name] = data;
         activeProfile = name;
         localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
-        localStorage.setItem('current', name);
+        localStorage.setItem('active-profile', name);
         refreshProfiles();
     });
 
@@ -390,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(PROFILES_KEY, JSON.stringify(p));
             if (current === activeProfile) {
                 activeProfile = DEFAULT_PROFILE;
-                localStorage.removeItem('current');
+                localStorage.removeItem('active-profile');
             }
             const option = select.querySelector(`option[value="${current}"]`);
             option?.remove();
@@ -418,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         p = data[PROFILES_KEY];
         if (data.current) {
             activeProfile = data.current;
-            localStorage.setItem('current', activeProfile);
+            localStorage.setItem('active-profile', activeProfile);
         }
         refreshProfiles();
         alert('Successfully imported profile data.');
