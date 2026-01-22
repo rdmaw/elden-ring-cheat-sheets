@@ -282,13 +282,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     refreshProfiles();
 
-    // Switch profile
-    select?.addEventListener('change', () => {
-        const selected = select.value || D;
-        A = selected;
-        selected === D ? localStorage.removeItem('current') : localStorage.setItem('current', selected);
-        if (!p[selected]) p[selected] = { data: {}, col: {} };
-    });
+    // Switch profiles
+    function switchProfile() {
+        if (!select) return;
+
+        const selectedProfile = select.value || D;
+        A = selectedProfile;
+
+        if (selectedProfile === D) {
+            localStorage.removeItem('current');
+        } else {
+            localStorage.setItem('current', selectedProfile);
+        }
+
+        p[selectedProfile] ??= { data: {}, col: {} };
+    }
+
+    if (select) {
+        select.addEventListener('change', switchProfile);
+    }
 
     // Create profile
     add?.addEventListener('click', () => {
