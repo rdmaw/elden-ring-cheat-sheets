@@ -95,7 +95,21 @@ const profileManager = {
 
     save() {
         localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+    },
+
+    switchProfile(name) {
+        const selectedProfile = name || DEFAULT_PROFILE;
+        activeProfile = selectedProfile;
+
+        if (selectedProfile === DEFAULT_PROFILE) {
+            localStorage.removeItem('active-profile');
+        } else {
+            localStorage.setItem('active-profile', selectedProfile);
+        }
+
+        profiles[activeProfile] ??= { data: {}, col: {} };
     }
+
 };
 
 // Checkbox logic
@@ -286,8 +300,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (theme === 'system') setTheme('system');
     });
 
-    // Profile Management
-    const select = document.getElementById('profile');
+    // Profile Buttons
+    const profileDropdown = document.getElementById('profile');
     const add = document.getElementById('add');
     const edit = document.getElementById('edit');
     const ngp = document.getElementById('ngp');
@@ -295,9 +309,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Refresh profiles
     function refreshProfiles() {
-        if (!select) return;
+        if (!profileDropdown) return;
 
-        select.replaceChildren(
+        profileDropdown.replaceChildren(
             new Option('Default', DEFAULT_PROFILE),
             ...Object.keys(profiles)
                 .filter(name => name !== DEFAULT_PROFILE)
@@ -305,29 +319,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 .map(name => new Option(name, name))
         );
 
-        select.value = activeProfile;
+        profileDropdown.value = activeProfile;
     }
 
     refreshProfiles();
 
-    // Switch profiles
-    function switchProfile() {
-        if (!select) return;
-
-        const selectedProfile = select.value || DEFAULT_PROFILE;
-        activeProfile = selectedProfile;
-
-        if (selectedProfile === DEFAULT_PROFILE) {
-            localStorage.removeItem('active-profile');
-        } else {
-            localStorage.setItem('active-profile', selectedProfile);
-        }
-
-        profiles[selectedProfile] ??= { data: {}, col: {} };
-    }
-
-    if (select) {
-        select.addEventListener('change', switchProfile);
+    if (profileDropdown) {
+        profileDropdown.addEventListener('change', (e) => {
+            profileManager.switchProfile(profileDropdown.value);
+        });
     }
 
     // Create profile
@@ -343,13 +343,13 @@ document.addEventListener('DOMContentLoaded', () => {
         activeProfile = name;
         localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
         localStorage.setItem('active-profile', name);
-        select.value = name;
+        profileDropdown.value = name;
         refreshProfiles();
     });
 
     // Edit profile
     edit?.addEventListener('click', () => {
-        const current = select.value;
+        const current = profileDropdown.value;
         if (current === DEFAULT_PROFILE) {
             alert("Can't edit the default profile.");
             return;
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // NG+ Reset
     ngp?.addEventListener('click', () => {
-        const current = select.value;
+        const current = profileDropdown.value;
         if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${current === DEFAULT_PROFILE ? 'the default profile' : current}?`)) return;
         const prefixes = ['w', 'd', 'n', 'q', 'b', 'p'];
         const filterData = Object.entries(profiles[current].data).reduce((acc, [id, value]) => {
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Delete profile
     del?.addEventListener('click', () => {
-        const current = select.value;
+        const current = profileDropdown.value;
         if (!confirm(`Are you sure you want to ${current === DEFAULT_PROFILE ? 'reset the default profile' : 'delete ' + current}?`)) return;
 
         if (current === DEFAULT_PROFILE) {
@@ -402,9 +402,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeProfile = DEFAULT_PROFILE;
                 localStorage.removeItem('active-profile');
             }
-            const option = select.querySelector(`option[value="${current}"]`);
+            const option = profileDropdown.querySelector(`option[value="${current}"]`);
             option?.remove();
-            select.value = activeProfile;
+            profileDropdown.value = activeProfile;
         }
     });
 
