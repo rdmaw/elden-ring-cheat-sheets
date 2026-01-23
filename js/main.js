@@ -117,8 +117,40 @@ const profileManager = {
         }
 
         profiles[activeProfile] ??= { data: {}, col: {} };
-    }
+    },
 
+    createProfile(name) {
+        if (!name) {
+            return {
+                success: false,
+                error: "The profile name cannot be empty."
+            };
+        }
+
+        if (name.toLowerCase() === 'default') {
+            return {
+                success: false,
+                error: "Can't use default as the profile name."
+            };
+        }
+
+        if (profiles[name]) {
+            return {
+                success: false,
+                error: "This profile already exists."
+            };
+        }
+
+        profiles[name] = { data: {}, col: {} };
+        activeProfile = name;
+
+        this.save();
+        localStorage.setItem('active-profile', name);
+
+        return {
+            success: true
+        };
+    }
 };
 
 // Checkbox logic
@@ -309,9 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (theme === 'system') setTheme('system');
     });
 
-    // Profile Buttons
+    // Profile Management
     const dropdown = document.getElementById('profile');
-    const add = document.getElementById('add');
+    const createBtn = document.getElementById('create');
     const edit = document.getElementById('edit');
     const ngp = document.getElementById('ngp');
     const del = document.getElementById('del');
@@ -338,27 +370,24 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProfilesDropdown(dropdown, activeProfile);
 
     if (dropdown) {
-        dropdown.addEventListener('change', (e) => {
+
+        dropdown.addEventListener('change', () => {
             profileManager.switchProfile(dropdown.value);
         });
+
+        createBtn.addEventListener('click', () => {
+            const name = prompt('Enter a name for the profile:')?.trim();
+            const result = profileManager.createProfile(name);
+
+            if (!result.success) {
+                alert(result.error);
+                return;
+            }
+
+            updateProfilesDropdown(dropdown, activeProfile);
+            dropdown.value = activeProfile;
+        });
     }
-
-    // Create profile
-    add?.addEventListener('click', () => {
-        const name = prompt('Enter a name for your profile:')?.trim();
-        if (!name) return;
-        if (name.toLowerCase() === 'default' || profiles[name]) {
-            alert(name.toLowerCase() === 'default' ? "Can't use default as the profile name." : 'Profile already exists.');
-            return;
-        }
-
-        profiles[name] = { data: {}, col: {} };
-        activeProfile = name;
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-        localStorage.setItem('active-profile', name);
-        dropdown.value = name;
-        updateProfilesDropdown(dropdown, activeProfile);
-    });
 
     // Edit profile
     edit?.addEventListener('click', () => {
