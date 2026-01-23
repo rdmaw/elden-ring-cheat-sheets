@@ -150,6 +150,40 @@ const profileManager = {
         return {
             success: true
         };
+    },
+
+    renameProfile(oldName, newName) {
+        if (!newName || newName === oldName) {
+            return {
+                success: false,
+                error: "Name unchanged, because no new name was provided."
+            };
+        }
+
+        if (newName.toLowerCase() === 'default') {
+            return {
+                success: false,
+                error: "Can't use default as the profile name."
+            };
+        }
+
+        if (profiles[newName]) {
+            return {
+                success: false,
+                error: "This profile already exists."
+            };
+        }
+
+        profiles[newName] = profiles[oldName];
+        delete profiles[oldName];
+        activeProfile = newName;
+
+        this.save();
+        localStorage.setItem('active-profile', newName);
+
+        return {
+            success: true
+        };
     }
 };
 
@@ -344,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Profile Management
     const dropdown = document.getElementById('profile');
     const createBtn = document.getElementById('create');
-    const edit = document.getElementById('edit');
+    const editBtn = document.getElementById('edit');
     const ngp = document.getElementById('ngp');
     const del = document.getElementById('del');
 
@@ -387,31 +421,27 @@ document.addEventListener('DOMContentLoaded', () => {
             updateProfilesDropdown(dropdown, activeProfile);
             dropdown.value = activeProfile;
         });
+
+        editBtn.addEventListener('click', () => {
+            const currentProfile = dropdown.value;
+
+            if (currentProfile === DEFAULT_PROFILE) {
+                alert("Can't edit the default profile.");
+                return;
+            }
+
+            const name = prompt(`Enter a new name for ${currentProfile}:`, currentProfile)?.trim();
+            const result = profileManager.renameProfile(currentProfile, name);
+
+            if (!result.success) {
+                alert(result.error);
+                return;
+            }
+
+            updateProfilesDropdown(dropdown, activeProfile);
+        });
     }
 
-    // Edit profile
-    edit?.addEventListener('click', () => {
-        const current = dropdown.value;
-        if (current === DEFAULT_PROFILE) {
-            alert("Can't edit the default profile.");
-            return;
-        }
-
-        const name = prompt(`Enter a new name for ${current}:`, current)?.trim();
-        if (!name || name === current) return;
-        if (name.toLowerCase() === 'default' || profiles[name]) {
-            alert(name.toLowerCase() === 'default' ? "Can't use default as the profile name." : 'Profile already exists.');
-            return;
-        }
-
-        const data = profiles[current];
-        delete profiles[current];
-        profiles[name] = data;
-        activeProfile = name;
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-        localStorage.setItem('active-profile', name);
-        updateProfilesDropdown(dropdown, activeProfile);
-    });
 
     // NG+ Reset
     ngp?.addEventListener('click', () => {
