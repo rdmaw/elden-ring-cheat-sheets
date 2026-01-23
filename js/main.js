@@ -184,6 +184,27 @@ const profileManager = {
         return {
             success: true
         };
+    },
+
+    resetProfileToNGPlus(name) {
+        if (!profiles[name]) {
+            return {
+                success: false,
+                error: "What? This profile doesn't exist."
+            }
+        }
+
+        const sheetsToReset = new Set(['w', 'd', 'n', 'q', 'b', 'p'])
+
+        const preservedData = Object.entries(profiles[name].data)
+            .filter(([id]) => !sheetsToReset.has(id.charAt(0)));
+
+        profiles[name].data = Object.fromEntries(preservedData);
+        this.save();
+
+        return {
+            success: true
+        };
     }
 };
 
@@ -369,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Auto-update based on user's system
+    // Auto-update based on the system theme
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
         const theme = localStorage.getItem('theme') || 'system';
         if (theme === 'system') setTheme('system');
@@ -379,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropdown = document.getElementById('profile');
     const createBtn = document.getElementById('create');
     const editBtn = document.getElementById('edit');
-    const ngp = document.getElementById('ngp');
+    const newGamePlusBtn = document.getElementById('new-game-plus');
     const del = document.getElementById('del');
 
     function createDropdownOptions(profiles) {
@@ -440,24 +461,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             updateProfilesDropdown(dropdown, activeProfile);
         });
+
+        newGamePlusBtn.addEventListener('click', () => {
+            const currentProfile = dropdown.value;
+
+            if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile}?`)) return;
+            const result = profileManager.resetProfileToNGPlus(currentProfile);
+
+            if (!result.success) {
+                alert(result.error);
+            }
+        });
     }
 
-
-    // NG+ Reset
-    ngp?.addEventListener('click', () => {
-        const current = dropdown.value;
-        if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${current === DEFAULT_PROFILE ? 'the default profile' : current}?`)) return;
-        const prefixes = ['w', 'd', 'n', 'q', 'b', 'p'];
-        const filterData = Object.entries(profiles[current].data).reduce((acc, [id, value]) => {
-            if (!prefixes.includes(id.charAt(0))) {
-                acc[id] = value;
-            }
-            return acc;
-        }, {});
-
-        profiles[current].data = filterData;
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-    });
 
     // Delete profile
     del?.addEventListener('click', () => {
