@@ -53,10 +53,6 @@ function loadProfiles() {
 
 // Profile Manager
 const profileManager = {
-    getActiveProfile() {
-        return profiles[activeProfile] || profiles[DEFAULT_PROFILE];
-    },
-
     setCheckboxState(id, checked) {
         if (!id) return;
 
@@ -116,7 +112,7 @@ function cacheCheckboxes() {
 }
 
 function restoreCheckboxes() {
-    const { data } = profileManager.getActiveProfile();
+    const { data } = profiles[activeProfile];
     if (!cachedCheckboxes) return;
 
     cachedCheckboxes.forEach(checkbox => {
