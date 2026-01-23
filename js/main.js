@@ -51,7 +51,6 @@ function loadProfiles() {
     }
 }
 
-// Profile Manager
 const profileManager = {
     setCheckboxState(id, checked) {
         if (!id) return;
@@ -99,7 +98,7 @@ const profileManager = {
     }
 };
 
-// Restore checked state from storage
+// Checkbox logic
 const checkboxMap = new WeakMap();
 let cachedCheckboxes = null;
 let cachedTotalElements = null;
@@ -201,11 +200,12 @@ document.addEventListener('change', e => {
     }
 });
 
-window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-        window.location.reload();
-    }
-});
+//! Keep?
+// window.addEventListener('pageshow', (event) => {
+//     if (event.persisted) {
+//         window.location.reload();
+//     }
+// });
 
 // After DOM load
 document.addEventListener('DOMContentLoaded', () => {
