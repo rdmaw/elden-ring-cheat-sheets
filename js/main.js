@@ -205,6 +205,35 @@ const profileManager = {
         return {
             success: true
         };
+    },
+
+    deleteProfile(name) {
+        if (name === DEFAULT_PROFILE) {
+            profiles[DEFAULT_PROFILE] = { data: {}, col: {} };
+
+            this.save();
+
+            return {
+                success: true,
+            };
+        }
+
+        if (!profiles[name]) {
+            return {
+                success: false,
+                error: "What? This profile doesn't exist."
+            };
+        }
+
+        delete profiles[name];
+        activeProfile = DEFAULT_PROFILE;
+
+        this.save();
+        localStorage.removeItem('active-profile');
+
+        return {
+            success: true,
+        };
     }
 };
 
@@ -401,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createBtn = document.getElementById('create');
     const editBtn = document.getElementById('edit');
     const newGamePlusBtn = document.getElementById('new-game-plus');
-    const del = document.getElementById('del');
+    const deleteBtn = document.getElementById('delete');
 
     function createDropdownOptions(profiles) {
         return profiles.map(name => new Option(
@@ -472,29 +501,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(result.error);
             }
         });
+
+        deleteBtn.addEventListener('click', () => {
+            const currentProfile = dropdown.value;
+            const isProfileDefault = currentProfile === DEFAULT_PROFILE;
+            const action = isProfileDefault ? 'reset the default profile' : `delete ${currentProfile}`;
+
+            if (!confirm(`Are you sure you want to ${action}?`)) return;
+            const result = profileManager.deleteProfile(currentProfile);
+
+            if (!result.success) {
+                alert(result.error);
+                return;
+            }
+
+            updateProfilesDropdown(dropdown, activeProfile);
+            dropdown.value = activeProfile;
+        });
     }
 
-
-    // Delete profile
-    del?.addEventListener('click', () => {
-        const current = dropdown.value;
-        if (!confirm(`Are you sure you want to ${current === DEFAULT_PROFILE ? 'reset the default profile' : 'delete ' + current}?`)) return;
-
-        if (current === DEFAULT_PROFILE) {
-            profiles[DEFAULT_PROFILE] = { data: {}, col: {} };
-            localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-        } else {
-            delete profiles[current];
-            localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-            if (current === activeProfile) {
-                activeProfile = DEFAULT_PROFILE;
-                localStorage.removeItem('active-profile');
-            }
-            const option = dropdown.querySelector(`option[value="${current}"]`);
-            option?.remove();
-            dropdown.value = activeProfile;
-        }
-    });
 
     // Import/Export profiles
     const impF = document.getElementById('imp-f');
