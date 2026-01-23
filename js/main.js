@@ -422,15 +422,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function validate(data) {
-        if (!data?.[PROFILES_KEY]?.[DEFAULT_PROFILE]) throw new Error('Invalid profile data.');
-        if (!confirm('Importing a new profile will overwrite all current data.')) return;
+        if (!data?.[PROFILES_KEY]?.[DEFAULT_PROFILE]) {
+            throw new Error('Invalid profile data.');
+        }
+
+        if (!confirm('Importing a new profile will overwrite all current data.')) {
+            return;
+        }
+
         localStorage.setItem(PROFILES_KEY, JSON.stringify(data[PROFILES_KEY]));
         profiles = data[PROFILES_KEY];
-        if (data.current) {
+
+        if (data.current && data.current !== DEFAULT_PROFILE) {
             activeProfile = data.current;
             localStorage.setItem('active-profile', activeProfile);
+        } else {
+            activeProfile = DEFAULT_PROFILE;
+            localStorage.removeItem('active-profile');
         }
+
         refreshProfiles();
+
         alert('Successfully imported profile data.');
     }
 
