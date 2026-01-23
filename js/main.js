@@ -8,6 +8,10 @@ const root = document.documentElement;
 let activeProfile = localStorage.getItem('active-profile') || DEFAULT_PROFILE;
 let profiles = loadProfiles();
 
+if (!profiles[activeProfile]) {
+    profiles[activeProfile] = { data: {}, col: {} };
+}
+
 //! Clean up old keys
 localStorage.removeItem('cb');
 localStorage.removeItem('t');
@@ -47,49 +51,55 @@ function loadProfiles() {
     }
 }
 
-// Manage profile data
-const mgr = {
-    get() {
+// Profile Manager
+const profileManager = {
+    getActiveProfile() {
         return profiles[activeProfile] || profiles[DEFAULT_PROFILE];
     },
 
-    setCl(id, checked) {
+    setCheckboxState(id, checked) {
         if (!id) return;
-        if (!profiles[activeProfile]) profiles[activeProfile] = { data: {}, col: {} };
-        checked ? profiles[activeProfile].data[id] = 1 : delete profiles[activeProfile].data[id];
-        mgr.scheduleSave();
+
+        if (checked) {
+            profiles[activeProfile].data[id] = 1;
+        } else {
+            delete profiles[activeProfile].data[id];
+        }
+
+        this.save();
     },
 
-    setCol(id, expanded) {
+    setCollapseState(id, expanded) {
         if (!id) return;
-        if (!profiles[activeProfile]) profiles[activeProfile] = { data: {}, col: {} };
-        if (!profiles[activeProfile].col) profiles[activeProfile].col = {};
-        expanded ? delete profiles[activeProfile].col[id] : profiles[activeProfile].col[id] = 1;
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+
+        if (expanded) {
+            delete profiles[activeProfile].col[id];
+        } else {
+            profiles[activeProfile].col[id] = 1;
+        }
+
+        this.save();
     },
 
-    setBatch(updates) {
-        if (!updates?.length) return;
-        if (!profiles[activeProfile]) profiles[activeProfile] = { data: {}, col: {} };
-        if (!profiles[activeProfile].col) profiles[activeProfile].col = {};
+    // Batch updates for when Collapse All is clicked
+    batchCollapseStates(updates) {
+        if (!Array.isArray(updates) || !updates.length) return;
 
         updates.forEach(({ id, expanded }) => {
             if (!id) return;
-            expanded ? delete profiles[activeProfile].col[id] : profiles[activeProfile].col[id] = 1;
+
+            if (expanded) {
+                delete profiles[activeProfile].col[id];
+            } else {
+                profiles[activeProfile].col[id] = 1;
+            }
         });
+
+        this.save();
+    },
+
+    save() {
         localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-    },
-
-    col() {
-        return this.get().col || {};
-    },
-
-    saveTimer: null,
-    scheduleSave() {
-        clearTimeout(this.saveTimer);
-        this.saveTimer = setTimeout(() => {
-            localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-        }, 100);
     }
 };
 
@@ -106,7 +116,7 @@ function cacheCheckboxes() {
 }
 
 function restoreCheckboxes() {
-    const { data } = mgr.get();
+    const { data } = profileManager.getActiveProfile();
     if (!cachedCheckboxes) return;
 
     cachedCheckboxes.forEach(checkbox => {
@@ -190,7 +200,7 @@ document.addEventListener('change', e => {
         if (li) {
             li.classList.toggle('c', checkbox.checked);
         }
-        mgr.setCl(checkbox.id, checkbox.checked);
+        profileManager.setCheckboxState(checkbox.id, checkbox.checked);
         calculateTotals();
     }
 });
@@ -198,13 +208,6 @@ document.addEventListener('change', e => {
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         window.location.reload();
-    }
-});
-
-window.addEventListener('beforeunload', () => {
-    if (mgr.saveTimer) {
-        clearTimeout(mgr.saveTimer);
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
     }
 });
 
@@ -596,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!ul) continue;
         ulMap.set(btn, ul);
 
-        const isCollapsed = !!mgr.col()[ulId];
+        const isCollapsed = !!profiles[activeProfile].col[ulId];
         btn.ariaExpanded = !isCollapsed;
         ul.classList.toggle('f', isCollapsed);
 
@@ -604,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const shouldExpand = btn.ariaExpanded !== 'true';
             btn.ariaExpanded = shouldExpand;
             ul.classList.toggle('f', !shouldExpand);
-            mgr.setCol(ulId, shouldExpand);
+            profileManager.setCollapseState(ulId, shouldExpand);
         });
     }
 
@@ -619,7 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ul.classList.toggle('f', !expand);
             updates.push({ id: ulId, expanded: expand });
         });
-        mgr.setBatch(updates);
+        profileManager.batchCollapseStates(updates);
     };
 
     expA?.addEventListener('click', () => toggleAll(true));
