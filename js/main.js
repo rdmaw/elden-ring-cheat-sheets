@@ -374,7 +374,7 @@ document.addEventListener('change', e => {
     }
 });
 
-//! Keep?
+//! Keep? Test with mobiles device using forward cache before removing.
 // window.addEventListener('pageshow', (event) => {
 //     if (event.persisted) {
 //         window.location.reload();
@@ -382,502 +382,500 @@ document.addEventListener('change', e => {
 // });
 
 // After DOM load
-document.addEventListener('DOMContentLoaded', () => {
-    cacheCheckboxes();
-    restoreCheckboxes();
-    calculateTotals();
+cacheCheckboxes();
+restoreCheckboxes();
+calculateTotals();
 
-    // Live-sync storage between open tabs
-    window.addEventListener('storage', (e) => {
-        if (e.key === PROFILES_KEY || e.key === 'active-profile') {
-            try {
-                if (e.key === PROFILES_KEY) {
-                    profiles = JSON.parse(e.newValue);
-                } else if (e.key === 'active-profile') {
-                    activeProfile = e.newValue || DEFAULT_PROFILE;
-                    refreshDropdown?.(dropdown, activeProfile);
-                }
-                restoreCheckboxes();
-                calculateTotals();
-            } catch (e) {
-                console.error('Error syncing profile:', e);
+// Live-sync storage between open tabs
+window.addEventListener('storage', (e) => {
+    if (e.key === PROFILES_KEY || e.key === 'active-profile') {
+        try {
+            if (e.key === PROFILES_KEY) {
+                profiles = JSON.parse(e.newValue);
+            } else if (e.key === 'active-profile') {
+                activeProfile = e.newValue || DEFAULT_PROFILE;
+                refreshDropdown?.(dropdown, activeProfile);
             }
-        } else if (e.key === 'h') {
-            const isHidden = e.newValue === '1';
-            root.classList.toggle('hide', isHidden);
-            if (hide) {
-                hide.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
-            }
-        } else if (e.key === 'theme') {
-            setTheme(e.newValue || 'system');
-            if (theme) theme.value = e.newValue || 'system';
+            restoreCheckboxes();
+            calculateTotals();
+        } catch (e) {
+            console.error('Error syncing profile:', e);
         }
-    });
-
-    // Open external links in new tab
-    const links = document.querySelectorAll('a[href^="https"]');
-
-    for (let i = 0, len = links.length; i < len; i++) {
-        const link = links[i];
-        link.target = '_blank';
-    }
-
-    // Color Theme
-    const theme = document.getElementById('theme');
-    const preferredTheme = localStorage.getItem('theme');
-    const activeTheme = preferredTheme || 'system';
-
-    function setTheme(theme) {
-        if (theme === 'dark') {
-            root.setAttribute('data-theme', 'dark');
-            return;
-        }
-
-        if (theme === 'system') {
-            const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            root.setAttribute('data-theme', isSystemDark ? 'dark' : 'light');
-            return;
-        }
-
-        root.setAttribute('data-theme', 'light');
-    }
-
-    setTheme(activeTheme);
-
-    if (theme) {
-        theme.value = activeTheme;
-
-        theme.addEventListener('change', () => {
-            const value = theme.value;
-            localStorage.setItem('theme', value);
-            setTheme(value);
-        });
-    }
-
-    // Auto-update based on the system theme
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        const theme = localStorage.getItem('theme') || 'system';
-        if (theme === 'system') setTheme('system');
-    });
-
-    // Profile Management
-    const dropdown = document.getElementById('profile');
-    const createBtn = document.getElementById('create');
-    const editBtn = document.getElementById('edit');
-    const newGamePlusBtn = document.getElementById('new-game-plus');
-    const deleteBtn = document.getElementById('delete');
-
-    const exportFileBtn = document.getElementById('export-file');
-    const exportClipboardBtn = document.getElementById('export-clipboard');
-
-    const importFileBtn = document.getElementById('import-file');
-    const importClipboardBtn = document.getElementById('import-clipboard');
-
-    function createOptions(profiles) {
-        return profiles.map(name => new Option(
-            name === DEFAULT_PROFILE ? 'Default' : name,
-            name
-        ));
-    }
-
-    function refreshDropdown(dropdown, activeProfile) {
-        if (!dropdown) return;
-
-        const profiles = profile.list();
-
-        dropdown.replaceChildren(
-            ...createOptions(profiles)
-        );
-
-        dropdown.value = activeProfile;
-    }
-
-    refreshDropdown(dropdown, activeProfile);
-
-    if (dropdown) {
-
-        dropdown.addEventListener('change', () => {
-            profile.switch(dropdown.value);
-        });
-
-        createBtn.addEventListener('click', () => {
-            const name = prompt('Enter a name for the profile:')?.trim();
-            const result = profile.create(name);
-
-            if (!result.success) {
-                alert(result.error);
-                return;
-            }
-
-            refreshDropdown(dropdown, activeProfile);
-            dropdown.value = activeProfile;
-        });
-
-        editBtn.addEventListener('click', () => {
-            const currentProfile = dropdown.value;
-
-            if (currentProfile === DEFAULT_PROFILE) {
-                alert("Can't edit the default profile.");
-                return;
-            }
-
-            const name = prompt(`Enter a new name for ${currentProfile}:`, currentProfile)?.trim();
-            const result = profile.rename(currentProfile, name);
-
-            if (!result.success) {
-                alert(result.error);
-                return;
-            }
-
-            refreshDropdown(dropdown, activeProfile);
-        });
-
-        newGamePlusBtn.addEventListener('click', () => {
-            const currentProfile = dropdown.value;
-
-            if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile}?`)) return;
-            const result = profile.resetToNGPlus(currentProfile);
-
-            if (!result.success) {
-                alert(result.error);
-            }
-        });
-
-        deleteBtn.addEventListener('click', () => {
-            const currentProfile = dropdown.value;
-            const isProfileDefault = currentProfile === DEFAULT_PROFILE;
-            const action = isProfileDefault ? 'reset the default profile' : `delete ${currentProfile}`;
-
-            if (!confirm(`Are you sure you want to ${action}?`)) return;
-            const result = profile.delete(currentProfile);
-
-            if (!result.success) {
-                alert(result.error);
-                return;
-            }
-
-            refreshDropdown(dropdown, activeProfile);
-            dropdown.value = activeProfile;
-        });
-
-        exportFileBtn.addEventListener('click', () => {
-            try {
-                const blob = new Blob([JSON.stringify(profile.exportAll(), null, 2)], {
-                    type: 'application/json'
-                });
-
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-
-                a.href = url;
-                a.download = 'eldenring-progress.json';
-                a.click();
-
-                URL.revokeObjectURL(url);
-
-            } catch (error) {
-                alert('There was an error exporting the file.');
-                console.error(error);
-            }
-        });
-
-        const fileInput = document.createElement('input');
-
-        fileInput.type = 'file';
-        fileInput.accept = '.json';
-        fileInput.style.display = 'none';
-
-        importFileBtn.after(fileInput);
-
-        importFileBtn.addEventListener('click', () => {
-            fileInput.click();
-        });
-
-        fileInput.addEventListener('change', async event => {
-            const file = event.target.files[0];
-
-            if (!file) return;
-
-            try {
-                const text = await file.text();
-                const data = JSON.parse(text);
-
-                if (!confirm('Importing a new profile will overwrite all current data.')) return;
-                const result = profile.importAll(data);
-
-                if (result.success) {
-                    refreshDropdown(dropdown, activeProfile);
-                    alert('Successfully imported profile data.');
-
-                } else {
-                    alert(result.error);
-                }
-            } catch (error) {
-                alert('Invalid profile data.');
-                console.error(error);
-            }
-
-            fileInput.value = '';
-        });
-
-        exportClipboardBtn.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(JSON.stringify(profile.exportAll(), null, 2));
-                alert('Profile data has been copied to the clipboard.');
-
-            } catch (error) {
-                alert('There was an error copying to the clipboard.');
-                console.error(error);
-            }
-        });
-
-        importClipboardBtn.addEventListener('click', async () => {
-            try {
-                const text = await navigator.clipboard.readText();
-                const data = JSON.parse(text);
-
-                if (!confirm('Importing a new profile will overwrite all current data.')) return;
-                const result = profile.importAll(data);
-
-                if (result.success) {
-                    refreshDropdown(dropdown, activeProfile);
-                    alert('Successfully imported profile data.');
-
-                } else {
-                    alert(result.error);
-                }
-            } catch (error) {
-                alert('Invalid clipboard data.');
-                console.error(error);
-            }
-        });
-    }
-
-    // Toggle sidebar functionality
-    const menu = document.getElementById('menu');
-    const sidebar = document.getElementById('sidebar');
-    const close = sidebar.querySelector('.close');
-
-    function toggleSidebar() {
-        const hidden = sidebar.ariaHidden === 'true';
-
-        if (hidden) {
-            sidebar.ariaHidden = 'false';
-            menu.ariaExpanded = 'true';
-            sidebar.removeAttribute('inert');
-        } else {
-            menu.focus({ preventScroll: true });
-            sidebar.ariaHidden = 'true';
-            menu.ariaExpanded = 'false';
-            sidebar.setAttribute('inert', '');
-        }
-    }
-
-    menu.addEventListener('click', toggleSidebar);
-    close.addEventListener('click', toggleSidebar);
-
-    document.addEventListener('keydown', (e) => {
-        const active = document.activeElement;
-        const formControl = active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.tagName === 'SELECT';
-        if (formControl) return;
-
-        switch (e.key.toLowerCase()) {
-            case 'escape':
-                if (sidebar.ariaHidden === 'false') {
-                    toggleSidebar();
-                }
-                break;
-
-            case 'q':
-                if (!e.ctrlKey && !e.metaKey) {
-                    e.preventDefault();
-                    toggleSidebar();
-                    close.focus();
-                }
-                break;
-
-            case '/':
-                if (!e.ctrlKey && !e.metaKey) {
-                    e.preventDefault();
-                    const search = document.getElementById('search');
-                    if (search) search.focus();
-                }
-                break;
-
-            case 'h':
-                if (!e.ctrlKey && !e.metaKey) {
-                    e.preventDefault();
-                    const hide = document.getElementById('hide');
-                    if (hide) hide.click();
-                }
-                break;
-        }
-    });
-
-    // Handle to-top button logic
-    const up = document.getElementById('up');
-    const scroll = document.getElementById('scroll');
-
-    if (up && scroll) {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                const show = !entry.isIntersecting;
-                up.classList.toggle('show', show);
-                up.setAttribute('aria-hidden', show ? 'false' : 'true');
-                up.setAttribute('tabindex', show ? '0' : '-1');
-            },
-            { threshold: [0] }
-        );
-        observer.observe(scroll);
-
-        up.addEventListener('click', () => {
-            window.scrollTo({ top: 0 });
-            menu?.focus();
-        });
-    }
-
-    // Handle collapse/expand functionality
-    const col = document.querySelectorAll('.col');
-    const expA = document.getElementById('exp-a');
-    const colA = document.getElementById('col-a');
-    const ulMap = new Map();
-
-    for (const btn of col) {
-        const ulId = btn.getAttribute('aria-controls');
-        const ul = document.getElementById(ulId);
-        if (!ul) continue;
-        ulMap.set(btn, ul);
-
-        const isCollapsed = !!profiles[activeProfile].col[ulId];
-        btn.ariaExpanded = !isCollapsed;
-        ul.classList.toggle('f', isCollapsed);
-
-        btn.addEventListener('click', () => {
-            const shouldExpand = btn.ariaExpanded !== 'true';
-            btn.ariaExpanded = shouldExpand;
-            ul.classList.toggle('f', !shouldExpand);
-            profile.setCollapsed(ulId, shouldExpand);
-        });
-    }
-
-    document.querySelector('style[data-c]')?.remove();
-
-    const toggleAll = (expand) => {
-        const updates = [];
-
-        ulMap.forEach((ul, btn) => {
-            const ulId = btn.getAttribute('aria-controls');
-            btn.ariaExpanded = expand;
-            ul.classList.toggle('f', !expand);
-            updates.push({ id: ulId, expanded: expand });
-        });
-        profile.setCollapsedBatch(updates);
-    };
-
-    expA?.addEventListener('click', () => toggleAll(true));
-    colA?.addEventListener('click', () => toggleAll(false));
-
-    // Hide completed checkboxes
-    const hide = document.getElementById('hide');
-
-    if (hide) {
-        const isHidden = localStorage.getItem('h') === '1';
+    } else if (e.key === 'h') {
+        const isHidden = e.newValue === '1';
         root.classList.toggle('hide', isHidden);
-        hide.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
-
-        hide.addEventListener('click', () => {
-            const shouldHide = !root.classList.contains('hide');
-            root.classList.toggle('hide', shouldHide);
-            localStorage.setItem('h', shouldHide ? '1' : '0');
-            hide.setAttribute('aria-pressed', shouldHide ? 'true' : 'false');
-        });
-    }
-
-    // Search checklists
-    const search = document.getElementById('search');
-    if (search) {
-        let cachedElements = null;
-        let lastTerm = null;
-        let debounceTimer;
-
-        function filterChecklist(searchTerm) {
-            const cleanTerm = searchTerm.toLowerCase().trim();
-            if (cleanTerm === lastTerm) return;
-            lastTerm = cleanTerm;
-
-            if (!cachedElements) {
-                const sections = [...document.querySelectorAll('main h3')];
-                cachedElements = sections.map(section => {
-                    const list = section.nextElementSibling;
-                    if (!list) return null;
-
-                    const sectionText = section.textContent.toLowerCase();
-                    const mainItems = [...list.children];
-                    const itemData = mainItems.map(item => {
-                        const nestedList = item.querySelector('ul');
-                        const nestedItems = nestedList ? [...nestedList.querySelectorAll('li')] : [];
-                        const mainText = item.textContent.toLowerCase();
-                        const nestedTexts = nestedItems.map(nested => nested.textContent.toLowerCase());
-                        return { item, nestedItems, mainText, nestedTexts };
-                    });
-
-                    return { section, sectionText, itemData };
-                }).filter(Boolean);
-            }
-
-            if (!cleanTerm) {
-                cachedElements.forEach(({ section, itemData }) => {
-                    section.style.display = '';
-                    itemData.forEach(({ item, nestedItems }) => {
-                        item.style.display = '';
-                        nestedItems.forEach(nested => nested.style.display = '');
-                    });
-                });
-                return;
-            }
-
-            const terms = cleanTerm.split(/\s+/);
-            const matches = text => terms.every(term => text.includes(term));
-
-            for (const { section, sectionText, itemData } of cachedElements) {
-                const sectionMatches = matches(sectionText);
-                let sectionVisible = sectionMatches;
-
-                if (sectionMatches) {
-                    section.style.display = '';
-                    itemData.forEach(({ item, nestedItems }) => {
-                        item.style.display = '';
-                        nestedItems.forEach(nested => nested.style.display = '');
-                    });
-                    continue;
-                }
-
-                for (const { item, nestedItems, mainText, nestedTexts } of itemData) {
-                    let showItem = matches(mainText);
-
-                    if (!showItem) {
-                        for (let i = 0; i < nestedItems.length; i++) {
-                            if (matches(nestedTexts[i])) {
-                                nestedItems[i].style.display = '';
-                                showItem = true;
-                            } else {
-                                nestedItems[i].style.display = 'none';
-                            }
-                        }
-                    } else {
-                        nestedItems.forEach(nested => nested.style.display = '');
-                    }
-
-                    item.style.display = showItem ? '' : 'none';
-                    sectionVisible ||= showItem;
-                }
-                section.style.display = sectionVisible ? '' : 'none';
-            }
+        if (hide) {
+            hide.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
         }
-
-        search.addEventListener('input', e => {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => filterChecklist(e.target.value), 1);
-        });
+    } else if (e.key === 'theme') {
+        setTheme(e.newValue || 'system');
+        if (theme) theme.value = e.newValue || 'system';
     }
 });
+
+// Open external links in new tab
+const links = document.querySelectorAll('a[href^="https"]');
+
+for (let i = 0, len = links.length; i < len; i++) {
+    const link = links[i];
+    link.target = '_blank';
+}
+
+// Color Theme
+const theme = document.getElementById('theme');
+const preferredTheme = localStorage.getItem('theme');
+const activeTheme = preferredTheme || 'system';
+
+function setTheme(theme) {
+    if (theme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+        return;
+    }
+
+    if (theme === 'system') {
+        const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.setAttribute('data-theme', isSystemDark ? 'dark' : 'light');
+        return;
+    }
+
+    root.setAttribute('data-theme', 'light');
+}
+
+setTheme(activeTheme);
+
+if (theme) {
+    theme.value = activeTheme;
+
+    theme.addEventListener('change', () => {
+        const value = theme.value;
+        localStorage.setItem('theme', value);
+        setTheme(value);
+    });
+}
+
+// Auto-update based on the system theme
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    const theme = localStorage.getItem('theme') || 'system';
+    if (theme === 'system') setTheme('system');
+});
+
+// Profile Management
+const dropdown = document.getElementById('profile');
+const createBtn = document.getElementById('create');
+const editBtn = document.getElementById('edit');
+const newGamePlusBtn = document.getElementById('new-game-plus');
+const deleteBtn = document.getElementById('delete');
+
+const exportFileBtn = document.getElementById('export-file');
+const exportClipboardBtn = document.getElementById('export-clipboard');
+
+const importFileBtn = document.getElementById('import-file');
+const importClipboardBtn = document.getElementById('import-clipboard');
+
+function createOptions(profiles) {
+    return profiles.map(name => new Option(
+        name === DEFAULT_PROFILE ? 'Default' : name,
+        name
+    ));
+}
+
+function refreshDropdown(dropdown, activeProfile) {
+    if (!dropdown) return;
+
+    const profiles = profile.list();
+
+    dropdown.replaceChildren(
+        ...createOptions(profiles)
+    );
+
+    dropdown.value = activeProfile;
+}
+
+refreshDropdown(dropdown, activeProfile);
+
+if (dropdown) {
+
+    dropdown.addEventListener('change', () => {
+        profile.switch(dropdown.value);
+    });
+
+    createBtn.addEventListener('click', () => {
+        const name = prompt('Enter a name for the profile:')?.trim();
+        const result = profile.create(name);
+
+        if (!result.success) {
+            alert(result.error);
+            return;
+        }
+
+        refreshDropdown(dropdown, activeProfile);
+        dropdown.value = activeProfile;
+    });
+
+    editBtn.addEventListener('click', () => {
+        const currentProfile = dropdown.value;
+
+        if (currentProfile === DEFAULT_PROFILE) {
+            alert("Can't edit the default profile.");
+            return;
+        }
+
+        const name = prompt(`Enter a new name for ${currentProfile}:`, currentProfile)?.trim();
+        const result = profile.rename(currentProfile, name);
+
+        if (!result.success) {
+            alert(result.error);
+            return;
+        }
+
+        refreshDropdown(dropdown, activeProfile);
+    });
+
+    newGamePlusBtn.addEventListener('click', () => {
+        const currentProfile = dropdown.value;
+
+        if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile}?`)) return;
+        const result = profile.resetToNGPlus(currentProfile);
+
+        if (!result.success) {
+            alert(result.error);
+        }
+    });
+
+    deleteBtn.addEventListener('click', () => {
+        const currentProfile = dropdown.value;
+        const isProfileDefault = currentProfile === DEFAULT_PROFILE;
+        const action = isProfileDefault ? 'reset the default profile' : `delete ${currentProfile}`;
+
+        if (!confirm(`Are you sure you want to ${action}?`)) return;
+        const result = profile.delete(currentProfile);
+
+        if (!result.success) {
+            alert(result.error);
+            return;
+        }
+
+        refreshDropdown(dropdown, activeProfile);
+        dropdown.value = activeProfile;
+    });
+
+    exportFileBtn.addEventListener('click', () => {
+        try {
+            const blob = new Blob([JSON.stringify(profile.exportAll(), null, 2)], {
+                type: 'application/json'
+            });
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+
+            a.href = url;
+            a.download = 'eldenring-progress.json';
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+        } catch (error) {
+            alert('There was an error exporting the file.');
+            console.error(error);
+        }
+    });
+
+    const fileInput = document.createElement('input');
+
+    fileInput.type = 'file';
+    fileInput.accept = '.json';
+    fileInput.style.display = 'none';
+
+    importFileBtn.after(fileInput);
+
+    importFileBtn.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', async event => {
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        try {
+            const text = await file.text();
+            const data = JSON.parse(text);
+
+            if (!confirm('Importing a new profile will overwrite all current data.')) return;
+            const result = profile.importAll(data);
+
+            if (result.success) {
+                refreshDropdown(dropdown, activeProfile);
+                alert('Successfully imported profile data.');
+
+            } else {
+                alert(result.error);
+            }
+        } catch (error) {
+            alert('Invalid profile data.');
+            console.error(error);
+        }
+
+        fileInput.value = '';
+    });
+
+    exportClipboardBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(JSON.stringify(profile.exportAll(), null, 2));
+            alert('Profile data has been copied to the clipboard.');
+
+        } catch (error) {
+            alert('There was an error copying to the clipboard.');
+            console.error(error);
+        }
+    });
+
+    importClipboardBtn.addEventListener('click', async () => {
+        try {
+            const text = await navigator.clipboard.readText();
+            const data = JSON.parse(text);
+
+            if (!confirm('Importing a new profile will overwrite all current data.')) return;
+            const result = profile.importAll(data);
+
+            if (result.success) {
+                refreshDropdown(dropdown, activeProfile);
+                alert('Successfully imported profile data.');
+
+            } else {
+                alert(result.error);
+            }
+        } catch (error) {
+            alert('Invalid clipboard data.');
+            console.error(error);
+        }
+    });
+}
+
+// Toggle sidebar functionality
+const menu = document.getElementById('menu');
+const sidebar = document.getElementById('sidebar');
+const close = sidebar.querySelector('.close');
+
+function toggleSidebar() {
+    const hidden = sidebar.ariaHidden === 'true';
+
+    if (hidden) {
+        sidebar.ariaHidden = 'false';
+        menu.ariaExpanded = 'true';
+        sidebar.removeAttribute('inert');
+    } else {
+        menu.focus({ preventScroll: true });
+        sidebar.ariaHidden = 'true';
+        menu.ariaExpanded = 'false';
+        sidebar.setAttribute('inert', '');
+    }
+}
+
+menu.addEventListener('click', toggleSidebar);
+close.addEventListener('click', toggleSidebar);
+
+document.addEventListener('keydown', (e) => {
+    const active = document.activeElement;
+    const formControl = active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.tagName === 'SELECT';
+    if (formControl) return;
+
+    switch (e.key.toLowerCase()) {
+        case 'escape':
+            if (sidebar.ariaHidden === 'false') {
+                toggleSidebar();
+            }
+            break;
+
+        case 'q':
+            if (!e.ctrlKey && !e.metaKey) {
+                e.preventDefault();
+                toggleSidebar();
+                close.focus();
+            }
+            break;
+
+        case '/':
+            if (!e.ctrlKey && !e.metaKey) {
+                e.preventDefault();
+                const search = document.getElementById('search');
+                if (search) search.focus();
+            }
+            break;
+
+        case 'h':
+            if (!e.ctrlKey && !e.metaKey) {
+                e.preventDefault();
+                const hide = document.getElementById('hide');
+                if (hide) hide.click();
+            }
+            break;
+    }
+});
+
+// Handle to-top button logic
+const up = document.getElementById('up');
+const scroll = document.getElementById('scroll');
+
+if (up && scroll) {
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+            const show = !entry.isIntersecting;
+            up.classList.toggle('show', show);
+            up.setAttribute('aria-hidden', show ? 'false' : 'true');
+            up.setAttribute('tabindex', show ? '0' : '-1');
+        },
+        { threshold: [0] }
+    );
+    observer.observe(scroll);
+
+    up.addEventListener('click', () => {
+        window.scrollTo({ top: 0 });
+        menu?.focus();
+    });
+}
+
+// Handle collapse/expand functionality
+const col = document.querySelectorAll('.col');
+const expA = document.getElementById('exp-a');
+const colA = document.getElementById('col-a');
+const ulMap = new Map();
+
+for (const btn of col) {
+    const ulId = btn.getAttribute('aria-controls');
+    const ul = document.getElementById(ulId);
+    if (!ul) continue;
+    ulMap.set(btn, ul);
+
+    const isCollapsed = !!profiles[activeProfile].col[ulId];
+    btn.ariaExpanded = !isCollapsed;
+    ul.classList.toggle('f', isCollapsed);
+
+    btn.addEventListener('click', () => {
+        const shouldExpand = btn.ariaExpanded !== 'true';
+        btn.ariaExpanded = shouldExpand;
+        ul.classList.toggle('f', !shouldExpand);
+        profile.setCollapsed(ulId, shouldExpand);
+    });
+}
+
+document.querySelector('style[data-c]')?.remove();
+
+const toggleAll = (expand) => {
+    const updates = [];
+
+    ulMap.forEach((ul, btn) => {
+        const ulId = btn.getAttribute('aria-controls');
+        btn.ariaExpanded = expand;
+        ul.classList.toggle('f', !expand);
+        updates.push({ id: ulId, expanded: expand });
+    });
+    profile.setCollapsedBatch(updates);
+};
+
+expA?.addEventListener('click', () => toggleAll(true));
+colA?.addEventListener('click', () => toggleAll(false));
+
+// Hide completed checkboxes
+const hide = document.getElementById('hide');
+
+if (hide) {
+    const isHidden = localStorage.getItem('h') === '1';
+    root.classList.toggle('hide', isHidden);
+    hide.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
+
+    hide.addEventListener('click', () => {
+        const shouldHide = !root.classList.contains('hide');
+        root.classList.toggle('hide', shouldHide);
+        localStorage.setItem('h', shouldHide ? '1' : '0');
+        hide.setAttribute('aria-pressed', shouldHide ? 'true' : 'false');
+    });
+}
+
+// Search checklists
+const search = document.getElementById('search');
+if (search) {
+    let cachedElements = null;
+    let lastTerm = null;
+    let debounceTimer;
+
+    function filterChecklist(searchTerm) {
+        const cleanTerm = searchTerm.toLowerCase().trim();
+        if (cleanTerm === lastTerm) return;
+        lastTerm = cleanTerm;
+
+        if (!cachedElements) {
+            const sections = [...document.querySelectorAll('main h3')];
+            cachedElements = sections.map(section => {
+                const list = section.nextElementSibling;
+                if (!list) return null;
+
+                const sectionText = section.textContent.toLowerCase();
+                const mainItems = [...list.children];
+                const itemData = mainItems.map(item => {
+                    const nestedList = item.querySelector('ul');
+                    const nestedItems = nestedList ? [...nestedList.querySelectorAll('li')] : [];
+                    const mainText = item.textContent.toLowerCase();
+                    const nestedTexts = nestedItems.map(nested => nested.textContent.toLowerCase());
+                    return { item, nestedItems, mainText, nestedTexts };
+                });
+
+                return { section, sectionText, itemData };
+            }).filter(Boolean);
+        }
+
+        if (!cleanTerm) {
+            cachedElements.forEach(({ section, itemData }) => {
+                section.style.display = '';
+                itemData.forEach(({ item, nestedItems }) => {
+                    item.style.display = '';
+                    nestedItems.forEach(nested => nested.style.display = '');
+                });
+            });
+            return;
+        }
+
+        const terms = cleanTerm.split(/\s+/);
+        const matches = text => terms.every(term => text.includes(term));
+
+        for (const { section, sectionText, itemData } of cachedElements) {
+            const sectionMatches = matches(sectionText);
+            let sectionVisible = sectionMatches;
+
+            if (sectionMatches) {
+                section.style.display = '';
+                itemData.forEach(({ item, nestedItems }) => {
+                    item.style.display = '';
+                    nestedItems.forEach(nested => nested.style.display = '');
+                });
+                continue;
+            }
+
+            for (const { item, nestedItems, mainText, nestedTexts } of itemData) {
+                let showItem = matches(mainText);
+
+                if (!showItem) {
+                    for (let i = 0; i < nestedItems.length; i++) {
+                        if (matches(nestedTexts[i])) {
+                            nestedItems[i].style.display = '';
+                            showItem = true;
+                        } else {
+                            nestedItems[i].style.display = 'none';
+                        }
+                    }
+                } else {
+                    nestedItems.forEach(nested => nested.style.display = '');
+                }
+
+                item.style.display = showItem ? '' : 'none';
+                sectionVisible ||= showItem;
+            }
+            section.style.display = sectionVisible ? '' : 'none';
+        }
+    }
+
+    search.addEventListener('input', e => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => filterChecklist(e.target.value), 1);
+    });
+}
