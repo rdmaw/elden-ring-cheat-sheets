@@ -50,7 +50,7 @@ function loadProfiles() {
 }
 
 // All other profile logic is grouped here
-const profileManager = {
+const profile = {
     saveToStorage() {
         localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
     },
@@ -365,7 +365,7 @@ document.addEventListener('change', e => {
         if (li) {
             li.classList.toggle('c', checkbox.checked);
         }
-        profileManager.setCheckboxState(checkbox.id, checkbox.checked);
+        profile.setCheckboxState(checkbox.id, checkbox.checked);
         calculateTotals();
     }
 });
@@ -479,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateProfilesDropdown(dropdown, activeProfile) {
         if (!dropdown) return;
 
-        const profiles = profileManager.getProfiles();
+        const profiles = profile.getProfiles();
 
         dropdown.replaceChildren(
             ...createDropdownOptions(profiles)
@@ -493,12 +493,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dropdown) {
 
         dropdown.addEventListener('change', () => {
-            profileManager.switchProfile(dropdown.value);
+            profile.switchProfile(dropdown.value);
         });
 
         createBtn.addEventListener('click', () => {
             const name = prompt('Enter a name for the profile:')?.trim();
-            const result = profileManager.createProfile(name);
+            const result = profile.createProfile(name);
 
             if (!result.success) {
                 alert(result.error);
@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const name = prompt(`Enter a new name for ${currentProfile}:`, currentProfile)?.trim();
-            const result = profileManager.renameProfile(currentProfile, name);
+            const result = profile.renameProfile(currentProfile, name);
 
             if (!result.success) {
                 alert(result.error);
@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentProfile = dropdown.value;
 
             if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile}?`)) return;
-            const result = profileManager.resetProfileToNGPlus(currentProfile);
+            const result = profile.resetProfileToNGPlus(currentProfile);
 
             if (!result.success) {
                 alert(result.error);
@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const action = isProfileDefault ? 'reset the default profile' : `delete ${currentProfile}`;
 
             if (!confirm(`Are you sure you want to ${action}?`)) return;
-            const result = profileManager.deleteProfile(currentProfile);
+            const result = profile.deleteProfile(currentProfile);
 
             if (!result.success) {
                 alert(result.error);
@@ -558,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         exportFileBtn.addEventListener('click', () => {
             try {
-                const blob = new Blob([JSON.stringify(profileManager.exportData(), null, 2)], {
+                const blob = new Blob([JSON.stringify(profile.exportData(), null, 2)], {
                     type: 'application/json'
                 });
 
@@ -599,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = JSON.parse(text);
 
                 if (!confirm('Importing a new profile will overwrite all current data.')) return;
-                const result = profileManager.importData(data);
+                const result = profile.importData(data);
 
                 if (result.success) {
                     updateProfilesDropdown(dropdown, activeProfile);
@@ -617,7 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         exportClipboardBtn.addEventListener('click', async () => {
             try {
-                await navigator.clipboard.writeText(JSON.stringify(profileManager.exportData(), null, 2));
+                await navigator.clipboard.writeText(JSON.stringify(profile.exportData(), null, 2));
                 alert('Profile data has been copied to the clipboard.');
 
             } catch (error) {
@@ -632,7 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = JSON.parse(text);
 
                 if (!confirm('Importing a new profile will overwrite all current data.')) return;
-                const result = profileManager.importData(data);
+                const result = profile.importData(data);
 
                 if (result.success) {
                     updateProfilesDropdown(dropdown, activeProfile);
@@ -750,7 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const shouldExpand = btn.ariaExpanded !== 'true';
             btn.ariaExpanded = shouldExpand;
             ul.classList.toggle('f', !shouldExpand);
-            profileManager.setCollapseState(ulId, shouldExpand);
+            profile.setCollapseState(ulId, shouldExpand);
         });
     }
 
@@ -765,7 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ul.classList.toggle('f', !expand);
             updates.push({ id: ulId, expanded: expand });
         });
-        profileManager.batchCollapseStates(updates);
+        profile.batchCollapseStates(updates);
     };
 
     expA?.addEventListener('click', () => toggleAll(true));
