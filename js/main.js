@@ -234,6 +234,38 @@ const profileManager = {
         return {
             success: true,
         };
+    },
+
+    exportData() {
+        return {
+            current: activeProfile,
+            [PROFILES_KEY]: profiles
+        };
+    },
+
+    importData(data) {
+        if (!data?.[PROFILES_KEY]?.[DEFAULT_PROFILE]) {
+            return {
+                success: false,
+                error: "Invalid data: missing default profile."
+            };
+        }
+
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(data[PROFILES_KEY]));
+        profiles = data[PROFILES_KEY];
+
+        if (data.current && data.current !== DEFAULT_PROFILE) {
+            activeProfile = data.current;
+            localStorage.setItem('active-profile', activeProfile);
+
+        } else {
+            activeProfile = DEFAULT_PROFILE;
+            localStorage.removeItem('active-profile');
+        }
+
+        return {
+            success: true
+        };
     }
 };
 
@@ -432,6 +464,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const newGamePlusBtn = document.getElementById('new-game-plus');
     const deleteBtn = document.getElementById('delete');
 
+    const exportFileBtn = document.getElementById('export-file');
+    const exportClipboardBtn = document.getElementById('export-clipboard');
+
+    const importFileBtn = document.getElementById('import-file');
+    const importClipboardBtn = document.getElementById('import-clipboard');
+
     function createDropdownOptions(profiles) {
         return profiles.map(name => new Option(
             name === DEFAULT_PROFILE ? 'Default' : name,
@@ -518,112 +556,97 @@ document.addEventListener('DOMContentLoaded', () => {
             updateProfilesDropdown(dropdown, activeProfile);
             dropdown.value = activeProfile;
         });
-    }
 
+        exportFileBtn.addEventListener('click', () => {
+            try {
+                const blob = new Blob([JSON.stringify(profileManager.exportData(), null, 2)], {
+                    type: 'application/json'
+                });
 
-    // Import/Export profiles
-    const impF = document.getElementById('imp-f');
-    const expF = document.getElementById('exp-f');
-    const impC = document.getElementById('imp-c');
-    const expC = document.getElementById('exp-c');
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
 
-    function getData() {
-        return {
-            current: activeProfile,
-            [PROFILES_KEY]: profiles
-        };
-    }
+                a.href = url;
+                a.download = 'eldenring-profiles.json';
+                a.click();
 
-    function validate(data) {
-        if (!data?.[PROFILES_KEY]?.[DEFAULT_PROFILE]) {
-            throw new Error('Invalid profile data.');
-        }
+                URL.revokeObjectURL(url);
 
-        if (!confirm('Importing a new profile will overwrite all current data.')) {
-            return;
-        }
+            } catch (error) {
+                alert('There was an error exporting the file.');
+                console.error(error);
+            }
+        });
 
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(data[PROFILES_KEY]));
-        profiles = data[PROFILES_KEY];
-
-        if (data.current && data.current !== DEFAULT_PROFILE) {
-            activeProfile = data.current;
-            localStorage.setItem('active-profile', activeProfile);
-        } else {
-            activeProfile = DEFAULT_PROFILE;
-            localStorage.removeItem('active-profile');
-        }
-
-        updateProfilesDropdown(dropdown, activeProfile);
-
-        alert('Successfully imported profile data.');
-    }
-
-    // Import file
-    if (impF) {
         const fileInput = document.createElement('input');
+
         fileInput.type = 'file';
         fileInput.accept = '.json';
         fileInput.style.display = 'none';
-        impF.after(fileInput);
-        impF.addEventListener('click', () => fileInput.click());
 
-        fileInput.addEventListener('change', async e => {
-            const file = e.target.files[0];
+        importFileBtn.after(fileInput);
+
+        importFileBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', async event => {
+            const file = event.target.files[0];
+
             if (!file) return;
 
             try {
                 const text = await file.text();
                 const data = JSON.parse(text);
-                validate(data);
-            } catch (e) {
+
+                if (!confirm('Importing a new profile will overwrite all current data.')) return;
+                const result = profileManager.importData(data);
+
+                if (result.success) {
+                    updateProfilesDropdown(dropdown, activeProfile);
+                    alert('Successfully imported profile data.');
+                } else {
+                    alert(result.error);
+                }
+            } catch (error) {
                 alert('Invalid profile data.');
-                console.error(e);
+                console.error(error);
             }
+
             fileInput.value = '';
         });
+
+        exportClipboardBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(JSON.stringify(profileManager.exportData(), null, 2));
+                alert('Profile data has been copied to the clipboard.');
+
+            } catch (error) {
+                alert('There was an error copying to the clipboard.');
+                console.error(error);
+            }
+        });
+
+        importClipboardBtn.addEventListener('click', async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                const data = JSON.parse(text);
+
+                if (!confirm('Importing a new profile will overwrite all current data.')) return;
+                const result = profileManager.importData(data);
+
+                if (result.success) {
+                    updateProfilesDropdown(dropdown, activeProfile);
+                    alert('Successfully imported profile data.');
+                } else {
+                    alert(result.error);
+                }
+            } catch (error) {
+                alert('Invalid clipboard data.');
+                console.error(error);
+            }
+        });
     }
-
-    // Export file
-    expF?.addEventListener('click', () => {
-        try {
-            const blob = new Blob([JSON.stringify(getData(), null, 2)], {
-                type: 'application/json'
-            });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'elden-ring-cheat-sheets.json';
-            a.click();
-            URL.revokeObjectURL(url);
-        } catch (e) {
-            alert('Error exporting file.');
-            console.error(e);
-        }
-    });
-
-    // Import clipboard
-    impC?.addEventListener('click', async () => {
-        try {
-            const text = await navigator.clipboard.readText();
-            const data = JSON.parse(text);
-            validate(data);
-        } catch (e) {
-            alert('Invalid clipboard data.');
-            console.error(e);
-        }
-    });
-
-    // Export clipboard
-    expC?.addEventListener('click', async () => {
-        try {
-            await navigator.clipboard.writeText(JSON.stringify(getData(), null, 2));
-            alert('Profile data copied to clipboard.');
-        } catch (e) {
-            alert('Error copying to clipboard.');
-            console.error(e);
-        }
-    });
 
     // Toggle sidebar functionality
     const menu = document.getElementById('menu');
