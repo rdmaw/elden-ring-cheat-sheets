@@ -90,7 +90,7 @@ const profile = {
         this.saveToStorage();
     },
 
-    // Batch updates for when Collapse All is clicked
+    // Batch updates to one write for when Collapse All is clicked
     setCollapsedBatch(updates) {
         if (!Array.isArray(updates) || !updates.length) return;
 
@@ -108,7 +108,7 @@ const profile = {
         this.saveToStorage();
     },
 
-    switchProfile(name) {
+    switch(name) {
         const selectedProfile = name || DEFAULT_PROFILE;
         activeProfile = selectedProfile;
 
@@ -121,7 +121,7 @@ const profile = {
         profiles[activeProfile] ??= { data: {}, col: {} };
     },
 
-    createProfile(name) {
+    create(name) {
         if (!name) {
             return {
                 success: false,
@@ -154,7 +154,7 @@ const profile = {
         };
     },
 
-    renameProfile(oldName, newName) {
+    rename(oldName, newName) {
         if (!newName || newName === oldName) {
             return {
                 success: false,
@@ -188,7 +188,7 @@ const profile = {
         };
     },
 
-    resetProfileToNGPlus(name) {
+    resetToNGPlus(name) {
         if (!profiles[name]) {
             return {
                 success: false,
@@ -209,7 +209,7 @@ const profile = {
         };
     },
 
-    deleteProfile(name) {
+    delete(name) {
         if (name === DEFAULT_PROFILE) {
             profiles[DEFAULT_PROFILE] = { data: {}, col: {} };
 
@@ -238,14 +238,14 @@ const profile = {
         };
     },
 
-    exportData() {
+    exportAll() {
         return {
             current: activeProfile,
             [PROFILES_KEY]: profiles
         };
     },
 
-    importData(data) {
+    importAll(data) {
         if (!data?.[PROFILES_KEY]?.[DEFAULT_PROFILE]) {
             return {
                 success: false,
@@ -496,12 +496,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dropdown) {
 
         dropdown.addEventListener('change', () => {
-            profile.switchProfile(dropdown.value);
+            profile.switch(dropdown.value);
         });
 
         createBtn.addEventListener('click', () => {
             const name = prompt('Enter a name for the profile:')?.trim();
-            const result = profile.createProfile(name);
+            const result = profile.create(name);
 
             if (!result.success) {
                 alert(result.error);
@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const name = prompt(`Enter a new name for ${currentProfile}:`, currentProfile)?.trim();
-            const result = profile.renameProfile(currentProfile, name);
+            const result = profile.rename(currentProfile, name);
 
             if (!result.success) {
                 alert(result.error);
@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentProfile = dropdown.value;
 
             if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile}?`)) return;
-            const result = profile.resetProfileToNGPlus(currentProfile);
+            const result = profile.resetToNGPlus(currentProfile);
 
             if (!result.success) {
                 alert(result.error);
@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const action = isProfileDefault ? 'reset the default profile' : `delete ${currentProfile}`;
 
             if (!confirm(`Are you sure you want to ${action}?`)) return;
-            const result = profile.deleteProfile(currentProfile);
+            const result = profile.delete(currentProfile);
 
             if (!result.success) {
                 alert(result.error);
@@ -561,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         exportFileBtn.addEventListener('click', () => {
             try {
-                const blob = new Blob([JSON.stringify(profile.exportData(), null, 2)], {
+                const blob = new Blob([JSON.stringify(profile.exportAll(), null, 2)], {
                     type: 'application/json'
                 });
 
@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = JSON.parse(text);
 
                 if (!confirm('Importing a new profile will overwrite all current data.')) return;
-                const result = profile.importData(data);
+                const result = profile.importAll(data);
 
                 if (result.success) {
                     updateProfilesDropdown(dropdown, activeProfile);
@@ -620,7 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         exportClipboardBtn.addEventListener('click', async () => {
             try {
-                await navigator.clipboard.writeText(JSON.stringify(profile.exportData(), null, 2));
+                await navigator.clipboard.writeText(JSON.stringify(profile.exportAll(), null, 2));
                 alert('Profile data has been copied to the clipboard.');
 
             } catch (error) {
@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = JSON.parse(text);
 
                 if (!confirm('Importing a new profile will overwrite all current data.')) return;
-                const result = profile.importData(data);
+                const result = profile.importAll(data);
 
                 if (result.success) {
                     updateProfilesDropdown(dropdown, activeProfile);
