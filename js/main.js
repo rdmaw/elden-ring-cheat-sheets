@@ -29,7 +29,6 @@ function cleanStorageKeys() {
     localStorage.removeItem('current');
 }
 
-// Immediately load profiles from localStorage
 function loadProfiles() {
     try {
         const profiles = JSON.parse(localStorage.getItem(PROFILES_KEY)) ?? PROFILE_TEMPLATE;
@@ -49,7 +48,6 @@ function loadProfiles() {
     }
 }
 
-// All other profile logic is grouped here
 const profile = {
     saveToStorage() {
         localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
@@ -90,7 +88,7 @@ const profile = {
         this.saveToStorage();
     },
 
-    // Batch updates to one write for when Collapse All is clicked
+    // Collapse/Expand all: Batch all updates to a single write. Chrome may drop spammy localStorage writes. See #8.
     setCollapsedBatch(updates) {
         if (!Array.isArray(updates) || !updates.length) return;
 
@@ -271,6 +269,199 @@ const profile = {
         };
     }
 };
+
+const dropdown = document.getElementById('profile');
+
+function createOptions(profiles) {
+    return profiles.map(name => new Option(
+        name === DEFAULT_PROFILE ? 'Default' : name,
+        name
+    ));
+}
+
+function refreshDropdown(dropdown, activeProfile) {
+    if (!dropdown) return;
+
+    const profiles = profile.list();
+
+    dropdown.replaceChildren(
+        ...createOptions(profiles)
+    );
+
+    dropdown.value = activeProfile;
+}
+
+if (dropdown) {
+
+    refreshDropdown(dropdown, activeProfile);
+
+    const createBtn = document.getElementById('create');
+    const editBtn = document.getElementById('edit');
+    const newGamePlusBtn = document.getElementById('new-game-plus');
+    const deleteBtn = document.getElementById('delete');
+
+    const exportFileBtn = document.getElementById('export-file');
+    const exportClipboardBtn = document.getElementById('export-clipboard');
+
+    const importFileBtn = document.getElementById('import-file');
+    const importClipboardBtn = document.getElementById('import-clipboard');
+
+    dropdown.addEventListener('change', () => {
+        profile.switch(dropdown.value);
+    });
+
+    createBtn.addEventListener('click', () => {
+        const name = prompt('Enter a name for the profile:')?.trim();
+        const result = profile.create(name);
+
+        if (!result.success) {
+            alert(result.error);
+            return;
+        }
+
+        refreshDropdown(dropdown, activeProfile);
+        dropdown.value = activeProfile;
+    });
+
+    editBtn.addEventListener('click', () => {
+        const currentProfile = dropdown.value;
+
+        if (currentProfile === DEFAULT_PROFILE) {
+            alert("Can't edit the default profile.");
+            return;
+        }
+
+        const name = prompt(`Enter a new name for ${currentProfile}:`, currentProfile)?.trim();
+        const result = profile.rename(currentProfile, name);
+
+        if (!result.success) {
+            alert(result.error);
+            return;
+        }
+
+        refreshDropdown(dropdown, activeProfile);
+    });
+
+    newGamePlusBtn.addEventListener('click', () => {
+        const currentProfile = dropdown.value;
+
+        if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile}?`)) return;
+        const result = profile.resetToNGPlus(currentProfile);
+
+        if (!result.success) {
+            alert(result.error);
+        }
+    });
+
+    deleteBtn.addEventListener('click', () => {
+        const currentProfile = dropdown.value;
+        const isProfileDefault = currentProfile === DEFAULT_PROFILE;
+        const action = isProfileDefault ? 'reset the default profile' : `delete ${currentProfile}`;
+
+        if (!confirm(`Are you sure you want to ${action}?`)) return;
+        const result = profile.delete(currentProfile);
+
+        if (!result.success) {
+            alert(result.error);
+            return;
+        }
+
+        refreshDropdown(dropdown, activeProfile);
+        dropdown.value = activeProfile;
+    });
+
+    exportFileBtn.addEventListener('click', () => {
+        try {
+            const blob = new Blob([JSON.stringify(profile.exportAll(), null, 2)], {
+                type: 'application/json'
+            });
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+
+            a.href = url;
+            a.download = 'eldenring-progress.json';
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+        } catch (error) {
+            alert('There was an error exporting the file.');
+            console.error(error);
+        }
+    });
+
+    const fileInput = document.createElement('input');
+
+    fileInput.type = 'file';
+    fileInput.accept = '.json';
+    fileInput.style.display = 'none';
+
+    importFileBtn.after(fileInput);
+
+    importFileBtn.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', async event => {
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        try {
+            const text = await file.text();
+            const data = JSON.parse(text);
+
+            if (!confirm('Importing a new profile will overwrite all current data.')) return;
+            const result = profile.importAll(data);
+
+            if (result.success) {
+                refreshDropdown(dropdown, activeProfile);
+                alert('Successfully imported profile data.');
+
+            } else {
+                alert(result.error);
+            }
+        } catch (error) {
+            alert('Invalid profile data.');
+            console.error(error);
+        }
+
+        fileInput.value = '';
+    });
+
+    exportClipboardBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(JSON.stringify(profile.exportAll(), null, 2));
+            alert('Profile data has been copied to the clipboard.');
+
+        } catch (error) {
+            alert('There was an error copying to the clipboard.');
+            console.error(error);
+        }
+    });
+
+    importClipboardBtn.addEventListener('click', async () => {
+        try {
+            const text = await navigator.clipboard.readText();
+            const data = JSON.parse(text);
+
+            if (!confirm('Importing a new profile will overwrite all current data.')) return;
+            const result = profile.importAll(data);
+
+            if (result.success) {
+                refreshDropdown(dropdown, activeProfile);
+                alert('Successfully imported profile data.');
+
+            } else {
+                alert(result.error);
+            }
+        } catch (error) {
+            alert('Invalid clipboard data.');
+            console.error(error);
+        }
+    });
+}
 
 // Checkbox logic
 const checkboxMap = new WeakMap();
@@ -459,198 +650,6 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
     if (theme === 'system') setTheme('system');
 });
 
-// Profile Management
-const dropdown = document.getElementById('profile');
-const createBtn = document.getElementById('create');
-const editBtn = document.getElementById('edit');
-const newGamePlusBtn = document.getElementById('new-game-plus');
-const deleteBtn = document.getElementById('delete');
-
-const exportFileBtn = document.getElementById('export-file');
-const exportClipboardBtn = document.getElementById('export-clipboard');
-
-const importFileBtn = document.getElementById('import-file');
-const importClipboardBtn = document.getElementById('import-clipboard');
-
-function createOptions(profiles) {
-    return profiles.map(name => new Option(
-        name === DEFAULT_PROFILE ? 'Default' : name,
-        name
-    ));
-}
-
-function refreshDropdown(dropdown, activeProfile) {
-    if (!dropdown) return;
-
-    const profiles = profile.list();
-
-    dropdown.replaceChildren(
-        ...createOptions(profiles)
-    );
-
-    dropdown.value = activeProfile;
-}
-
-refreshDropdown(dropdown, activeProfile);
-
-if (dropdown) {
-
-    dropdown.addEventListener('change', () => {
-        profile.switch(dropdown.value);
-    });
-
-    createBtn.addEventListener('click', () => {
-        const name = prompt('Enter a name for the profile:')?.trim();
-        const result = profile.create(name);
-
-        if (!result.success) {
-            alert(result.error);
-            return;
-        }
-
-        refreshDropdown(dropdown, activeProfile);
-        dropdown.value = activeProfile;
-    });
-
-    editBtn.addEventListener('click', () => {
-        const currentProfile = dropdown.value;
-
-        if (currentProfile === DEFAULT_PROFILE) {
-            alert("Can't edit the default profile.");
-            return;
-        }
-
-        const name = prompt(`Enter a new name for ${currentProfile}:`, currentProfile)?.trim();
-        const result = profile.rename(currentProfile, name);
-
-        if (!result.success) {
-            alert(result.error);
-            return;
-        }
-
-        refreshDropdown(dropdown, activeProfile);
-    });
-
-    newGamePlusBtn.addEventListener('click', () => {
-        const currentProfile = dropdown.value;
-
-        if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile}?`)) return;
-        const result = profile.resetToNGPlus(currentProfile);
-
-        if (!result.success) {
-            alert(result.error);
-        }
-    });
-
-    deleteBtn.addEventListener('click', () => {
-        const currentProfile = dropdown.value;
-        const isProfileDefault = currentProfile === DEFAULT_PROFILE;
-        const action = isProfileDefault ? 'reset the default profile' : `delete ${currentProfile}`;
-
-        if (!confirm(`Are you sure you want to ${action}?`)) return;
-        const result = profile.delete(currentProfile);
-
-        if (!result.success) {
-            alert(result.error);
-            return;
-        }
-
-        refreshDropdown(dropdown, activeProfile);
-        dropdown.value = activeProfile;
-    });
-
-    exportFileBtn.addEventListener('click', () => {
-        try {
-            const blob = new Blob([JSON.stringify(profile.exportAll(), null, 2)], {
-                type: 'application/json'
-            });
-
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-
-            a.href = url;
-            a.download = 'eldenring-progress.json';
-            a.click();
-
-            URL.revokeObjectURL(url);
-
-        } catch (error) {
-            alert('There was an error exporting the file.');
-            console.error(error);
-        }
-    });
-
-    const fileInput = document.createElement('input');
-
-    fileInput.type = 'file';
-    fileInput.accept = '.json';
-    fileInput.style.display = 'none';
-
-    importFileBtn.after(fileInput);
-
-    importFileBtn.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    fileInput.addEventListener('change', async event => {
-        const file = event.target.files[0];
-
-        if (!file) return;
-
-        try {
-            const text = await file.text();
-            const data = JSON.parse(text);
-
-            if (!confirm('Importing a new profile will overwrite all current data.')) return;
-            const result = profile.importAll(data);
-
-            if (result.success) {
-                refreshDropdown(dropdown, activeProfile);
-                alert('Successfully imported profile data.');
-
-            } else {
-                alert(result.error);
-            }
-        } catch (error) {
-            alert('Invalid profile data.');
-            console.error(error);
-        }
-
-        fileInput.value = '';
-    });
-
-    exportClipboardBtn.addEventListener('click', async () => {
-        try {
-            await navigator.clipboard.writeText(JSON.stringify(profile.exportAll(), null, 2));
-            alert('Profile data has been copied to the clipboard.');
-
-        } catch (error) {
-            alert('There was an error copying to the clipboard.');
-            console.error(error);
-        }
-    });
-
-    importClipboardBtn.addEventListener('click', async () => {
-        try {
-            const text = await navigator.clipboard.readText();
-            const data = JSON.parse(text);
-
-            if (!confirm('Importing a new profile will overwrite all current data.')) return;
-            const result = profile.importAll(data);
-
-            if (result.success) {
-                refreshDropdown(dropdown, activeProfile);
-                alert('Successfully imported profile data.');
-
-            } else {
-                alert(result.error);
-            }
-        } catch (error) {
-            alert('Invalid clipboard data.');
-            console.error(error);
-        }
-    });
-}
 
 // Toggle sidebar functionality
 const menu = document.getElementById('menu');
