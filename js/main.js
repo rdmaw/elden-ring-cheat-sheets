@@ -12,15 +12,10 @@ if (!profiles[activeProfile]) {
     profiles[activeProfile] = { data: {}, col: {} };
 }
 
-//! Clean up old keys
-localStorage.removeItem('cb');
-localStorage.removeItem('t');
-localStorage.removeItem('h');
-localStorage.removeItem('current');
+// To be removed
+cleanStorageKeys();
 
-transferProfileKeyData();
-
-function transferProfileKeyData() {
+function cleanStorageKeys() {
     const oldData = localStorage.getItem(key);
 
     if (oldData && !localStorage.getItem(PROFILES_KEY)) {
@@ -28,10 +23,14 @@ function transferProfileKeyData() {
     }
 
     localStorage.removeItem(key)
+    localStorage.removeItem('cb');
+    localStorage.removeItem('t');
+    localStorage.removeItem('h');
+    localStorage.removeItem('current');
 }
-//! End of cleanup
+// To be removed
 
-// Load profiles from localStorage
+// Immediately load profiles from localStorage
 function loadProfiles() {
     try {
         const profiles = JSON.parse(localStorage.getItem(PROFILES_KEY)) ?? PROFILE_TEMPLATE;
@@ -51,7 +50,21 @@ function loadProfiles() {
     }
 }
 
+// All other profile logic is grouped here
 const profileManager = {
+    save() {
+        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+    },
+
+    getProfiles() {
+        return [
+            DEFAULT_PROFILE,
+            ...Object.keys(profiles)
+                .filter(name => name !== DEFAULT_PROFILE)
+                .sort()
+        ];
+    },
+
     setCheckboxState(id, checked) {
         if (!id) return;
 
@@ -91,19 +104,6 @@ const profileManager = {
         });
 
         this.save();
-    },
-
-    save() {
-        localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-    },
-
-    getProfiles() {
-        return [
-            DEFAULT_PROFILE,
-            ...Object.keys(profiles)
-                .filter(name => name !== DEFAULT_PROFILE)
-                .sort()
-        ];
     },
 
     switchProfile(name) {
