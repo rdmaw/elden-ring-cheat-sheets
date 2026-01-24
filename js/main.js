@@ -12,7 +12,7 @@ if (!profiles[activeProfile]) {
     profiles[activeProfile] = { data: {}, col: {} };
 }
 
-// To be removed
+//! To be removed
 cleanStorageKeys();
 
 function cleanStorageKeys() {
@@ -28,7 +28,6 @@ function cleanStorageKeys() {
     localStorage.removeItem('h');
     localStorage.removeItem('current');
 }
-// To be removed
 
 // Immediately load profiles from localStorage
 function loadProfiles() {
@@ -52,7 +51,7 @@ function loadProfiles() {
 
 // All other profile logic is grouped here
 const profileManager = {
-    save() {
+    saveToStorage() {
         localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
     },
 
@@ -74,7 +73,7 @@ const profileManager = {
             delete profiles[activeProfile].data[id];
         }
 
-        this.save();
+        this.saveToStorage();
     },
 
     setCollapseState(id, expanded) {
@@ -86,7 +85,7 @@ const profileManager = {
             profiles[activeProfile].col[id] = 1;
         }
 
-        this.save();
+        this.saveToStorage();
     },
 
     // Batch updates for when Collapse All is clicked
@@ -103,7 +102,7 @@ const profileManager = {
             }
         });
 
-        this.save();
+        this.saveToStorage();
     },
 
     switchProfile(name) {
@@ -144,7 +143,7 @@ const profileManager = {
         profiles[name] = { data: {}, col: {} };
         activeProfile = name;
 
-        this.save();
+        this.saveToStorage();
         localStorage.setItem('active-profile', name);
 
         return {
@@ -178,7 +177,7 @@ const profileManager = {
         delete profiles[oldName];
         activeProfile = newName;
 
-        this.save();
+        this.saveToStorage();
         localStorage.setItem('active-profile', newName);
 
         return {
@@ -200,7 +199,7 @@ const profileManager = {
             .filter(([id]) => !sheetsToReset.has(id.charAt(0)));
 
         profiles[name].data = Object.fromEntries(preservedData);
-        this.save();
+        this.saveToStorage();
 
         return {
             success: true
@@ -211,7 +210,7 @@ const profileManager = {
         if (name === DEFAULT_PROFILE) {
             profiles[DEFAULT_PROFILE] = { data: {}, col: {} };
 
-            this.save();
+            this.saveToStorage();
 
             return {
                 success: true,
@@ -228,7 +227,7 @@ const profileManager = {
         delete profiles[name];
         activeProfile = DEFAULT_PROFILE;
 
-        this.save();
+        this.saveToStorage();
         localStorage.removeItem('active-profile');
 
         return {
