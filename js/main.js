@@ -55,7 +55,7 @@ const profile = {
         localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
     },
 
-    getProfiles() {
+    list() {
         return [
             DEFAULT_PROFILE,
             ...Object.keys(profiles)
@@ -64,11 +64,12 @@ const profile = {
         ];
     },
 
-    setCheckboxState(id, checked) {
+    setChecked(id, checked) {
         if (!id) return;
 
         if (checked) {
             profiles[activeProfile].data[id] = 1;
+
         } else {
             delete profiles[activeProfile].data[id];
         }
@@ -76,11 +77,12 @@ const profile = {
         this.saveToStorage();
     },
 
-    setCollapseState(id, expanded) {
+    setCollapsed(id, expanded) {
         if (!id) return;
 
         if (expanded) {
             delete profiles[activeProfile].col[id];
+
         } else {
             profiles[activeProfile].col[id] = 1;
         }
@@ -89,7 +91,7 @@ const profile = {
     },
 
     // Batch updates for when Collapse All is clicked
-    batchCollapseStates(updates) {
+    setCollapsedBatch(updates) {
         if (!Array.isArray(updates) || !updates.length) return;
 
         updates.forEach(({ id, expanded }) => {
@@ -97,6 +99,7 @@ const profile = {
 
             if (expanded) {
                 delete profiles[activeProfile].col[id];
+
             } else {
                 profiles[activeProfile].col[id] = 1;
             }
@@ -365,7 +368,7 @@ document.addEventListener('change', e => {
         if (li) {
             li.classList.toggle('c', checkbox.checked);
         }
-        profile.setCheckboxState(checkbox.id, checkbox.checked);
+        profile.setChecked(checkbox.id, checkbox.checked);
         calculateTotals();
     }
 });
@@ -479,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateProfilesDropdown(dropdown, activeProfile) {
         if (!dropdown) return;
 
-        const profiles = profile.getProfiles();
+        const profiles = profile.list();
 
         dropdown.replaceChildren(
             ...createDropdownOptions(profiles)
@@ -750,7 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const shouldExpand = btn.ariaExpanded !== 'true';
             btn.ariaExpanded = shouldExpand;
             ul.classList.toggle('f', !shouldExpand);
-            profile.setCollapseState(ulId, shouldExpand);
+            profile.setCollapsed(ulId, shouldExpand);
         });
     }
 
@@ -765,7 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ul.classList.toggle('f', !expand);
             updates.push({ id: ulId, expanded: expand });
         });
-        profile.batchCollapseStates(updates);
+        profile.setCollapsedBatch(updates);
     };
 
     expA?.addEventListener('click', () => toggleAll(true));
