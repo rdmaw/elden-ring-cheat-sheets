@@ -114,6 +114,7 @@ const profile = {
 
         if (selectedProfile === DEFAULT_PROFILE) {
             localStorage.removeItem('active-profile');
+
         } else {
             localStorage.setItem('active-profile', selectedProfile);
         }
@@ -394,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     profiles = JSON.parse(e.newValue);
                 } else if (e.key === 'active-profile') {
                     activeProfile = e.newValue || DEFAULT_PROFILE;
-                    updateProfilesDropdown?.(dropdown, activeProfile);
+                    refreshDropdown?.(dropdown, activeProfile);
                 }
                 restoreCheckboxes();
                 calculateTotals();
@@ -472,26 +473,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const importFileBtn = document.getElementById('import-file');
     const importClipboardBtn = document.getElementById('import-clipboard');
 
-    function createDropdownOptions(profiles) {
+    function createOptions(profiles) {
         return profiles.map(name => new Option(
             name === DEFAULT_PROFILE ? 'Default' : name,
             name
         ));
     }
 
-    function updateProfilesDropdown(dropdown, activeProfile) {
+    function refreshDropdown(dropdown, activeProfile) {
         if (!dropdown) return;
 
         const profiles = profile.list();
 
         dropdown.replaceChildren(
-            ...createDropdownOptions(profiles)
+            ...createOptions(profiles)
         );
 
         dropdown.value = activeProfile;
     }
 
-    updateProfilesDropdown(dropdown, activeProfile);
+    refreshDropdown(dropdown, activeProfile);
 
     if (dropdown) {
 
@@ -508,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            updateProfilesDropdown(dropdown, activeProfile);
+            refreshDropdown(dropdown, activeProfile);
             dropdown.value = activeProfile;
         });
 
@@ -528,7 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            updateProfilesDropdown(dropdown, activeProfile);
+            refreshDropdown(dropdown, activeProfile);
         });
 
         newGamePlusBtn.addEventListener('click', () => {
@@ -555,7 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            updateProfilesDropdown(dropdown, activeProfile);
+            refreshDropdown(dropdown, activeProfile);
             dropdown.value = activeProfile;
         });
 
@@ -569,7 +570,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const a = document.createElement('a');
 
                 a.href = url;
-                a.download = 'eldenring-profiles.json';
+                a.download = 'eldenring-progress.json';
                 a.click();
 
                 URL.revokeObjectURL(url);
@@ -605,8 +606,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = profile.importAll(data);
 
                 if (result.success) {
-                    updateProfilesDropdown(dropdown, activeProfile);
+                    refreshDropdown(dropdown, activeProfile);
                     alert('Successfully imported profile data.');
+
                 } else {
                     alert(result.error);
                 }
@@ -638,8 +640,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = profile.importAll(data);
 
                 if (result.success) {
-                    updateProfilesDropdown(dropdown, activeProfile);
+                    refreshDropdown(dropdown, activeProfile);
                     alert('Successfully imported profile data.');
+
                 } else {
                     alert(result.error);
                 }
