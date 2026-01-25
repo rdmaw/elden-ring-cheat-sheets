@@ -463,49 +463,92 @@ if (dropdown) {
     });
 }
 
-// Checkbox logic
+// Is weakmap best use case here
 const checkboxMap = new WeakMap();
+
 let cachedCheckboxes = null;
 let cachedTotalElements = null;
 
-function cacheCheckboxes() {
-    cachedCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-    cachedCheckboxes.forEach(checkbox => {
-        checkboxMap.set(checkbox, checkbox.closest('li'));
-    });
+function getCheckboxes() {
+    return document.querySelectorAll('input[type="checkbox"]');
 }
 
+function cacheCheckboxes() {
+    cachedCheckboxes = getCheckboxes();
+
+    const len = cachedCheckboxes.length;
+
+    for (let i = 0; i < len; i++) {
+        checkboxMap.set(cachedCheckboxes[i], cachedCheckboxes[i].parentElement);
+    }
+}
+
+console.time('cacheCheckboxes');
+document.querySelectorAll('input[type="checkbox"]');
+console.timeEnd('cacheCheckboxes');
+
+// I use a fixed prefix, can I make it : "prefix-sectionName" instead? Maybe remove ul id's and use data-section attribute, then data-section 1,2,3, etc for checkbox id's instead of w1-1, w1-2 etc?
+function getSectionSpans(prefix) {
+    return document.querySelectorAll(`span[id^="${prefix}-section"]`);
+}
+
+function calculateSectionProgress(checkboxes) {
+}
+
+function updateSectionSpans(sectionProgress, sectionSpans) {
+}
+
+function updateOverallProgress(sectionProgress, totalAllSpan) {
+}
+
+function updateProgress() {
+    const checkboxes = cacheCheckboxes();
+    const sectionSpans = getSectionSpans(prefix);
+    const sectionProgress = calculateSectionProgress(checkboxes);
+
+    updateSectionSpans(sectionProgress, sectionSpans);
+    updateOverallProgress(sectionProgress, totalAllSpan);
+}
+
+// should only restore state. not touch UI
 function restoreCheckboxes() {
     const { data } = profiles[activeProfile];
+
     if (!cachedCheckboxes) return;
 
+    // log if for loop faster?
     cachedCheckboxes.forEach(checkbox => {
         const checked = !!data[checkbox.id];
         const li = checkboxMap.get(checkbox);
 
         checkbox.checked = checked;
+
         if (li) {
             li.classList.toggle('c', checked);
         }
     });
 }
 
-// Calculate totals
-function calculateTotals() {
+// If something breaks, maybe log to console
+// should only update progress
+function updateProgress() {
     if (!cachedCheckboxes || cachedCheckboxes.length === 0) return;
 
     if (!cachedTotalElements) {
         const firstCheckbox = cachedCheckboxes[0];
         const prefix = firstCheckbox.id.charAt(0);
-        const totalAll = document.getElementById(`${prefix}-ot`);
+        const totalAll = document.getElementById(`${prefix}-progress`);
+
         if (!totalAll) return;
 
-        const sectionSpans = document.querySelectorAll(`span[id^="${prefix}-t"]`);
+        const sectionSpans = document.querySelectorAll(`span[id^="${prefix}-section"]`);
+
         const sectionMap = new Map();
         const tocSpanMap = new Map();
 
+        // reconsider use of regex matching to get id's? //! can remove j when example.html is removed later
         Array.from(cachedCheckboxes).forEach(checkbox => {
-            const section = checkbox.id.match(/^[wdnqbmaerhstkcp](\d+)-/)[1];
+            const section = checkbox.id.match(/^[wdnqbmaerhstkcpj](\d+)-/)[1];
             if (!sectionMap.has(section)) {
                 sectionMap.set(section, []);
             }
@@ -513,8 +556,8 @@ function calculateTotals() {
         });
 
         sectionSpans.forEach(span => {
-            const section = span.id.match(/t(\d+)$/)[1];
-            tocSpanMap.set(section, document.getElementById(`${prefix}-nt${section}`));
+            const section = span.id.match(/section(\d+)$/)[1];
+            tocSpanMap.set(section, document.getElementById(`${prefix}-nav${section}`));
         });
 
         cachedTotalElements = {
@@ -527,8 +570,9 @@ function calculateTotals() {
     const { totalAll, sectionSpans, sectionMap, tocSpanMap } = cachedTotalElements;
     let overallChecked = 0, overallTotal = 0;
 
+    // log if for loop faster
     sectionSpans.forEach(span => {
-        const section = span.id.match(/t(\d+)$/)[1];
+        const section = span.id.match(/section(\d+)$/)[1];
         const tocSpan = tocSpanMap.get(section);
         const checkboxes = sectionMap.get(section) || [];
         const checked = checkboxes.filter(cb => cb.checked).length;
@@ -552,6 +596,7 @@ function calculateTotals() {
 }
 
 // Store checkbox state when clicked
+// In walkthrough.html with 16k dom elements, how costly is this on every checkbox INP. Consider mobile device's battery consumption.
 document.addEventListener('change', e => {
     if (e.target.matches('input[type="checkbox"]')) {
         const checkbox = e.target;
@@ -560,22 +605,20 @@ document.addEventListener('change', e => {
         if (li) {
             li.classList.toggle('c', checkbox.checked);
         }
+
         profile.setChecked(checkbox.id, checkbox.checked);
-        calculateTotals();
+        updateProgress();
     }
 });
 
-//! Keep? Test with mobiles device using forward cache before removing.
-// window.addEventListener('pageshow', (event) => {
-//     if (event.persisted) {
-//         window.location.reload();
-//     }
-// });
-
-// After DOM load
-cacheCheckboxes();
+// Execute checkbox code
+cacheCheckboxes(); //? Omit. Used in updateProgress function
 restoreCheckboxes();
-calculateTotals();
+updateProgress();
+
+
+
+
 
 // Live-sync storage between open tabs
 window.addEventListener('storage', (e) => {
@@ -588,7 +631,7 @@ window.addEventListener('storage', (e) => {
                 refreshDropdown?.(dropdown, activeProfile);
             }
             restoreCheckboxes();
-            calculateTotals();
+            updateProgress();
         } catch (e) {
             console.error('Error syncing profile:', e);
         }
@@ -714,7 +757,7 @@ document.addEventListener('keydown', (e) => {
 
 // Handle to-top button logic
 const up = document.getElementById('up');
-const scroll = document.getElementById('scroll');
+const scroll = document.getElementById('scroll-observer');
 
 if (up && scroll) {
     const observer = new IntersectionObserver(
@@ -878,3 +921,10 @@ if (search) {
         debounceTimer = setTimeout(() => filterChecklist(e.target.value), 1);
     });
 }
+
+//! Keep? Test with mobiles device using forward cache before removing.
+// window.addEventListener('pageshow', (event) => {
+//     if (event.persisted) {
+//         window.location.reload();
+//     }
+// });
