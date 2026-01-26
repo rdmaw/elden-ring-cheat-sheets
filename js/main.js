@@ -292,7 +292,6 @@ function refreshDropdown(dropdown, activeProfile) {
 }
 
 if (dropdown) {
-
     refreshDropdown(dropdown, activeProfile);
 
     const createBtn = document.getElementById('create');
@@ -690,6 +689,65 @@ if (hasCheckboxes) {
     });
 }
 
+const collapseBtns = document.querySelectorAll('.col');
+const expandAllBtn = document.getElementById('expand-all');
+const collapseAllBtn = document.getElementById('collapse-all');
+
+const checklistMap = new Map();
+
+function setCollapseState(btn, checklist, expanded) {
+    btn.ariaExpanded = expanded;
+    checklist.classList.toggle('f', !expanded);
+}
+
+function setupCollapseUI() {
+    for (const btn of collapseBtns) {
+        const checklistId = btn.getAttribute('aria-controls');
+        const checklist = document.getElementById(checklistId);
+
+        if (!checklist) continue;
+
+        checklistMap.set(btn, checklist);
+
+        const isCollapsed = !!profiles[activeProfile].col[checklistId];
+        setCollapseState(btn, checklist, !isCollapsed)
+
+        btn.addEventListener('click', () => {
+            const shouldExpand = btn.ariaExpanded !== 'true';
+
+            setCollapseState(btn, checklist, shouldExpand);
+            profile.setCollapsed(checklistId, shouldExpand);
+        });
+    }
+
+    document.getElementById('fouc')?.remove();
+}
+
+function setAllChecklists(expanded) {
+    const updates = [];
+
+    checklistMap.forEach((checklist, btn) => {
+        setCollapseState(btn, checklist, expanded);
+
+        const checklistId = btn.getAttribute('aria-controls');
+
+        updates.push({ id: checklistId, expanded: expanded });
+    });
+
+    profile.setCollapsedBatch(updates);
+}
+
+if (expandAllBtn) {
+    setupCollapseUI();
+
+    expandAllBtn.addEventListener('click', () => {
+        setAllChecklists(true);
+    });
+
+    collapseAllBtn.addEventListener('click', () => {
+        setAllChecklists(false);
+    });
+}
 
 window.addEventListener('storage', (event) => {
     if (event.key === 'theme') {
@@ -699,8 +757,6 @@ window.addEventListener('storage', (event) => {
             theme.value = event.newValue || 'system';
         }
     }
-
-    if (!hasCheckboxes) return;
 
     if (event.key === 'h') {
         const isHidden = event.newValue === '1';
@@ -718,7 +774,13 @@ window.addEventListener('storage', (event) => {
         try {
             profiles = JSON.parse(event.newValue);
 
-            refreshCheckboxUI();
+            if (hasCheckboxes) {
+                refreshCheckboxUI();
+            }
+
+            if (expandAllBtn) {
+                setupCollapseUI();
+            }
 
         } catch (error) {
             console.error('Error syncing profile:', error);
@@ -731,8 +793,17 @@ window.addEventListener('storage', (event) => {
         try {
             activeProfile = event.newValue || DEFAULT_PROFILE;
 
-            refreshDropdown?.(dropdown, activeProfile);
-            refreshCheckboxUI();
+            if (dropdown) {
+                refreshDropdown(dropdown, activeProfile);
+            }
+
+            if (hasCheckboxes) {
+                refreshCheckboxUI();
+            }
+
+            if (expandAllBtn) {
+                setupCollapseUI();
+            }
 
         } catch (error) {
             console.error('Error syncing profile:', error);
@@ -871,47 +942,6 @@ if (up && scroll) {
         menu?.focus();
     });
 }
-
-// Handle collapse/expand functionality
-const col = document.querySelectorAll('.col');
-const expA = document.getElementById('exp-a');
-const colA = document.getElementById('col-a');
-const ulMap = new Map();
-
-for (const btn of col) {
-    const ulId = btn.getAttribute('aria-controls');
-    const ul = document.getElementById(ulId);
-    if (!ul) continue;
-    ulMap.set(btn, ul);
-
-    const isCollapsed = !!profiles[activeProfile].col[ulId];
-    btn.ariaExpanded = !isCollapsed;
-    ul.classList.toggle('f', isCollapsed);
-
-    btn.addEventListener('click', () => {
-        const shouldExpand = btn.ariaExpanded !== 'true';
-        btn.ariaExpanded = shouldExpand;
-        ul.classList.toggle('f', !shouldExpand);
-        profile.setCollapsed(ulId, shouldExpand);
-    });
-}
-
-document.querySelector('style[data-c]')?.remove();
-
-const toggleAll = (expand) => {
-    const updates = [];
-
-    ulMap.forEach((ul, btn) => {
-        const ulId = btn.getAttribute('aria-controls');
-        btn.ariaExpanded = expand;
-        ul.classList.toggle('f', !expand);
-        updates.push({ id: ulId, expanded: expand });
-    });
-    profile.setCollapsedBatch(updates);
-};
-
-expA?.addEventListener('click', () => toggleAll(true));
-colA?.addEventListener('click', () => toggleAll(false));
 
 // Hide completed checkboxes
 const hide = document.getElementById('hide');
