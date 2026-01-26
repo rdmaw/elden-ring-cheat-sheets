@@ -463,162 +463,234 @@ if (dropdown) {
     });
 }
 
-// Is weakmap best use case here
-const checkboxMap = new WeakMap();
+const checkboxMap = new Map();
 
 let cachedCheckboxes = null;
-let cachedTotalElements = null;
-
-function getCheckboxes() {
-    return document.querySelectorAll('input[type="checkbox"]');
-}
+let cachedProgress = null;
+let sheetPrefix = '';
 
 function cacheCheckboxes() {
-    cachedCheckboxes = getCheckboxes();
+    if (cachedCheckboxes) return cachedCheckboxes.length > 0;
+
+    cachedCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    if (!cachedCheckboxes || cachedCheckboxes.length === 0) {
+        return false;
+    }
+
+    sheetPrefix = cachedCheckboxes[0].id.charAt(0);
 
     const len = cachedCheckboxes.length;
 
     for (let i = 0; i < len; i++) {
         checkboxMap.set(cachedCheckboxes[i], cachedCheckboxes[i].parentElement);
     }
+
+    return true;
 }
 
-console.time('cacheCheckboxes');
-document.querySelectorAll('input[type="checkbox"]');
-console.timeEnd('cacheCheckboxes');
+function setCheckboxState(checkbox, checked) {
+    checkbox.checked = checked;
+    const li = checkboxMap.get(checkbox);
 
-// I use a fixed prefix, can I make it : "prefix-sectionName" instead? Maybe remove ul id's and use data-section attribute, then data-section 1,2,3, etc for checkbox id's instead of w1-1, w1-2 etc?
-function getSectionSpans(prefix) {
-    return document.querySelectorAll(`span[id^="${prefix}-section"]`);
+    if (li) {
+        li.classList.toggle('c', checked);
+    }
 }
 
-function calculateSectionProgress(checkboxes) {
-}
-
-function updateSectionSpans(sectionProgress, sectionSpans) {
-}
-
-function updateOverallProgress(sectionProgress, totalAllSpan) {
-}
-
-function updateProgress() {
-    const checkboxes = cacheCheckboxes();
-    const sectionSpans = getSectionSpans(prefix);
-    const sectionProgress = calculateSectionProgress(checkboxes);
-
-    updateSectionSpans(sectionProgress, sectionSpans);
-    updateOverallProgress(sectionProgress, totalAllSpan);
-}
-
-// should only restore state. not touch UI
 function restoreCheckboxes() {
     const { data } = profiles[activeProfile];
+    const len = cachedCheckboxes.length;
 
-    if (!cachedCheckboxes) return;
-
-    // log if for loop faster?
-    cachedCheckboxes.forEach(checkbox => {
+    for (let i = 0; i < len; i++) {
+        const checkbox = cachedCheckboxes[i];
         const checked = !!data[checkbox.id];
-        const li = checkboxMap.get(checkbox);
 
-        checkbox.checked = checked;
-
-        if (li) {
-            li.classList.toggle('c', checked);
-        }
-    });
-}
-
-// If something breaks, maybe log to console
-// should only update progress
-function updateProgress() {
-    if (!cachedCheckboxes || cachedCheckboxes.length === 0) return;
-
-    if (!cachedTotalElements) {
-        const firstCheckbox = cachedCheckboxes[0];
-        const prefix = firstCheckbox.id.charAt(0);
-        const totalAll = document.getElementById(`${prefix}-progress`);
-
-        if (!totalAll) return;
-
-        const sectionSpans = document.querySelectorAll(`span[id^="${prefix}-section"]`);
-
-        const sectionMap = new Map();
-        const tocSpanMap = new Map();
-
-        // reconsider use of regex matching to get id's? //! can remove j when example.html is removed later
-        Array.from(cachedCheckboxes).forEach(checkbox => {
-            const section = checkbox.id.match(/^[wdnqbmaerhstkcpj](\d+)-/)[1];
-            if (!sectionMap.has(section)) {
-                sectionMap.set(section, []);
-            }
-            sectionMap.get(section).push(checkbox);
-        });
-
-        sectionSpans.forEach(span => {
-            const section = span.id.match(/section(\d+)$/)[1];
-            tocSpanMap.set(section, document.getElementById(`${prefix}-nav${section}`));
-        });
-
-        cachedTotalElements = {
-            totalAll,
-            sectionSpans: Array.from(sectionSpans),
-            sectionMap,
-            tocSpanMap
-        };
+        setCheckboxState(checkbox, checked);
     }
-    const { totalAll, sectionSpans, sectionMap, tocSpanMap } = cachedTotalElements;
-    let overallChecked = 0, overallTotal = 0;
-
-    // log if for loop faster
-    sectionSpans.forEach(span => {
-        const section = span.id.match(/section(\d+)$/)[1];
-        const tocSpan = tocSpanMap.get(section);
-        const checkboxes = sectionMap.get(section) || [];
-        const checked = checkboxes.filter(cb => cb.checked).length;
-        const total = checkboxes.length;
-        const text = total ? (checked === total ? 'DONE' : `${checked}/${total}`) : '0/0';
-        const done = checked === total && total > 0;
-
-        [span, tocSpan].forEach(el => {
-            if (!el) return;
-            el.classList.remove('d');
-            el.textContent = text;
-            if (done) el.classList.add('d');
-        });
-
-        overallChecked += checked;
-        overallTotal += total;
-    });
-    totalAll.classList.remove('d');
-    totalAll.textContent = overallTotal ? (overallChecked === overallTotal ? 'DONE' : `${overallChecked}/${overallTotal}`) : '0/0';
-    if (overallChecked === overallTotal && overallTotal > 0) totalAll.classList.add('d');
 }
 
-// Store checkbox state when clicked
-// In walkthrough.html with 16k dom elements, how costly is this on every checkbox INP. Consider mobile device's battery consumption.
-document.addEventListener('change', e => {
-    if (e.target.matches('input[type="checkbox"]')) {
-        const checkbox = e.target;
-        const li = checkboxMap.get(checkbox);
+function calculateChecklistProgress(checkboxes) {
+    const checklistProgress = {};
+    const idStart = 1;
+    const len = checkboxes.length;
 
-        if (li) {
-            li.classList.toggle('c', checkbox.checked);
+    for (let i = 0; i < len; i++) {
+        const checkbox = checkboxes[i];
+        const checkboxId = checkbox.id;
+        const hyphenIndex = checkboxId.indexOf('-', idStart);
+
+        if (hyphenIndex === -1) continue;
+
+        const checklistId = checkboxId.substring(idStart, hyphenIndex);
+
+        if (!checklistProgress[checklistId]) {
+            checklistProgress[checklistId] = { checked: 0, total: 0, done: false };
         }
 
+        const progress = checklistProgress[checklistId];
+        progress.total++;
+
+        if (checkbox.checked) {
+            progress.checked++;
+        }
+    }
+
+    for (const checklistId in checklistProgress) {
+        if (Object.hasOwn(checklistProgress, checklistId)) {
+            const progress = checklistProgress[checklistId];
+
+            progress.done = progress.checked === progress.total && progress.total > 0;
+        }
+    }
+
+    return checklistProgress;
+}
+
+function getSpanId(id) {
+    const hyphenIndex = id.indexOf('-');
+
+    if (hyphenIndex === -1) return '';
+
+    const checklistId = id.substring(hyphenIndex + 1);
+
+    if (checklistId.length < 2 || (checklistId[0] !== 's' && checklistId[0] !== 'n')) {
+        return '';
+    }
+
+    return checklistId.substring(1);
+}
+
+function updateSpans(checklistProgress, checklistSpans, navSpans) {
+    checklistSpans.forEach(span => {
+        const checklistId = getSpanId(span.id);
+
+        if (!checklistId) return;
+
+        const progress = checklistProgress[checklistId] || { checked: 0, total: 0, done: false };
+        const text = progress.total ? (progress.done ? 'DONE' : `${progress.checked}/${progress.total}`) : '0/0';
+
+        const navSpan = navSpans[checklistId];
+
+        [span, navSpan].forEach(tag => {
+            if (!tag) return;
+
+            tag.classList.remove('d');
+            tag.textContent = text;
+
+            if (progress.done) {
+                tag.classList.add('d');
+            }
+        });
+    });
+}
+
+function updateCurrentProgress(checklistProgress, totalSpan) {
+    if (!totalSpan) return;
+
+    let checked = 0;
+    let total = 0;
+
+    for (const checklistId in checklistProgress) {
+        if (Object.hasOwn(checklistProgress, checklistId)) {
+            const progress = checklistProgress[checklistId];
+
+            checked += progress.checked;
+            total += progress.total;
+        }
+    }
+
+    const text = total ? (checked === total ? 'DONE' : `${checked}/${total}`) : '0/0';
+    const done = checked === total && total > 0;
+
+    totalSpan.classList.remove('d');
+    totalSpan.textContent = text;
+
+    if (done) {
+        totalSpan.classList.add('d');
+    }
+}
+
+function updateChecklistProgress() {
+    if (!cachedProgress) {
+        const prefix = sheetPrefix;
+        const totalSpan = document.getElementById(`${prefix}-sheet`);
+
+        if (!totalSpan) {
+            console.error(`Current Progress span with prefix "${prefix}" could not be found`);
+            return;
+        }
+
+        const checklistSpans = document.querySelectorAll(`span[id^="${prefix}-s"]`);
+
+        if (checklistSpans.length === 0) return;
+
+        const navSpans = {};
+        const len = checklistSpans.length;
+
+        for (let i = 0; i < len; i++) {
+            const span = checklistSpans[i];
+            const checklistId = getSpanId(span.id);
+
+            if (checklistId) {
+                navSpans[checklistId] = document.getElementById(`${prefix}-n${checklistId}`);
+            }
+        }
+
+        cachedProgress = { totalSpan, checklistSpans: checklistSpans, navSpans };
+    }
+
+    const { totalSpan, checklistSpans, navSpans } = cachedProgress;
+    const checklistProgress = calculateChecklistProgress(cachedCheckboxes);
+
+    updateSpans(checklistProgress, checklistSpans, navSpans);
+    updateCurrentProgress(checklistProgress, totalSpan);
+}
+
+if (cacheCheckboxes()) {
+    restoreCheckboxes();
+    updateChecklistProgress();
+}
+
+function setAll(checklistId, checked) {
+    const len = cachedCheckboxes.length;
+
+    for (let i = 0; i < len; i++) {
+        const checkbox = cachedCheckboxes[i];
+        const hyphenIndex = checkbox.id.indexOf('-', 1);
+
+        if (hyphenIndex === -1) continue;
+
+        const checklist = checkbox.id.substring(1, hyphenIndex);
+
+        if (checklist === checklistId && checkbox.checked !== checked) {
+            setCheckboxState(checkbox, checked);
+            profile.setChecked(checkbox.id, checked);
+        }
+    }
+
+    updateChecklistProgress();
+}
+
+document.addEventListener('change', event => {
+    if (event.target.matches('input[type="checkbox"]')) {
+        const checkbox = event.target;
+
+        setCheckboxState(checkbox, checkbox.checked);
         profile.setChecked(checkbox.id, checkbox.checked);
-        updateProgress();
+
+        updateChecklistProgress();
     }
 });
 
-// Execute checkbox code
-cacheCheckboxes(); //? Omit. Used in updateProgress function
-restoreCheckboxes();
-updateProgress();
+document.addEventListener('click', function (event) {
+    if (event.target.matches('.btn[data-checklist][data-action]')) {
+        const checklist = event.target.getAttribute('data-checklist');
+        const shouldCheck = event.target.getAttribute('data-action') === 'check';
 
-
-
-
+        setAll(checklist, shouldCheck);
+    }
+});
 
 // Live-sync storage between open tabs
 window.addEventListener('storage', (e) => {
@@ -631,7 +703,7 @@ window.addEventListener('storage', (e) => {
                 refreshDropdown?.(dropdown, activeProfile);
             }
             restoreCheckboxes();
-            updateProgress();
+            updateChecklistProgress();
         } catch (e) {
             console.error('Error syncing profile:', e);
         }
