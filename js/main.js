@@ -499,6 +499,10 @@ function setCheckboxState(checkbox, checked) {
 }
 
 function restoreCheckboxes() {
+    const profile = profiles[activeProfile];
+
+    if (!profile) return;
+
     const { data } = profiles[activeProfile];
     const len = cachedCheckboxes.length;
 
@@ -691,6 +695,11 @@ document.addEventListener('click', function (event) {
         setAll(checklist, shouldCheck);
     }
 });
+
+
+
+
+
 
 // Live-sync storage between open tabs
 window.addEventListener('storage', (e) => {
