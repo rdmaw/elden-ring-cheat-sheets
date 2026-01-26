@@ -464,26 +464,19 @@ if (dropdown) {
 }
 
 const checkboxMap = new Map();
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const hasCheckboxes = checkboxes.length > 0;
 
-let cachedCheckboxes = null;
 let cachedProgress = null;
 let sheetPrefix = '';
 
-function cacheCheckboxes() {
-    if (cachedCheckboxes) return cachedCheckboxes.length > 0;
+function buildCheckboxMap() {
+    sheetPrefix = checkboxes[0].id.charAt(0);
 
-    cachedCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-
-    if (!cachedCheckboxes || cachedCheckboxes.length === 0) {
-        return false;
-    }
-
-    sheetPrefix = cachedCheckboxes[0].id.charAt(0);
-
-    const len = cachedCheckboxes.length;
+    const len = checkboxes.length;
 
     for (let i = 0; i < len; i++) {
-        checkboxMap.set(cachedCheckboxes[i], cachedCheckboxes[i].parentElement);
+        checkboxMap.set(checkboxes[i], checkboxes[i].parentElement);
     }
 
     return true;
@@ -499,15 +492,11 @@ function setCheckboxState(checkbox, checked) {
 }
 
 function restoreCheckboxes() {
-    const profile = profiles[activeProfile];
-
-    if (!profile) return;
-
     const { data } = profiles[activeProfile];
-    const len = cachedCheckboxes.length;
+    const len = checkboxes.length;
 
     for (let i = 0; i < len; i++) {
-        const checkbox = cachedCheckboxes[i];
+        const checkbox = checkboxes[i];
         const checked = !!data[checkbox.id];
 
         setCheckboxState(checkbox, checked);
@@ -645,86 +634,111 @@ function updateChecklistProgress() {
     }
 
     const { totalSpan, checklistSpans, navSpans } = cachedProgress;
-    const checklistProgress = calculateChecklistProgress(cachedCheckboxes);
+    const checklistProgress = calculateChecklistProgress(checkboxes);
 
     updateSpans(checklistProgress, checklistSpans, navSpans);
     updateCurrentProgress(checklistProgress, totalSpan);
 }
 
-if (cacheCheckboxes()) {
+function refreshCheckboxUI() {
     restoreCheckboxes();
     updateChecklistProgress();
 }
 
-function setAll(checklistId, checked) {
-    const len = cachedCheckboxes.length;
+if (hasCheckboxes) {
+    buildCheckboxMap();
+    refreshCheckboxUI();
 
-    for (let i = 0; i < len; i++) {
-        const checkbox = cachedCheckboxes[i];
-        const hyphenIndex = checkbox.id.indexOf('-', 1);
+    function setAll(checklistId, checked) {
+        const len = checkboxes.length;
 
-        if (hyphenIndex === -1) continue;
+        for (let i = 0; i < len; i++) {
+            const checkbox = checkboxes[i];
+            const hyphenIndex = checkbox.id.indexOf('-', 1);
 
-        const checklist = checkbox.id.substring(1, hyphenIndex);
+            if (hyphenIndex === -1) continue;
 
-        if (checklist === checklistId && checkbox.checked !== checked) {
-            setCheckboxState(checkbox, checked);
-            profile.setChecked(checkbox.id, checked);
+            const checklist = checkbox.id.substring(1, hyphenIndex);
+
+            if (checklist === checklistId && checkbox.checked !== checked) {
+                setCheckboxState(checkbox, checked);
+                profile.setChecked(checkbox.id, checked);
+            }
         }
-    }
-
-    updateChecklistProgress();
-}
-
-document.addEventListener('change', event => {
-    if (event.target.matches('input[type="checkbox"]')) {
-        const checkbox = event.target;
-
-        setCheckboxState(checkbox, checkbox.checked);
-        profile.setChecked(checkbox.id, checkbox.checked);
 
         updateChecklistProgress();
     }
-});
 
-document.addEventListener('click', function (event) {
-    if (event.target.matches('.btn[data-checklist][data-action]')) {
-        const checklist = event.target.getAttribute('data-checklist');
-        const shouldCheck = event.target.getAttribute('data-action') === 'check';
+    document.addEventListener('change', event => {
+        if (event.target.matches('input[type="checkbox"]')) {
+            const checkbox = event.target;
 
-        setAll(checklist, shouldCheck);
-    }
-});
+            setCheckboxState(checkbox, checkbox.checked);
+            profile.setChecked(checkbox.id, checkbox.checked);
 
-
-
-
-
-
-// Live-sync storage between open tabs
-window.addEventListener('storage', (e) => {
-    if (e.key === PROFILES_KEY || e.key === 'active-profile') {
-        try {
-            if (e.key === PROFILES_KEY) {
-                profiles = JSON.parse(e.newValue);
-            } else if (e.key === 'active-profile') {
-                activeProfile = e.newValue || DEFAULT_PROFILE;
-                refreshDropdown?.(dropdown, activeProfile);
-            }
-            restoreCheckboxes();
             updateChecklistProgress();
-        } catch (e) {
-            console.error('Error syncing profile:', e);
         }
-    } else if (e.key === 'h') {
-        const isHidden = e.newValue === '1';
+    });
+
+    document.addEventListener('click', function (event) {
+        if (event.target.matches('.btn[data-checklist][data-action]')) {
+            const checklist = event.target.getAttribute('data-checklist');
+            const shouldCheck = event.target.getAttribute('data-action') === 'check';
+
+            setAll(checklist, shouldCheck);
+        }
+    });
+}
+
+
+window.addEventListener('storage', (event) => {
+    if (event.key === 'theme') {
+        setTheme(event.newValue || 'system');
+
+        if (theme) {
+            theme.value = event.newValue || 'system';
+        }
+    }
+
+    if (!hasCheckboxes) return;
+
+    if (event.key === 'h') {
+        const isHidden = event.newValue === '1';
+
         root.classList.toggle('hide', isHidden);
+
         if (hide) {
             hide.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
         }
-    } else if (e.key === 'theme') {
-        setTheme(e.newValue || 'system');
-        if (theme) theme.value = e.newValue || 'system';
+
+        return;
+    }
+
+    if (event.key === PROFILES_KEY) {
+        try {
+            profiles = JSON.parse(event.newValue);
+
+            refreshCheckboxUI();
+
+        } catch (error) {
+            console.error('Error syncing profile:', error);
+        }
+
+        return;
+    }
+
+    if (event.key === 'active-profile') {
+        try {
+            activeProfile = event.newValue || DEFAULT_PROFILE;
+
+            refreshDropdown?.(dropdown, activeProfile);
+            refreshCheckboxUI();
+
+        } catch (error) {
+            console.error('Error syncing profile:', error);
+        }
+
+        return;
     }
 });
 
