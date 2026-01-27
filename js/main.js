@@ -1,3 +1,5 @@
+/* PROFILE AND STORAGE
+---------------------- */
 const key = 'er'; //! To be removed
 const PROFILES_KEY = 'eldenring-profiles';
 const DEFAULT_PROFILE = 'default';
@@ -291,6 +293,8 @@ const profile = {
     }
 };
 
+/* OPTIONS.HTML
+--------------- */
 const dropdown = document.getElementById('profile');
 
 function createOptions(profiles) {
@@ -483,12 +487,15 @@ if (dropdown) {
     });
 }
 
-const checkboxMap = new Map();
+/* CHECKBOXES
+------------- */
+let sheetPrefix = '';
+let cachedProgress = null;
+
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const hasCheckboxes = checkboxes.length > 0;
 
-let cachedProgress = null;
-let sheetPrefix = '';
+const checkboxMap = new Map();
 
 function buildCheckboxMap() {
     sheetPrefix = checkboxes[0].id.charAt(0);
@@ -710,6 +717,8 @@ if (hasCheckboxes) {
     });
 }
 
+/* EXPAND/COLLAPSE
+------------------ */
 const collapseBtns = document.querySelectorAll('.col');
 const expandAllBtn = document.getElementById('expand-all');
 const collapseAllBtn = document.getElementById('collapse-all');
@@ -741,6 +750,7 @@ function setupCollapseUI() {
         });
     }
 
+    // Clean up style tag injected by inline script.
     document.getElementById('fouc')?.remove();
 }
 
@@ -770,6 +780,8 @@ if (expandAllBtn) {
     });
 }
 
+/* HIDE CHECKED STEPS
+--------------------- */
 const hideBtn = document.getElementById('hide-btn');
 
 localStorage.removeItem('hide-checked');
@@ -787,6 +799,34 @@ if (hideBtn) {
         localStorage.setItem('hide-checked', isHidden ? 'true' : 'false');
     });
 }
+
+/* TOGGLE SIDEBAR
+----------------- */
+const menu = document.getElementById('menu');
+const sidebar = document.getElementById('sidebar');
+const close = sidebar.querySelector('.close');
+
+function toggleSidebar() {
+    const hidden = sidebar.ariaHidden === 'true';
+
+    if (hidden) {
+        sidebar.ariaHidden = 'false';
+        menu.ariaExpanded = 'true';
+
+        sidebar.removeAttribute('inert');
+
+    } else {
+        menu.focus({ preventScroll: true });
+
+        sidebar.ariaHidden = 'true';
+        menu.ariaExpanded = 'false';
+
+        sidebar.setAttribute('inert', '');
+    }
+}
+
+menu.addEventListener('click', toggleSidebar);
+close.addEventListener('click', toggleSidebar);
 
 window.addEventListener('storage', (event) => {
     if (event.key === 'theme') {
@@ -856,7 +896,7 @@ window.addEventListener('storage', (event) => {
     }
 });
 
-// Open external links in new tab
+// Open external links in new tab.
 const links = document.querySelectorAll('a[href^="https"]');
 
 for (let i = 0, len = links.length; i < len; i++) {
@@ -864,7 +904,7 @@ for (let i = 0, len = links.length; i < len; i++) {
     link.target = '_blank';
 }
 
-// Color Theme
+// Color Theme.
 const theme = document.getElementById('theme');
 const preferredTheme = localStorage.getItem('theme');
 const activeTheme = preferredTheme || 'system';
@@ -896,35 +936,11 @@ if (theme) {
     });
 }
 
-// Auto-update based on the system theme
+// Auto-update based on the system theme.
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
     const theme = localStorage.getItem('theme') || 'system';
     if (theme === 'system') setTheme('system');
 });
-
-
-// Toggle sidebar functionality
-const menu = document.getElementById('menu');
-const sidebar = document.getElementById('sidebar');
-const close = sidebar.querySelector('.close');
-
-function toggleSidebar() {
-    const hidden = sidebar.ariaHidden === 'true';
-
-    if (hidden) {
-        sidebar.ariaHidden = 'false';
-        menu.ariaExpanded = 'true';
-        sidebar.removeAttribute('inert');
-    } else {
-        menu.focus({ preventScroll: true });
-        sidebar.ariaHidden = 'true';
-        menu.ariaExpanded = 'false';
-        sidebar.setAttribute('inert', '');
-    }
-}
-
-menu.addEventListener('click', toggleSidebar);
-close.addEventListener('click', toggleSidebar);
 
 document.addEventListener('keydown', (e) => {
     const active = document.activeElement;
@@ -964,7 +980,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Handle to-top button logic
+// Handle to-top button logic.
 const up = document.getElementById('up');
 const scroll = document.getElementById('scroll-observer');
 
@@ -986,7 +1002,7 @@ if (up && scroll) {
     });
 }
 
-// Search checklists
+// Search checklists.
 const search = document.getElementById('search');
 if (search) {
     let cachedElements = null;
