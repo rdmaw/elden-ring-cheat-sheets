@@ -828,6 +828,31 @@ function toggleSidebar() {
 menu.addEventListener('click', toggleSidebar);
 close.addEventListener('click', toggleSidebar);
 
+/* SCROLL TO TOP
+---------------- */
+const upBtn = document.getElementById('up-btn');
+const scroll = document.getElementById('scroll-observer');
+
+if (upBtn && scroll) {
+    const observer = new IntersectionObserver(([entry]) => {
+            const show = !entry.isIntersecting;
+
+            upBtn.classList.toggle('show', show);
+            upBtn.ariaHidden = show ? 'false' : 'true';
+            upBtn.tabIndex = show ? 0 : -1;
+        }
+    );
+
+    observer.observe(scroll);
+
+    upBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0 });
+        menu.focus();
+    });
+}
+
+
+
 window.addEventListener('storage', (event) => {
     if (event.key === 'theme') {
         setTheme(event.newValue || 'system');
@@ -979,28 +1004,6 @@ document.addEventListener('keydown', (e) => {
             break;
     }
 });
-
-// Handle to-top button logic.
-const up = document.getElementById('up');
-const scroll = document.getElementById('scroll-observer');
-
-if (up && scroll) {
-    const observer = new IntersectionObserver(
-        ([entry]) => {
-            const show = !entry.isIntersecting;
-            up.classList.toggle('show', show);
-            up.setAttribute('aria-hidden', show ? 'false' : 'true');
-            up.setAttribute('tabindex', show ? '0' : '-1');
-        },
-        { threshold: [0] }
-    );
-    observer.observe(scroll);
-
-    up.addEventListener('click', () => {
-        window.scrollTo({ top: 0 });
-        menu?.focus();
-    });
-}
 
 // Search checklists.
 const search = document.getElementById('search');
