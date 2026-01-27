@@ -1,7 +1,7 @@
 const key = 'er'; //! To be removed
 const PROFILES_KEY = 'eldenring-profiles';
 const DEFAULT_PROFILE = 'default';
-const PROFILE_TEMPLATE = { [DEFAULT_PROFILE]: { data: {}, col: {} } };
+const PROFILE_TEMPLATE = { [DEFAULT_PROFILE]: { checked: {}, collapsed: {} } };
 
 const root = document.documentElement;
 
@@ -9,13 +9,13 @@ let activeProfile = localStorage.getItem('active-profile') || DEFAULT_PROFILE;
 let profiles = loadProfiles();
 
 if (!profiles[activeProfile]) {
-    profiles[activeProfile] = { data: {}, col: {} };
+    profiles[activeProfile] = { checked: {}, collapsed: {} };
 }
 
 //! To be removed
-cleanStorageKeys();
+cleanLocalStorage();
 
-function cleanStorageKeys() {
+function cleanLocalStorage() {
     const oldData = localStorage.getItem(key);
 
     if (oldData && !localStorage.getItem(PROFILES_KEY)) {
@@ -27,7 +27,28 @@ function cleanStorageKeys() {
     localStorage.removeItem('t');
     localStorage.removeItem('h');
     localStorage.removeItem('current');
+
+    for (const name in profiles) {
+        const p = profiles[name];
+        if (!p.checked) p.checked = {};
+        if (!p.collapsed) p.collapsed = {};
+
+        if (p.data) {
+            for (const k in p.data) {
+                if (!p.checked[k]) p.checked[k] = p.data[k];
+            }
+            delete p.data;
+        }
+        if (p.col) {
+            for (const k in p.col) {
+                if (!p.collapsed[k]) p.collapsed[k] = p.col[k];
+            }
+            delete p.col;
+        }
+    }
+    localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
 }
+//! End of: To be removed
 
 function loadProfiles() {
     try {
@@ -66,10 +87,10 @@ const profile = {
         if (!id) return;
 
         if (checked) {
-            profiles[activeProfile].data[id] = 1;
+            profiles[activeProfile].checked[id] = 1;
 
         } else {
-            delete profiles[activeProfile].data[id];
+            delete profiles[activeProfile].checked[id];
         }
 
         this.saveToStorage();
@@ -79,10 +100,10 @@ const profile = {
         if (!id) return;
 
         if (expanded) {
-            delete profiles[activeProfile].col[id];
+            delete profiles[activeProfile].collapsed[id];
 
         } else {
-            profiles[activeProfile].col[id] = 1;
+            profiles[activeProfile].collapsed[id] = 1;
         }
 
         this.saveToStorage();
@@ -96,10 +117,10 @@ const profile = {
             if (!id) return;
 
             if (expanded) {
-                delete profiles[activeProfile].col[id];
+                delete profiles[activeProfile].collapsed[id];
 
             } else {
-                profiles[activeProfile].col[id] = 1;
+                profiles[activeProfile].collapsed[id] = 1;
             }
         });
 
@@ -117,7 +138,7 @@ const profile = {
             localStorage.setItem('active-profile', selectedProfile);
         }
 
-        profiles[activeProfile] ??= { data: {}, col: {} };
+        profiles[activeProfile] ??= { checked: {}, collapsed: {} };
     },
 
     create(name) {
@@ -142,7 +163,7 @@ const profile = {
             };
         }
 
-        profiles[name] = { data: {}, col: {} };
+        profiles[name] = { checked: {}, collapsed: {} };
         activeProfile = name;
 
         this.saveToStorage();
@@ -197,10 +218,10 @@ const profile = {
 
         const sheetsToReset = new Set(['w', 'd', 'n', 'q', 'b', 'p'])
 
-        const preservedData = Object.entries(profiles[name].data)
+        const preservedData = Object.entries(profiles[name].checked)
             .filter(([id]) => !sheetsToReset.has(id.charAt(0)));
 
-        profiles[name].data = Object.fromEntries(preservedData);
+        profiles[name].checked = Object.fromEntries(preservedData);
         this.saveToStorage();
 
         return {
@@ -210,7 +231,7 @@ const profile = {
 
     delete(name) {
         if (name === DEFAULT_PROFILE) {
-            profiles[DEFAULT_PROFILE] = { data: {}, col: {} };
+            profiles[DEFAULT_PROFILE] = { checked: {}, collapsed: {} };
 
             this.saveToStorage();
 
@@ -491,14 +512,14 @@ function setCheckboxState(checkbox, checked) {
 }
 
 function restoreCheckboxes() {
-    const { data } = profiles[activeProfile];
+    const { checked } = profiles[activeProfile];
     const len = checkboxes.length;
 
     for (let i = 0; i < len; i++) {
         const checkbox = checkboxes[i];
-        const checked = !!data[checkbox.id];
+        const isChecked = !!checked[checkbox.id];
 
-        setCheckboxState(checkbox, checked);
+        setCheckboxState(checkbox, isChecked);
     }
 }
 
@@ -709,7 +730,7 @@ function setupCollapseUI() {
 
         checklistMap.set(btn, checklist);
 
-        const isCollapsed = !!profiles[activeProfile].col[checklistId];
+        const isCollapsed = !!profiles[activeProfile].collapsed[checklistId];
         setCollapseState(btn, checklist, !isCollapsed)
 
         btn.addEventListener('click', () => {
@@ -773,6 +794,10 @@ window.addEventListener('storage', (event) => {
     if (event.key === PROFILES_KEY) {
         try {
             profiles = JSON.parse(event.newValue);
+
+            if (!profiles[activeProfile]) {
+                activeProfile = DEFAULT_PROFILE;
+            }
 
             if (hasCheckboxes) {
                 refreshCheckboxUI();
