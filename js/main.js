@@ -770,6 +770,24 @@ if (expandAllBtn) {
     });
 }
 
+const hideBtn = document.getElementById('hide-btn');
+
+localStorage.removeItem('hide-checked');
+
+if (hideBtn) {
+    root.classList.remove('hide-checked');
+    hideBtn.ariaPressed = 'false';
+
+    hideBtn.addEventListener('click', () => {
+        const isHidden = !root.classList.contains('hide-checked');
+
+        root.classList.toggle('hide-checked', isHidden);
+        hideBtn.ariaPressed = isHidden ? 'true' : 'false';
+
+        localStorage.setItem('hide-checked', isHidden ? 'true' : 'false');
+    });
+}
+
 window.addEventListener('storage', (event) => {
     if (event.key === 'theme') {
         setTheme(event.newValue || 'system');
@@ -779,13 +797,13 @@ window.addEventListener('storage', (event) => {
         }
     }
 
-    if (event.key === 'h') {
-        const isHidden = event.newValue === '1';
+    if (event.key === 'hide-checked') {
+        const isHidden = event.newValue === 'true';
 
-        root.classList.toggle('hide', isHidden);
+        root.classList.toggle('hide-checked', isHidden);
 
-        if (hide) {
-            hide.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
+        if (hideBtn) {
+            hideBtn.ariaPressed = isHidden ? 'true' : 'false';
         }
 
         return;
@@ -939,8 +957,8 @@ document.addEventListener('keydown', (e) => {
         case 'h':
             if (!e.ctrlKey && !e.metaKey) {
                 e.preventDefault();
-                const hide = document.getElementById('hide');
-                if (hide) hide.click();
+                const hideBtn = document.getElementById('hide-btn');
+                if (hideBtn) hideBtn.click();
             }
             break;
     }
@@ -965,22 +983,6 @@ if (up && scroll) {
     up.addEventListener('click', () => {
         window.scrollTo({ top: 0 });
         menu?.focus();
-    });
-}
-
-// Hide completed checkboxes
-const hide = document.getElementById('hide');
-
-if (hide) {
-    const isHidden = localStorage.getItem('h') === '1';
-    root.classList.toggle('hide', isHidden);
-    hide.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
-
-    hide.addEventListener('click', () => {
-        const shouldHide = !root.classList.contains('hide');
-        root.classList.toggle('hide', shouldHide);
-        localStorage.setItem('h', shouldHide ? '1' : '0');
-        hide.setAttribute('aria-pressed', shouldHide ? 'true' : 'false');
     });
 }
 
