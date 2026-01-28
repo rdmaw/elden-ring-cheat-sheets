@@ -851,6 +851,50 @@ if (upBtn && scroll) {
     });
 }
 
+/* COLOR THEME
+-------------- */
+const themeSelect = document.getElementById('theme');
+const preferredTheme = localStorage.getItem('theme');
+const activeTheme = preferredTheme || 'system';
+
+function setTheme(theme) {
+    if (theme === 'light') {
+        root.setAttribute('data-theme', 'light');
+
+        return;
+    }
+
+    if (theme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+
+        return;
+    }
+
+    const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    root.setAttribute('data-theme', isSystemDark ? 'dark' : 'light');
+}
+
+setTheme(activeTheme);
+
+if (themeSelect) {
+    themeSelect.value = activeTheme;
+
+    themeSelect.addEventListener('change', () => {
+        const value = themeSelect.value;
+
+        localStorage.setItem('theme', value);
+        setTheme(value);
+    });
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    const storedTheme = localStorage.getItem('theme') || 'system';
+
+    if (storedTheme === 'system') {
+        setTheme('system');
+    }
+});
+
 
 
 window.addEventListener('storage', (event) => {
@@ -929,43 +973,6 @@ for (let i = 0, len = links.length; i < len; i++) {
     link.target = '_blank';
 }
 
-// Color Theme.
-const theme = document.getElementById('theme');
-const preferredTheme = localStorage.getItem('theme');
-const activeTheme = preferredTheme || 'system';
-
-function setTheme(theme) {
-    if (theme === 'dark') {
-        root.setAttribute('data-theme', 'dark');
-        return;
-    }
-
-    if (theme === 'system') {
-        const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        root.setAttribute('data-theme', isSystemDark ? 'dark' : 'light');
-        return;
-    }
-
-    root.setAttribute('data-theme', 'light');
-}
-
-setTheme(activeTheme);
-
-if (theme) {
-    theme.value = activeTheme;
-
-    theme.addEventListener('change', () => {
-        const value = theme.value;
-        localStorage.setItem('theme', value);
-        setTheme(value);
-    });
-}
-
-// Auto-update based on the system theme.
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    const theme = localStorage.getItem('theme') || 'system';
-    if (theme === 'system') setTheme('system');
-});
 
 document.addEventListener('keydown', (e) => {
     const active = document.activeElement;
