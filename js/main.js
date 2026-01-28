@@ -967,7 +967,8 @@ window.addEventListener('storage', (event) => {
     }
 });
 
-// Open external links in new tab.
+/* MISCELLANEOUS
+---------------- */
 const links = document.querySelectorAll('a[href^="https"]');
 
 for (let i = 0, len = links.length; i < len; i++) {
@@ -975,6 +976,19 @@ for (let i = 0, len = links.length; i < len; i++) {
     link.target = '_blank';
 }
 
+//! Keep? Test live with phone using forward cache before removing.
+// window.addEventListener('pageshow', (event) => {
+//     if (event.persisted && hasCheckboxes) {
+//         refreshCheckboxUI();
+//     }
+// });
+
+// window.addEventListener('pageshow', (event) => {
+//     if (event.persisted) {
+//         window.location.reload();
+//     }
+// });
+//! End of: Keep?
 
 document.addEventListener('keydown', (e) => {
     const active = document.activeElement;
@@ -1101,10 +1115,3 @@ if (search) {
         debounceTimer = setTimeout(() => filterChecklist(e.target.value), 1);
     });
 }
-
-//! Keep? Test with mobiles device using forward cache before removing.
-// window.addEventListener('pageshow', (event) => {
-//     if (event.persisted) {
-//         window.location.reload();
-//     }
-// });
