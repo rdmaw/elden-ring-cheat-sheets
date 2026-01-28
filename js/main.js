@@ -800,31 +800,56 @@ if (hideBtn) {
     });
 }
 
+/* SEARCH
+--------- */
+
 /* TOGGLE SIDEBAR
 ----------------- */
 const menu = document.getElementById('menu');
 const sidebar = document.getElementById('sidebar');
 const close = sidebar.querySelector('.close');
 
+let lastFocusedElement = menu;
+
+function openSidebar() {
+    lastFocusedElement = (document.activeElement && document.activeElement !== document.body && typeof document.activeElement.focus === 'function')
+        ? document.activeElement
+        : menu;
+
+    sidebar.ariaHidden = 'false';
+    sidebar.inert = false;
+    menu.ariaExpanded = 'true';
+
+    announce('Sidebar opened');
+    close.focus();
+}
+
+function closeSidebar() {
+    const focusingSidebar = sidebar.contains(document.activeElement);
+
+    const canRestoreFocus =
+        lastFocusedElement &&
+        typeof lastFocusedElement.focus === 'function' &&
+        !sidebar.contains(lastFocusedElement);
+
+    if (focusingSidebar) {
+        const target = canRestoreFocus ? lastFocusedElement : menu;
+
+        target.focus({ preventScroll: true });
+    }
+
+    sidebar.ariaHidden = 'true';
+    sidebar.inert = true;
+    menu.ariaExpanded = 'false';
+
+    announce('Sidebar closed');
+    lastFocusedElement = menu;
+}
+
 function toggleSidebar() {
     const hidden = sidebar.ariaHidden === 'true';
 
-    if (hidden) {
-        sidebar.ariaHidden = 'false';
-        sidebar.inert = false;
-        menu.ariaExpanded = 'true';
-
-        announce('Sidebar opened');
-
-    } else {
-        menu.focus({ preventScroll: true });
-
-        sidebar.ariaHidden = 'true';
-        sidebar.inert = true;
-        menu.ariaExpanded = 'false';
-
-        announce('Sidebar closed');
-    }
+    hidden ? openSidebar() : closeSidebar();
 }
 
 menu.addEventListener('click', toggleSidebar);
@@ -855,10 +880,18 @@ if (upBtn && scroll) {
 
 /* KEYBOARD SHORTCUTS
 --------------------- */
+function announce(text) {
+    const announcer = document.getElementById('announcer');
+
+    if (announcer) {
+        announcer.textContent = text;
+    }
+}
+
 const shortcuts = {
     escape: () => {
         if (sidebar.ariaHidden === 'false') {
-            toggleSidebar();
+            closeSidebar();
 
             announce('Sidebar closed');
         }
@@ -893,17 +926,9 @@ const shortcuts = {
     }
 }
 
-function announce(text) {
-    const announcer = document.getElementById('announcer');
-
-    if (announcer) {
-        announcer.textContent = text;
-    }
-}
-
 document.addEventListener('keydown', (event) => {
     const active = document.activeElement;
-    const formControl = active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.tagName === 'SELECT';
+    const formControl = active.tagName === 'INPUT';
 
     if (formControl) return;
 
