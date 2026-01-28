@@ -811,17 +811,19 @@ function toggleSidebar() {
 
     if (hidden) {
         sidebar.ariaHidden = 'false';
+        sidebar.inert = false;
         menu.ariaExpanded = 'true';
 
-        sidebar.removeAttribute('inert');
+        announce('Sidebar opened');
 
     } else {
         menu.focus({ preventScroll: true });
 
         sidebar.ariaHidden = 'true';
+        sidebar.inert = true;
         menu.ariaExpanded = 'false';
 
-        sidebar.setAttribute('inert', '');
+        announce('Sidebar closed');
     }
 }
 
@@ -850,6 +852,68 @@ if (upBtn && scroll) {
         menu.focus();
     });
 }
+
+/* KEYBOARD SHORTCUTS
+--------------------- */
+const shortcuts = {
+    escape: () => {
+        if (sidebar.ariaHidden === 'false') {
+            toggleSidebar();
+
+            announce('Sidebar closed');
+        }
+    },
+
+    s: () => {
+        toggleSidebar();
+        close.focus();
+    },
+
+    '/': () => {
+        if (search) {
+            search.focus();
+        }
+
+        announce('Search focused');
+    },
+
+    h: () => {
+        if (hideBtn) {
+            hideBtn.click();
+        }
+
+        announce(root.classList.contains('hide-checked') ? 'Hiding checked steps' : 'Showing checked steps');
+    },
+
+    t: () => {
+        window.scrollTo({ top: 0 });
+        menu.focus();
+
+        announce('Scrolled to top');
+    }
+}
+
+function announce(text) {
+    const announcer = document.getElementById('announcer');
+
+    if (announcer) {
+        announcer.textContent = text;
+    }
+}
+
+document.addEventListener('keydown', (event) => {
+    const active = document.activeElement;
+    const formControl = active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.tagName === 'SELECT';
+
+    if (formControl) return;
+
+    const handler = shortcuts[event.key.toLowerCase()];
+
+    if (handler && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault();
+        handler();
+    }
+});
 
 /* COLOR THEME
 -------------- */
@@ -989,44 +1053,6 @@ for (let i = 0, len = links.length; i < len; i++) {
 //     }
 // });
 //! End of: Keep?
-
-document.addEventListener('keydown', (e) => {
-    const active = document.activeElement;
-    const formControl = active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.tagName === 'SELECT';
-    if (formControl) return;
-
-    switch (e.key.toLowerCase()) {
-        case 'escape':
-            if (sidebar.ariaHidden === 'false') {
-                toggleSidebar();
-            }
-            break;
-
-        case 'q':
-            if (!e.ctrlKey && !e.metaKey) {
-                e.preventDefault();
-                toggleSidebar();
-                close.focus();
-            }
-            break;
-
-        case '/':
-            if (!e.ctrlKey && !e.metaKey) {
-                e.preventDefault();
-                const search = document.getElementById('search');
-                if (search) search.focus();
-            }
-            break;
-
-        case 'h':
-            if (!e.ctrlKey && !e.metaKey) {
-                e.preventDefault();
-                const hideBtn = document.getElementById('hide-btn');
-                if (hideBtn) hideBtn.click();
-            }
-            break;
-    }
-});
 
 // Search checklists.
 const search = document.getElementById('search');
