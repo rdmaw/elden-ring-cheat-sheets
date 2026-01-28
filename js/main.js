@@ -895,15 +895,17 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
     }
 });
 
-
-
+/* CROSS-TAB SYNC
+----------------- */
 window.addEventListener('storage', (event) => {
     if (event.key === 'theme') {
         setTheme(event.newValue || 'system');
 
-        if (theme) {
-            theme.value = event.newValue || 'system';
+        if (themeSelect) {
+            themeSelect.value = event.newValue || 'system';
         }
+
+        return;
     }
 
     if (event.key === 'hide-checked') {
