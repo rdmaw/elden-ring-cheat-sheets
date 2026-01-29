@@ -802,6 +802,93 @@ if (hideBtn) {
 
 /* SEARCH
 --------- */
+const search = document.getElementById('search');
+
+if (search) {
+    let cachedElements = null;
+    let lastTerm = null;
+    let debounceTimer;
+
+    function filterChecklist(searchTerm) {
+        const cleanTerm = searchTerm.toLowerCase().trim();
+        if (cleanTerm === lastTerm) return;
+        lastTerm = cleanTerm;
+
+        if (!cachedElements) {
+            const sections = [...document.querySelectorAll('main h3')];
+            cachedElements = sections.map(section => {
+                const list = section.nextElementSibling;
+                if (!list) return null;
+
+                const sectionText = section.textContent.toLowerCase();
+                const mainItems = [...list.children];
+                const itemData = mainItems.map(item => {
+                    const nestedList = item.querySelector('ul');
+                    const nestedItems = nestedList ? [...nestedList.querySelectorAll('li')] : [];
+                    const mainText = item.textContent.toLowerCase();
+                    const nestedTexts = nestedItems.map(nested => nested.textContent.toLowerCase());
+                    return { item, nestedItems, mainText, nestedTexts };
+                });
+
+                return { section, sectionText, itemData };
+            }).filter(Boolean);
+        }
+
+        if (!cleanTerm) {
+            cachedElements.forEach(({ section, itemData }) => {
+                section.style.display = '';
+                itemData.forEach(({ item, nestedItems }) => {
+                    item.style.display = '';
+                    nestedItems.forEach(nested => nested.style.display = '');
+                });
+            });
+            return;
+        }
+
+        const terms = cleanTerm.split(/\s+/);
+        const matches = text => terms.every(term => text.includes(term));
+
+        for (const { section, sectionText, itemData } of cachedElements) {
+            const sectionMatches = matches(sectionText);
+            let sectionVisible = sectionMatches;
+
+            if (sectionMatches) {
+                section.style.display = '';
+                itemData.forEach(({ item, nestedItems }) => {
+                    item.style.display = '';
+                    nestedItems.forEach(nested => nested.style.display = '');
+                });
+                continue;
+            }
+
+            for (const { item, nestedItems, mainText, nestedTexts } of itemData) {
+                let showItem = matches(mainText);
+
+                if (!showItem) {
+                    for (let i = 0; i < nestedItems.length; i++) {
+                        if (matches(nestedTexts[i])) {
+                            nestedItems[i].style.display = '';
+                            showItem = true;
+                        } else {
+                            nestedItems[i].style.display = 'none';
+                        }
+                    }
+                } else {
+                    nestedItems.forEach(nested => nested.style.display = '');
+                }
+
+                item.style.display = showItem ? '' : 'none';
+                sectionVisible ||= showItem;
+            }
+            section.style.display = sectionVisible ? '' : 'none';
+        }
+    }
+
+    search.addEventListener('input', e => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => filterChecklist(e.target.value), 1);
+    });
+}
 
 /* TOGGLE SIDEBAR
 ----------------- */
@@ -812,9 +899,9 @@ const close = sidebar.querySelector('.close');
 let lastFocusedElement = menu;
 
 function openSidebar() {
-    lastFocusedElement = (document.activeElement && document.activeElement !== document.body && typeof document.activeElement.focus === 'function')
-        ? document.activeElement
-        : menu;
+    if (document.activeElement && document.activeElement !== document.body && typeof document.activeElement.focus === 'function') {
+        lastFocusedElement = document.activeElement;
+    }
 
     sidebar.ariaHidden = 'false';
     sidebar.inert = false;
@@ -843,7 +930,6 @@ function closeSidebar() {
     menu.ariaExpanded = 'false';
 
     announce('Sidebar closed');
-    lastFocusedElement = menu;
 }
 
 function toggleSidebar() {
@@ -899,7 +985,6 @@ const shortcuts = {
 
     s: () => {
         toggleSidebar();
-        close.focus();
     },
 
     '/': () => {
@@ -932,11 +1017,11 @@ document.addEventListener('keydown', (event) => {
 
     if (formControl) return;
 
-    const handler = shortcuts[event.key.toLowerCase()];
+    const action = shortcuts[event.key.toLowerCase()];
 
-    if (handler && !event.ctrlKey && !event.metaKey) {
+    if (action && !event.ctrlKey && !event.metaKey) {
         event.preventDefault();
-        handler();
+        action();
     }
 });
 
@@ -1059,8 +1144,9 @@ window.addEventListener('storage', (event) => {
 /* MISCELLANEOUS
 ---------------- */
 const links = document.querySelectorAll('a[href^="https"]');
+const linksLength = links.length;
 
-for (let i = 0, len = links.length; i < len; i++) {
+for (let i = 0; i < linksLength; i++) {
     const link = links[i];
     link.target = '_blank';
 }
@@ -1078,91 +1164,3 @@ for (let i = 0, len = links.length; i < len; i++) {
 //     }
 // });
 //! End of: Keep?
-
-// Search checklists.
-const search = document.getElementById('search');
-if (search) {
-    let cachedElements = null;
-    let lastTerm = null;
-    let debounceTimer;
-
-    function filterChecklist(searchTerm) {
-        const cleanTerm = searchTerm.toLowerCase().trim();
-        if (cleanTerm === lastTerm) return;
-        lastTerm = cleanTerm;
-
-        if (!cachedElements) {
-            const sections = [...document.querySelectorAll('main h3')];
-            cachedElements = sections.map(section => {
-                const list = section.nextElementSibling;
-                if (!list) return null;
-
-                const sectionText = section.textContent.toLowerCase();
-                const mainItems = [...list.children];
-                const itemData = mainItems.map(item => {
-                    const nestedList = item.querySelector('ul');
-                    const nestedItems = nestedList ? [...nestedList.querySelectorAll('li')] : [];
-                    const mainText = item.textContent.toLowerCase();
-                    const nestedTexts = nestedItems.map(nested => nested.textContent.toLowerCase());
-                    return { item, nestedItems, mainText, nestedTexts };
-                });
-
-                return { section, sectionText, itemData };
-            }).filter(Boolean);
-        }
-
-        if (!cleanTerm) {
-            cachedElements.forEach(({ section, itemData }) => {
-                section.style.display = '';
-                itemData.forEach(({ item, nestedItems }) => {
-                    item.style.display = '';
-                    nestedItems.forEach(nested => nested.style.display = '');
-                });
-            });
-            return;
-        }
-
-        const terms = cleanTerm.split(/\s+/);
-        const matches = text => terms.every(term => text.includes(term));
-
-        for (const { section, sectionText, itemData } of cachedElements) {
-            const sectionMatches = matches(sectionText);
-            let sectionVisible = sectionMatches;
-
-            if (sectionMatches) {
-                section.style.display = '';
-                itemData.forEach(({ item, nestedItems }) => {
-                    item.style.display = '';
-                    nestedItems.forEach(nested => nested.style.display = '');
-                });
-                continue;
-            }
-
-            for (const { item, nestedItems, mainText, nestedTexts } of itemData) {
-                let showItem = matches(mainText);
-
-                if (!showItem) {
-                    for (let i = 0; i < nestedItems.length; i++) {
-                        if (matches(nestedTexts[i])) {
-                            nestedItems[i].style.display = '';
-                            showItem = true;
-                        } else {
-                            nestedItems[i].style.display = 'none';
-                        }
-                    }
-                } else {
-                    nestedItems.forEach(nested => nested.style.display = '');
-                }
-
-                item.style.display = showItem ? '' : 'none';
-                sectionVisible ||= showItem;
-            }
-            section.style.display = sectionVisible ? '' : 'none';
-        }
-    }
-
-    search.addEventListener('input', e => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => filterChecklist(e.target.value), 1);
-    });
-}
