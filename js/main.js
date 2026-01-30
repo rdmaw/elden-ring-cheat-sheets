@@ -922,9 +922,8 @@ function closeSidebar() {
         typeof lastFocusedElement.focus === 'function' &&
         !sidebar.contains(lastFocusedElement);
 
-    if (focusingSidebar) {
-        const target = canRestoreFocus ? lastFocusedElement : menu;
-
+    if (focusingSidebar && canRestoreFocus) {
+        const target = lastFocusedElement;
         target.focus({ preventScroll: true });
     }
 
