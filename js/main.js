@@ -917,13 +917,9 @@ function openSidebar() {
 function closeSidebar() {
     const focusingSidebar = sidebar.contains(document.activeElement);
 
-    const canRestoreFocus =
-        lastFocusedElement &&
-        typeof lastFocusedElement.focus === 'function' &&
-        !sidebar.contains(lastFocusedElement);
-
-    if (focusingSidebar && canRestoreFocus) {
+    if (focusingSidebar) {
         const target = lastFocusedElement;
+
         target.focus({ preventScroll: true });
     }
 
@@ -1150,6 +1146,7 @@ const linksLength = links.length;
 
 for (let i = 0; i < linksLength; i++) {
     const link = links[i];
+
     link.target = '_blank';
 }
 
