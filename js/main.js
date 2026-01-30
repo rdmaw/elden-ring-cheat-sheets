@@ -676,7 +676,7 @@ function updateChecklistProgress() {
             }
         }
 
-        cachedProgress = { totalSpan, checklistSpans: checklistSpans, navSpans };
+        cachedProgress = { totalSpan, checklistSpans, navSpans };
     }
 
     const { totalSpan, checklistSpans, navSpans } = cachedProgress;
@@ -777,13 +777,13 @@ function setupCollapseUI() {
 function setAllChecklists(expanded) {
     const updates = [];
 
-    checklistMap.forEach((checklist, btn) => {
+    for (const [btn, checklist] of checklistMap) {
         setCollapseState(btn, checklist, expanded);
 
         const checklistId = btn.getAttribute('aria-controls');
 
-        updates.push({ id: checklistId, expanded: expanded });
-    });
+        updates.push({ id: checklistId, expanded });
+    }
 
     profile.setCollapsedBatch(updates);
 }
