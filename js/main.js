@@ -67,6 +67,7 @@ function loadProfiles() {
 
     } catch (error) {
         console.error('Error loading profiles:', error);
+
         return PROFILE_TEMPLATE;
     }
 }
@@ -115,16 +116,21 @@ const profile = {
     setCollapsedBatch(updates) {
         if (!Array.isArray(updates) || !updates.length) return;
 
-        updates.forEach(({ id, expanded }) => {
-            if (!id) return;
+        const len = updates.length;
 
-            if (expanded) {
-                delete profiles[activeProfile].collapsed[id];
+        for (let i = 0; i < len; i++) {
+            const { id, expanded } = updates[i];
 
-            } else {
+            if (!id) continue;
+
+            if (!expanded) {
                 profiles[activeProfile].collapsed[id] = 1;
+
+                continue;
             }
-        });
+
+            delete profiles[activeProfile].collapsed[id];
+        }
 
         this.saveToStorage();
     },
