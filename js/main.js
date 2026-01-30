@@ -87,8 +87,6 @@ const profile = {
     },
 
     setChecked(id, checked) {
-        if (!id) return;
-
         if (checked) {
             profiles[activeProfile].checked[id] = 1;
 
@@ -100,8 +98,6 @@ const profile = {
     },
 
     setCollapsed(id, expanded) {
-        if (!id) return;
-
         if (expanded) {
             delete profiles[activeProfile].collapsed[id];
 
@@ -114,14 +110,10 @@ const profile = {
 
     // Collapse/Expand all: Batch all updates to a single write. Chrome may drop spammy localStorage writes. See #8.
     setCollapsedBatch(updates) {
-        if (!Array.isArray(updates) || !updates.length) return;
+        const updatesLen = updates.length;
 
-        const len = updates.length;
-
-        for (let i = 0; i < len; i++) {
+        for (let i = 0; i < updatesLen; i++) {
             const { id, expanded } = updates[i];
-
-            if (!id) continue;
 
             if (!expanded) {
                 profiles[activeProfile].collapsed[id] = 1;
@@ -511,16 +503,15 @@ let sheetPrefix = '';
 let cachedProgress = null;
 
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-const hasCheckboxes = checkboxes.length > 0;
+const checkboxesLen = checkboxes.length;
+const hasCheckboxes = checkboxesLen > 0;
 
 const checkboxMap = new Map();
 
 function buildCheckboxMap() {
     sheetPrefix = checkboxes[0].id.charAt(0);
 
-    const len = checkboxes.length;
-
-    for (let i = 0; i < len; i++) {
+    for (let i = 0; i < checkboxesLen; i++) {
         checkboxMap.set(checkboxes[i], checkboxes[i].parentElement);
     }
 
@@ -539,9 +530,8 @@ function setCheckboxState(checkbox, checked) {
 
 function restoreCheckboxes() {
     const { checked } = profiles[activeProfile];
-    const len = checkboxes.length;
 
-    for (let i = 0; i < len; i++) {
+    for (let i = 0; i < checkboxesLen; i++) {
         const checkbox = checkboxes[i];
         const isChecked = !!checked[checkbox.id];
 
@@ -552,9 +542,8 @@ function restoreCheckboxes() {
 function calculateChecklistProgress(checkboxes) {
     const checklistProgress = {};
     const idStart = 1;
-    const len = checkboxes.length;
 
-    for (let i = 0; i < len; i++) {
+    for (let i = 0; i < checkboxesLen; i++) {
         const checkbox = checkboxes[i];
         const checkboxId = checkbox.id;
         const hyphenIndex = checkboxId.indexOf('-', idStart);
@@ -600,19 +589,50 @@ function getSpanId(id) {
     return checklistId.substring(1);
 }
 
+// function updateSpans(checklistProgress, checklistSpans, navSpans) {
+//     checklistSpans.forEach(span => {
+//         const checklistId = getSpanId(span.id);
+
+//         if (!checklistId) return;
+
+//         const progress = checklistProgress[checklistId] || { checked: 0, total: 0, done: false };
+//         const text = progress.total ? (progress.done ? 'DONE' : `${progress.checked}/${progress.total}`) : '0/0';
+
+//         const navSpan = navSpans[checklistId];
+
+//         [span, navSpan].forEach(tag => {
+//             if (!tag) return;
+
+//             tag.classList.remove('d');
+//             tag.textContent = text;
+
+//             if (progress.done) {
+//                 tag.classList.add('d');
+//             }
+//         });
+//     });
+// }
+
 function updateSpans(checklistProgress, checklistSpans, navSpans) {
-    checklistSpans.forEach(span => {
+    const checklistSpansLen = checklistSpans.length;
+
+    for (let i = 0; i < checklistSpansLen; i++) {
+        const span = checklistSpans[i];
         const checklistId = getSpanId(span.id);
 
-        if (!checklistId) return;
+        if (!checklistId) continue;
 
         const progress = checklistProgress[checklistId] || { checked: 0, total: 0, done: false };
         const text = progress.total ? (progress.done ? 'DONE' : `${progress.checked}/${progress.total}`) : '0/0';
 
         const navSpan = navSpans[checklistId];
+        const tags = [span, navSpan];
+        const tagsLen = tags.length;
 
-        [span, navSpan].forEach(tag => {
-            if (!tag) return;
+        for (let j = 0; j < tagsLen; j++) {
+            const tag = tags[j];
+
+            if (!tag) continue;
 
             tag.classList.remove('d');
             tag.textContent = text;
@@ -620,8 +640,8 @@ function updateSpans(checklistProgress, checklistSpans, navSpans) {
             if (progress.done) {
                 tag.classList.add('d');
             }
-        });
-    });
+        }
+    }
 }
 
 function updateCurrentProgress(checklistProgress, totalSpan) {
@@ -661,13 +681,11 @@ function updateChecklistProgress() {
         }
 
         const checklistSpans = document.querySelectorAll(`span[id^="${prefix}-s"]`);
-
-        if (checklistSpans.length === 0) return;
+        const checklistSpansLen = checklistSpans.length;
 
         const navSpans = {};
-        const len = checklistSpans.length;
 
-        for (let i = 0; i < len; i++) {
+        for (let i = 0; i < checklistSpansLen; i++) {
             const span = checklistSpans[i];
             const checklistId = getSpanId(span.id);
 
@@ -696,9 +714,8 @@ if (hasCheckboxes) {
     refreshCheckboxUI();
 
     function setAll(checklistId, checked) {
-        const len = checkboxes.length;
 
-        for (let i = 0; i < len; i++) {
+        for (let i = 0; i < checkboxesLen; i++) {
             const checkbox = checkboxes[i];
             const hyphenIndex = checkbox.id.indexOf('-', 1);
 
@@ -863,14 +880,14 @@ if (searchInput) {
 
         const queries = search.split(/\s+/).filter(Boolean);
         const searching = queries.length > 0;
-        const len = cachedSections.length;
+        const cachedSectionsLen = cachedSections.length;
 
-        for (let i = 0; i < len; i++) {
+        for (let i = 0; i < cachedSectionsLen; i++) {
             const { header, checklist, checkBtns, steps, headerText, stepTexts } = cachedSections[i];
             const sectionMatches = searching && matchesQuery(headerText, queries);
 
             let hasVisibleStep = false;
-            const stepsLength = steps.length;
+            const stepsLen = steps.length;
 
             if (sectionMatches) {
                 setDisplayProperty(header, '');
@@ -880,14 +897,14 @@ if (searchInput) {
                     setDisplayProperty(checkBtns, 'none');
                 }
 
-                for (let j = 0; j < stepsLength; j++) {
+                for (let j = 0; j < stepsLen; j++) {
                     setDisplayProperty(steps[j], '');
                 }
 
                 hasVisibleStep = true;
 
             } else {
-                for (let j = 0; j < stepsLength; j++) {
+                for (let j = 0; j < stepsLen; j++) {
                     const match = !searching || matchesQuery(stepTexts[j], queries);
 
                     setDisplayProperty(steps[j], match ? '' : 'none');
@@ -1162,9 +1179,9 @@ window.addEventListener('storage', event => {
 /* MISCELLANEOUS
 ---------------- */
 const links = document.querySelectorAll('a[href^="https"]');
-const linksLength = links.length;
+const linksLen = links.length;
 
-for (let i = 0; i < linksLength; i++) {
+for (let i = 0; i < linksLen; i++) {
     const link = links[i];
 
     link.target = '_blank';
