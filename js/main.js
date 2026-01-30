@@ -137,6 +137,7 @@ const profile = {
 
     switch(name) {
         const selectedProfile = name || DEFAULT_PROFILE;
+
         activeProfile = selectedProfile;
 
         if (selectedProfile === DEFAULT_PROFILE) {
@@ -346,6 +347,7 @@ if (dropdown) {
 
         if (!result.success) {
             alert(result.error);
+
             return;
         }
 
@@ -358,6 +360,7 @@ if (dropdown) {
 
         if (currentProfile === DEFAULT_PROFILE) {
             alert("Can't edit the default profile.");
+
             return;
         }
 
@@ -366,6 +369,7 @@ if (dropdown) {
 
         if (!result.success) {
             alert(result.error);
+
             return;
         }
 
@@ -393,6 +397,7 @@ if (dropdown) {
 
         if (!result.success) {
             alert(result.error);
+
             return;
         }
 
@@ -417,6 +422,7 @@ if (dropdown) {
 
         } catch (error) {
             alert('There was an error exporting the file.');
+
             console.error(error);
         }
     });
@@ -447,6 +453,7 @@ if (dropdown) {
 
             if (result.success) {
                 refreshDropdown(dropdown, activeProfile);
+
                 alert('Successfully imported profile data.');
 
             } else {
@@ -454,6 +461,7 @@ if (dropdown) {
             }
         } catch (error) {
             alert('Invalid profile data.');
+
             console.error(error);
         }
 
@@ -463,10 +471,12 @@ if (dropdown) {
     exportClipboardBtn.addEventListener('click', async () => {
         try {
             await navigator.clipboard.writeText(JSON.stringify(profile.exportAll(), null, 2));
+
             alert('Profile data has been copied to the clipboard.');
 
         } catch (error) {
             alert('There was an error copying to the clipboard.');
+
             console.error(error);
         }
     });
@@ -481,6 +491,7 @@ if (dropdown) {
 
             if (result.success) {
                 refreshDropdown(dropdown, activeProfile);
+
                 alert('Successfully imported profile data.');
 
             } else {
@@ -488,6 +499,7 @@ if (dropdown) {
             }
         } catch (error) {
             alert('Invalid clipboard data.');
+
             console.error(error);
         }
     });
@@ -517,10 +529,11 @@ function buildCheckboxMap() {
 
 function setCheckboxState(checkbox, checked) {
     checkbox.checked = checked;
-    const li = checkboxMap.get(checkbox);
 
-    if (li) {
-        li.classList.toggle('c', checked);
+    const label = checkboxMap.get(checkbox);
+
+    if (label) {
+        label.classList.toggle('c', checked);
     }
 }
 
@@ -713,7 +726,7 @@ if (hasCheckboxes) {
         }
     });
 
-    document.addEventListener('click', function (event) {
+    document.addEventListener('click', event => {
         if (event.target.matches('.btn[data-checklist][data-action]')) {
             const checklist = event.target.getAttribute('data-checklist');
             const shouldCheck = event.target.getAttribute('data-action') === 'check';
@@ -746,6 +759,7 @@ function setupCollapseUI() {
         checklistMap.set(btn, checklist);
 
         const isCollapsed = !!profiles[activeProfile].collapsed[checklistId];
+
         setCollapseState(btn, checklist, !isCollapsed)
 
         btn.addEventListener('click', () => {
@@ -834,7 +848,7 @@ if (searchInput) {
         return queries.every(query => text.includes(query));
     }
 
-    function setDisplay(element, value) {
+    function setDisplayProperty(element, value) {
         if (element && element.style.display !== value) {
             element.style.display = value;
         }
@@ -859,15 +873,15 @@ if (searchInput) {
             const stepsLength = steps.length;
 
             if (sectionMatches) {
-                setDisplay(header, '');
-                setDisplay(checklist, '');
+                setDisplayProperty(header, '');
+                setDisplayProperty(checklist, '');
 
                 if (checkBtns) {
-                    setDisplay(checkBtns, 'none');
+                    setDisplayProperty(checkBtns, 'none');
                 }
 
                 for (let j = 0; j < stepsLength; j++) {
-                    setDisplay(steps[j], '');
+                    setDisplayProperty(steps[j], '');
                 }
 
                 hasVisibleStep = true;
@@ -876,7 +890,7 @@ if (searchInput) {
                 for (let j = 0; j < stepsLength; j++) {
                     const match = !searching || matchesQuery(stepTexts[j], queries);
 
-                    setDisplay(steps[j], match ? '' : 'none');
+                    setDisplayProperty(steps[j], match ? '' : 'none');
 
                     if (match) {
                         hasVisibleStep = true;
@@ -885,11 +899,11 @@ if (searchInput) {
             }
 
             if (checkBtns) {
-                setDisplay(checkBtns, searching ? 'none' : (hasVisibleStep ? '' : 'none'));
+                setDisplayProperty(checkBtns, searching ? 'none' : (hasVisibleStep ? '' : 'none'));
             }
 
-            setDisplay(header, hasVisibleStep ? '' : 'none');
-            setDisplay(checklist, hasVisibleStep ? '' : 'none');
+            setDisplayProperty(header, hasVisibleStep ? '' : 'none');
+            setDisplayProperty(checklist, hasVisibleStep ? '' : 'none');
         }
     }
 
@@ -1015,7 +1029,7 @@ const shortcuts = {
     }
 }
 
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', event => {
     const active = document.activeElement;
     const formControl = active.tagName === 'INPUT';
 
@@ -1065,7 +1079,7 @@ if (themeSelect) {
     });
 }
 
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     const storedTheme = localStorage.getItem('theme') || 'system';
 
     if (storedTheme === 'system') {
@@ -1075,7 +1089,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
 
 /* CROSS-TAB SYNC
 ----------------- */
-window.addEventListener('storage', (event) => {
+window.addEventListener('storage', event => {
     if (event.key === 'theme') {
         setTheme(event.newValue || 'system');
 
@@ -1157,13 +1171,13 @@ for (let i = 0; i < linksLength; i++) {
 }
 
 //! Keep? Test live with phone using forward cache before removing.
-// window.addEventListener('pageshow', (event) => {
+// window.addEventListener('pageshow', event => {
 //     if (event.persisted && hasCheckboxes) {
 //         refreshCheckboxUI();
 //     }
 // });
 
-// window.addEventListener('pageshow', (event) => {
+// window.addEventListener('pageshow', event => {
 //     if (event.persisted) {
 //         window.location.reload();
 //     }
