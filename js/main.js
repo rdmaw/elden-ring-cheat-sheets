@@ -802,91 +802,94 @@ if (hideBtn) {
 
 /* SEARCH
 --------- */
-const search = document.getElementById('search');
+const searchInput = document.getElementById('search');
 
-if (search) {
-    let cachedElements = null;
-    let lastTerm = null;
+if (searchInput) {
+    const walkthrough = document.getElementById('w-sheet')
+    const debounceDelay = walkthrough ? 60 : 20;
+
+    const headers = Array.from(document.querySelectorAll('main h3'));
+
+    const cachedSections = headers.map(header => {
+        const checklist = header.nextElementSibling;
+        const checkBtns = checklist.querySelector('.check-btns');
+        const steps = Array.from(checklist.children).filter(li => !li.classList.contains('check-btns'));
+
+        const headerText = header.textContent.toLowerCase();
+        const stepTexts = steps.map(step => step.textContent.toLowerCase());
+
+        return { header, checklist, checkBtns, steps, headerText, stepTexts };
+    });
+
     let debounceTimer;
+    let lastSearch = null;
 
-    function filterChecklist(searchTerm) {
-        const cleanTerm = searchTerm.toLowerCase().trim();
-        if (cleanTerm === lastTerm) return;
-        lastTerm = cleanTerm;
+    function matchesQuery(text, queries) {
+        return queries.every(query => text.includes(query));
+    }
 
-        if (!cachedElements) {
-            const sections = [...document.querySelectorAll('main h3')];
-            cachedElements = sections.map(section => {
-                const list = section.nextElementSibling;
-                if (!list) return null;
-
-                const sectionText = section.textContent.toLowerCase();
-                const mainItems = [...list.children];
-                const itemData = mainItems.map(item => {
-                    const nestedList = item.querySelector('ul');
-                    const nestedItems = nestedList ? [...nestedList.querySelectorAll('li')] : [];
-                    const mainText = item.textContent.toLowerCase();
-                    const nestedTexts = nestedItems.map(nested => nested.textContent.toLowerCase());
-                    return { item, nestedItems, mainText, nestedTexts };
-                });
-
-                return { section, sectionText, itemData };
-            }).filter(Boolean);
-        }
-
-        if (!cleanTerm) {
-            cachedElements.forEach(({ section, itemData }) => {
-                section.style.display = '';
-                itemData.forEach(({ item, nestedItems }) => {
-                    item.style.display = '';
-                    nestedItems.forEach(nested => nested.style.display = '');
-                });
-            });
-            return;
-        }
-
-        const terms = cleanTerm.split(/\s+/);
-        const matches = text => terms.every(term => text.includes(term));
-
-        for (const { section, sectionText, itemData } of cachedElements) {
-            const sectionMatches = matches(sectionText);
-            let sectionVisible = sectionMatches;
-
-            if (sectionMatches) {
-                section.style.display = '';
-                itemData.forEach(({ item, nestedItems }) => {
-                    item.style.display = '';
-                    nestedItems.forEach(nested => nested.style.display = '');
-                });
-                continue;
-            }
-
-            for (const { item, nestedItems, mainText, nestedTexts } of itemData) {
-                let showItem = matches(mainText);
-
-                if (!showItem) {
-                    for (let i = 0; i < nestedItems.length; i++) {
-                        if (matches(nestedTexts[i])) {
-                            nestedItems[i].style.display = '';
-                            showItem = true;
-                        } else {
-                            nestedItems[i].style.display = 'none';
-                        }
-                    }
-                } else {
-                    nestedItems.forEach(nested => nested.style.display = '');
-                }
-
-                item.style.display = showItem ? '' : 'none';
-                sectionVisible ||= showItem;
-            }
-            section.style.display = sectionVisible ? '' : 'none';
+    function setDisplay(element, value) {
+        if (element && element.style.display !== value) {
+            element.style.display = value;
         }
     }
 
-    search.addEventListener('input', e => {
+    function filter(query) {
+        const search = query.toLowerCase().trim();
+
+        if (search === lastSearch) return;
+
+        lastSearch = search;
+
+        const queries = search.split(/\s+/).filter(Boolean);
+        const searching = queries.length > 0;
+        const len = cachedSections.length;
+
+        for (let i = 0; i < len; i++) {
+            const { header, checklist, checkBtns, steps, headerText, stepTexts } = cachedSections[i];
+            const sectionMatches = searching && matchesQuery(headerText, queries);
+
+            let hasVisibleStep = false;
+            const stepsLength = steps.length;
+
+            if (sectionMatches) {
+                setDisplay(header, '');
+                setDisplay(checklist, '');
+
+                if (checkBtns) {
+                    setDisplay(checkBtns, 'none');
+                }
+
+                for (let j = 0; j < stepsLength; j++) {
+                    setDisplay(steps[j], '');
+                }
+
+                hasVisibleStep = true;
+
+            } else {
+                for (let j = 0; j < stepsLength; j++) {
+                    const match = !searching || matchesQuery(stepTexts[j], queries);
+
+                    setDisplay(steps[j], match ? '' : 'none');
+
+                    if (match) {
+                        hasVisibleStep = true;
+                    }
+                }
+            }
+
+            if (checkBtns) {
+                setDisplay(checkBtns, searching ? 'none' : (hasVisibleStep ? '' : 'none'));
+            }
+
+            setDisplay(header, hasVisibleStep ? '' : 'none');
+            setDisplay(checklist, hasVisibleStep ? '' : 'none');
+        }
+    }
+
+    searchInput.addEventListener('input', event => {
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => filterChecklist(e.target.value), 1);
+        debounceTimer = setTimeout(() => filter(event.target.value), debounceDelay);
     });
 }
 
