@@ -210,6 +210,13 @@ const profile = {
     },
 
     resetToNGPlus(name) {
+        if (!profiles[name]) {
+            return {
+                success: false,
+                error: "What? This profile doesn't exist."
+            }
+        }
+
         const sheetsToReset = new Set(['w', 'd', 'n', 'q', 'b', 'p'])
 
         const preservedData = Object.entries(profiles[name].checked)
@@ -218,6 +225,10 @@ const profile = {
         profiles[name].checked = Object.fromEntries(preservedData);
 
         this.saveToStorage();
+
+        return {
+            success: true
+        };
     },
 
     delete(name) {
@@ -228,6 +239,13 @@ const profile = {
 
             return {
                 success: true,
+            };
+        }
+
+        if (!profiles[name]) {
+            return {
+                success: false,
+                error: "What? This profile doesn't exist."
             };
         }
 
@@ -354,10 +372,15 @@ if (dropdown) {
 
     newGamePlusBtn.addEventListener('click', () => {
         const currentProfile = dropdown.value;
+        const profileName = currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile;
 
-        if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile}?`)) return;
+        if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${profileName}?`)) return;
 
-        profile.resetToNGPlus(currentProfile);
+        const result = profile.resetToNGPlus(currentProfile);
+
+        if (!result.success) {
+            alert(result.error);
+        }
     });
 
     deleteBtn.addEventListener('click', () => {
