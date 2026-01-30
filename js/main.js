@@ -210,24 +210,14 @@ const profile = {
     },
 
     resetToNGPlus(name) {
-        if (!profiles[name]) {
-            return {
-                success: false,
-                error: "What? This profile doesn't exist."
-            }
-        }
-
         const sheetsToReset = new Set(['w', 'd', 'n', 'q', 'b', 'p'])
 
         const preservedData = Object.entries(profiles[name].checked)
             .filter(([id]) => !sheetsToReset.has(id.charAt(0)));
 
         profiles[name].checked = Object.fromEntries(preservedData);
-        this.saveToStorage();
 
-        return {
-            success: true
-        };
+        this.saveToStorage();
     },
 
     delete(name) {
@@ -238,13 +228,6 @@ const profile = {
 
             return {
                 success: true,
-            };
-        }
-
-        if (!profiles[name]) {
-            return {
-                success: false,
-                error: "What? This profile doesn't exist."
             };
         }
 
@@ -357,6 +340,7 @@ if (dropdown) {
         }
 
         const name = prompt(`Enter a new name for ${currentProfile}:`, currentProfile)?.trim();
+
         const result = profile.rename(currentProfile, name);
 
         if (!result.success) {
@@ -372,11 +356,8 @@ if (dropdown) {
         const currentProfile = dropdown.value;
 
         if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile}?`)) return;
-        const result = profile.resetToNGPlus(currentProfile);
 
-        if (!result.success) {
-            alert(result.error);
-        }
+        profile.resetToNGPlus(currentProfile);
     });
 
     deleteBtn.addEventListener('click', () => {
@@ -385,6 +366,7 @@ if (dropdown) {
         const action = isProfileDefault ? 'reset the default profile' : `delete ${currentProfile}`;
 
         if (!confirm(`Are you sure you want to ${action}?`)) return;
+
         const result = profile.delete(currentProfile);
 
         if (!result.success) {
@@ -441,6 +423,7 @@ if (dropdown) {
             const data = JSON.parse(text);
 
             if (!confirm('Importing a new profile will overwrite all current data.')) return;
+
             const result = profile.importAll(data);
 
             if (result.success) {
@@ -479,6 +462,7 @@ if (dropdown) {
             const data = JSON.parse(text);
 
             if (!confirm('Importing a new profile will overwrite all current data.')) return;
+
             const result = profile.importAll(data);
 
             if (result.success) {
@@ -588,30 +572,6 @@ function getSpanId(id) {
 
     return checklistId.substring(1);
 }
-
-// function updateSpans(checklistProgress, checklistSpans, navSpans) {
-//     checklistSpans.forEach(span => {
-//         const checklistId = getSpanId(span.id);
-
-//         if (!checklistId) return;
-
-//         const progress = checklistProgress[checklistId] || { checked: 0, total: 0, done: false };
-//         const text = progress.total ? (progress.done ? 'DONE' : `${progress.checked}/${progress.total}`) : '0/0';
-
-//         const navSpan = navSpans[checklistId];
-
-//         [span, navSpan].forEach(tag => {
-//             if (!tag) return;
-
-//             tag.classList.remove('d');
-//             tag.textContent = text;
-
-//             if (progress.done) {
-//                 tag.classList.add('d');
-//             }
-//         });
-//     });
-// }
 
 function updateSpans(checklistProgress, checklistSpans, navSpans) {
     const checklistSpansLen = checklistSpans.length;
