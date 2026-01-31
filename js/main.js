@@ -589,7 +589,7 @@ function getSpanId(id) {
 
     const checklistId = id.substring(hyphenIndex + 1);
 
-    if (checklistId.length < 2 || (checklistId[0] !== 's' && checklistId[0] !== 'n')) {
+    if (checklistId.length < 2 || (checklistId[0] !== 'c' && checklistId[0] !== 'n')) {
         return '';
     }
 
@@ -663,7 +663,7 @@ function updateChecklistProgress() {
             return;
         }
 
-        const checklistSpans = document.querySelectorAll(`span[id^="${prefix}-s"]`);
+        const checklistSpans = document.querySelectorAll(`span[id^="${prefix}-c"]`);
         const checklistSpansLen = checklistSpans.length;
 
         const navSpans = {};
