@@ -223,6 +223,7 @@
           </tr>
         </tbody>
       </table>
+
       <p><strong>Vigor:</strong> Increases your HP. Getting 40 Vigor early makes the early-mid game much easier. Combined with the fact you can always start the game with a +5 Somber weapon and upgraded flasks, you can be tanking and killing most enemies with little investment. It's not recommended to level past 60 due to diminishing returns.</p>
       <p><strong>Mind:</strong> Increases your mana bar. Most builds will be fine around 20-40 Mind depending on how many spells or weapon skills you use.</p>
       <p><strong>Endurance:</strong> Increases your stamina and equip load. Level based on how much stamina and equip load your armor and weapons need. You typically want to end around 40-50 Endurance.</p>
@@ -232,6 +233,7 @@
       <p><strong>Faith:</strong> Increases your ability to cast incantations. Use the abovementioned casting tool comparator to find out which seal is best for your build.</p>
       <p><strong>Arcane:</strong> Increases the damage of arcane-scaling weapons and the amount of status buildup it inflicts. Additionally, leveling this stat increases your <a href="https://eldenring.wiki.gg/wiki/Discovery">Item Discovery</a> (1 per point, up to 99).</p>
       <p><strong>Build:</strong> If you know what equipment you'll use beforehand, you can min-max your stats and starting class using a <a href="https://eip.gg/elden-ring/build-planner/">Build Planner</a>.</p>
+
       <h4>General recommendation:</h4>
       <ul class="list">
         <li>Reach level requirements for your desired weapon, casting tool, or spell</li>
@@ -240,6 +242,7 @@
         <li>Level damage stats after you've upgraded your weapon a few times</li>
       </ul>
     </div>
+
     <h3 id="smithing-stones"><button type="button" class="col btn" aria-label="Toggle Smithing Stones" aria-controls="x2" aria-expanded="true"></button>Smithing Stones</h3>
     <div id="x2" class="tw" role="region" aria-labelledby="smithing-stones">
       <table>
@@ -329,6 +332,7 @@
           </tr>
         </tbody>
       </table>
+
       <table>
         <caption>Somber Smithing Stones</caption>
         <thead>
@@ -414,6 +418,7 @@
         </tbody>
       </table>
     </div>
+
     <h3 id="gloveworts"><button type="button" class="col btn" aria-label="Toggle Gloveworts" aria-controls="x3" aria-expanded="true"></button>Gloveworts</h3>
     <div id="x3" class="tw" role="region" aria-labelledby="gloveworts">
       <table>
@@ -500,6 +505,7 @@
           </tr>
         </tbody>
       </table>
+
       <table>
         <caption>Ghost Gloveworts</caption>
         <thead>
@@ -585,6 +591,7 @@
         </tbody>
       </table>
     </div>
+
     <h3 id="runes"><button type="button" class="col btn" aria-label="Toggle Runes" aria-controls="x4" aria-expanded="true"></button>Runes</h3>
     <div id="x4" class="tw" role="region" aria-labelledby="runes">
       <table>
@@ -682,6 +689,7 @@
           </tr>
         </tbody>
       </table>
+
       <table>
         <caption>DLC</caption>
         <thead>
@@ -738,6 +746,7 @@
         </tbody>
       </table>
     </div>
+
     <h3 id="remembrances"><button type="button" class="col btn" aria-label="Toggle Remembrances" aria-controls="x5" aria-expanded="true"></button>Remembrances</h3>
     <div id="x5" class="tw" role="region" aria-labelledby="remembrances">
       <table>
@@ -812,6 +821,7 @@
         </tbody>
       </table>
     </div>
+
     <h3 id="scadu-fragments"><button type="button" class="col btn" aria-label="Toggle Scadutree Fragments" aria-controls="x6" aria-expanded="true"></button>Scadutree Fragments</h3>
     <div id="x6" class="tw" role="region" aria-labelledby="scadu-fragments">
       <table>
@@ -969,6 +979,7 @@
         </tbody>
       </table>
     </div>
+
     <h3 id="revered-ashes"><button type="button" class="col btn" aria-label="Toggle Revered Spirit Ashes" aria-controls="x7" aria-expanded="true"></button>Revered Spirit Ashes</h3>
     <div id="x7" class="tw" role="region" aria-labelledby="revered-ashes">
       <table>
@@ -1079,8 +1090,19 @@
       </table>
     </div>
   </main>
-  <div id="scroll" aria-hidden="true"></div>
-  <button type="button" id="up" class="btn" aria-label="Scroll to top of page" aria-hidden="true"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7m-7 7V5"/></svg></button>
-  <footer>Made with ❤️ by <a href="https://contact.redmaw.dev">Redmaw</a></footer>
+
+  <footer>
+    Made with ❤️ by <a href="https://contact.redmaw.dev">Redmaw</a>
+  </footer>
+
+  <button type="button" id="up-btn" class="btn" aria-label="Scroll to top of page" aria-hidden="true">
+    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+      <path d="m5 12 7-7 7 7m-7 7V5"/>
+    </svg>
+  </button>
+
+  <!-- Hidden elements -->
+  <div id="scroll-observer" aria-hidden="true"></div>
+  <div id="announcer" aria-live="polite" aria-atomic="true"></div>
 </body>
 </html>
