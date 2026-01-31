@@ -104,6 +104,7 @@
       <p id="lead">Track all armor in inventory order, including altered variants.</p>
       <p><strong>Note:</strong> Since the categories are unnamed, they're numbered here for clarity.</p>
     </header>
+
     <nav class="toc">
       <h2>Current Progress<span id="r-sheet"></span></h2>
       <ul>
@@ -151,12 +152,26 @@
         <li><a href="#legs-10">Legs (10)</a><span id="r-n42"></span></li>
       </ul>
     </nav>
-    <search><input type="search" id="search" aria-label="Filter armor pieces" placeholder="Type to filter armor pieces…"></search>
+
+    <search>
+      <input type="search" id="search" aria-label="Filter armor pieces" placeholder="Type to filter armor pieces…">
+    </search>
+
     <div id="filter">
       <button type="button" id="expand-all" class="btn">Expand all</button>
       <button type="button" id="collapse-all" class="btn">Collapse all</button>
-      <button type="button" id="hide-btn" class="btn flex ac" aria-label="Hide checked steps" aria-pressed="false"><svg id="showSvg" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/><path d="M11.102 17.957Q6.297 17.495 3 12q3.6-6 9-6t9 6a20 20 0 0 1-.663 1.032M15 19l2 2 4-4"/></svg><svg id="hideSvg" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 9q-3.6 4-9 4T3 9m0 6 2.5-3.8M21 14.976 18.508 11.2M9 17l.5-4m5.5 4-.5-4"/></svg></button>
+      <button type="button" id="hide-btn" class="btn flex ac" aria-label="Hide checked steps" aria-pressed="false">
+        <svg id="showSvg" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M10 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/>
+          <path d="M11.102 17.957Q6.297 17.495 3 12q3.6-6 9-6t9 6a20 20 0 0 1-.663 1.032M15 19l2 2 4-4"/>
+        </svg>
+        <svg id="hideSvg" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 9q-3.6 4-9 4T3 9m0 6 2.5-3.8M21 14.976 18.508 11.2M9 17l.5-4m5.5 4-.5-4"/>
+        </svg>
+      </button>
     </div>
+
+    <!-- Form tag to turn off autocomplete for all checkboxes. See #1. -->
     <form role="none" autocomplete="off">
       <h3 id="head-1"><button type="button" class="col btn" aria-label="Toggle Head, Section 1" aria-controls="r1" aria-expanded="true"></button>Head (1)<span id="r-t1"></span></h3>
       <ul id="r1" aria-labelledby="head-1">
