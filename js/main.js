@@ -1006,22 +1006,30 @@ const shortcuts = {
     },
 
     '/': () => {
-        if (search) {
-            search.focus();
+        if (!searchInput) {
+            return;
         }
+
+        search.focus();
 
         announce('Search focused');
     },
 
     h: () => {
-        if (hideBtn) {
-            hideBtn.click();
+        if (!hideBtn) {
+            return;
         }
+
+        hideBtn.click();
 
         announce(root.classList.contains('hide-checked') ? 'Hiding checked steps' : 'Showing checked steps');
     },
 
     t: () => {
+        if (!upBtn) {
+            return;
+        }
+
         window.scrollTo({ top: 0 });
         menu.focus();
 
