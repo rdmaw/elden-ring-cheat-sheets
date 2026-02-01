@@ -305,8 +305,6 @@ function createOptions(profiles) {
 }
 
 function refreshDropdown(dropdown, activeProfile) {
-    if (!dropdown) return;
-
     const profiles = profile.list();
 
     dropdown.replaceChildren(
@@ -1039,9 +1037,9 @@ const shortcuts = {
 
 document.addEventListener('keydown', event => {
     const active = document.activeElement;
-    const formControl = active.tagName === 'INPUT';
+    const inputTag = active.tagName === 'INPUT';
 
-    if (formControl) return;
+    if (inputTag) return;
 
     const action = shortcuts[event.key.toLowerCase()];
 
