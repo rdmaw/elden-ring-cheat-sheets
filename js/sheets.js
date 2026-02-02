@@ -736,7 +736,7 @@ if (hasCheckboxes) {
 
 /* EXPAND/COLLAPSE
 ------------------ */
-const collapseBtns = document.querySelectorAll('.col');
+const collapseBtns = document.querySelectorAll('.collapse-btn');
 const expandAllBtn = document.getElementById('expand-all');
 const collapseAllBtn = document.getElementById('collapse-all');
 
