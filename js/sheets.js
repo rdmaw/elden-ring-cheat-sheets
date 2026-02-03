@@ -146,21 +146,21 @@ const profile = {
         if (!name) {
             return {
                 success: false,
-                error: "The profile name cannot be empty."
+                error: 'The profile name cannot be empty.'
             };
         }
 
         if (name.toLowerCase() === 'default') {
             return {
                 success: false,
-                error: "Can't use default as the profile name."
+                error: `Can't use default as the profile name.`
             };
         }
 
         if (profiles[name]) {
             return {
                 success: false,
-                error: "This profile already exists."
+                error: 'This profile already exists.'
             };
         }
 
@@ -179,21 +179,21 @@ const profile = {
         if (!newName || newName === oldName) {
             return {
                 success: false,
-                error: "Name unchanged, because no new name was provided."
+                error: 'Name unchanged, because no new name was provided.'
             };
         }
 
         if (newName.toLowerCase() === 'default') {
             return {
                 success: false,
-                error: "Can't use default as the profile name."
+                error: `Can't use default as the profile name.`
             };
         }
 
         if (profiles[newName]) {
             return {
                 success: false,
-                error: "This profile already exists."
+                error: 'This profile already exists.'
             };
         }
 
@@ -213,7 +213,7 @@ const profile = {
         if (!profiles[name]) {
             return {
                 success: false,
-                error: "What? This profile doesn't exist."
+                error: `What? This profile doesn't exist.`
             }
         }
 
@@ -245,7 +245,7 @@ const profile = {
         if (!profiles[name]) {
             return {
                 success: false,
-                error: "What? This profile doesn't exist."
+                error: `What? This profile doesn't exist.`
             };
         }
 
@@ -271,7 +271,7 @@ const profile = {
         if (!data?.[PROFILES_KEY]?.[DEFAULT_PROFILE]) {
             return {
                 success: false,
-                error: "Invalid data: missing default profile."
+                error: 'Invalid data: missing default profile.'
             };
         }
 
@@ -350,7 +350,7 @@ if (dropdown) {
         const currentProfile = dropdown.value;
 
         if (currentProfile === DEFAULT_PROFILE) {
-            alert("Can't edit the default profile.");
+            alert(`Can't edit the default profile.`);
 
             return;
         }
