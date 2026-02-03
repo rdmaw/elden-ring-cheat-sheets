@@ -606,21 +606,18 @@ function updateSpans(checklistProgress, checklistSpans, navSpans) {
         const progress = checklistProgress[checklistId] || { checked: 0, total: 0, done: false };
         const text = progress.total ? (progress.done ? 'DONE' : `${progress.checked}/${progress.total}`) : '0/0';
 
+        span.classList.toggle('d', progress.done);
+        span.textContent = text;
+
+        if (span.hasAttribute('role')) {
+            span.ariaLabel = progress.done ? 'Uncheck all' : 'Check all';
+        }
+
         const navSpan = navSpans[checklistId];
-        const tags = [span, navSpan];
-        const tagsLen = tags.length;
 
-        for (let j = 0; j < tagsLen; j++) {
-            const tag = tags[j];
-
-            if (!tag) continue;
-
-            tag.classList.remove('d');
-            tag.textContent = text;
-
-            if (progress.done) {
-                tag.classList.add('d');
-            }
+        if (navSpan) {
+            navSpan.classList.toggle('d', progress.done);
+            navSpan.textContent = text;
         }
     }
 }
@@ -695,7 +692,6 @@ if (hasCheckboxes) {
     refreshCheckboxUI();
 
     function setAll(checklistId, checked) {
-
         for (let i = 0; i < checkboxesLen; i++) {
             const checkbox = checkboxes[i];
             const hyphenIndex = checkbox.id.indexOf('-', 1);
@@ -713,6 +709,14 @@ if (hasCheckboxes) {
         updateChecklistProgress();
     }
 
+    function handleCheckAll(span) {
+        const checklistId = getSpanId(span.id);
+
+        if (checklistId) {
+            setAll(checklistId, !span.classList.contains('d'));
+        }
+    }
+
     document.addEventListener('change', event => {
         if (event.target.matches('input[type="checkbox"]')) {
             const checkbox = event.target;
@@ -725,11 +729,17 @@ if (hasCheckboxes) {
     });
 
     document.addEventListener('click', event => {
-        if (event.target.matches('.btn[data-checklist][data-action]')) {
-            const checklist = event.target.getAttribute('data-checklist');
-            const shouldCheck = event.target.getAttribute('data-action') === 'check';
+        if (event.target.matches('.check-all')) {
+            handleCheckAll(event.target);
+        }
+    });
 
-            setAll(checklist, shouldCheck);
+    document.addEventListener('keydown', event => {
+        const target = event.target;
+
+        if ((event.key === 'Enter' || event.key === '') && target.matches('.check-all')) {
+            event.preventDefault();
+            handleCheckAll(target);
         }
     });
 }
