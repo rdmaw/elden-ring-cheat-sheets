@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>Achievements</title>
-  <meta name="color scheme" content="light dark">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ab9c84" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#2f2d2d" media="(prefers-color-scheme: dark)">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Use this cheat sheet to track all 42 Elden Ring achievements as you play, including the required legendary items.">
   <meta property="og:type" content="website">
@@ -17,29 +19,560 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://eldenring.redmaw.dev/sheets/achievements">
-  <script>const t=document.documentElement,e=localStorage,a=e.getItem("theme"),n=e.getItem("current")||"default",d=JSON.parse(e.getItem("er")||"{}")[n]?.col,m=window.matchMedia("(prefers-color-scheme: dark)").matches;if(null===a||"system"===a?t.setAttribute("data-theme",m?"dark":"light"):"dark"===a?t.setAttribute("data-theme","dark"):t.setAttribute("data-theme","light"),d){const t=Object.keys(d);if(t.length){const e=document.createElement("style");e.dataset.c="",e.textContent=`#${t.join(",#")}{display:none!important}`,document.head.appendChild(e)}}</script>
-  <style>:root{--b:#fff9eb;--t:#070403;--h:#423124;--c1:#ad9c7f;--c2:#4a3728;--c3:#e6dbcaf2;--c4:#eadccd33;--r:#c00;--a:#0b4fd5;--x:#c74a23;--d:#2d806e;--s:#fff;--k:#efefef;--kt:#2c1810;--kh:#d2d2d2;--r1:.5rem;--r2:.75rem;--r3:1rem;--r4:1.25rem;--r5:1.75rem}[data-theme=dark]{color-scheme:dark;--b:#1d1f20;--t:#ededed;--h:#f8f7f7;--c1:#303030;--c2:gray;--c3:#404040;--c4:#1a1d1e;--r:#e15668;--a:#5c88c1;--x:#d66b79;--d:#1a9e86;--s:#3b3b3b;--k:#404040;--kt:#f8f7f7;--kh:#222426}*,:before,:after{box-sizing:border-box;margin:0;padding:0}html{-webkit-text-size-adjust:none;-moz-text-size-adjust:none;text-size-adjust:none;font-family:system-ui,sans-serif;font-size:clamp(15.05px,14.392px + .2056vw,17.2px)}input,button,select{font-family:inherit;font-size:inherit}body{color:var(--t);background-color:var(--b)}header{margin:2.5rem 0}h1{font-size:clamp(1.5rem,1.6rem + 1vw,2.3rem)}.lead{margin:var(--r2)0 var(--r5)0;font-size:clamp(1rem,1.1rem + .4vw,1.4rem);font-weight:300}h2,h3{margin:var(--r5)0 var(--r1);font-size:1.5rem}h2+h3,p{margin-top:var(--r2)}ul{list-style-type:none}li ul{padding-left:var(--r5)}a{color:var(--a);text-decoration:none}svg{display:block}.btn{padding:.25rem var(--r1);height:2rem;color:var(--kt);background-color:var(--k);border:1px solid var(--c2);border-radius:5px}#search,select{width:100%;height:2.375rem;margin-bottom:var(--r2);color:var(--kt);background-color:var(--s);border:1px solid gray;border-radius:5px;padding:0 .5em}nav{border-bottom:2px solid var(--c2)}.nav{width:100%;min-height:3.75rem;margin:0 var(--r1);align-items:center}.nav ul{gap:var(--r1);margin-left:auto}.nav a{padding:0 var(--r1);align-items:center;height:2.7rem;display:inline-flex}.nav svg{width:1.7rem;height:1.7rem}#menu{background-color:var(--b);border:2px solid var(--c2);border-radius:5px;width:3.4375rem;height:2.8rem}#menu svg{width:2.125rem;height:2.125rem}.sidebar{background-color:var(--b);border:2px solid var(--c2);z-index:2;border-left-width:0;border-radius:0 10px 10px 0;flex-direction:column;width:17rem;max-height:calc(100svh - .875rem);position:fixed;top:.4375rem;transform:translate(-103%)}.sidebar[aria-hidden=false]{transform:translate(0)}main{width:min(100% - var(--r4),87rem);margin-inline:auto}kbd{color:var(--kt);background-color:var(--k);border:1px solid var(--c2);box-shadow:0 1px 0 var(--c2);border-radius:3px;padding:.15em .45em;font-size:.9rem}.filter{gap:var(--r1);flex-wrap:wrap;display:flex}.toc{margin-bottom:var(--r5);background:0 0;border-bottom:none}nav span,h2 span,h3 span{margin-left:var(--r1);color:var(--b);background-color:var(--x);border-radius:.25em;padding:0 .25em .065em;font-size:.9em}.d{background-color:var(--d)}#hide svg{width:1.5rem;height:1.5rem}#showSvg,.hide #hideSvg{display:block}#hideSvg,.hide #showSvg{display:none}.col{margin-right:var(--r1);vertical-align:text-bottom;flex-shrink:0;width:2.2rem;height:1.75rem;position:relative}.col:before{content:"";border:solid var(--h);border-width:0 3px 3px 0;width:10px;height:10px;margin:auto;position:absolute;inset:0;transform:translateY(-2px)rotate(45deg)}.col[aria-expanded=true]:before{transform:translateY(2px)rotate(-135deg)}li{position:relative}.i{margin:.16rem 0 .16rem .92rem}label{padding:.16rem 0 .16rem 2.75rem;display:inline-block}input[type=checkbox]{left:var(--r3);width:20px;height:20px;accent-color:var(--d);position:absolute;top:.4rem}.c>label{text-decoration:line-through}hr{text-align:center;border:0;width:15rem;margin:.3rem 0;position:relative}hr:before{content:"";background:linear-gradient(to right,transparent,var(--h),transparent);width:100%;height:1px;position:absolute;top:50%;left:0}hr:after{content:attr(data-content);color:var(--h);background:var(--b);padding:0 1rem;position:relative}#scroll{pointer-events:none;width:1px;height:1px;position:absolute;top:500px}#up{right:var(--r4);bottom:var(--r4);padding:var(--r1);border:2px solid var(--c2);opacity:0;border-radius:50%;height:auto;position:fixed;transform:translateY(100px)}.f,.hide .c>label,.hide .c>input[type=checkbox]{display:none!important}.flex{display:flex}.ac{align-items:center}.jc{justify-content:center}.r{color:var(--r)}.g{color:var(--d)}header,footer{text-align:center}html,label,.sh h2,.toc{line-height:1.6}h3,nav a{line-height:1.15}.sh h2,h2,h3,nav a,nav span,strong{font-weight:600}nav,.sh{background-color:var(--c1)}h1,h2,h3,nav a,#menu svg,.close svg{color:var(--h)}form>ul,.sidebar,.toc{contain:layout}footer{padding:var(--r4)0 var(--r1);font-size:.8rem}</style>
+  <link rel="preload" href="/fonts/sheets.woff2" as="font" type="font/woff2" crossorigin>
+  <script>const t=document.documentElement,e=localStorage,a=e.getItem('theme'),n=e.getItem('active-profile')||'default',d=JSON.parse(e.getItem('eldenring-profiles')||'{}')[n]?.collapsed,m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(null===a||'system'===a?t.setAttribute('data-theme',m?'dark':'light'):'dark'===a?t.setAttribute('data-theme','dark'):t.setAttribute('data-theme','light'),d){const t=Object.keys(d);if(t.length){const e=document.createElement('style');e.id='fouc',e.textContent=`#${t.join(',#')}{display:none!important}`,document.head.appendChild(e)}}</script>
+  <!-- <style>:root{--b:#fff9eb;--t:#070403;--h:#423124;--c1:#ad9c7f;--c2:#4a3728;--c3:#e6dbcaf2;--c4:#eadccd33;--r:#c00;--a:#0b4fd5;--x:#c74a23;--d:#2d806e;--s:#fff;--k:#efefef;--kt:#2c1810;--kh:#d2d2d2;--r1:.5rem;--r2:.75rem;--r3:1rem;--r4:1.25rem;--r5:1.75rem}[data-theme=dark]{color-scheme:dark;--b:#1d1f20;--t:#ededed;--h:#f8f7f7;--c1:#303030;--c2:gray;--c3:#404040;--c4:#1a1d1e;--r:#e15668;--a:#5c88c1;--x:#d66b79;--d:#1a9e86;--s:#3b3b3b;--k:#404040;--kt:#f8f7f7;--kh:#222426}*,:before,:after{box-sizing:border-box;margin:0;padding:0}html{-webkit-text-size-adjust:none;-moz-text-size-adjust:none;text-size-adjust:none;font-family:system-ui,sans-serif;font-size:clamp(15.05px,14.392px + .2056vw,17.2px)}input,button,select{font-family:inherit;font-size:inherit}body{color:var(--t);background-color:var(--b)}header{margin:2.5rem 0}h1{font-size:clamp(1.5rem,1.6rem + 1vw,2.3rem)}.lead{margin:var(--r2)0 var(--r5)0;font-size:clamp(1rem,1.1rem + .4vw,1.4rem);font-weight:300}h2,h3{margin:var(--r5)0 var(--r1);font-size:1.5rem}h2+h3,p{margin-top:var(--r2)}ul{list-style-type:none}li ul{padding-left:var(--r5)}a{color:var(--a);text-decoration:none}svg{display:block}.btn{padding:.25rem var(--r1);height:2rem;color:var(--kt);background-color:var(--k);border:1px solid var(--c2);border-radius:5px}#search,select{width:100%;height:2.375rem;margin-bottom:var(--r2);color:var(--kt);background-color:var(--s);border:1px solid gray;border-radius:5px;padding:0 .5em}nav{border-bottom:2px solid var(--c2)}.nav{width:100%;min-height:3.75rem;margin:0 var(--r1);align-items:center}.nav ul{gap:var(--r1);margin-left:auto}.nav a{padding:0 var(--r1);align-items:center;height:2.7rem;display:inline-flex}.nav svg{width:1.7rem;height:1.7rem}#menu{background-color:var(--b);border:2px solid var(--c2);border-radius:5px;width:3.4375rem;height:2.8rem}#menu svg{width:2.125rem;height:2.125rem}#sidebar{background-color:var(--b);border:2px solid var(--c2);z-index:2;border-left-width:0;border-radius:0 10px 10px 0;flex-direction:column;width:17rem;max-height:calc(100svh - .875rem);position:fixed;top:.4375rem;transform:translate(-103%)}#sidebar[aria-hidden=false]{transform:translate(0)}main{width:min(100% - var(--r4),87rem);margin-inline:auto}kbd{color:var(--kt);background-color:var(--k);border:1px solid var(--c2);box-shadow:0 1px 0 var(--c2);border-radius:3px;padding:.15em .45em;font-size:.9rem}.filter{gap:var(--r1);flex-wrap:wrap;display:flex}.toc{margin-bottom:var(--r5);background:0 0;border-bottom:none}nav span,h2 span,h3 span{margin-left:var(--r1);color:var(--b);background-color:var(--x);border-radius:.25em;padding:0 .25em .065em;font-size:.9em}.d{background-color:var(--d)}#hide-btn svg{width:1.5rem;height:1.5rem}#showSvg,.hide-checked #hideSvg{display:block}#hideSvg,.hide-checked #showSvg{display:none}.col{margin-right:var(--r1);vertical-align:text-bottom;flex-shrink:0;width:2.2rem;height:1.75rem;position:relative}.col:before{content:"";border:solid var(--h);border-width:0 3px 3px 0;width:10px;height:10px;margin:auto;position:absolute;inset:0;transform:translateY(-2px)rotate(45deg)}.col[aria-expanded=true]:before{transform:translateY(2px)rotate(-135deg)}li{position:relative}.i{margin:.16rem 0 .16rem .92rem}label{padding:.16rem 0 .16rem 2.75rem;display:inline-block}input[type=checkbox]{left:var(--r3);width:20px;height:20px;accent-color:var(--d);position:absolute;top:.4rem}.c > label{text-decoration:line-through}hr{text-align:center;border:0;width:15rem;margin:.3rem 0;position:relative}hr:before{content:"";background:linear-gradient(to right,transparent,var(--h),transparent);width:100%;height:1px;position:absolute;top:50%;left:0}hr:after{content:attr(data-content);color:var(--h);background:var(--b);padding:0 1rem;position:relative}#scroll-observer{pointer-events:none;width:1px;height:1px;position:absolute;top:500px}#up-btn{right:var(--r4);bottom:var(--r4);padding:var(--r1);border:2px solid var(--c2);opacity:0;border-radius:50%;height:auto;position:fixed;transform:translateY(100px)}.f,.hide-checked .c label,.hide-checked .c input[type=checkbox]{display:none!important}.flex{display:flex}.ac{align-items:center}.jc{justify-content:center}.r{color:var(--r)}.g{color:var(--d)}header,footer{text-align:center}html,label,.sh h2,.toc{line-height:1.6}h3,nav a{line-height:1.15}.sh h2,h2,h3,nav a,nav span,strong{font-weight:600}nav,.sh{background-color:var(--c1)}h1,h2,h3,nav a,#menu svg,.close svg{color:var(--h)}form>ul,#sidebar,.toc{contain:layout}footer{padding:var(--r4)0 var(--r1);font-size:.8rem}</style> -->
+  <style>
+
+@font-face {
+  font-family: Sheets;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/sheets.woff2") format("woff2");
+}
+
+:root {
+  color-scheme: light dark;
+  font-family: Sheets, system-ui, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1;
+  --r1: 0.5rem;
+  --r2: 0.75rem;
+  --r3: 1rem;
+  --r4: 1.25rem;
+  --r5: 1.75rem;
+}
+
+[data-theme=light] {
+  color-scheme: light;
+  --background: oklch(0.99 0.012 80);
+  --search: oklch(from var(--background) l 0 h);
+
+  --heading: oklch(0.29 0.00979 80);
+  --text: oklch(from var(--background) 0.2 0.005 h);
+
+  --nav: oklch(0.7 0.038 80);
+  --nav-text: oklch(from var(--nav) calc(l - 0.4) c h);
+  --nav-border: oklch(from var(--nav-text) l c h);
+  --sidebar-hover: oklch(from var(--nav) calc(l + 0.15) calc(c - 0.008) h / 0.6);
+
+  --progress-text: oklch(from var(--background) l c h);
+  --progress: oklch(0.54 0.14 50);
+  --done: oklch(0.54 0.14 160);
+  --link: oklch(0.54 0.21 260);
+  --red: oklch(0.54 0.21 40);
+
+  --button: oklch(from var(--background) calc(l - 0.03) calc(c - 0.010) h);
+  --button-text: oklch(from var(--button) 0.1 c h);
+  --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
+}
+
+[data-theme=dark] {
+  color-scheme: dark;
+  --background: oklch(0.23 0.002 200);
+  --search: oklch(from var(--background) calc(l + 0.09) c h);
+
+  --heading: oklch(from var(--background) 0.92 c h);
+  --text: oklch(from var(--background) 0.93 c h);
+
+  --nav: oklch(0.3 0.002 50);
+  --nav-text: oklch(from var(--nav) calc(l + 0.8) c h);
+  --nav-border: oklch(from var(--nav) calc(l + 0.3) c h);
+  --sidebar-hover: oklch(from var(--nav) calc(l + 0.05) c h / 0.6);
+
+  --progress-text: oklch(from var(--text) l c h);
+  --progress: oklch(0.48 0.1 25);
+  --done: oklch(0.48 0.1 155);
+  --link: oklch(0.612 0.1 250);
+  --red: oklch(0.63 0.15 25);
+
+  --button: oklch(from var(--nav) calc(l + 0.08) c h);
+  --button-text: oklch(from var(--button) calc(l + 0.6) c h);
+  --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
+}
+
+:focus-visible {
+  outline: 2px solid var(--nav-text);
+  border-radius: 1px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: clamp(1rem, 0.958rem + 0.185vi, 1.125rem);
+  font-weight: 400;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  text-wrap: pretty;
+}
+
+/*
+@media (min-width: 600px) {
+  html {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1200px) {
+  html {
+    font-size: 1.1rem;
+  }
+} */
+
+body {
+  color: var(--text);
+  background-color: var(--background);
+}
+
+#skip-link {
+  position: absolute;
+  transform: translateY(-120%);
+}
+
+/* --> */
+
+h1 {
+  font-size: clamp(1.5rem, 1.6rem + 1vw, 2.3rem);
+}
+
+/* kan flytte text-wrap balance til h3 om jeg lager enkel selector */
+h2,
+h3 {
+  font-size: 1.5rem;
+  margin: var(--r5) 0 var(--r1);
+  text-wrap: balance;
+}
+
+/* h2, */
+p {
+  margin-top: var(--r2);
+}
+
+#lead {
+  font-size: clamp(1rem, 1.1rem + .4vw, 1.4rem);
+  font-weight: 250;
+  margin: var(--r2) 0 var(--r5) 0;
+}
+
+header {
+  margin: 2.5rem 0;
+}
+
+nav {
+  border-bottom: 2px solid var(--nav-border);
+}
+
+.nav {
+  width: 100%;
+  min-height: 3.75rem;
+  margin: 0 var(--r1);
+  align-items: center;
+}
+
+.nav ul {
+  margin-left: auto;
+  gap: var(--r1);
+}
+
+.nav a {
+  display: inline-flex;
+  padding: 0 var(--r1);
+  align-items: center;
+  height: 2.7rem;
+}
+
+.nav svg {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+#menu {
+  width: 3.4375rem;
+  height: 2.8rem;
+  background-color: var(--background);
+  border: 2px solid var(--nav-border);
+  border-radius: 5px;
+}
+
+#menu svg {
+  width: 2.125rem;
+  height: 2.125rem;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0.4375rem;
+  width: 17rem;
+  max-height: calc(100svh - 0.875rem);
+  flex-direction: column;
+  background-color: var(--background);
+  border: 2px solid var(--nav-border);
+  border-left-width: 0;
+  border-radius: 0 10px 10px 0;
+  transform: translateX(-103%);
+  z-index: 2;
+}
+
+#sidebar[aria-hidden=false] {
+  transform: translateX(0);
+}
+
+input,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.check-all {
+  border: none;
+  font: inherit;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li ul {
+  padding-left: var(--r5);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+svg {
+  display: block;
+}
+
+.btn {
+  padding: 0.25rem var(--r1);
+  height: 2rem;
+  color: var(--button-text);
+  background-color: var(--button);
+  border: 1px solid var(--nav-border);
+  border-radius: 5px;
+}
+
+#search,
+select {
+  width: 100%;
+  height: 2.375rem;
+  margin-bottom: var(--r2);
+  padding: 0 0.5em;
+  color: oklch(from var(--text) l c h);
+  background-color: var(--search);
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+main {
+  width: min(100% - 7vi, 70rem);
+  margin-inline: auto;
+}
+
+kbd {
+  font-size: 0.9rem;
+  padding: 0.15em 0.45em;
+  color: var(--button-text);
+  background-color: var(--button);
+  border: 1px solid var(--nav-text);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 var(--nav-text);
+}
+
+#filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--r1);
+}
+
+.toc {
+  margin-bottom: var(--r5);
+  background: none;
+  border-bottom: none;
+}
+
+nav span,
+h2 span,
+.check-all {
+  margin-left: var(--r1);
+  padding: 0.1em 0.25em;
+  color: var(--progress-text);
+  background-color: var(--progress);
+  border-radius: 5px;
+  font-size: 0.9em;
+  font-weight: 450;
+}
+
+.d,
+button.d {
+  background-color: var(--done);
+}
+
+#hide-btn svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#showSvg,
+.hide-checked #hideSvg {
+  display: block;
+}
+
+#hideSvg,
+.hide-checked #showSvg {
+  display: none;
+}
+
+.collapse-btn {
+  position: relative;
+  margin-right: var(--r1);
+  width: 2.2rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  vertical-align: text-bottom;
+}
+
+.collapse-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  border: solid var(--heading);
+  border-width: 0 3px 3px 0;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.collapse-btn[aria-expanded=true]::before {
+  transform: translateY(2px) rotate(-135deg);
+}
+
+li {
+  position: relative;
+}
+
+.i {
+  margin: 0.16rem 0 0.16rem 0.92rem;
+}
+
+label {
+  display: inline-block;
+  padding: 0.16rem 0 0.16rem 2.75rem;
+}
+
+input[type=checkbox] {
+  position: absolute;
+  left: var(--r3);
+  top: 0.35rem;
+  margin: 0;
+  width: 15px;
+  height: 15px;
+  accent-color: var(--done);
+}
+
+
+@media (min-width: 600px) {
+  input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+  }
+}
+@media (min-width: 1200px) {
+  input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.c {
+  text-decoration: line-through;
+}
+
+hr {
+  position: relative;
+  margin: 0.3rem 0;
+  width: 15rem;
+  border: 0;
+  text-align: center;
+}
+
+hr::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--heading), transparent);
+}
+
+hr::after {
+  content: attr(data-content);
+  position: relative;
+  padding: 0 1rem;
+  color: var(--heading);
+  background: var(--background);
+}
+
+#scroll-observer {
+  position: absolute;
+  top: 18.88rem;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+#up-btn {
+  position: fixed;
+  right: var(--r4);
+  bottom: var(--r4);
+  padding: var(--r1);
+  height: auto;
+  border: 2px solid var(--nav-border);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+.f,
+.hide-checked .c {
+  display: none !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.ac {
+  align-items: center;
+}
+
+.jc {
+  justify-content: center;
+}
+
+.red {
+  color: var(--red);
+}
+
+.g {
+  color: var(--done);
+}
+
+header,
+footer {
+  text-align: center;
+}
+
+html,
+label,
+.sh h2,
+.toc {
+  line-height: 1.6;
+}
+
+h3,
+nav a {
+  line-height: 1.15;
+}
+
+.sh h2,
+h2,
+h3,
+nav a,
+strong {
+  font-weight: 500;
+}
+
+nav,
+.sh {
+  background-color: var(--nav);
+}
+
+h1 {
+  color: var(--heading);
+}
+
+#sh2, .nav a, #menu svg, .close svg {
+  color: var(--nav-text);
+}
+
+.sheets a, .toc a {
+  color: var(--text);
+}
+
+form>ul,
+#sidebar,
+.toc {
+  contain: layout;
+}
+
+footer {
+  font-size: 0.8rem;
+  padding: var(--r4) 0 var(--r1);
+}
+
+footer a {
+  color: var(--text);
+}
+  </style>
   <!-- <link rel="preload" href="/css/main.2fcf88d44c.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/main.2fcf88d44c.css"></noscript>
   <script defer src="/js/main.20f6134736.js" integrity="sha384-TIElVCChL9uXtQ+9F8qD9d/WXQEu4RZnJgVOOUSkTRR92b9OTa1PCfTbvp81L5+E"></script>
   <script data-goatcounter="https://eldenring.goatcounter.com/count" async src="/js/goatcounter.js" integrity="sha384-IgVjbgOyqXPwl/Z6Wl1VLustQDHS2hF7lXRmQCpY9KgmJ4MBKHI6RFP/p9azVa4x"></script> -->
   <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <script defer src="/js/main.js"></script>
+  <script defer src="/js/sheets.js"></script>
 </head>
 <body>
+  <a id="skip-link" href="#misc">Skip to main content</a>
+
   <nav class="flex" aria-label="Global navigation">
     <div class="nav flex">
-      <button type="button" id="menu" class="flex ac jc" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false"><svg aria-hidden="true" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+      <button type="button" id="menu" class="flex ac jc" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
+        <svg aria-hidden="true" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
       <ul class="flex">
-        <li><a href="/"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01"/></svg>&nbsp;FAQ</a></li>
-        <li><a href="/options"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>&nbsp;Options</a></li>
+        <li>
+          <a href="/">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01"/>
+            </svg>
+            &nbsp;FAQ
+          </a>
+        </li>
+        <li>
+          <a href="/options">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            &nbsp;Options
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
-  <nav id="sidebar" class="sidebar flex" aria-labelledby="sh2" aria-hidden="true" inert>
+
+  <nav id="sidebar" class="flex" aria-labelledby="sh2" aria-hidden="true" inert>
     <div class="sh flex jc ac">
       <h2 id="sh2">Sheets</h2>
-      <button type="button" class="close btn flex ac" aria-label="Close sidebar" aria-controls="sidebar"><svg aria-hidden="true" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <button type="button" class="close btn flex ac" aria-label="Close sidebar" aria-controls="sidebar">
+        <svg aria-hidden="true" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
     </div>
     <ul class="sheets">
       <li><a href="/sheets/walkthrough">Walkthrough</a></li>
@@ -60,131 +593,165 @@
       <li><a href="/sheets/resources">Resources</a></li>
     </ul>
   </nav>
+
   <main>
     <header>
       <h1>Achievements</h1>
-      <p class="lead">Track all 42 achievements and required legendary equipment in progression order.</p>
+      <p id="lead">Track all 42 achievements and required legendary equipment in progression order.</p>
     </header>
+
     <nav class="toc">
-      <h2>Current Progress<span id="a-ot"></span></h2>
+      <h2>Current Progress<span id="a-sheet">0/0</span></h2>
       <ul>
-        <li><a href="#misc">Miscellaneous</a><span id="a-nt1"></span></li>
-        <li><a href="#equipment">Legendary Equipment</a><span id="a-nt2"></span></li>
-        <li><a href="#bosses">Bosses</a><span id="a-nt3"></span></li>
-        <li><a href="#shardbearers">Shardbearers</a><span id="a-nt4"></span></li>
-        <li><a href="#endings">Endings</a><span id="a-nt5"></span></li>
+        <li><a href="#misc">Miscellaneous</a><span id="a-n1">0/0</span></li>
+        <li><a href="#bosses">Bosses</a><span id="a-n2">0/0</span></li>
+        <li><a href="#shardbearers">Shardbearers</a><span id="a-n3">0/0</span></li>
+        <li><a href="#endings">Endings</a><span id="a-n4">0/0</span></li>
+        <li><a href="#weapons">Legendary Weapons</a><span id="a-n5">0/0</span></li>
+        <li><a href="#ashes">Legendary Ashes</a><span id="a-n6">0/0</span></li>
+        <li><a href="#spells">Legendary Spells</a><span id="a-n7">0/0</span></li>
+        <li><a href="#talismans">Legendary Talismans</a><span id="a-n8">0/0</span></li>
       </ul>
     </nav>
-    <search><input type="search" id="search" aria-label="Filter achievements" placeholder="Type to filter achievements…"></search>
-    <div class="filter">
-      <button type="button" id="exp-a" class="btn">Expand all</button>
-      <button type="button" id="col-a" class="btn">Collapse all</button>
-      <button type="button" id="hide" class="btn flex ac" aria-label="Hide completed steps" aria-pressed="false"><svg id="showSvg" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/><path d="M11.102 17.957Q6.297 17.495 3 12q3.6-6 9-6t9 6a20 20 0 0 1-.663 1.032M15 19l2 2 4-4"/></svg><svg id="hideSvg" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 9q-3.6 4-9 4T3 9m0 6 2.5-3.8M21 14.976 18.508 11.2M9 17l.5-4m5.5 4-.5-4"/></svg></button>
+
+    <search>
+      <input type="search" id="search" aria-label="Filter achievements" placeholder="Type to filter achievements…">
+    </search>
+
+    <div id="filter">
+      <button type="button" id="expand-all" class="btn">Expand all</button>
+      <button type="button" id="collapse-all" class="btn">Collapse all</button>
+      <button type="button" id="hide-btn" class="btn flex ac" aria-label="Hide checked steps" aria-pressed="false">
+        <svg id="showSvg" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M10 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/>
+          <path d="M11.102 17.957Q6.297 17.495 3 12q3.6-6 9-6t9 6a20 20 0 0 1-.663 1.032M15 19l2 2 4-4"/>
+        </svg>
+        <svg id="hideSvg" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 9q-3.6 4-9 4T3 9m0 6 2.5-3.8M21 14.976 18.508 11.2M9 17l.5-4m5.5 4-.5-4"/>
+        </svg>
+      </button>
     </div>
+
+    <!-- Form tag to turn off autocomplete for all checkboxes. See #1. -->
     <form role="none" autocomplete="off">
-      <h3 id="misc"><button type="button" class="col btn" aria-label="Toggle Miscellaneous" aria-controls="a1" aria-expanded="true"></button>Miscellaneous<span id="a-t1"></span></h3>
-      <ul id="a1" aria-labelledby="misc">
-        <li><label><input type="checkbox" id="a1-1"><a href="https://eldenring.wiki.gg/wiki/Roundtable_Hold_(Achievement/Trophy)" class="h">Roundtable Hold</a>: Be invited to Roundtable Hold by <a href="https://eldenring.wiki.gg/wiki/Melina">Melina</a>, either after defeating <a href="https://eldenring.wiki.gg/wiki/Margit,_the_Fell_Omen" class="r">Margit</a> or by resting at a grace outside of Limgrave and Weeping Peninsula.</label></li>
-        <li><label><input type="checkbox" id="a1-2"><a href="https://eldenring.wiki.gg/wiki/Great_Rune_(Achievement/Trophy)" class="h">Great Rune</a>: Restore the power of a Great Rune at the top of its divine tower.</label></li>
-        <li><label><input type="checkbox" id="a1-3"><a href="https://eldenring.wiki.gg/wiki/God-Slaying_Armament_(Achievement/Trophy)" class="h">God-Slaying Armament</a>: Upgrade any weapon to max level (Somber +10, Regular +25). Somber weapons can be done sooner by using the Pureblood Knight's Medal to access Mohgwyn's Palace early. Otherwise, you'll likely finish during the Consecrated Snowfields or Farum Azula, where you get the remaining Smithing 8's.</label></li>
-        <li><label><input type="checkbox" id="a1-4"><a href="https://eldenring.wiki.gg/wiki/Erdtree_Aflame_(Achievement/Trophy)" class="h">Erdtree Aflame</a>: Talk to Melina while resting at the <a href="https://mapgenie.io/elden-ring/maps/the-lands-between?locationIds=166544">Forge of the Giants</a> grace and tell her that you're ready to burn the Erdtree.</label></li>
-        <li><label><input type="checkbox" id="a1-5"><a href="https://eldenring.wiki.gg/wiki/Elden_Ring_(Achievement/Trophy)" class="h">Elden Ring</a>: Obtain all achievements.</label></li>
+      <h3 id="misc"><button type="button" class="collapse-btn btn" aria-label="Toggle Miscellaneous" aria-controls="a1" aria-expanded="true"></button>Miscellaneous<button type="button" id="a-c1" class="check-all" aria-label="Check all">0/0</button></h3>
+      <ul id="a1">
+        <li><label><input type="checkbox" id="a1-1"><a href="https://eldenring.wiki.gg/wiki/Roundtable_Hold_(Achievement/Trophy)">Roundtable Hold</a>: Be invited to Roundtable Hold by <a href="https://eldenring.wiki.gg/wiki/Melina">Melina</a>, either after defeating <a href="https://eldenring.wiki.gg/wiki/Margit,_the_Fell_Omen" class="red">Margit</a> or by resting at a grace outside of Limgrave and Weeping Peninsula.</label></li>
+        <li><label><input type="checkbox" id="a1-2"><a href="https://eldenring.wiki.gg/wiki/Great_Rune_(Achievement/Trophy)">Great Rune</a>: Restore the power of a Great Rune at the top of its divine tower.</label></li>
+        <li><label><input type="checkbox" id="a1-3"><a href="https://eldenring.wiki.gg/wiki/God-Slaying_Armament_(Achievement/Trophy)">God-Slaying Armament</a>: Upgrade any weapon to max level (Somber +10, Regular +25). Somber weapons can be done sooner by using the Pureblood Knight's Medal to access Mohgwyn's Palace early. Otherwise, you'll likely finish during the Consecrated Snowfields or Farum Azula, where you get the remaining Smithing 8's.</label></li>
+        <li><label><input type="checkbox" id="a1-4"><a href="https://eldenring.wiki.gg/wiki/Erdtree_Aflame_(Achievement/Trophy)">Erdtree Aflame</a>: Talk to Melina while resting at the <a href="https://mapgenie.io/elden-ring/maps/the-lands-between?locationIds=166544">Forge of the Giants</a> grace and tell her that you're ready to burn the Erdtree.</label></li>
+        <li><label><input type="checkbox" id="a1-5"><strong class="red">MISSABLE -</strong> <a href="https://eldenring.wiki.gg/wiki/Legendary_Armaments_(Achievement/Trophy)">Legendary Armaments</a>: Collect all legendary weapons to obtain.</label></li>
+        <li><label><input type="checkbox" id="a1-6"><a href="https://eldenring.wiki.gg/wiki/Legendary_Ashen_Remains_(Achievement/Trophy)">Legendary Ashen Remains</a>: Collect all legendary ashes to obtain.</label></li>
+        <li><label><input type="checkbox" id="a1-7"><a href="https://eldenring.wiki.gg/wiki/Legendary_Sorceries_and_Incantations_(Achievement/Trophy)">Legendary Sorceries and Incantations</a>: Collect all legendary spells to obtain.</label></li>
+        <li><label><input type="checkbox" id="a1-8"><a href="https://eldenring.wiki.gg/wiki/Legendary_Talismans_(Achievement/Trophy)">Legendary Talismans</a>: Collect all legendary talismans to obtain.</label></li>
+        <li><label><input type="checkbox" id="a1-9"><a href="https://eldenring.wiki.gg/wiki/Elden_Ring_(Achievement/Trophy)">Elden Ring</a>: Obtain all achievements.</label></li>
       </ul>
-      <h3 id="equipment"><button type="button" class="col btn" aria-label="Toggle Legendary Equipment" aria-controls="a2" aria-expanded="true"></button>Legendary Equipment<span id="a-t2"></span></h3>
-      <ul id="a2" aria-labelledby="equipment">
-        <li><label><input type="checkbox" id="a2-1"><strong class="r">MISSABLE -</strong> <a href="https://eldenring.wiki.gg/wiki/Legendary_Armaments_(Achievement/Trophy)" class="h">Legendary Armaments</a>: Collect the weapons below to obtain.</label>
-          <ul>
-            <li><label><input type="checkbox" id="a2-2"><a href="https://eldenring.wiki.gg/wiki/Grafted_Blade_Greatsword" class="h">Grafted Blade Greatsword</a>: Kill Leonine Misbegotten at the end of Castle Morne.</label></li>
-            <li><label><input type="checkbox" id="a2-3"><a href="https://eldenring.wiki.gg/wiki/Sword_of_Night_and_Flame" class="h">Sword of Night and Flame</a>: Found in a chest in Caria Manor.</label></li>
-            <li><label><input type="checkbox" id="a2-4"><a href="https://eldenring.wiki.gg/wiki/Ruins_Greatsword" class="h">Ruins Greatsword</a>: Kill the Misbegotten Warrior & Crucible Knight in Redmane Castle.</label></li>
-            <li><label><input type="checkbox" id="a2-5"><a href="https://eldenring.wiki.gg/wiki/Dark_Moon_Greatsword" class="h">Dark Moon Greatsword</a>: Awarded upon completing <a href="/sheets/questlines#ranni">Ranni</a>'s questline.</label></li>
-            <li><label><input type="checkbox" id="a2-6"><a href="https://eldenring.wiki.gg/wiki/Marais_Executioner%27s_Sword" class="h">Marais Executioner's Sword</a>: Kill Elemer of the Briar in The Shaded Castle.</label></li>
-            <li><label><input type="checkbox" id="a2-7"><strong class="r">MISSABLE -</strong> <a href="https://eldenring.wiki.gg/wiki/Bolt_of_Gransax" class="h">Bolt of Gransax</a>: On top of the giant spear in Leyndell (gone after killing Maliketh).</label></li>
-            <li><label><input type="checkbox" id="a2-8"><a href="https://eldenring.wiki.gg/wiki/Eclipse_Shotel" class="h">Eclipse Shotel</a>: Found inside Church of the Eclipse in Castle Sol.</label></li>
-            <li><label><input type="checkbox" id="a2-9"><a href="https://eldenring.wiki.gg/wiki/Golden_Order_Greatsword" class="h">Golden Order Greatsword</a>: Kill the Misbegotten Crusader in Cave of the Forlorn.</label></li>
-            <li><label><input type="checkbox" id="a2-10"><a href="https://eldenring.wiki.gg/wiki/Devourer%27s_Scepter" class="h">Devourer's Scepter</a>: Defeat <a href="https://eldenring.wiki.gg/wiki/Knight_Bernahl">Bernahl</a>'s invasion on a bridge in Crumbling Farum Azula. (also obtained if you kill him at Warmaster's Shack, though not recommended)</label></li>
-          </ul>
-        </li>
-        <li><label><input type="checkbox" id="a2-11"><a href="https://eldenring.wiki.gg/wiki/Legendary_Sorceries_and_Incantations_(Achievement/Trophy)" class="h">Legendary Sorceries and Incantations</a>: Collect the spells below to obtain.</label>
-          <ul>
-            <li><label><input type="checkbox" id="a2-12"><a href="https://eldenring.wiki.gg/wiki/Flame_of_the_Fell_God" class="h">Flame of the Fell God</a>: Kill Adan, Thief of fire in Malefactor's Evergaol.</label></li>
-            <li><label><input type="checkbox" id="a2-13"><a href="https://eldenring.wiki.gg/wiki/Greyoll%27s_Roar" class="h">Greyoll's Roar</a>: Purchase from the Cathedral of Dragon Communion after slaying Greyoll.</label></li>
-            <li><label><input type="checkbox" id="a2-14"><a href="https://eldenring.wiki.gg/wiki/Elden_Stars" class="h">Elden Stars</a>: Found at the end of the room with several large-bellied ants in Deeproot Depths.</label></li>
-            <li><label><input type="checkbox" id="a2-15"><a href="https://eldenring.wiki.gg/wiki/Ranni%27s_Dark_Moon" class="h">Ranni's Dark Moon</a>: In a chest at the top of Chelona's Rise.</label></li>
-            <li><label><input type="checkbox" id="a2-16"><a href="https://eldenring.wiki.gg/wiki/Comet_Azur" class="h">Comet Azur</a>: Interact with Primeval Sorcerer Azur near Hermit Village.</label></li>
-            <li><label><input type="checkbox" id="a2-17"><strong>Requires Sellian Sealbreaker -</strong> <a href="https://eldenring.wiki.gg/wiki/Stars_of_Ruin" class="h">Stars of Ruin</a>: Interact with Primeval Sorcerer Lusat in Sellia Hideaway.</label></li>
-            <li><label><input type="checkbox" id="a2-18"><a href="https://eldenring.wiki.gg/wiki/Founding_Rain_of_Stars" class="h">Founding Rain of Stars</a>: In a chest at the top of Heretical Rise, accessed from an invisible bridge.</label></li>
-          </ul>
-        </li>
-        <li><label><input type="checkbox" id="a2-19"><a href="https://eldenring.wiki.gg/wiki/Legendary_Ashen_Remains_(Achievement/Trophy)" class="h">Legendary Ashen Remains</a>: Collect the spirit ashes below to obtain.</label>
-          <ul>
-            <li><label><input type="checkbox" id="a2-20"><a href="https://eldenring.wiki.gg/wiki/Lhutel_the_Headless" class="h">Lhutel the Headless</a>: Kill the Cemetery Shade in Tombsward Catacombs.</label></li>
-            <li><label><input type="checkbox" id="a2-21"><strong>Requires 1 Stonesword Key -</strong> <a href="https://eldenring.wiki.gg/wiki/Mimic_Tear_Ashes" class="h">Mimic Tear Ashes</a>: In a chest behind an imp seal in Night's Sacred Ground.</label></li>
-            <li><label><input type="checkbox" id="a2-22"><a href="https://eldenring.wiki.gg/wiki/Black_Knife_Tiche" class="h">Black Knife Tiche</a>: Kill Black Knife Ringleader Alecto in Ringleader's Evergaol.</label></li>
-            <li><label><input type="checkbox" id="a2-23"><a href="https://eldenring.wiki.gg/wiki/Ancient_Dragon_Knight_Kristoff" class="h">Ancient Dragon Knight Kristoff</a>: Kill the Ancient Hero of Zamor in Sainted Hero's Grave.</label></li>
-            <li><label><input type="checkbox" id="a2-24"><a href="https://eldenring.wiki.gg/wiki/Redmane_Knight_Ogha" class="h">Redmane Knight Ogha</a>: Kill the Putrid Tree Spirit in War-Dead Catacombs.</label></li>
-            <li><label><input type="checkbox" id="a2-25"><a href="https://eldenring.wiki.gg/wiki/Cleanrot_Knight_Finlay" class="h">Cleanrot Knight Finlay</a>: Found in a chest near a gazebo in Elphael, Brace of the Haligtree.</label></li>
-          </ul>
-        </li>
-        <li><label><input type="checkbox" id="a2-26"><a href="https://eldenring.wiki.gg/wiki/Legendary_Talismans_(Achievement/Trophy)" class="h">Legendary Talismans</a>: Collect the talismans below to obtain.</label>
-          <ul>
-            <li><label><input type="checkbox" id="a2-27"><a href="https://eldenring.wiki.gg/wiki/Radagon_Icon" class="h">Radagon Icon</a>: In a chest on the second floor of Debate Parlor in Academy of Raya Lucaria.</label></li>
-            <li><label><input type="checkbox" id="a2-28"><a href="https://eldenring.wiki.gg/wiki/Radagon%27s_Soreseal" class="h">Radagon's Soreseal</a>: Found on the innermost corpse in Fort Faroth, past some rats.</label></li>
-            <li><label><input type="checkbox" id="a2-29"><a href="https://eldenring.wiki.gg/wiki/Moon_of_Nokstella" class="h">Moon of Nokstella</a>: In a chest in the top building in Nokstella, Eternal City.</label></li>
-            <li><label><input type="checkbox" id="a2-30"><a href="https://eldenring.wiki.gg/wiki/Godfrey_Icon" class="h">Godfrey Icon</a>: Kill Godefroy in the Golden Lineage Evergaol.</label></li>
-            <li><label><input type="checkbox" id="a2-31"><strong>Requires 1 Stonesword Key -</strong> <a href="https://eldenring.wiki.gg/wiki/Marika%27s_Soreseal" class="h">Marika's Soreseal</a>: In a room on the ground section in Elphael.</label></li>
-            <li><label><input type="checkbox" id="a2-32"><a href="https://eldenring.wiki.gg/wiki/Dragoncrest_Greatshield_Talisman" class="h">Dragoncrest Greatshield Talisman</a>: In a chest on the upper ledge of a room with multiple Kindreds of Rot in Elphael.</label></li>
-            <li><label><input type="checkbox" id="a2-33"><a href="https://eldenring.wiki.gg/wiki/Old_Lord%27s_Talisman" class="h">Old Lord's Talisman</a>: In a chest at the end of the bridge where Bernahl invades you in Crumbling Farum Azula.</label></li>
-            <li><label><input type="checkbox" id="a2-34"><a href="https://eldenring.wiki.gg/wiki/Erdtree%27s_Favor_%2B2" class="h">Erdtree's Favor +2</a>: On a root guarded by three Ulcerated Tree Spirits in Leyndell, Ashen Capital.</label></li>
-          </ul>
-        </li>
+
+      <h3 id="bosses"><button type="button" class="collapse-btn btn" aria-label="Toggle Bosses" aria-controls="a2" aria-expanded="true"></button>Bosses<button type="button" id="a-c2" class="check-all" aria-label="Check all">0/0</button></h3>
+      <ul id="a2">
+        <li><label><input type="checkbox" id="a2-1"><a href="https://eldenring.wiki.gg/wiki/Leonine_Misbegotten_(Achievement/Trophy)">Leonine Misbegotten</a>: Kill Leonine at the end of Castle Morne.</label></li>
+        <li><label><input type="checkbox" id="a2-2"><strong class="red">MISSABLE -</strong> <a href="https://eldenring.wiki.gg/wiki/Margit,_the_Fell_Omen_(Achievement/Trophy)">Margit, the Fell Omen</a>: Defeat Margit at the entrance to Stormveil Castle (gone after killing Morgott).</label></li>
+        <li><label><input type="checkbox" id="a2-3"><a href="https://eldenring.wiki.gg/wiki/Red_Wolf_of_Radagon_(Achievement/Trophy)">Red Wolf of Radagon</a>: Kill the Red Wolf of Radagon in the Academy of Raya Lucaria.</label></li>
+        <li><label><input type="checkbox" id="a2-4"><a href="https://eldenring.wiki.gg/wiki/Rennala,_Queen_of_the_Full_Moon_(Achievement/Trophy)">Rennala, Queen of the Full Moon</a>: Defeat Rennala in the Academy of Raya Lucaria.</label></li>
+        <li><label><input type="checkbox" id="a2-5"><a href="https://eldenring.wiki.gg/wiki/Royal_Knight_Loretta_(Achievement/Trophy)">Royal Knight Loretta</a>: Kill the spirit version of Loretta at the end of Caria Manor.</label></li>
+        <li><label><input type="checkbox" id="a2-6"><a href="https://eldenring.wiki.gg/wiki/Magma_Wyrm_Makar_(Achievement/Trophy)">Magma Wyrm Makar</a>: Kill Magma Wyrm Makar at the top of the Ruin-Strewn Precipice.</label></li>
+        <li><label><input type="checkbox" id="a2-7"><a href="https://eldenring.wiki.gg/wiki/Dragonkin_Soldier_of_Nokstella_(Achievement/Trophy)">Dragonkin Soldier of Nokstella</a>: Kill the Dragonkin Soldier in Ainsel River.</label></li>
+        <li><label><input type="checkbox" id="a2-8"><a href="https://eldenring.wiki.gg/wiki/Ancestor_Spirit_(Achievement/Trophy)">Ancestor Spirit</a>: Kill the Ancestor Spirit in Siofra River after lighting eight braziers.</label></li>
+        <li><label><input type="checkbox" id="a2-9"><a href="https://eldenring.wiki.gg/wiki/Mimic_Tear_(Achievement/Trophy)">Mimic Tear</a>: Kill the Mimic Tear in Nokron.</label></li>
+        <li><label><input type="checkbox" id="a2-10"><a href="https://eldenring.wiki.gg/wiki/Regal_Ancestor_Spirit_(Achievement/Trophy)">Regal Ancestor Spirit</a>: Kill the Regal Ancestor Spirit in Nokron after lighting six braziers.</label></li>
+        <li><label><input type="checkbox" id="a2-11"><a href="https://eldenring.wiki.gg/wiki/Valiant_Gargoyles_(Achievement/Trophy)">Valiant Gargoyles</a>: Kill the Valiant Gargoyles in Siofra Aqueduct.</label></li>
+        <li><label><input type="checkbox" id="a2-12"><strong class="red">MISSABLE -</strong> <a href="https://eldenring.wiki.gg/wiki/Lichdragon_Fortissax_(Achievement/Trophy)">Lichdragon Fortissax</a>: Kill Lichdragon Fortissax in Deeproot Depths after entering the deathbed dream (missed if you kill Fia).</label></li>
+        <li><label><input type="checkbox" id="a2-13"><a href="https://eldenring.wiki.gg/wiki/Astel,_Naturalborn_of_the_Void_(Achievement/Trophy)">Astel, Naturalborn of the Void</a>: Kill Astel after resting in the coffin at the end of the Grand Cloister.</label></li>
+        <li><label><input type="checkbox" id="a2-14"><a href="https://eldenring.wiki.gg/wiki/Elemer_of_the_Briar_(Achievement/Trophy)">Elemer of the Briar</a>: Kill Elemer in The Shaded Castle.</label></li>
+        <li><label><input type="checkbox" id="a2-15"><a href="https://eldenring.wiki.gg/wiki/Godskin_Noble_(Achievement/Trophy)">Godskin Noble</a>: Kill the Godskin Noble in Volcano Manor.</label></li>
+        <li><label><input type="checkbox" id="a2-16"><a href="https://eldenring.wiki.gg/wiki/Godfrey,_First_Elden_Lord_(Achievement/Trophy)">Godfrey, First Elden Lord</a>: Kill the golden phantom of Godfrey in Leyndell, Royal Capital.</label></li>
+        <li><label><input type="checkbox" id="a2-17"><a href="https://eldenring.wiki.gg/wiki/Mohg,_the_Omen_(Achievement/Trophy)">Mohg, the Omen</a>: Kill the sewer variant of Mohg at the bottom of the Subterranean Shunning-Grounds.</label></li>
+        <li><label><input type="checkbox" id="a2-18"><a href="https://eldenring.wiki.gg/wiki/Commander_Niall_(Achievement/Trophy)">Commander Niall</a>: Kill Commander Niall at the end of Castle Sol.</label></li>
+        <li><label><input type="checkbox" id="a2-19"><a href="https://eldenring.wiki.gg/wiki/Fire_Giant_(Achievement/Trophy)">Fire Giant</a>: Kill the Fire Giant at the end of Flame Peak.</label></li>
+        <li><label><input type="checkbox" id="a2-20"><a href="https://eldenring.wiki.gg/wiki/Loretta,_Knight_of_the_Haligtree_(Achievement/Trophy)">Loretta, Knight of the Haligtree</a>: Kill Loretta at the end of Miquella's Haligtree.</label></li>
+        <li><label><input type="checkbox" id="a2-21"><a href="https://eldenring.wiki.gg/wiki/Godskin_Duo_(Achievement/Trophy)">Godskin Duo</a>: Kill the Godskin Duo in Crumbling Farum Azula.</label></li>
+        <li><label><input type="checkbox" id="a2-22"><a href="https://eldenring.wiki.gg/wiki/Dragonlord_Placidusax_(Achievement/Trophy)">Dragonlord Placidusax</a>: Kill Dragonlord Placidusax below Crumbling Farum Azula.</label></li>
+        <li><label><input type="checkbox" id="a2-23"><a href="https://eldenring.wiki.gg/wiki/Maliketh_the_Black_Blade_(Achievement/Trophy)">Maliketh the Black Blade</a>: Kill Maliketh at the end of Crumbling Farum Azula.</label></li>
+        <li><label><input type="checkbox" id="a2-24"><a href="https://eldenring.wiki.gg/wiki/Hoarah_Loux,_Warrior_(Achievement/Trophy)">Hoarah Loux, Warrior</a>: Kill Hoarah Loux at the end of Leyndell, Ashen Capital.</label></li>
       </ul>
-      <h3 id="bosses"><button type="button" class="col btn" aria-label="Toggle Bosses" aria-controls="a3" aria-expanded="true"></button>Bosses<span id="a-t3"></span></h3>
-      <ul id="a3" aria-labelledby="bosses">
-        <li><label><input type="checkbox" id="a3-1"><a href="https://eldenring.wiki.gg/wiki/Leonine_Misbegotten_(Achievement/Trophy)" class="h">Leonine Misbegotten</a>: Kill Leonine at the end of Castle Morne.</label></li>
-        <li><label><input type="checkbox" id="a3-2"><strong class="r">MISSABLE -</strong> <a href="https://eldenring.wiki.gg/wiki/Margit,_the_Fell_Omen_(Achievement/Trophy)" class="h">Margit, the Fell Omen</a>: Defeat Margit at the entrance to Stormveil Castle (gone after killing Morgott).</label></li>
-        <li><label><input type="checkbox" id="a3-3"><a href="https://eldenring.wiki.gg/wiki/Red_Wolf_of_Radagon_(Achievement/Trophy)" class="h">Red Wolf of Radagon</a>: Kill the Red Wolf of Radagon in the Academy of Raya Lucaria.</label></li>
-        <li><label><input type="checkbox" id="a3-4"><a href="https://eldenring.wiki.gg/wiki/Rennala,_Queen_of_the_Full_Moon_(Achievement/Trophy)" class="h">Rennala, Queen of the Full Moon</a>: Defeat Rennala in the Academy of Raya Lucaria.</label></li>
-        <li><label><input type="checkbox" id="a3-5"><a href="https://eldenring.wiki.gg/wiki/Royal_Knight_Loretta_(Achievement/Trophy)" class="h">Royal Knight Loretta</a>: Kill the spirit version of Loretta at the end of Caria Manor.</label></li>
-        <li><label><input type="checkbox" id="a3-6"><a href="https://eldenring.wiki.gg/wiki/Magma_Wyrm_Makar_(Achievement/Trophy)" class="h">Magma Wyrm Makar</a>: Kill Magma Wyrm Makar at the top of the Ruin-Strewn Precipice.</label></li>
-        <li><label><input type="checkbox" id="a3-7"><a href="https://eldenring.wiki.gg/wiki/Dragonkin_Soldier_of_Nokstella_(Achievement/Trophy)" class="h">Dragonkin Soldier of Nokstella</a>: Kill the Dragonkin Soldier in Ainsel River.</label></li>
-        <li><label><input type="checkbox" id="a3-8"><a href="https://eldenring.wiki.gg/wiki/Ancestor_Spirit_(Achievement/Trophy)" class="h">Ancestor Spirit</a>: Kill the Ancestor Spirit in Siofra River after lighting eight braziers.</label></li>
-        <li><label><input type="checkbox" id="a3-9"><a href="https://eldenring.wiki.gg/wiki/Mimic_Tear_(Achievement/Trophy)" class="h">Mimic Tear</a>: Kill the Mimic Tear in Nokron.</label></li>
-        <li><label><input type="checkbox" id="a3-10"><a href="https://eldenring.wiki.gg/wiki/Regal_Ancestor_Spirit_(Achievement/Trophy)" class="h">Regal Ancestor Spirit</a>: Kill the Regal Ancestor Spirit in Nokron after lighting six braziers.</label></li>
-        <li><label><input type="checkbox" id="a3-11"><a href="https://eldenring.wiki.gg/wiki/Valiant_Gargoyles_(Achievement/Trophy)" class="h">Valiant Gargoyles</a>: Kill the Valiant Gargoyles in Siofra Aqueduct.</label></li>
-        <li><label><input type="checkbox" id="a3-12"><strong class="r">MISSABLE -</strong> <a href="https://eldenring.wiki.gg/wiki/Lichdragon_Fortissax_(Achievement/Trophy)" class="h">Lichdragon Fortissax</a>: Kill Lichdragon Fortissax in Deeproot Depths after entering the deathbed dream (missed if you kill Fia).</label></li>
-        <li><label><input type="checkbox" id="a3-13"><a href="https://eldenring.wiki.gg/wiki/Astel,_Naturalborn_of_the_Void_(Achievement/Trophy)" class="h">Astel, Naturalborn of the Void</a>: Kill Astel after resting in the coffin at the end of the Grand Cloister.</label></li>
-        <li><label><input type="checkbox" id="a3-14"><a href="https://eldenring.wiki.gg/wiki/Elemer_of_the_Briar_(Achievement/Trophy)" class="h">Elemer of the Briar</a>: Kill Elemer in The Shaded Castle.</label></li>
-        <li><label><input type="checkbox" id="a3-15"><a href="https://eldenring.wiki.gg/wiki/Godskin_Noble_(Achievement/Trophy)" class="h">Godskin Noble</a>: Kill the Godskin Noble in Volcano Manor.</label></li>
-        <li><label><input type="checkbox" id="a3-16"><a href="https://eldenring.wiki.gg/wiki/Godfrey,_First_Elden_Lord_(Achievement/Trophy)" class="h">Godfrey, First Elden Lord</a>: Kill the golden phantom of Godfrey in Leyndell, Royal Capital.</label></li>
-        <li><label><input type="checkbox" id="a3-17"><a href="https://eldenring.wiki.gg/wiki/Mohg,_the_Omen_(Achievement/Trophy)" class="h">Mohg, the Omen</a>: Kill the sewer variant of Mohg at the bottom of the Subterranean Shunning-Grounds.</label></li>
-        <li><label><input type="checkbox" id="a3-18"><a href="https://eldenring.wiki.gg/wiki/Commander_Niall_(Achievement/Trophy)" class="h">Commander Niall</a>: Kill Commander Niall at the end of Castle Sol.</label></li>
-        <li><label><input type="checkbox" id="a3-19"><a href="https://eldenring.wiki.gg/wiki/Fire_Giant_(Achievement/Trophy)" class="h">Fire Giant</a>: Kill the Fire Giant at the end of Flame Peak.</label></li>
-        <li><label><input type="checkbox" id="a3-20"><a href="https://eldenring.wiki.gg/wiki/Loretta,_Knight_of_the_Haligtree_(Achievement/Trophy)" class="h">Loretta, Knight of the Haligtree</a>: Kill Loretta at the end of Miquella's Haligtree.</label></li>
-        <li><label><input type="checkbox" id="a3-21"><a href="https://eldenring.wiki.gg/wiki/Godskin_Duo_(Achievement/Trophy)" class="h">Godskin Duo</a>: Kill the Godskin Duo in Crumbling Farum Azula.</label></li>
-        <li><label><input type="checkbox" id="a3-22"><a href="https://eldenring.wiki.gg/wiki/Dragonlord_Placidusax_(Achievement/Trophy)" class="h">Dragonlord Placidusax</a>: Kill Dragonlord Placidusax below Crumbling Farum Azula.</label></li>
-        <li><label><input type="checkbox" id="a3-23"><a href="https://eldenring.wiki.gg/wiki/Maliketh_the_Black_Blade_(Achievement/Trophy)" class="h">Maliketh the Black Blade</a>: Kill Maliketh at the end of Crumbling Farum Azula.</label></li>
-        <li><label><input type="checkbox" id="a3-24"><a href="https://eldenring.wiki.gg/wiki/Hoarah_Loux,_Warrior_(Achievement/Trophy)" class="h">Hoarah Loux, Warrior</a>: Kill Hoarah Loux at the end of Leyndell, Ashen Capital.</label></li>
+
+      <h3 id="shardbearers"><button type="button" class="collapse-btn btn" aria-label="Toggle Shardbearers" aria-controls="a3" aria-expanded="true"></button>Shardbearers<button type="button" id="a-c3" class="check-all" aria-label="Check all">0/0</button></h3>
+      <ul id="a3">
+        <li><label><input type="checkbox" id="a3-1"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Godrick_(Achievement/Trophy)">Shardbearer Godrick</a>: Kill Godrick at the end of Stormveil Castle.</label></li>
+        <li><label><input type="checkbox" id="a3-2"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Radahn_(Achievement/Trophy)">Shardbearer Radahn</a>: Kill Radahn in the Wailing Dunes (accessible from Redmane Castle).</label></li>
+        <li><label><input type="checkbox" id="a3-3"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Morgott_(Achievement/Trophy)">Shardbearer Morgott</a>: Kill Morgott at the end of Leyndell, Royal Capital.</label></li>
+        <li><label><input type="checkbox" id="a3-4"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Rykard_(Achievement/Trophy)">Shardbearer Rykard</a>: Kill Rykard in Volcano Manor.</label></li>
+        <li><label><input type="checkbox" id="a3-5"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Mohg_(Achievement/Trophy)">Shardbearer Mohg</a>: Kill Mohg at the top of Mohwgyn Palace.</label></li>
+        <li><label><input type="checkbox" id="a3-6"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Malenia_(Achievement/Trophy)">Shardbearer Malenia</a>: Kill Malenia at the bottom of Elphael.</label></li>
       </ul>
-      <h3 id="shardbearers"><button type="button" class="col btn" aria-label="Toggle Shardbearers" aria-controls="a4" aria-expanded="true"></button>Shardbearers<span id="a-t4"></span></h3>
-      <ul id="a4" aria-labelledby="shardbearers">
-        <li><label><input type="checkbox" id="a4-1"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Godrick_(Achievement/Trophy)" class="h">Shardbearer Godrick</a>: Kill Godrick at the end of Stormveil Castle.</label></li>
-        <li><label><input type="checkbox" id="a4-2"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Radahn_(Achievement/Trophy)" class="h">Shardbearer Radahn</a>: Kill Radahn in the Wailing Dunes (accessible from Redmane Castle).</label></li>
-        <li><label><input type="checkbox" id="a4-3"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Morgott_(Achievement/Trophy)" class="h">Shardbearer Morgott</a>: Kill Morgott at the end of Leyndell, Royal Capital.</label></li>
-        <li><label><input type="checkbox" id="a4-4"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Rykard_(Achievement/Trophy)" class="h">Shardbearer Rykard</a>: Kill Rykard in Volcano Manor.</label></li>
-        <li><label><input type="checkbox" id="a4-5"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Mohg_(Achievement/Trophy)" class="h">Shardbearer Mohg</a>: Kill Mohg at the top of Mohwgyn Palace.</label></li>
-        <li><label><input type="checkbox" id="a4-6"><a href="https://eldenring.wiki.gg/wiki/Shardbearer_Malenia_(Achievement/Trophy)" class="h">Shardbearer Malenia</a>: Kill Malenia at the bottom of Elphael.</label></li>
+
+      <h3 id="endings"><button type="button" class="collapse-btn btn" aria-label="Toggle Endings" aria-controls="a4" aria-expanded="true"></button>Endings<button type="button" id="a-c4" class="check-all" aria-label="Check all">0/0</button></h3>
+      <ul id="a4">
+        <li><label><input type="checkbox" id="a4-1"><a href="https://eldenring.wiki.gg/wiki/Elden_Lord_(Achievement/Trophy)">Elden Lord</a>: After beating the final boss, touch the fractured Marika and mend the Elden Ring, or use any of the mending runes.</label></li>
+        <li><label><input type="checkbox" id="a4-2"><a href="https://eldenring.wiki.gg/wiki/Age_of_the_Stars_(Achievement/Trophy)">Age of the Stars</a>: Complete Ranni's questline, then use her summon sign after beating the final boss.</label></li>
+        <li><label><input type="checkbox" id="a4-3"><a href="https://eldenring.wiki.gg/wiki/Lord_of_Frenzied_Flame_(Achievement/Trophy)">Lord of Frenzied Flame</a>: Inherit the frenzied flame, then after beating the final boss, touch the fractured Marika to become the Lord of Frenzied Flame.</label></li>
       </ul>
-      <h3 id="endings"><button type="button" class="col btn" aria-label="Toggle Endings" aria-controls="a5" aria-expanded="true"></button>Endings<span id="a-t5"></span></h3>
-      <ul id="a5" aria-labelledby="endings">
-        <li><label><input type="checkbox" id="a5-1"><a href="https://eldenring.wiki.gg/wiki/Elden_Lord_(Achievement/Trophy)" class="h">Elden Lord</a>: After beating the final boss, touch the fractured Marika and mend the Elden Ring, or use any of the mending runes.</label></li>
-        <li><label><input type="checkbox" id="a5-2"><a href="https://eldenring.wiki.gg/wiki/Age_of_the_Stars_(Achievement/Trophy)" class="h">Age of the Stars</a>: Complete Ranni's questline, then use her summon sign after beating the final boss.</label></li>
-        <li><label><input type="checkbox" id="a5-3"><a href="https://eldenring.wiki.gg/wiki/Lord_of_Frenzied_Flame_(Achievement/Trophy)" class="h">Lord of Frenzied Flame</a>: Inherit the frenzied flame, then after beating the final boss, touch the fractured Marika to become the Lord of Frenzied Flame.</label></li>
+
+      <h3 id="weapons"><button type="button" class="collapse-btn btn" aria-label="Toggle Legendary Weapons" aria-controls="a5" aria-expanded="true"></button>Legendary Weapons<button type="button" id="a-c5" class="check-all" aria-label="Check all">0/0</button></h3>
+      <ul id="a5">
+        <li><label><input type="checkbox" id="a5-1"><a href="https://eldenring.wiki.gg/wiki/Grafted_Blade_Greatsword">Grafted Blade Greatsword</a>: Kill Leonine Misbegotten at the end of Castle Morne.</label></li>
+        <li><label><input type="checkbox" id="a5-2"><a href="https://eldenring.wiki.gg/wiki/Sword_of_Night_and_Flame">Sword of Night and Flame</a>: Found in a chest in Caria Manor.</label></li>
+        <li><label><input type="checkbox" id="a5-3"><a href="https://eldenring.wiki.gg/wiki/Ruins_Greatsword">Ruins Greatsword</a>: Kill the Misbegotten Warrior & Crucible Knight in Redmane Castle.</label></li>
+        <li><label><input type="checkbox" id="a5-4"><a href="https://eldenring.wiki.gg/wiki/Dark_Moon_Greatsword">Dark Moon Greatsword</a>: Awarded upon completing <a href="/sheets/questlines#ranni">Ranni</a>'s questline.</label></li>
+        <li><label><input type="checkbox" id="a5-5"><a href="https://eldenring.wiki.gg/wiki/Marais_Executioner%27s_Sword">Marais Executioner's Sword</a>: Kill Elemer of the Briar in The Shaded Castle.</label></li>
+        <li><label><input type="checkbox" id="a5-6"><strong class="red">MISSABLE -</strong> <a href="https://eldenring.wiki.gg/wiki/Bolt_of_Gransax">Bolt of Gransax</a>: On top of the giant spear in Leyndell (gone after killing Maliketh).</label></li>
+        <li><label><input type="checkbox" id="a5-7"><a href="https://eldenring.wiki.gg/wiki/Eclipse_Shotel">Eclipse Shotel</a>: Found inside Church of the Eclipse in Castle Sol.</label></li>
+        <li><label><input type="checkbox" id="a5-8"><a href="https://eldenring.wiki.gg/wiki/Golden_Order_Greatsword">Golden Order Greatsword</a>: Kill the Misbegotten Crusader in Cave of the Forlorn.</label></li>
+        <li><label><input type="checkbox" id="a5-9"><a href="https://eldenring.wiki.gg/wiki/Devourer%27s_Scepter">Devourer's Scepter</a>: Defeat <a href="https://eldenring.wiki.gg/wiki/Knight_Bernahl">Bernahl</a>'s invasion on a bridge in Crumbling Farum Azula. (also obtained if you kill him at Warmaster's Shack, though not recommended)</label></li>
+      </ul>
+
+      <h3 id="ashes"><button type="button" class="collapse-btn btn" aria-label="Toggle Legendary Ashes" aria-controls="a6" aria-expanded="true"></button>Legendary Ashes<button type="button" id="a-c6" class="check-all" aria-label="Check all">0/0</button></h3>
+      <ul id="a6">
+        <li><label><input type="checkbox" id="a6-1"><a href="https://eldenring.wiki.gg/wiki/Lhutel_the_Headless">Lhutel the Headless</a>: Kill the Cemetery Shade in Tombsward Catacombs.</label></li>
+        <li><label><input type="checkbox" id="a6-2"><strong>Requires 1 Stonesword Key -</strong> <a href="https://eldenring.wiki.gg/wiki/Mimic_Tear_Ashes">Mimic Tear Ashes</a>: In a chest behind an imp seal in Night's Sacred Ground.</label></li>
+        <li><label><input type="checkbox" id="a6-3"><a href="https://eldenring.wiki.gg/wiki/Black_Knife_Tiche">Black Knife Tiche</a>: Kill Black Knife Ringleader Alecto in Ringleader's Evergaol.</label></li>
+        <li><label><input type="checkbox" id="a6-4"><a href="https://eldenring.wiki.gg/wiki/Ancient_Dragon_Knight_Kristoff">Ancient Dragon Knight Kristoff</a>: Kill the Ancient Hero of Zamor in Sainted Hero's Grave.</label></li>
+        <li><label><input type="checkbox" id="a6-5"><a href="https://eldenring.wiki.gg/wiki/Redmane_Knight_Ogha">Redmane Knight Ogha</a>: Kill the Putrid Tree Spirit in War-Dead Catacombs.</label></li>
+        <li><label><input type="checkbox" id="a6-6"><a href="https://eldenring.wiki.gg/wiki/Cleanrot_Knight_Finlay">Cleanrot Knight Finlay</a>: Found in a chest near a gazebo in Elphael, Brace of the Haligtree.</label></li>
+      </ul>
+
+      <h3 id="spells"><button type="button" class="collapse-btn btn" aria-label="Toggle Legendary Spells" aria-controls="a7" aria-expanded="true"></button>Legendary Spells<button type="button" id="a-c7" class="check-all" aria-label="Check all">0/0</button></h3>
+      <ul id="a7">
+        <li><label><input type="checkbox" id="a7-1"><a href="https://eldenring.wiki.gg/wiki/Flame_of_the_Fell_God">Flame of the Fell God</a>: Kill Adan, Thief of fire in Malefactor's Evergaol.</label></li>
+        <li><label><input type="checkbox" id="a7-2"><a href="https://eldenring.wiki.gg/wiki/Greyoll%27s_Roar">Greyoll's Roar</a>: Purchase from the Cathedral of Dragon Communion after slaying Greyoll.</label></li>
+        <li><label><input type="checkbox" id="a7-3"><a href="https://eldenring.wiki.gg/wiki/Elden_Stars">Elden Stars</a>: Found at the end of the room with several large-bellied ants in Deeproot Depths.</label></li>
+        <li><label><input type="checkbox" id="a7-4"><a href="https://eldenring.wiki.gg/wiki/Ranni%27s_Dark_Moon">Ranni's Dark Moon</a>: In a chest at the top of Chelona's Rise.</label></li>
+        <li><label><input type="checkbox" id="a7-5"><a href="https://eldenring.wiki.gg/wiki/Comet_Azur">Comet Azur</a>: Interact with Primeval Sorcerer Azur near Hermit Village.</label></li>
+        <li><label><input type="checkbox" id="a7-6"><strong>Requires Sellian Sealbreaker -</strong> <a href="https://eldenring.wiki.gg/wiki/Stars_of_Ruin">Stars of Ruin</a>: Interact with Primeval Sorcerer Lusat in Sellia Hideaway.</label></li>
+        <li><label><input type="checkbox" id="a7-7"><a href="https://eldenring.wiki.gg/wiki/Founding_Rain_of_Stars">Founding Rain of Stars</a>: In a chest at the top of Heretical Rise, accessed from an invisible bridge.</label></li>
+      </ul>
+
+      <h3 id="talismans"><button type="button" class="collapse-btn btn" aria-label="Toggle Legendary Talismans" aria-controls="a8" aria-expanded="true"></button>Legendary Talismans<button type="button" id="a-c8" class="check-all" aria-label="Check all">0/0</button></h3>
+      <ul id="a8">
+        <li><label><input type="checkbox" id="a8-1"><a href="https://eldenring.wiki.gg/wiki/Radagon_Icon">Radagon Icon</a>: In a chest on the second floor of Debate Parlor in Academy of Raya Lucaria.</label></li>
+        <li><label><input type="checkbox" id="a8-2"><a href="https://eldenring.wiki.gg/wiki/Radagon%27s_Soreseal">Radagon's Soreseal</a>: Found on the innermost corpse in Fort Faroth, past some rats.</label></li>
+        <li><label><input type="checkbox" id="a8-3"><a href="https://eldenring.wiki.gg/wiki/Moon_of_Nokstella">Moon of Nokstella</a>: In a chest in the top building in Nokstella, Eternal City.</label></li>
+        <li><label><input type="checkbox" id="a8-4"><a href="https://eldenring.wiki.gg/wiki/Godfrey_Icon">Godfrey Icon</a>: Kill Godefroy in the Golden Lineage Evergaol.</label></li>
+        <li><label><input type="checkbox" id="a8-5"><strong>Requires 1 Stonesword Key -</strong> <a href="https://eldenring.wiki.gg/wiki/Marika%27s_Soreseal">Marika's Soreseal</a>: In a room on the ground section in Elphael.</label></li>
+        <li><label><input type="checkbox" id="a8-6"><a href="https://eldenring.wiki.gg/wiki/Dragoncrest_Greatshield_Talisman">Dragoncrest Greatshield Talisman</a>: In a chest on the upper ledge of a room with multiple Kindreds of Rot in Elphael.</label></li>
+        <li><label><input type="checkbox" id="a8-7"><a href="https://eldenring.wiki.gg/wiki/Old_Lord%27s_Talisman">Old Lord's Talisman</a>: In a chest at the end of the bridge where Bernahl invades you in Crumbling Farum Azula.</label></li>
+        <li><label><input type="checkbox" id="a8-8"><a href="https://eldenring.wiki.gg/wiki/Erdtree%27s_Favor_%2B2">Erdtree's Favor +2</a>: On a root guarded by three Ulcerated Tree Spirits in Leyndell, Ashen Capital.</label></li>
       </ul>
     </form>
   </main>
-  <div id="scroll" aria-hidden="true"></div>
-  <button type="button" id="up" class="btn" aria-label="Scroll to top of page" aria-hidden="true"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7m-7 7V5"/></svg></button>
-  <footer>Made with ❤️ by <a href="https://contact.redmaw.dev">Redmaw</a></footer>
+
+  <footer>
+    Made with ❤️ by <a href="https://contact.redmaw.dev">Redmaw</a>
+  </footer>
+
+  <button type="button" id="up-btn" class="btn" aria-label="Scroll to top of page" aria-hidden="true">
+    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+      <path d="m5 12 7-7 7 7m-7 7V5"/>
+    </svg>
+  </button>
+
+  <!-- Hidden elements -->
+  <div id="scroll-observer" aria-hidden="true"></div>
+  <div id="announcer" aria-live="polite" aria-atomic="true"></div>
 </body>
 </html>
