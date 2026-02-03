@@ -1,32 +1,45 @@
+#skip-link {
+  padding: 0.5em 1em;
+  color: var(--link);
+  background: var(--background);
+  border-radius: 0 0 5px 5px;
+  z-index: 3;
+}
+
+#skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--nav-border);
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .sidebar {
-    transition: transform .3s ease;
+  #skip-link {
+    transition: transform 0.2s;
   }
 
-  #up {
-    transition: opacity .2s ease-out, transform .2s ease-out;
+  #sidebar {
+    transition: transform 0.3s ease;
+  }
+
+  #up-btn {
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
   }
 }
 
-#up.show {
+#up-btn.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-#up svg {
+#up-btn svg {
   width: var(--r5);
   height: var(--r5);
 }
 
-:focus-visible {
-  outline: 2px solid var(--h);
-  border-radius: 2px;
-}
 
 .sh {
   min-height: 3.3125rem;
   border-top-right-radius: 7px;
-  border-bottom: 2px solid var(--c2);
+  border-bottom: 2px solid var(--nav-border);
 }
 
 .sh h2 {
@@ -36,7 +49,7 @@
 .close {
   position: absolute;
   top: var(--r2);
-  right: .3125rem;
+  right: 0.3125rem;
   width: 2.375rem;
   height: 2.125rem;
   background: none;
@@ -60,7 +73,7 @@
 }
 
 .sheets li {
-  border-bottom: 1px dotted var(--c2);
+  border-bottom: 1px dotted var(--nav-border);
 }
 
 button,
@@ -68,35 +81,34 @@ button,
   touch-action: manipulation;
 }
 
-nav a:hover {
+nav a:active {
   text-decoration: none;
 }
 
-.nav a:hover {
-  background-color: var(--b);
+.nav a:active {
+  background-color: var(--background);
   border-radius: 5px;
 }
 
-a:hover,
+.close:active {
+  background-color: var(--background);
+}
+
+.sheets li:active {
+  background-color: var(--sidebar-hover);
+  border-radius: 4px;
+}
+
 a:focus {
   text-decoration: underline;
 }
 
-.toc a:hover {
-  text-decoration: underline;
+.btn:active {
+  background-color: var(--button-hover);
 }
 
-.btn:hover {
-  background-color: var(--kh);
-}
-
-.close:hover {
-  background-color: var(--b);
-}
-
-.sheets li:hover {
-  background-color: var(--c3);
-  border-radius: .25em;
+footer a:active {
+  color: var(--link);
 }
 
 select,
@@ -106,48 +118,87 @@ label {
   cursor: pointer;
 }
 
+#announcer {
+  position: absolute;
+  top: auto;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 @media (hover: hover) {
+  nav a:hover {
+    text-decoration: none;
+  }
+
+  .nav a:hover {
+    background-color: var(--background);
+    border-radius: 5px;
+  }
+
+  button.close:hover {
+    background-color: var(--background);
+  }
+
+  .sheets li:hover {
+    background-color: var(--sidebar-hover);
+    border-radius: 4px;
+  }
+
+  .toc a:hover, a:hover {
+    text-decoration: underline;
+  }
+
+  .btn:hover {
+    background-color: var(--button-hover);
+  }
+
+  .check-all:hover {
+    filter: brightness(1.1);
+  }
+
   input[type=checkbox]:hover {
     transform: scale(1.1);
+  }
+
+  footer a:hover {
+    color: var(--link);
   }
 }
 
 @media print {
   :root {
-    --b: #fff;
-    --t: #000;
-    --h: #000;
-    --r: #000;
-    --d: #000;
-    --a: #000;
-    --k: #fff;
-    --kt: #000;
+    --background: #fff;
+    --text: #000;
+    --heading: #000;
+    --red: #000;
+    --done: #000;
+    --link: #000;
+    --button: #fff;
+    --button-text: #000;
   }
 
+  #skip-link,
   nav,
-  .toc h2,
-  .toc span,
-  input[type=checkbox],
-  footer,
+  .btn,
   search,
-  .filter,
-  h3 button,
   h3 span,
-  #up,
-  .alert {
+  footer,
+  #up-btn {
     display: none !important;
   }
 
-  label {
-    padding: 0;
+  li label {
+    padding-left: 20px;
     text-decoration: none !important;
+  }
+
+  input[type=checkbox] {
+    left: 0;
   }
 
   a {
     text-decoration: underline;
-  }
-
-  .toc {
-    display: block !important;
   }
 }
