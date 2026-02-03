@@ -580,7 +580,7 @@ function calculateChecklistProgress(checkboxes) {
     return checklistProgress;
 }
 
-function getSpanId(id) {
+function getProgressId(id) {
     const hyphenIndex = id.indexOf('-');
 
     if (hyphenIndex === -1) return '';
@@ -594,24 +594,21 @@ function getSpanId(id) {
     return checklistId.substring(1);
 }
 
-function updateSpans(checklistProgress, checklistSpans, navSpans) {
-    const checklistSpansLen = checklistSpans.length;
+function updateProgress(checklistProgress, progressBtns, navSpans) {
+    const progressBtnsLen = progressBtns.length;
 
-    for (let i = 0; i < checklistSpansLen; i++) {
-        const span = checklistSpans[i];
-        const checklistId = getSpanId(span.id);
+    for (let i = 0; i < progressBtnsLen; i++) {
+        const progressBtn = progressBtns[i];
+        const checklistId = getProgressId(progressBtn.id);
 
         if (!checklistId) continue;
 
         const progress = checklistProgress[checklistId] || { checked: 0, total: 0, done: false };
         const text = progress.total ? (progress.done ? 'DONE' : `${progress.checked}/${progress.total}`) : '0/0';
 
-        span.classList.toggle('d', progress.done);
-        span.textContent = text;
-
-        if (span.hasAttribute('role')) {
-            span.ariaLabel = progress.done ? 'Uncheck all' : 'Check all';
-        }
+        progressBtn.classList.toggle('d', progress.done);
+        progressBtn.textContent = text;
+        progressBtn.ariaLabel = progress.done ? 'Uncheck all' : 'Check all';
 
         const navSpan = navSpans[checklistId];
 
@@ -658,27 +655,27 @@ function updateChecklistProgress() {
             return;
         }
 
-        const checklistSpans = document.querySelectorAll(`span[id^="${prefix}-c"]`);
-        const checklistSpansLen = checklistSpans.length;
+        const progressBtns = document.querySelectorAll(`button[id^="${prefix}-c"]`);
+        const progressBtnsLen = progressBtns.length;
 
         const navSpans = {};
 
-        for (let i = 0; i < checklistSpansLen; i++) {
-            const span = checklistSpans[i];
-            const checklistId = getSpanId(span.id);
+        for (let i = 0; i < progressBtnsLen; i++) {
+            const progressBtn = progressBtns[i];
+            const checklistId = getProgressId(progressBtn.id);
 
             if (checklistId) {
                 navSpans[checklistId] = document.getElementById(`${prefix}-n${checklistId}`);
             }
         }
 
-        cachedProgress = { totalSpan, checklistSpans, navSpans };
+        cachedProgress = { totalSpan, progressBtns, navSpans };
     }
 
-    const { totalSpan, checklistSpans, navSpans } = cachedProgress;
+    const { totalSpan, progressBtns, navSpans } = cachedProgress;
     const checklistProgress = calculateChecklistProgress(checkboxes);
 
-    updateSpans(checklistProgress, checklistSpans, navSpans);
+    updateProgress(checklistProgress, progressBtns, navSpans);
     updateCurrentProgress(checklistProgress, totalSpan);
 }
 
@@ -709,11 +706,11 @@ if (hasCheckboxes) {
         updateChecklistProgress();
     }
 
-    function handleCheckAll(span) {
-        const checklistId = getSpanId(span.id);
+    function handleCheckAll(progressBtn) {
+        const checklistId = getProgressId(progressBtn.id);
 
         if (checklistId) {
-            setAll(checklistId, !span.classList.contains('d'));
+            setAll(checklistId, !progressBtn.classList.contains('d'));
         }
     }
 
@@ -731,15 +728,6 @@ if (hasCheckboxes) {
     document.addEventListener('click', event => {
         if (event.target.matches('.check-all')) {
             handleCheckAll(event.target);
-        }
-    });
-
-    document.addEventListener('keydown', event => {
-        const target = event.target;
-
-        if ((event.key === 'Enter' || event.key === '') && target.matches('.check-all')) {
-            event.preventDefault();
-            handleCheckAll(target);
         }
     });
 }
