@@ -840,13 +840,12 @@ if (searchInput) {
 
     const cachedSections = headers.map(header => {
         const checklist = header.nextElementSibling;
-        const checkBtns = checklist.querySelector('.check-btns');
-        const steps = Array.from(checklist.children).filter(li => !li.classList.contains('check-btns'));
+        const steps = Array.from(checklist.children);
 
         const headerText = header.textContent.toLowerCase();
         const stepTexts = steps.map(step => step.textContent.toLowerCase());
 
-        return { header, checklist, checkBtns, steps, headerText, stepTexts };
+        return { header, checklist, steps, headerText, stepTexts };
     });
 
     let debounceTimer;
@@ -874,7 +873,7 @@ if (searchInput) {
         const cachedSectionsLen = cachedSections.length;
 
         for (let i = 0; i < cachedSectionsLen; i++) {
-            const { header, checklist, checkBtns, steps, headerText, stepTexts } = cachedSections[i];
+            const { header, checklist, steps, headerText, stepTexts } = cachedSections[i];
             const sectionMatches = searching && matchesQuery(headerText, queries);
 
             let hasVisibleStep = false;
@@ -883,10 +882,6 @@ if (searchInput) {
             if (sectionMatches) {
                 setDisplayProperty(header, '');
                 setDisplayProperty(checklist, '');
-
-                if (checkBtns) {
-                    setDisplayProperty(checkBtns, 'none');
-                }
 
                 for (let j = 0; j < stepsLen; j++) {
                     setDisplayProperty(steps[j], '');
@@ -904,10 +899,6 @@ if (searchInput) {
                         hasVisibleStep = true;
                     }
                 }
-            }
-
-            if (checkBtns) {
-                setDisplayProperty(checkBtns, searching ? 'none' : (hasVisibleStep ? '' : 'none'));
             }
 
             setDisplayProperty(header, hasVisibleStep ? '' : 'none');
