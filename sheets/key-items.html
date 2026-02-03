@@ -147,7 +147,7 @@
 
     <!-- Form tag to turn off autocomplete for all checkboxes. See #1. -->
     <form role="none" autocomplete="off">
-      <h3 id="great-runes"><button type="button" class="collapse-btn btn" aria-label="Toggle Great Runes" aria-controls="k1" aria-expanded="true"></button>Great Runes<span id="k-c1"></span></h3>
+      <h3 id="great-runes"><button type="button" class="collapse-btn btn" aria-label="Toggle Great Runes" aria-controls="k1" aria-expanded="true"></button>Great Runes<button type="button" id="k-c1" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k1">
         <li><label><input type="checkbox" id="k1-1"><a href="https://eldenring.wiki.gg/wiki/Godrick%27s_Great_Rune">Godrick's Great Rune</a></label></li>
         <li><label><input type="checkbox" id="k1-2"><a href="https://eldenring.wiki.gg/wiki/Rykard%27s_Great_Rune">Rykard's Great Rune</a></label></li>
@@ -158,7 +158,7 @@
         <li><label><input type="checkbox" id="k1-7"><a href="https://eldenring.wiki.gg/wiki/Great_Rune_of_the_Unborn">Great Rune of the Unborn</a></label></li>
       </ul>
 
-      <h3 id="crystal-tears"><button type="button" class="collapse-btn btn" aria-label="Toggle Crystal Tears" aria-controls="k2" aria-expanded="true"></button>Crystal Tears<span id="k-c2"></span></h3>
+      <h3 id="crystal-tears"><button type="button" class="collapse-btn btn" aria-label="Toggle Crystal Tears" aria-controls="k2" aria-expanded="true"></button>Crystal Tears<button type="button" id="k-c2" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k2">
         <li><label><input type="checkbox" id="k2-1"><a href="https://eldenring.wiki.gg/wiki/Crimson_Crystal_Tear">Crimson Crystal Tear</a></label></li>
         <li><label><input type="checkbox" id="k2-2">Crimson Crystal Tear</label></li>
@@ -202,54 +202,54 @@
         <li><label><input type="checkbox" id="k2-40"><a href="https://eldenring.wiki.gg/wiki/Oil-Soaked_Tear">Oil-Soaked Tear</a><abbr class="dlc" title="Shadow of the Erdtree DLC">SOTE</abbr></label></li>
       </ul>
 
-      <!-- <h3 id="cracked-pots"><button type="button" class="collapse-btn btn" aria-label="Toggle Cracked Pots" aria-controls="k3" aria-expanded="true"></button>Cracked Pots<span id="k-c3"></span></h3>
+      <!-- <h3 id="cracked-pots"><button type="button" class="collapse-btn btn" aria-label="Toggle Cracked Pots" aria-controls="k3" aria-expanded="true"></button>Cracked Pots<button type="button" id="k-c3" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k3">
         <li><label><input type="checkbox" id="k3-1"><a href=""></a></label></li>
       </ul> -->
 
-      <!-- <h3 id="ritual-pots"><button type="button" class="collapse-btn btn" aria-label="Toggle Ritual Pots" aria-controls="k4" aria-expanded="true"></button>Ritual Pots<span id="k-c4"></span></h3>
+      <!-- <h3 id="ritual-pots"><button type="button" class="collapse-btn btn" aria-label="Toggle Ritual Pots" aria-controls="k4" aria-expanded="true"></button>Ritual Pots<button type="button" id="k-c4" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k4">
         <li><label><input type="checkbox" id="k4-1"><a href=""></a></label></li>
       </ul> -->
 
-      <!-- <h3 id="hefty-pots"><button type="button" class="collapse-btn btn" aria-label="Toggle Hefty Cracked Pots" aria-controls="k5" aria-expanded="true"></button>Hefty Cracked Pots<span id="k-c5"></span></h3>
+      <!-- <h3 id="hefty-pots"><button type="button" class="collapse-btn btn" aria-label="Toggle Hefty Cracked Pots" aria-controls="k5" aria-expanded="true"></button>Hefty Cracked Pots<button type="button" id="k-c5" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k5">
         <li><label><input type="checkbox" id="k5-1"><a href=""></a></label></li>
       </ul> -->
 
-      <!-- <h3 id="perfume-bottles"><button type="button" class="collapse-btn btn" aria-label="Toggle Perfume Bottles" aria-controls="k6" aria-expanded="true"></button>Perfume Bottles<span id="k-c6"></span></h3>
+      <!-- <h3 id="perfume-bottles"><button type="button" class="collapse-btn btn" aria-label="Toggle Perfume Bottles" aria-controls="k6" aria-expanded="true"></button>Perfume Bottles<button type="button" id="k-c6" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k6">
         <li><label><input type="checkbox" id="k6-1"><a href=""></a></label></li>
       </ul> -->
 
-      <!-- <h3 id="memory-stones"><button type="button" class="collapse-btn btn" aria-label="Toggle Memory Stones" aria-controls="k7" aria-expanded="true"></button>Memory Stones<span id="k-c7"></span></h3>
+      <!-- <h3 id="memory-stones"><button type="button" class="collapse-btn btn" aria-label="Toggle Memory Stones" aria-controls="k7" aria-expanded="true"></button>Memory Stones<button type="button" id="k-c7" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k7">
         <li><label><input type="checkbox" id="k7-1"><a href=""></a></label></li>
       </ul> -->
 
-      <!-- <h3 id="talisman-pouches"><button type="button" class="collapse-btn btn" aria-label="Toggle Talisman Pouches" aria-controls="k8" aria-expanded="true"></button>Talisman Pouches<span id="k-c8"></span></h3>
+      <!-- <h3 id="talisman-pouches"><button type="button" class="collapse-btn btn" aria-label="Toggle Talisman Pouches" aria-controls="k8" aria-expanded="true"></button>Talisman Pouches<button type="button" id="k-c8" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k8">
         <li><label><input type="checkbox" id="k8-1"><a href=""></a></label></li>
       </ul> -->
 
-      <h3 id="mending-runes"><button type="button" class="collapse-btn btn" aria-label="Toggle Mending Runes" aria-controls="k9" aria-expanded="true"></button>Mending Runes<span id="k-c9"></span></h3>
+      <h3 id="mending-runes"><button type="button" class="collapse-btn btn" aria-label="Toggle Mending Runes" aria-controls="k9" aria-expanded="true"></button>Mending Runes<button type="button" id="k-c9" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k9">
         <li><label><input type="checkbox" id="k9-1"><a href="https://eldenring.wiki.gg/wiki/Mending_Rune_of_Perfect_Order">Mending Rune of Perfect Order</a></label></li>
         <li><label><input type="checkbox" id="k9-2"><a href="https://eldenring.wiki.gg/wiki/Mending_Rune_of_the_Death-Prince">Mending Rune of the Death-Prince</a></label></li>
         <li><label><input type="checkbox" id="k9-3"><a href="https://eldenring.wiki.gg/wiki/Mending_Rune_of_the_Fell_Curse">Mending Rune of the Fell Curse</a></label></li>
       </ul>
 
-      <!-- <h3 id="stonesword-keys"><button type="button" class="collapse-btn btn" aria-label="Toggle Stonesword Keys" aria-controls="k10" aria-expanded="true"></button>Stonesword Keys<span id="k-c10"></span></h3>
+      <!-- <h3 id="stonesword-keys"><button type="button" class="collapse-btn btn" aria-label="Toggle Stonesword Keys" aria-controls="k10" aria-expanded="true"></button>Stonesword Keys<button type="button" id="k-c10" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k10">
         <li><label><input type="checkbox" id="k10-1"><a href=""></a></label></li>
       </ul> -->
 
-      <!-- <h3 id="imbued-keys"><button type="button" class="collapse-btn btn" aria-label="Toggle Imbued Sword Keys" aria-controls="k11" aria-expanded="true"></button>Imbued Sword Keys<span id="k-c11"></span></h3>
+      <!-- <h3 id="imbued-keys"><button type="button" class="collapse-btn btn" aria-label="Toggle Imbued Sword Keys" aria-controls="k11" aria-expanded="true"></button>Imbued Sword Keys<button type="button" id="k-c11" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k11">
         <li><label><input type="checkbox" id="k11-1"><a href=""></a></label></li>
       </ul> -->
 
-      <h3 id="keys"><button type="button" class="collapse-btn btn" aria-label="Toggle Keys" aria-controls="k12" aria-expanded="true"></button>Keys<span id="k-c12"></span></h3>
+      <h3 id="keys"><button type="button" class="collapse-btn btn" aria-label="Toggle Keys" aria-controls="k12" aria-expanded="true"></button>Keys<button type="button" id="k-c12" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k12">
         <li><label><input type="checkbox" id="k12-1"><a href="https://eldenring.wiki.gg/wiki/Rusty_Key">Rusty Key</a></label></li>
         <li><label><input type="checkbox" id="k12-2"><a href="https://eldenring.wiki.gg/wiki/Drawing-Room_Key">Drawing-Room Key</a></label></li>
@@ -270,7 +270,7 @@
         <li><label><input type="checkbox" id="k12-17"><a href="https://eldenring.wiki.gg/wiki/Gaol_Lower_Level_Key">Gaol Lower Level Key</a><abbr class="dlc" title="Shadow of the Erdtree DLC">SOTE</abbr></label></li>
       </ul>
 
-      <h3 id="cookbooks"><button type="button" class="collapse-btn btn" aria-label="Toggle Cookbooks" aria-controls="k13" aria-expanded="true"></button>Cookbooks<span id="k-c13"></span></h3>
+      <h3 id="cookbooks"><button type="button" class="collapse-btn btn" aria-label="Toggle Cookbooks" aria-controls="k13" aria-expanded="true"></button>Cookbooks<button type="button" id="k-c13" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k13">
         <li><label><input type="checkbox" id="k13-1"><a href="https://eldenring.wiki.gg/wiki/Nomadic_Warrior%27s_Cookbook_1">Nomadic Warrior's Cookbook [1]</a></label></li>
         <li><label><input type="checkbox" id="k13-2"><a href="https://eldenring.wiki.gg/wiki/Nomadic_Warrior%27s_Cookbook_2">Nomadic Warrior's Cookbook [2]</a></label></li>
@@ -333,7 +333,7 @@
         <li><label><input type="checkbox" id="k13-59"><a href="https://eldenring.wiki.gg/wiki/Frenzied%27s_Cookbook_2">Frenzied's Cookbook [2]</a></label></li>
       </ul>
 
-      <h3 id="dlc-cookbooks"><button type="button" class="collapse-btn btn" aria-label="Toggle DLC Cookbooks" aria-controls="k14" aria-expanded="true"></button>DLC Cookbooks<span id="k-c14"></span></h3>
+      <h3 id="dlc-cookbooks"><button type="button" class="collapse-btn btn" aria-label="Toggle DLC Cookbooks" aria-controls="k14" aria-expanded="true"></button>DLC Cookbooks<button type="button" id="k-c14" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k14">
         <li><label><input type="checkbox" id="k14-1"><a href="https://eldenring.wiki.gg/wiki/Greater_Potentate%27s_Cookbook_1">Greater Potentate's Cookbook [1]</a></label></li>
         <li><label><input type="checkbox" id="k14-2"><a href="https://eldenring.wiki.gg/wiki/Greater_Potentate%27s_Cookbook_2">Greater Potentate's Cookbook [2]</a></label></li>
@@ -382,7 +382,7 @@
         <li><label><input type="checkbox" id="k14-45"><a href="https://eldenring.wiki.gg/wiki/Igon%27s_Cookbook_2">Igon's Cookbook [2]</a></label></li>
       </ul>
 
-      <h3 id="whetblades"><button type="button" class="collapse-btn btn" aria-label="Toggle Whetblades" aria-controls="k15" aria-expanded="true"></button>Whetblades<span id="k-c15"></span></h3>
+      <h3 id="whetblades"><button type="button" class="collapse-btn btn" aria-label="Toggle Whetblades" aria-controls="k15" aria-expanded="true"></button>Whetblades<button type="button" id="k-c15" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k15">
         <li><label><input type="checkbox" id="k15-1"><a href="https://eldenring.wiki.gg/wiki/Whetstone_Knife">Whetstone Knife</a></label></li>
         <li><label><input type="checkbox" id="k15-2"><a href="https://eldenring.wiki.gg/wiki/Iron_Whetblade">Iron Whetblade</a></label></li>
@@ -392,7 +392,7 @@
         <li><label><input type="checkbox" id="k15-6"><a href="https://eldenring.wiki.gg/wiki/Black_Whetblade">Black Whetblade</a></label></li>
       </ul>
 
-      <h3 id="maps"><button type="button" class="collapse-btn btn" aria-label="Toggle Maps" aria-controls="k16" aria-expanded="true"></button>Map Fragments<span id="k-c16"></span></h3>
+      <h3 id="maps"><button type="button" class="collapse-btn btn" aria-label="Toggle Maps" aria-controls="k16" aria-expanded="true"></button>Map Fragments<button type="button" id="k-c16" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="k16">
         <li><label><input type="checkbox" id="k16-1"><a href="https://eldenring.wiki.gg/wiki/Map_Limgrave,_West">Map: Limgrave, West</a></label></li>
         <li><label><input type="checkbox" id="k16-2"><a href="https://eldenring.wiki.gg/wiki/Map_Limgrave,_East">Map: Limgrave, East</a></label></li>
