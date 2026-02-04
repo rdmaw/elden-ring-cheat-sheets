@@ -107,6 +107,7 @@ html {
 }
 
 body {
+  display: flex;
   flex-direction: column;
   height: 100svh;
   background-color: var(--background);
@@ -170,6 +171,15 @@ nav {
   transform: translateX(0);
 }
 
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: min(100% - var(--r4), 87rem);
+  margin-inline: auto;
+}
+
 input,
 button,
 select {
@@ -224,24 +234,6 @@ svg {
   border-radius: 5px;
 }
 
-main {
-  width: min(100% - var(--r4), 87rem);
-  margin-inline: auto;
-  flex: 1;
-}
-
-.flex {
-  display: flex;
-}
-
-.ac {
-  align-items: center;
-}
-
-.jc {
-  justify-content: center;
-}
-
 header {
   text-align: center;
 }
@@ -277,7 +269,7 @@ nav,
   <noscript><link rel="stylesheet" href="/css/main.2fcf88d44c.css"></noscript>
   <script defer src="/js/main.20f6134736.js" integrity="sha384-TIElVCChL9uXtQ+9F8qD9d/WXQEu4RZnJgVOOUSkTRR92b9OTa1PCfTbvp81L5+E"></script> -->
 </head>
-<body class="flex">
+<body>
   <nav aria-label="Global navigation">
     <div class="nav">
       <button type="button" id="menu-btn" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
@@ -337,7 +329,7 @@ nav,
     </ul>
   </nav>
 
-  <main class="flex ac jc">
+  <main>
     <header>
       <h1>404</h1>
       <p class="err">The cheat sheet you're looking for doesn't exist.</p>
