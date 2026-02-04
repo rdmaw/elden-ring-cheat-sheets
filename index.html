@@ -118,6 +118,11 @@ body {
   color: var(--text);
 }
 
+#skip-link {
+  position: absolute;
+  transform: translateY(-120%);
+}
+
 input,
 button,
 select {
@@ -364,6 +369,8 @@ footer {
   </script>
 </head>
 <body>
+  <a id="skip-link" href="#main-content">Skip to main content</a>
+
   <nav class="flex" aria-label="Global navigation">
     <div class="nav flex">
       <button type="button" id="menu" class="flex ac jc" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false"><svg aria-hidden="true" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
@@ -403,7 +410,7 @@ footer {
       <p>If you notice any mistakes, or want to contribute, please <a href="https://github.com/rdmaw/elden-ring-cheat-sheets/issues/new/choose">raise an issue on GitHub</a>.</p>
       <p><strong>WARNING: Contains spoilers!</strong></p>
     </header>
-    <h2>FAQ</h2>
+    <h2 id="main-content">FAQ</h2>
     <h3>How do I use the cheat sheets?</h3>
     <p>This project is a lightweight collection of checklist sheets, covering all items, NPCs, questlines, bosses, achievements and more. If you care about spoilers, I recommend that you experience the game on your own first, then use the cheat sheets for a later playthrough.</p>
     <p>See the <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3626235146">Steam Guide</a> for more details.</p>
