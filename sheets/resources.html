@@ -34,12 +34,6 @@
   color-scheme: light dark;
   font-family: sheets, system-ui, sans-serif;
   font-feature-settings: 'liga' 1, 'calt' 1;
-  /* trenger review */
-  --r1: 0.5rem;
-  --r2: 0.75rem;
-  --r3: 1rem;
-  --r4: 1.25rem;
-  --r5: 1.75rem;
 }
 
 /* trenger review */
@@ -134,7 +128,7 @@ nav {
   align-items: center;
   width: 100%;
   min-height: 4rem;
-  margin-inline: var(--r1);
+  margin-inline: 0.5rem;
 }
 
 #menu-btn {
@@ -155,7 +149,7 @@ nav {
 
 .nav-list {
   display: flex;
-  gap: var(--r1);
+  gap: 0.5rem;
   margin-left: auto;
 }
 
@@ -163,7 +157,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  padding-inline: var(--r1);
+  padding-inline: 0.5rem;
 }
 
 .nav-list svg {
@@ -194,7 +188,7 @@ h1 {
 }
 
 #lead {
-  margin: var(--r2) 0 var(--r5) 0;
+  margin: 0.75rem 0 1.75rem 0;
   font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
   font-weight: 250;
   text-wrap: balance;
@@ -202,9 +196,14 @@ h1 {
 
 #toc {
   display: block;
-  margin-bottom: var(--r5);
+  margin-bottom: 1.75rem;
   background: none;
   border-bottom: none;
+}
+
+h2 {
+  margin-top: 1.5rem;
+  font-size: 1.45rem;
 }
 
 #toc a {
@@ -218,20 +217,18 @@ select {
   font-size: inherit;
 }
 
-h2,
 h3 {
   font-size: 1.5rem;
-  margin: var(--r5) 0 var(--r1);
+  margin: 1.75rem 0 0.5rem;
 }
 
-h2+h3,
 p {
-  margin-top: var(--r2);
+  margin-bottom: 0.75rem;
 }
 
 h4 {
   font-size: 1.125rem;
-  margin: 1.5rem 0 var(--r1);
+  margin: 1.5rem 0 0.5rem;
 }
 
 ul {
@@ -240,7 +237,7 @@ ul {
 
 .list {
   list-style-type: disc;
-  margin: var(--r2) 0 var(--r1) var(--r5);
+  margin: 0.75rem 0 0.5rem 1.75rem;
 }
 
 a {
@@ -253,7 +250,7 @@ svg {
 }
 
 .btn {
-  padding: .25rem var(--r1);
+  padding: 0.25rem 0.5rem;
   height: 2rem;
   color: var(--kt);
   background-color: var(--k);
@@ -262,8 +259,8 @@ svg {
 }
 
 kbd {
-  font-size: .9rem;
-  padding: .15em .45em;
+  font-size: 0.9rem;
+  padding: 0.15em 0.45em;
   color: var(--kt);
   background-color: var(--k);
   border: 1px solid var(--c2);
@@ -274,12 +271,12 @@ kbd {
 .filter {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--r1);
+  gap: 0.5rem;
 }
 
 .col {
   position: relative;
-  margin-right: var(--r1);
+  margin-right: 0.5rem;
   width: 2.2rem;
   height: 1.75rem;
   flex-shrink: 0;
@@ -309,16 +306,16 @@ kbd {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: var(--r3)
+  margin-top: 1rem;
 }
 
 caption {
-  margin-bottom: var(--r1);
+  margin-bottom: 0.5rem;
 }
 
 th,
 td {
-  padding: .7rem;
+  padding: 0.7rem;
   border: 1px solid var(--c2);
   font-weight: 400;
 }
@@ -342,9 +339,9 @@ tr:hover th[scope=row] {
 
 #up {
   position: fixed;
-  right: var(--r4);
-  bottom: var(--r4);
-  padding: var(--r1);
+  right: 1.25rem;
+  bottom: 1.25rem;
+  padding: 0.5rem;
   height: auto;
   border: 2px solid var(--c2);
   border-radius: 50%;
@@ -370,7 +367,6 @@ th[scope=row] {
 }
 
 html,
-.sh h2,
 #toc {
   line-height: 1.6;
 }
@@ -381,7 +377,6 @@ nav a {
   line-height: 1.15;
 }
 
-.sh h2,
 h2,
 h3,
 h4,
@@ -406,8 +401,8 @@ th[scope=col] {
 }
 
 footer {
-  padding: var(--r4) 0 var(--r1);
-  font-size: .8rem;
+  padding: 1.25rem 0 0.5rem;
+  font-size: 0.8rem;
 }
 
 

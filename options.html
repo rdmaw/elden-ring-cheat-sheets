@@ -34,12 +34,6 @@
   color-scheme: light dark;
   font-family: sheets, system-ui, sans-serif;
   font-feature-settings: 'liga' 1, 'calt' 1;
-  /* trenger review */
-  --r1: 0.5rem;
-  --r2: 0.75rem;
-  --r3: 1rem;
-  --r4: 1.25rem;
-  --r5: 1.75rem;
 }
 
 /* trenger review */
@@ -133,7 +127,7 @@ nav {
   align-items: center;
   width: 100%;
   min-height: 4rem;
-  margin-inline: var(--r1);
+  margin-inline: 0.5rem;
 }
 
 #menu-btn {
@@ -154,7 +148,7 @@ nav {
 
 .nav-list {
   display: flex;
-  gap: var(--r1);
+  gap: 0.5rem;
   margin-left: auto;
 }
 
@@ -162,7 +156,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  padding-inline: var(--r1);
+  padding-inline: 0.5rem;
 }
 
 .nav-list svg {
@@ -193,7 +187,7 @@ h1 {
 }
 
 #lead {
-  margin: var(--r2) 0 var(--r5) 0;
+  margin: 0.75rem 0 1.75rem 0;
   font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
   font-weight: 250;
   text-wrap: balance;
@@ -209,7 +203,7 @@ select {
 h2,
 h3 {
   font-size: 1.5rem;
-  margin: var(--r5) 0 var(--r1);
+  margin: 1.75rem 0 0.5rem;
 }
 
 ul {
@@ -226,7 +220,7 @@ svg {
 }
 
 .btn {
-  padding: .25rem var(--r1);
+  padding: 0.25rem 0.5rem;
   height: 2rem;
   color: var(--kt);
   background-color: var(--k);
@@ -246,22 +240,22 @@ select {
 
 h2,
 select {
-  margin-bottom: var(--r2);
+  margin-bottom: 0.75rem;
 }
 
 .filter {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--r1);
+  gap: 0.5rem;
 }
 
 label {
   display: inline-block;
-  padding: .3rem 0 var(--r1) 0;
+  padding: 0.3rem 0 0.5rem 0;
 }
 
 .mgm {
-  margin-bottom: var(--r3);
+  margin-bottom: 1rem;
 }
 
 header {
@@ -269,8 +263,7 @@ header {
 }
 
 html,
-label,
-.sh h2 {
+label {
   line-height: 1.6;
 }
 
@@ -279,7 +272,6 @@ nav a {
   line-height: 1.15;
 }
 
-.sh h2,
 h2,
 h3,
 nav a,

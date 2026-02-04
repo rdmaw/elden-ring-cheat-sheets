@@ -114,8 +114,8 @@ svg {
 }
 
 #up-btn svg {
-  width: var(--r5);
-  height: var(--r5);
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
 button,
