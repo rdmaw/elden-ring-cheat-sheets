@@ -180,24 +180,26 @@ main {
   margin-inline: auto;
 }
 
+header {
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 2.077rem + 0.769vi, 3rem);
+}
+
+#lead {
+  margin: var(--r2) 0 var(--r5) 0;
+  font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
+  font-weight: 250;
+  text-wrap: balance;
+}
+
 input,
 button,
 select {
   font-family: inherit;
   font-size: inherit;
-}
-
-header {
-  margin: 2.5rem 0;
-}
-
-header h1 {
-  font-size: 3rem;
-  margin: 0;
-}
-
-h1 {
-  font-size: clamp(1.5rem, 1.6rem + 1vw, 2.3rem);
 }
 
 h2 {
@@ -207,10 +209,6 @@ h2 {
 
 p {
   margin-top: var(--r2);
-}
-
-.err {
-  font-size: 1.4rem;
 }
 
 ul {
@@ -332,8 +330,9 @@ nav,
   <main>
     <header>
       <h1>404</h1>
-      <p class="err">The cheat sheet you're looking for doesn't exist.</p>
-      <p>The URL may be incorrect, or the sheet may have been moved.<br>Open the menu and try a different sheet.</p>
+      <p id="lead">The cheat sheet you're looking for doesn't exist.</p>
+      <p>The URL may be incorrect, or the sheet may have been moved.</p>
+      <p>Open the menu and try a different sheet.</p>
     </header>
   </main>
 
