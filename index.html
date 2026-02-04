@@ -16,49 +16,79 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://eldenring.redmaw.dev">
+  <link rel="preload" href="/fonts/sheets.woff2" as="font" type="font/woff2" crossorigin>
   <script>const r=document.documentElement,t=localStorage.getItem("t");"d"===t&&r.classList.add("dark");</script>
   <!-- <style>:root{--b:#fff9eb;--t:#070403;--h:#423124;--c1:#ad9c7f;--c2:#4a3728;--c3:#e6dbcaf2;--c4:#eadccd33;--r:#c00;--a:#0b4fd5;--x:#c74a23;--d:#2d806e;--s:#fff;--k:#efefef;--kt:#2c1810;--kh:#d2d2d2;--r1:.5rem;--r2:.75rem;--r3:1rem;--r4:1.25rem;--r5:1.75rem}.dark{color-scheme:dark;--b:#1d1f20;--t:#ededed;--h:#f8f7f7;--c1:#303030;--c2:gray;--c3:#404040;--c4:#1a1d1e;--r:#e15668;--a:#5c88c1;--x:#d66b79;--d:#1a9e86;--s:#3b3b3b;--k:#404040;--kt:#f8f7f7;--kh:#222426}*,:before,:after{box-sizing:border-box;margin:0;padding:0}html{-webkit-text-size-adjust:none;-moz-text-size-adjust:none;text-size-adjust:none;font-family:system-ui,sans-serif;font-size:clamp(15.05px,14.392px + .2056vw,17.2px)}input,button,select{font-family:inherit;font-size:inherit}body{color:var(--t);background-color:var(--b)}header{margin:2.5rem 0}h1{font-size:clamp(1.5rem,1.6rem + 1vw,2.3rem)}.lead{margin:var(--r2)0 var(--r5)0;font-size:clamp(1rem,1.1rem + .4vw,1.4rem);font-weight:300}h2,h3{margin:var(--r5)0 var(--r1);font-size:1.5rem}h2+h3,p{margin-top:var(--r2)}h4{margin:1.5rem 0 var(--r1);font-size:1.125rem}ul{list-style-type:none}li ul{padding-left:var(--r5)}.list{margin:var(--r2)0 var(--r1)var(--r5);list-style-type:disc}a{color:var(--a);text-decoration:none}svg{display:block}.btn{padding:.25rem var(--r1);height:2rem;color:var(--kt);background-color:var(--k);border:1px solid var(--c2);border-radius:5px}nav{border-bottom:2px solid var(--c2)}.nav{width:100%;min-height:3.75rem;margin:0 var(--r1);align-items:center}.nav ul{gap:var(--r1);margin-left:auto}.nav a{padding:0 var(--r1);align-items:center;height:2.7rem;display:inline-flex}.nav svg{width:1.7rem;height:1.7rem}#menu{background-color:var(--b);border:2px solid var(--c2);border-radius:5px;width:3.4375rem;height:2.8rem}#menu svg{width:2.125rem;height:2.125rem}.sidebar{background-color:var(--b);border:2px solid var(--c2);z-index:2;border-left-width:0;border-radius:0 10px 10px 0;flex-direction:column;width:17rem;max-height:calc(100svh - .875rem);position:fixed;top:.4375rem;transform:translate(-103%)}.sidebar[aria-hidden=false]{transform:translate(0)}main{width:min(100% - var(--r4),87rem);margin-inline:auto}kbd{color:var(--kt);background-color:var(--k);border:1px solid var(--c2);box-shadow:0 1px 0 var(--c2);border-radius:3px;padding:.15em .45em;font-size:.9rem}ol{margin:var(--r2)0 var(--r1)var(--r5);font-size:.9rem}ol ul{list-style-type:disc}#scroll{pointer-events:none;width:1px;height:1px;position:absolute;top:500px}#up{right:var(--r4);bottom:var(--r4);padding:var(--r1);border:2px solid var(--c2);opacity:0;border-radius:50%;height:auto;position:fixed;transform:translateY(100px)}.flex{display:flex}.ac{align-items:center}.jc{justify-content:center}.r{color:var(--r)}.g{color:var(--d)}header,footer{text-align:center}html,.sh h2{line-height:1.6}h3,h4,nav a{line-height:1.15}.sh h2,h2,h3,h4,nav a,strong{font-weight:600}nav,.sh{background-color:var(--c1)}h1,h2,h3,h4,nav a,#menu svg,.close svg{color:var(--h)}footer{padding:var(--r4)0 var(--r1);font-size:.8rem}.sidebar{contain:layout}</style> -->
   <style>
+
+@font-face {
+  font-family: sheets;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/sheets.woff2") format("woff2");
+}
+
 :root {
-  --b: #fff9eb;
-  --t: #070403;
-  --h: #423124;
-  --c1: #ad9c7f;
-  --c2: #4a3728;
-  --c3: #e6dbcaf2;
-  --c4: #eadccd33;
-  --r: #c00;
-  --a: #0b4fd5;
-  --x: #c74a23;
-  --d: #2d806e;
-  --s: #fff;
-  --k: #efefef;
-  --kt: #2c1810;
-  --kh: #d2d2d2;
-  --r1: .5rem;
-  --r2: .75rem;
+  color-scheme: light dark;
+  font-family: sheets, system-ui, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1;
+  /* trenger review */
+  --r1: 0.5rem;
+  --r2: 0.75rem;
   --r3: 1rem;
   --r4: 1.25rem;
   --r5: 1.75rem;
 }
 
-.dark {
+/* trenger review */
+[data-theme=light] {
+  color-scheme: light;
+  --background: oklch(0.99 0.012 90);
+  --search: oklch(from var(--background) l 0 h);
+
+  --heading: oklch(0.29 0.00979 90);
+  --text: oklch(from var(--background) 0.2 0.005 h);
+
+  --nav: oklch(0.7 0.038 90);
+  --nav-text: oklch(from var(--nav) calc(l - 0.4) c h);
+  --nav-border: oklch(from var(--nav-text) l c h);
+  --sidebar-hover: oklch(from var(--nav) calc(l + 0.15) calc(c - 0.008) h / 0.6);
+
+  --progress-text: oklch(from var(--background) l c h);
+  --progress: oklch(0.54 0.14 50);
+  --done: oklch(0.54 0.14 160);
+  --link: oklch(0.54 0.21 260);
+  --red: oklch(0.54 0.21 40);
+
+  --button: oklch(from var(--background) calc(l - 0.03) calc(c - 0.010) h);
+  --button-text: oklch(from var(--button) 0.1 c h);
+  --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
+}
+
+/* trenger review */
+[data-theme=dark] {
   color-scheme: dark;
-  --b: #1d1f20;
-  --t: #ededed;
-  --h: #f8f7f7;
-  --c1: #303030;
-  --c2: #808080;
-  --c3: #404040;
-  --c4: #1a1d1e;
-  --r: #e15668;
-  --a: #5c88c1;
-  --x: #d66b79;
-  --d: #1a9e86;
-  --s: #3b3b3b;
-  --k: #404040;
-  --kt: #f8f7f7;
-  --kh: #222426;
+  --background: oklch(0.23 0.002 200);
+  --search: oklch(from var(--background) calc(l + 0.09) c h);
+
+  --heading: oklch(from var(--background) 0.92 c h);
+  --text: oklch(from var(--background) 0.93 c h);
+
+  --nav: oklch(0.3 0.002 200);
+  --nav-text: oklch(from var(--nav) calc(l + 0.8) c h);
+  --nav-border: oklch(from var(--nav) calc(l + 0.3) c h);
+  --sidebar-hover: oklch(from var(--nav) calc(l + 0.05) c h / 0.6);
+
+  --progress-text: oklch(from var(--text) l c h);
+  --progress: oklch(0.48 0.1 25);
+  --done: oklch(0.48 0.1 155);
+  --link: oklch(0.612 0.1 250);
+  --red: oklch(0.63 0.15 25);
+
+  --button: oklch(from var(--background) calc(l + 0.15) c h);
+  --button-text: oklch(from var(--button) calc(l + 0.6) c h);
+  --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
 *,
@@ -324,10 +354,12 @@ footer {
 
 
   </style>
-  <link rel="preload" href="/css/main.2fcf88d44c.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <script defer src="/js/sheets.js"></script>
+  <!-- <link rel="preload" href="/css/main.2fcf88d44c.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/main.2fcf88d44c.css"></noscript>
   <script defer src="/js/main.20f6134736.js" integrity="sha384-TIElVCChL9uXtQ+9F8qD9d/WXQEu4RZnJgVOOUSkTRR92b9OTa1PCfTbvp81L5+E"></script>
-  <script data-goatcounter="https://eldenring.goatcounter.com/count" async src="/js/goatcounter.js" integrity="sha384-IgVjbgOyqXPwl/Z6Wl1VLustQDHS2hF7lXRmQCpY9KgmJ4MBKHI6RFP/p9azVa4x"></script>
+  <script data-goatcounter="https://eldenring.goatcounter.com/count" async src="/js/goatcounter.js" integrity="sha384-IgVjbgOyqXPwl/Z6Wl1VLustQDHS2hF7lXRmQCpY9KgmJ4MBKHI6RFP/p9azVa4x"></script> -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -374,7 +406,7 @@ footer {
     <header>
       <h1>Elden Ring Cheat Sheets</h1>
       <p class="lead">Comprehensive cheat sheets for achieving 100% completion in Elden Ring.</p>
-      <!-- <p>If you notice any mistakes, or want to contribute, please <a href="https://github.com/rdmaw/elden-ring-cheat-sheets/issues/new/choose">raise an issue on GitHub</a>.</p> -->
+      <p>If you notice any mistakes, or want to contribute, please <a href="https://github.com/rdmaw/elden-ring-cheat-sheets/issues/new/choose">raise an issue on GitHub</a>.</p>
       <p><strong>WARNING: Contains spoilers!</strong></p>
     </header>
     <h2>FAQ</h2>
@@ -390,11 +422,11 @@ footer {
     <p>For miscellaneous items, such as Cookbooks, Talismans, Gestures, etc., check out <a href="/sheets/key-items">Key Items</a> and <a href="/sheets/miscellaneous-items">Miscellaneous Items</a> (coming later).</p>
     <p>If you're about to start NG+, check out <a href="/sheets/new-game-plus">New Game Plus</a> to see if you've got everything you need.</p>
     <p>Configure color themes, import existing profiles, and back up your progress on the <a href="/options">Options</a> page.</p>
-    <h4>Active keybinds:</h4>
+    <h4>Keyboard shortcuts:</h4>
     <ul>
-      <li><p><kbd>Q</kbd> - Open or close the sheets menu</p></li>
+      <li><p><kbd>s</kbd> - Open or close the sheets menu</p></li>
       <li><p><kbd>/</kbd> - Jump to the search bar</p></li>
-      <li><p><kbd>H</kbd> - Hide or unhide completed steps</p></li>
+      <li><p><kbd>h</kbd> - Hide or unhide completed steps</p></li>
     </ul>
     <h3 id="included">What's included in the walkthrough?</h3>
     <h4>The walkthrough <span class="r">DOES NOT COVER</span>:</h4>
