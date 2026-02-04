@@ -745,6 +745,8 @@ function setCollapseState(btn, checklist, expanded) {
     checklist.classList.toggle('f', !expanded);
 }
 
+let collapseInitialized = false;
+
 function setupCollapseUI() {
     for (const btn of collapseBtns) {
         const checklistId = btn.getAttribute('aria-controls');
@@ -752,20 +754,25 @@ function setupCollapseUI() {
 
         if (!checklist) continue;
 
-        checklistMap.set(btn, checklist);
-
         const isCollapsed = !!profiles[activeProfile].collapsed[checklistId];
 
         setCollapseState(btn, checklist, !isCollapsed)
 
-        btn.addEventListener('click', () => {
-            const shouldExpand = btn.ariaExpanded !== 'true';
+        if (!collapseInitialized) {
+            btn.addEventListener('click', () => {
+                const shouldExpand = btn.ariaExpanded !== 'true';
 
-            setCollapseState(btn, checklist, shouldExpand);
-            profile.setCollapsed(checklistId, shouldExpand);
-        });
+                setCollapseState(btn, checklist, shouldExpand);
+                profile.setCollapsed(checklistId, shouldExpand);
+            });
+
+            if (checklistId !== 'toc-list') {
+                checklistMap.set(btn, checklist);
+            }
+        }
     }
 
+    collapseInitialized = true;
     // Clean up style tag injected by inline script.
     document.getElementById('fouc')?.remove();
 }
