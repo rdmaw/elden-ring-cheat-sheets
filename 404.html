@@ -113,6 +113,63 @@ body {
   color: var(--text);
 }
 
+nav {
+  display: flex;
+  background-color: var(--nav);
+  border-bottom: 0.125rem solid var(--nav-border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 4rem;
+  margin-inline: var(--r1);
+}
+
+#menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.45rem;
+  height: 2.8rem;
+  background-color: var(--background);
+  border: 0.125rem solid var(--nav-border);
+  border-radius: 0.3125rem;
+}
+
+#menu-icon {
+  width: 2.125rem;
+  height: 2.125rem;
+}
+
+.nav-list {
+  display: flex;
+  gap: var(--r1);
+  margin-left: auto;
+}
+
+.nav-list a {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding-inline: var(--r1);
+}
+
+.nav-list svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+#sidebar {
+  position: fixed;
+  transform: translateX(-105%);
+}
+
+#sidebar[aria-hidden=false] {
+  transform: translateX(0);
+}
+
 input,
 button,
 select {
@@ -167,65 +224,6 @@ svg {
   border-radius: 5px;
 }
 
-nav {
-  border-bottom: 2px solid var(--c2);
-}
-
-.nav {
-  width: 100%;
-  min-height: 3.75rem;
-  margin: 0 var(--r1);
-  align-items: center;
-}
-
-.nav ul {
-  margin-left: auto;
-  gap: var(--r1);
-}
-
-.nav a {
-  display: inline-flex;
-  padding: 0 var(--r1);
-  align-items: center;
-  height: 2.7rem;
-}
-
-.nav svg {
-  width: 1.7rem;
-  height: 1.7rem;
-}
-
-#menu {
-  width: 3.4375rem;
-  height: 2.8rem;
-  background-color: var(--b);
-  border: 2px solid var(--c2);
-  border-radius: 5px;
-}
-
-#menu svg {
-  width: 2.125rem;
-  height: 2.125rem;
-}
-
-.sidebar {
-  position: fixed;
-  top: .4375rem;
-  width: 17rem;
-  max-height: calc(100svh - .875rem);
-  flex-direction: column;
-  background-color: var(--b);
-  border: 2px solid var(--c2);
-  border-left-width: 0;
-  border-radius: 0 10px 10px 0;
-  transform: translateX(-103%);
-  z-index: 2;
-}
-
-.sidebar[aria-hidden=false] {
-  transform: translateX(0);
-}
-
 main {
   width: min(100% - var(--r4), 87rem);
   margin-inline: auto;
@@ -269,16 +267,8 @@ nav,
   background-color: var(--c1);
 }
 
-h1,
-h2,
-nav a,
-#menu svg,
-.close svg {
-  color: var(--h);
-}
-
-.sidebar {
-  contain: layout;
+.nav a, #menu-icon {
+  color: var(--nav-text);
 }
   </style>
   <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -288,21 +278,46 @@ nav a,
   <script defer src="/js/main.20f6134736.js" integrity="sha384-TIElVCChL9uXtQ+9F8qD9d/WXQEu4RZnJgVOOUSkTRR92b9OTa1PCfTbvp81L5+E"></script> -->
 </head>
 <body class="flex">
-  <nav class="flex" aria-label="Global navigation">
-    <div class="nav flex">
-      <button type="button" id="menu" class="flex ac jc" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false"><svg aria-hidden="true" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
-      <ul class="flex">
-        <li><a href="/"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01"/></svg>&nbsp;FAQ</a></li>
-        <li><a href="/options"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>&nbsp;Options</a></li>
+  <nav aria-label="Global navigation">
+    <div class="nav">
+      <button type="button" id="menu-btn" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
+        <svg aria-hidden="true" id="menu-icon" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+      <ul class="nav-list">
+        <li>
+          <a href="/">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01"/>
+            </svg>
+            FAQ
+          </a>
+        </li>
+        <li>
+          <a href="/options">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            Options
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
-  <nav id="sidebar" class="sidebar flex" aria-labelledby="sh2" aria-hidden="true" inert>
-    <div class="sh flex jc ac">
-      <h2 id="sh2">Sheets</h2>
-      <button type="button" class="close btn flex ac" aria-label="Close sidebar" aria-controls="sidebar"><svg aria-hidden="true" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+
+  <nav id="sidebar" aria-labelledby="sidebar-title" aria-hidden="true" inert>
+    <div class="sidebar-header">
+      <h2 id="sidebar-title">Sheets</h2>
+      <button type="button" id="close-btn" class="btn" aria-label="Close sidebar" aria-controls="sidebar">
+        <svg aria-hidden="true" id="close-icon" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
     </div>
-    <ul class="sheets">
+    <ul id="sheets">
       <li><a href="/sheets/walkthrough">Walkthrough</a></li>
       <li><a href="/sheets/dlc-walkthrough">DLC Walkthrough</a></li>
       <li><a href="/sheets/npc-walkthrough">NPC Walkthrough</a></li>
@@ -314,12 +329,14 @@ nav a,
       <li><a href="/sheets/armor">Armor</a></li>
       <li><a href="/sheets/ashes">Ashes</a></li>
       <li><a href="/sheets/spells">Spells</a></li>
+      <li><a href="/sheets/talismans">Talismans</a></li>
       <li><a href="/sheets/key-items">Key Items</a></li>
       <li><a href="/sheets/miscellaneous-items">Miscellaneous Items</a></li>
       <li><a href="/sheets/new-game-plus">New Game Plus</a></li>
       <li><a href="/sheets/resources">Resources</a></li>
     </ul>
   </nav>
+
   <main class="flex ac jc">
     <header>
       <h1>404</h1>

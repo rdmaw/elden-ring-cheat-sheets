@@ -123,6 +123,63 @@ body {
   transform: translateY(-120%);
 }
 
+nav {
+  display: flex;
+  background-color: var(--nav);
+  border-bottom: 0.125rem solid var(--nav-border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 4rem;
+  margin-inline: var(--r1);
+}
+
+#menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.45rem;
+  height: 2.8rem;
+  background-color: var(--background);
+  border: 0.125rem solid var(--nav-border);
+  border-radius: 0.3125rem;
+}
+
+#menu-icon {
+  width: 2.125rem;
+  height: 2.125rem;
+}
+
+.nav-list {
+  display: flex;
+  gap: var(--r1);
+  margin-left: auto;
+}
+
+.nav-list a {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding-inline: var(--r1);
+}
+
+.nav-list svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+#sidebar {
+  position: fixed;
+  transform: translateX(-105%);
+}
+
+#sidebar[aria-hidden=false] {
+  transform: translateX(0);
+}
+
 input,
 button,
 select {
@@ -185,65 +242,6 @@ svg {
   background-color: var(--k);
   border: 1px solid var(--c2);
   border-radius: 5px;
-}
-
-nav {
-  border-bottom: 2px solid var(--c2);
-}
-
-.nav {
-  width: 100%;
-  min-height: 3.75rem;
-  margin: 0 var(--r1);
-  align-items: center;
-}
-
-.nav ul {
-  margin-left: auto;
-  gap: var(--r1);
-}
-
-.nav a {
-  display: inline-flex;
-  padding: 0 var(--r1);
-  align-items: center;
-  height: 2.7rem;
-}
-
-.nav svg {
-  width: 1.7rem;
-  height: 1.7rem;
-}
-
-#menu {
-  width: 3.4375rem;
-  height: 2.8rem;
-  background-color: var(--b);
-  border: 2px solid var(--c2);
-  border-radius: 5px;
-}
-
-#menu svg {
-  width: 2.125rem;
-  height: 2.125rem;
-}
-
-.sidebar {
-  position: fixed;
-  top: .4375rem;
-  width: 17rem;
-  max-height: calc(100svh - .875rem);
-  flex-direction: column;
-  background-color: var(--b);
-  border: 2px solid var(--c2);
-  border-left-width: 0;
-  border-radius: 0 10px 10px 0;
-  transform: translateX(-103%);
-  z-index: 2;
-}
-
-.sidebar[aria-hidden=false] {
-  transform: translateX(0);
 }
 
 main {
@@ -393,16 +391,10 @@ th[scope=col] {
   background-color: var(--c1);
 }
 
-h1,
-h2,
-h3,
-nav a,
-#menu svg,
-.close svg {
-  color: var(--h);
+.nav a, #menu-icon {
+  color: var(--nav-text);
 }
 
-.sidebar,
 .toc,
 .tw {
   contain: layout;
