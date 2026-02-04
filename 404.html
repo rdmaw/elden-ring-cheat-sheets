@@ -99,11 +99,18 @@
 }
 
 html {
-  font-family: system-ui, sans-serif;
-  font-size: clamp(15.05px, calc(14.392px + .2056vw), 17.2px);
-  -moz-text-size-adjust: none;
+  font-size: clamp(1rem, 0.986rem + 0.064vi, 1.063rem);
+  font-weight: 400;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+  text-wrap: pretty;
+}
+
+body {
+  flex-direction: column;
+  height: 100svh;
+  background-color: var(--background);
+  color: var(--text);
 }
 
 input,
@@ -111,13 +118,6 @@ button,
 select {
   font-family: inherit;
   font-size: inherit;
-}
-
-body {
-  color: var(--t);
-  background-color: var(--b);
-  height: 100svh;
-  flex-direction: column;
 }
 
 header {
