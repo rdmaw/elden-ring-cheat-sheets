@@ -28,5 +28,5 @@ goatcounter.js
 main.*.js
 
 # HTML
-404.html
-index.html
+# 404.html
+# index.html
