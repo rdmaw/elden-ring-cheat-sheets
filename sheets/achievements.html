@@ -202,6 +202,13 @@ h1 {
   text-wrap: balance;
 }
 
+#toc {
+  display: block;
+  margin-bottom: var(--r5);
+  background: none;
+  border-bottom: none;
+}
+
 h2 {
   margin-top: 1.5rem;
   font-size: 1.45rem;
@@ -279,13 +286,6 @@ kbd {
   display: flex;
   flex-wrap: wrap;
   gap: var(--r1);
-}
-
-.toc {
-  display: block;
-  margin-bottom: var(--r5);
-  background: none;
-  border-bottom: none;
 }
 
 nav span,
@@ -457,7 +457,7 @@ footer {
 
 html,
 label,
-.toc {
+#toc {
   line-height: 1.6;
 }
 
@@ -480,12 +480,12 @@ h1 {
   color: var(--nav-text);
 }
 
-.toc a {
+#toc a {
   color: var(--text);
 }
 
 form>ul,
-.toc {
+#toc {
   contain: layout;
 }
 
@@ -573,9 +573,9 @@ footer a {
       <p id="lead">Track all 42 achievements and required legendary equipment in progression order.</p>
     </header>
 
-    <nav class="toc">
-      <h2>Current Progress<span id="a-sheet">0/0</span></h2>
-      <ul>
+    <nav id="toc">
+      <h2><button type="button" class="collapse-btn btn" aria-label="Toggle table of contents" aria-controls="toc-list" aria-expanded="true"></button>Current Progress<span id="a-sheet">0/0</span></h2>
+      <ul id="toc-list">
         <li><a href="#misc">Miscellaneous</a><span id="a-n1">0/0</span></li>
         <li><a href="#bosses">Bosses</a><span id="a-n2">0/0</span></li>
         <li><a href="#shardbearers">Shardbearers</a><span id="a-n3">0/0</span></li>

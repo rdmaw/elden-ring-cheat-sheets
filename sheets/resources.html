@@ -200,6 +200,13 @@ h1 {
   text-wrap: balance;
 }
 
+#toc {
+  display: block;
+  margin-bottom: var(--r5);
+  background: none;
+  border-bottom: none;
+}
+
 input,
 button,
 select {
@@ -264,12 +271,6 @@ kbd {
   display: flex;
   flex-wrap: wrap;
   gap: var(--r1);
-}
-
-.toc {
-  margin-bottom: var(--r5);
-  background: none;
-  border-bottom: none;
 }
 
 .col {
@@ -366,7 +367,7 @@ th[scope=row] {
 
 html,
 .sh h2,
-.toc {
+#toc {
   line-height: 1.6;
 }
 
@@ -396,7 +397,7 @@ th[scope=col] {
   color: var(--nav-text);
 }
 
-.toc,
+#toc,
 .tw {
   contain: layout;
 }
@@ -497,9 +498,9 @@ footer {
       <p>Missing something? Submit a <a href="https://github.com/rdmaw/elden-ring-cheat-sheets/issues/new/choose">feature request</a> on GitHub.</p>
     </header>
 
-    <nav class="toc">
-      <h2>Resources</h2>
-      <ul>
+    <nav id="toc">
+      <h2><button type="button" class="collapse-btn btn" aria-label="Toggle table of contents" aria-controls="toc-list" aria-expanded="true"></button>Resources</h2>
+      <ul id="toc-list">
         <li><a href="#stats">Stats and Build</a></li>
         <li><a href="#smithing-stones">Smithing Stones</a></li>
         <li><a href="#gloveworts">Gloveworts</a></li>
