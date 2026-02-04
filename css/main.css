@@ -1,14 +1,96 @@
 #skip-link {
-  padding: 0.5em 1em;
-  color: var(--link);
-  background: var(--background);
-  border-radius: 0 0 5px 5px;
   z-index: 3;
+  padding: 0.5em 1em;
+  background-color: var(--background);
+  color: var(--link);
+  border-radius: 0 0 0.3125rem 0.3125rem;
 }
 
 #skip-link:focus {
+  outline: 0.125rem solid var(--nav-border);
   transform: translateY(0);
-  outline: 2px solid var(--nav-border);
+}
+
+.nav a {
+  height: 2.7rem;
+}
+
+.nav a:active {
+  background-color: var(--background);
+  border-radius: 0.3125rem;
+  text-decoration: none;
+}
+
+#sidebar {
+  contain: layout;
+  z-index: 2;
+  flex-direction: column;
+  top: 0.6875rem;
+  width: 17rem;
+  max-height: calc(100svh - 1.2rem);
+  background-color: var(--background);
+  border: 0.125rem solid var(--nav-border);
+  border-left-width: 0;
+  border-radius: 0 0.625rem 0.625rem 0;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.3125rem;
+  background-color: var(--nav);
+  border-bottom: 0.125em solid var(--nav-border);
+  border-top-right-radius: 0.5rem;
+}
+
+#sidebar-title {
+  margin: 0;
+  color: var(--nav-text);
+}
+
+#close-btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  inset: 0.6875rem 0.5rem auto auto;
+  width: 2.375rem;
+  height: 2.125rem;
+  background: none;
+  border: none;
+}
+
+#close-btn:active {
+  background-color: var(--background);
+}
+
+#close-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  color: var(--nav-text);
+}
+
+svg {
+  display: block;
+}
+
+#sheets {
+  padding: 0.5rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#sheets a {
+  display: block;
+  padding: 0.75rem;
+  color: var(--text);
+  border-bottom: 0.0625rem dotted var(--nav-border);
+}
+
+#sheets a:active {
+  background-color: var(--sidebar-hover);
+  border-radius: 0.25rem;
+  text-decoration: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -35,76 +117,17 @@
   height: var(--r5);
 }
 
-
-.sh {
-  min-height: 3.3125rem;
-  border-top-right-radius: 7px;
-  border-bottom: 2px solid var(--nav-border);
-}
-
-.sh h2 {
-  margin: 0;
-}
-
-.close {
-  position: absolute;
-  top: var(--r2);
-  right: 0.3125rem;
-  width: 2.375rem;
-  height: 2.125rem;
-  background: none;
-  border: none;
-}
-
-.close svg {
-  width: 1.4rem;
-  height: 1.4rem;
-}
-
-.sheets {
-  padding: var(--r1);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-
-.sheets a {
-  display: block;
-  padding: var(--r2);
-}
-
-.sheets li {
-  border-bottom: 1px dotted var(--nav-border);
-}
-
 button,
 .btn {
   touch-action: manipulation;
 }
 
-nav a:active {
-  text-decoration: none;
-}
-
-.nav a:active {
-  background-color: var(--background);
-  border-radius: 5px;
-}
-
-.close:active {
-  background-color: var(--background);
-}
-
-.sheets li:active {
-  background-color: var(--sidebar-hover);
-  border-radius: 4px;
-}
-
-a:focus {
-  text-decoration: underline;
-}
-
 .btn:active {
   background-color: var(--button-hover);
+}
+
+a:active {
+  text-decoration: underline;
 }
 
 footer a:active {
@@ -128,26 +151,20 @@ label {
 }
 
 @media (hover: hover) {
-  nav a:hover {
+  .nav a:hover {
+    background-color: var(--background);
+    border-radius: 0.3125rem;
     text-decoration: none;
   }
 
-  .nav a:hover {
-    background-color: var(--background);
-    border-radius: 5px;
-  }
-
-  button.close:hover {
+  #close-btn:hover {
     background-color: var(--background);
   }
 
-  .sheets li:hover {
+  #sheets a:hover {
     background-color: var(--sidebar-hover);
     border-radius: 4px;
-  }
-
-  .toc a:hover, a:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   .btn:hover {
@@ -160,6 +177,10 @@ label {
 
   input[type=checkbox]:hover {
     transform: scale(1.1);
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 
   footer a:hover {
