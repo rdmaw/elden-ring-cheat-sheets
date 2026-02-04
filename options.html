@@ -92,12 +92,17 @@
   --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
+:focus-visible {
+  border-radius: 0.0625rem;
+  outline: 0.125rem solid var(--nav-text);
+}
+
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
