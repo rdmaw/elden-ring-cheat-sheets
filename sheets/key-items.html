@@ -39,21 +39,21 @@
 <body>
   <a id="skip-link" href="#great-runes">Skip to main content</a>
 
-  <nav class="flex" aria-label="Global navigation">
-    <div class="nav flex">
-      <button type="button" id="menu" class="flex ac jc" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
-        <svg aria-hidden="true" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+  <nav aria-label="Global navigation">
+    <div class="nav">
+      <button type="button" id="menu-btn" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
+        <svg aria-hidden="true" id="menu-icon" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
           <path d="M3 12h18M3 6h18M3 18h18"/>
         </svg>
       </button>
-      <ul class="flex">
+      <ul class="nav-list">
         <li>
           <a href="/">
             <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="10"/>
               <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01"/>
             </svg>
-            &nbsp;FAQ
+            FAQ
           </a>
         </li>
         <li>
@@ -62,23 +62,23 @@
               <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/>
               <circle cx="12" cy="12" r="3"/>
             </svg>
-            &nbsp;Options
+            Options
           </a>
         </li>
       </ul>
     </div>
   </nav>
 
-  <nav id="sidebar" class="flex" aria-labelledby="sh2" aria-hidden="true" inert>
-    <div class="sh flex jc ac">
-      <h2 id="sh2">Sheets</h2>
-      <button type="button" class="close btn flex ac" aria-label="Close sidebar" aria-controls="sidebar">
-        <svg aria-hidden="true" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
+  <nav id="sidebar" aria-labelledby="sidebar-title" aria-hidden="true" inert>
+    <div class="sidebar-header">
+      <h2 id="sidebar-title">Sheets</h2>
+      <button type="button" id="close-btn" class="btn" aria-label="Close sidebar" aria-controls="sidebar">
+        <svg aria-hidden="true" id="close-icon" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
           <path d="M18 6 6 18M6 6l12 12"/>
         </svg>
       </button>
     </div>
-    <ul class="sheets">
+    <ul id="sheets">
       <li><a href="/sheets/walkthrough">Walkthrough</a></li>
       <li><a href="/sheets/dlc-walkthrough">DLC Walkthrough</a></li>
       <li><a href="/sheets/npc-walkthrough">NPC Walkthrough</a></li>

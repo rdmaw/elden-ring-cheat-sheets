@@ -902,11 +902,11 @@ if (searchInput) {
 
 /* TOGGLE SIDEBAR
 ----------------- */
-const menu = document.getElementById('menu');
+const menuBtn = document.getElementById('menu-btn');
 const sidebar = document.getElementById('sidebar');
-const close = sidebar.querySelector('.close');
+const closeBtn = document.getElementById('close-btn');
 
-let lastFocusedElement = menu;
+let lastFocusedElement = menuBtn;
 
 function openSidebar() {
     if (document.activeElement && document.activeElement !== document.body && typeof document.activeElement.focus === 'function') {
@@ -915,10 +915,10 @@ function openSidebar() {
 
     sidebar.ariaHidden = 'false';
     sidebar.inert = false;
-    menu.ariaExpanded = 'true';
+    menuBtn.ariaExpanded = 'true';
 
     announce('Sidebar opened');
-    close.focus();
+    closeBtn.focus();
 }
 
 function closeSidebar() {
@@ -932,7 +932,7 @@ function closeSidebar() {
 
     sidebar.ariaHidden = 'true';
     sidebar.inert = true;
-    menu.ariaExpanded = 'false';
+    menuBtn.ariaExpanded = 'false';
 
     announce('Sidebar closed');
 }
@@ -943,8 +943,8 @@ function toggleSidebar() {
     hidden ? openSidebar() : closeSidebar();
 }
 
-menu.addEventListener('click', toggleSidebar);
-close.addEventListener('click', toggleSidebar);
+menuBtn.addEventListener('click', toggleSidebar);
+closeBtn.addEventListener('click', toggleSidebar);
 
 /* SCROLL TO TOP
 ---------------- */
@@ -965,7 +965,7 @@ if (upBtn && scroll) {
 
     upBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0 });
-        menu.focus();
+        menuBtn.focus();
     });
 }
 
@@ -1018,7 +1018,7 @@ const shortcuts = {
         }
 
         window.scrollTo({ top: 0 });
-        menu.focus();
+        menuBtn.focus();
 
         announce('Scrolled to top');
     }
