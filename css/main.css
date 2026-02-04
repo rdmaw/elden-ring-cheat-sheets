@@ -8,6 +8,7 @@
 
 #skip-link:focus {
   outline: 0.125rem solid var(--nav-border);
+  text-decoration: underline;
   transform: translateY(0);
 }
 
