@@ -29,7 +29,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 - Links to the DLC sheet where mentioned in the walkthrough.
 
 #### Accessibility Features
-- Added skip-to-main-content links to all sheets.
+- Added skip links to all pages for keyboard users that want to skip navigation links.
 - Now scales with the browser's font size.
 - Screen readers should now announce the action of keyboard shortcuts.
 - Keyboard users can now call the sidebar from any focused element with the "s" keybind and return where they were (no longer forces focus to the menu).

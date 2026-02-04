@@ -117,6 +117,11 @@ body {
   color: var(--text);
 }
 
+#skip-link {
+  position: absolute;
+  transform: translateY(-120%);
+}
+
 nav {
   display: flex;
   background-color: var(--nav);
@@ -298,6 +303,8 @@ nav,
   <script defer src="/js/sheets.js"></script>
 </head>
 <body>
+  <a id="skip-link" href="#theme">Skip to main content</a>
+
   <nav aria-label="Global navigation">
     <div class="nav">
       <button type="button" id="menu-btn" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
