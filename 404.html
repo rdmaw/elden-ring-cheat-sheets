@@ -97,10 +97,6 @@ h2 {
   font-weight: 500;
 }
 
-h2 {
-  font-size: 1.45rem;
-}
-
 #menu-icon,
 .nav-list a {
   color: var(--nav-text);
@@ -142,6 +138,12 @@ nav {
   display: flex;
   gap: 0.5rem;
   margin-left: auto;
+  list-style-type: none;
+}
+
+.btn {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.3125rem;
 }
 
 .nav-list a {
@@ -150,6 +152,10 @@ nav {
   gap: 0.2rem;
   padding-inline: 0.5rem;
   line-height: 1;
+}
+
+a {
+  text-decoration: none;
 }
 
 .nav-list svg {
@@ -166,6 +172,10 @@ nav {
   transform: translateX(0);
 }
 
+h2 {
+  font-size: 1.45rem;
+}
+
 main {
   display: flex;
   align-items: center;
@@ -173,10 +183,6 @@ main {
   flex: 1;
   width: min(100% - 7vi, 70rem);
   margin-inline: auto;
-}
-
-header {
-  margin-top: 2rem;
   text-align: center;
 }
 
@@ -188,24 +194,10 @@ h1 {
   margin: 0.75rem 0 1.75rem 0;
   font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
   font-weight: 250;
-  text-wrap: balance;
 }
 
 p {
   margin-bottom: 1rem;
-}
-
-ul {
-  list-style-type: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-.btn {
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.3125rem;
 }
   </style>
   <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -277,7 +269,7 @@ a {
   <main>
     <header>
       <h1>404</h1>
-      <p id="lead">The cheat sheet you're looking for doesn't exist.</p>
+      <p id="lead">The sheet you're looking for doesn't exist.</p>
       <p>The URL may be incorrect, or the sheet may have been moved.</p>
       <p>Open the sidebar and try a different sheet.</p>
     </header>

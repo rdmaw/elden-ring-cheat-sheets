@@ -1,5 +1,11 @@
 /* SHARED
 --------- */
+select,
+button,
+label,
+input[type=checkbox] {
+  cursor: pointer;
+}
 
 /* COMPONENTS
 ------------- */
@@ -118,6 +124,18 @@ h1 {
   display: none;
 }
 
+button {
+  touch-action: manipulation;
+}
+
+.btn:active {
+  background-color: var(--button-hover);
+}
+
+a:active {
+  text-decoration: underline;
+}
+
 kbd {
   background-color: var(--button);
   border: 0.0625rem solid var(--nav-border);
@@ -125,15 +143,19 @@ kbd {
   box-shadow: 0 0.0625rem 0 var(--nav-border);
 }
 
+footer a:active {
+  color: var(--link);
+}
+
 #up-btn {
   position: fixed;
   inset: auto 1.25rem 1.25rem auto;
   height: auto;
   padding: 0.5rem;
-  border: 2px solid var(--nav-border);
+  border: 0.125rem solid var(--nav-border);
   border-radius: 50%;
   opacity: 0;
-  transform: translateY(100px);
+  transform: translateY(6.25rem);
 }
 
 #up-btn.show {
@@ -146,30 +168,10 @@ kbd {
   height: 1.75rem;
 }
 
-/* --> */
-
-button,
-.btn {
-  touch-action: manipulation;
-}
-
-.btn:active {
-  background-color: var(--button-hover);
-}
-
-a:active {
-  text-decoration: underline;
-}
-
-footer a:active {
-  color: var(--link);
-}
-
-select,
-button,
-input[type=checkbox],
-label {
-  cursor: pointer;
+#scroll-observer {
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
 }
 
 #announcer {
@@ -210,7 +212,7 @@ label {
 
   #sheets a:hover {
     background-color: var(--sidebar-hover);
-    border-radius: 4px;
+    border-radius: 0.25rem;
     text-decoration: none;
   }
 
