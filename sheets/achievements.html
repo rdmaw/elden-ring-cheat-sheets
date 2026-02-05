@@ -435,7 +435,7 @@ strong {
   font-weight: 500;
 }
 
-.nav a, #menu-icon {
+.nav-list a, #menu-icon {
   color: var(--nav-text);
 }
 
@@ -532,8 +532,9 @@ footer a {
         <li><a href="#endings">Endings</a><span id="a-n4">0/0</span></li>
         <li><a href="#weapons">Legendary Weapons</a><span id="a-n5">0/0</span></li>
         <li><a href="#ashes">Legendary Ashes</a><span id="a-n6">0/0</span></li>
-        <li><a href="#spells">Legendary Spells</a><span id="a-n7">0/0</span></li>
-        <li><a href="#talismans">Legendary Talismans</a><span id="a-n8">0/0</span></li>
+        <li><hr data-content="DLC" aria-label="Start of DLC areas"></li>
+        <li><a href="#spells">Legendary Spells</a><span id="a-n7">0/0</span><abbr class="dlc" title="Shadow of the Erdtree DLC">SOTE</abbr></li>
+        <li><a href="#talismans">Legendary Talismans</a><span id="a-n8">0/0</span><abbr class="dlc" title="Shadow of the Erdtree DLC">SOTE</abbr></li>
       </ul>
     </nav>
 
@@ -559,15 +560,16 @@ footer a {
     <form role="none" autocomplete="off">
       <h3 id="misc"><button type="button" class="collapse-btn btn" aria-label="Toggle Miscellaneous" aria-controls="a1" aria-expanded="true"></button>Miscellaneous<button type="button" id="a-c1" class="check-all" aria-label="Check all">0/0</button></h3>
       <ul id="a1">
+        <li class="top-note"><strong>Note:</strong> Most enemies in this section can kill you easily, so focus on avoiding combat when following the steps.</li>
         <li><label><input type="checkbox" id="a1-1"><a href="https://eldenring.wiki.gg/wiki/Roundtable_Hold_(Achievement/Trophy)">Roundtable Hold</a>: Be invited to Roundtable Hold by <a href="https://eldenring.wiki.gg/wiki/Melina">Melina</a>, either after defeating <a href="https://eldenring.wiki.gg/wiki/Margit,_the_Fell_Omen" class="red">Margit</a> or by resting at a grace outside of Limgrave and Weeping Peninsula.</label></li>
         <li><label><input type="checkbox" id="a1-2"><a href="https://eldenring.wiki.gg/wiki/Great_Rune_(Achievement/Trophy)">Great Rune</a>: Restore the power of a Great Rune at the top of its divine tower.</label></li>
         <li><label><input type="checkbox" id="a1-3"><a href="https://eldenring.wiki.gg/wiki/God-Slaying_Armament_(Achievement/Trophy)">God-Slaying Armament</a>: Upgrade any weapon to max level (Somber +10, Regular +25). Somber weapons can be done sooner by using the Pureblood Knight's Medal to access Mohgwyn's Palace early. Otherwise, you'll likely finish during the Consecrated Snowfields or Farum Azula, where you get the remaining Smithing 8's.</label></li>
         <li><label><input type="checkbox" id="a1-4"><a href="https://eldenring.wiki.gg/wiki/Erdtree_Aflame_(Achievement/Trophy)">Erdtree Aflame</a>: Talk to Melina while resting at the <a href="https://mapgenie.io/elden-ring/maps/the-lands-between?locationIds=166544">Forge of the Giants</a> grace and tell her that you're ready to burn the Erdtree.</label></li>
         <li><label><input type="checkbox" id="a1-5"><strong class="red">MISSABLE -</strong> <a href="https://eldenring.wiki.gg/wiki/Legendary_Armaments_(Achievement/Trophy)">Legendary Armaments</a>: Collect all legendary weapons to obtain.</label></li>
         <li><label><input type="checkbox" id="a1-6"><a href="https://eldenring.wiki.gg/wiki/Legendary_Ashen_Remains_(Achievement/Trophy)">Legendary Ashen Remains</a>: Collect all legendary ashes to obtain.</label></li>
-        <li><label><input type="checkbox" id="a1-7"><a href="https://eldenring.wiki.gg/wiki/Legendary_Sorceries_and_Incantations_(Achievement/Trophy)">Legendary Sorceries and Incantations</a>: Collect all legendary spells to obtain.</label></li>
-        <li><label><input type="checkbox" id="a1-8"><a href="https://eldenring.wiki.gg/wiki/Legendary_Talismans_(Achievement/Trophy)">Legendary Talismans</a>: Collect all legendary talismans to obtain.</label></li>
-        <li><label><input type="checkbox" id="a1-9"><a href="https://eldenring.wiki.gg/wiki/Elden_Ring_(Achievement/Trophy)">Elden Ring</a>: Obtain all achievements.</label></li>
+        <li><label><input type="checkbox" id="a1-7"><a href="https://eldenring.wiki.gg/wiki/Legendary_Sorceries_and_Incantations_(Achievement/Trophy)">Legendary Sorceries and Incantations</a>: Collect all legendary spells to obtain.<abbr class="dlc" title="Shadow of the Erdtree DLC">SOTE</abbr></label></li>
+        <li><label><input type="checkbox" id="a1-8"><a href="https://eldenring.wiki.gg/wiki/Legendary_Talismans_(Achievement/Trophy)">Legendary Talismans</a>: Collect all legendary talismans to obtain.<abbr class="dlc" title="Shadow of the Erdtree DLC">SOTE</abbr></label></li>
+        <li><label><input type="checkbox" id="a1-9"><a href="https://eldenring.wiki.gg/wiki/Elden_Ring_(Achievement/Trophy)">Elden Ring</a>: Obtain all achievements.<abbr class="dlc" title="Shadow of the Erdtree DLC">SOTE</abbr></label></li>
       </ul>
 
       <h3 id="bosses"><button type="button" class="collapse-btn btn" aria-label="Toggle Bosses" aria-controls="a2" aria-expanded="true"></button>Bosses<button type="button" id="a-c2" class="check-all" aria-label="Check all">0/0</button></h3>

@@ -1,3 +1,8 @@
+/* SHARED
+--------- */
+
+/* COMPONENTS
+------------- */
 #skip-link {
   z-index: 3;
   padding: 0.5em 1em;
@@ -12,11 +17,11 @@
   transform: translateY(0);
 }
 
-.nav a {
+.nav-list a {
   height: 2.7rem;
 }
 
-.nav a:active {
+.nav-list a:active {
   background-color: var(--background);
   border-radius: 0.3125rem;
   text-decoration: none;
@@ -86,12 +91,17 @@ svg {
   padding: 0.75rem;
   color: var(--text);
   border-bottom: 0.0625rem dotted var(--nav-border);
+  line-height: 1.2;
 }
 
 #sheets a:active {
   background-color: var(--sidebar-hover);
   border-radius: 0.25rem;
   text-decoration: none;
+}
+
+h1 {
+  color: var(--heading);
 }
 
 #hideSvg {
@@ -108,18 +118,12 @@ svg {
   display: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  #skip-link {
-    transition: transform 0.2s;
-  }
+kbd {
+  background-color: var(--button);
+  border: 0.0625rem solid var(--nav-border);
+  border-radius: 0.1875rem;
+  box-shadow: 0 0.0625rem 0 var(--nav-border);
 
-  #sidebar {
-    transition: transform 0.3s ease;
-  }
-
-  #up-btn {
-    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
-  }
 }
 
 #up-btn.show {
@@ -165,8 +169,24 @@ label {
   overflow: hidden;
 }
 
+/* MEDIA QUERIES
+---------------- */
+@media (prefers-reduced-motion: no-preference) {
+  #skip-link {
+    transition: transform 0.2s;
+  }
+
+  #sidebar {
+    transition: transform 0.3s ease;
+  }
+
+  #up-btn {
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+}
+
 @media (hover: hover) {
-  .nav a:hover {
+  .nav-list a:hover {
     background-color: var(--background);
     border-radius: 0.3125rem;
     text-decoration: none;
@@ -212,22 +232,18 @@ label {
     --done: #000;
     --link: #000;
     --button: #fff;
-    --button-text: #000;
   }
 
-  /* bruke #search id? */
   #skip-link,
   nav,
-  .btn,
-  search,
-  h3 span,
-  footer,
-  #up-btn {
+  #search,
+  button,
+  abbr {
     display: none !important;
   }
 
-  li label {
-    padding-left: 20px;
+  label {
+    padding-left: 1.25rem;
     text-decoration: none !important;
   }
 
