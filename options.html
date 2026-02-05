@@ -50,7 +50,6 @@
   --sidebar-hover: oklch(from var(--nav) calc(l + 0.15) calc(c - 0.008) h / 0.6);
 
   --button: oklch(from var(--background) calc(l - 0.03) calc(c - 0.010) h);
-  --button-text: oklch(from var(--button) 0.1 c h);
   --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
@@ -67,8 +66,7 @@
   --nav-border: oklch(from var(--nav) calc(l + 0.3) c h);
   --sidebar-hover: oklch(from var(--nav) calc(l + 0.05) c h / 0.6);
 
-  --button: oklch(from var(--background) calc(l + 0.15) c h);
-  --button-text: oklch(from var(--button) calc(l + 0.6) c h);
+  --button: oklch(from var(--background) calc(l + 0.13) c h);
   --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
@@ -179,15 +177,24 @@ h1 {
   text-wrap: balance;
 }
 
+h2 {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 1.45rem;
+}
+
+.btn {
+  height: 2rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--button);
+  color: var(--text);
+  border: 0.0625rem solid var(--nav-border);
+  border-radius: 0.3125rem;
+}
+
 select,
 .btn {
   font-family: inherit;
   font-size: inherit;
-}
-
-h2 {
-  margin: 1.5rem 0 0.75rem;
-  font-size: 1.45rem;
 }
 
 h3 {
@@ -202,19 +209,6 @@ ul {
 a {
   color: var(--a);
   text-decoration: none;
-}
-
-svg {
-  display: block;
-}
-
-.btn {
-  padding: 0.25rem 0.5rem;
-  height: 2rem;
-  color: var(--kt);
-  background-color: var(--k);
-  border: 1px solid var(--c2);
-  border-radius: 5px;
 }
 
 select {

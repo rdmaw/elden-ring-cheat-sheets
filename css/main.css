@@ -94,6 +94,20 @@ svg {
   text-decoration: none;
 }
 
+#hideSvg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#showSvg,
+.hide-checked #hideSvg {
+  display: block;
+}
+
+.hide-checked #showSvg {
+  display: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   #skip-link {
     transition: transform 0.2s;
@@ -201,6 +215,7 @@ label {
     --button-text: #000;
   }
 
+  /* bruke #search id? */
   #skip-link,
   nav,
   .btn,

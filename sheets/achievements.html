@@ -59,7 +59,6 @@
   --red: oklch(0.54 0.21 40);
 
   --button: oklch(from var(--background) calc(l - 0.03) calc(c - 0.010) h);
-  --button-text: oklch(from var(--button) 0.1 c h);
   --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
@@ -83,8 +82,7 @@
   --link: oklch(0.612 0.1 250);
   --red: oklch(0.63 0.15 25);
 
-  --button: oklch(from var(--background) calc(l + 0.15) c h);
-  --button-text: oklch(from var(--button) calc(l + 0.6) c h);
+  --button: oklch(from var(--background) calc(l + 0.13) c h);
   --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
@@ -250,13 +248,43 @@ button.d {
   border-radius: 0.3125rem;
 }
 
-/* --> */
+#filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#hide-btn {
+  display: flex;
+  align-items: center;
+}
+
+#showSvg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#hideSvg {
+  display: none;
+}
+
+.btn {
+  height: 2rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--button);
+  color: var(--text);
+  border: 0.0625rem solid var(--nav-border);
+  border-radius: 0.3125rem;
+}
+
 h3 {
   margin: 1.75rem 0 0.5rem;
   font-size: 1.4rem;
   line-height: 1.4;
   text-wrap: balance;
 }
+
+/* --> */
 
 p {
   margin-bottom: 1rem;
@@ -286,49 +314,14 @@ a {
   text-decoration: none;
 }
 
-.btn {
-  padding: 0.25rem 0.5rem;
-  height: 2rem;
-  color: var(--button-text);
-  background-color: var(--button);
-  border: 1px solid var(--nav-border);
-  border-radius: 5px;
-}
-
 kbd {
   font-size: 0.9rem;
   padding: 0.15em 0.45em;
-  color: var(--button-text);
+  color: var(--text);
   background-color: var(--button);
   border: 1px solid var(--nav-text);
   border-radius: 3px;
   box-shadow: 0 1px 0 var(--nav-text);
-}
-
-#filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-#hide-btn {
-  display: flex;
-  align-items: center;
-}
-
-#hide-btn svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-#showSvg,
-.hide-checked #hideSvg {
-  display: block;
-}
-
-#hideSvg,
-.hide-checked #showSvg {
-  display: none;
 }
 
 .collapse-btn {

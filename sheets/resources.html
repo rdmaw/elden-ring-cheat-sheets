@@ -52,7 +52,6 @@
   --link: oklch(0.54 0.21 260);
 
   --button: oklch(from var(--background) calc(l - 0.03) calc(c - 0.010) h);
-  --button-text: oklch(from var(--button) 0.1 c h);
   --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
@@ -72,8 +71,7 @@
   --done: oklch(0.48 0.1 155);
   --link: oklch(0.612 0.1 250);
 
-  --button: oklch(from var(--background) calc(l + 0.15) c h);
-  --button-text: oklch(from var(--button) calc(l + 0.6) c h);
+  --button: oklch(from var(--background) calc(l + 0.13) c h);
   --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
@@ -201,9 +199,26 @@ h2 {
   color: var(--text);
 }
 
+#filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn {
+  height: 2rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--button);
+  color: var(--text);
+  border: 0.0625rem solid var(--nav-border);
+  border-radius: 0.3125rem;
+  font-family: inherit;
+  font-size: inherit;
+}
+
 h3 {
-  font-size: 1.5rem;
   margin: 1.75rem 0 0.5rem;
+  font-size: 1.4rem;
 }
 
 p {
@@ -229,21 +244,6 @@ a {
   text-decoration: none;
 }
 
-svg {
-  display: block;
-}
-
-.btn {
-  height: 2rem;
-  padding: 0.25rem 0.5rem;
-  background-color: var(--k);
-  color: var(--kt);
-  border: 1px solid var(--c2);
-  border-radius: 5px;
-  font-family: inherit;
-  font-size: inherit;
-}
-
 kbd {
   font-size: 0.9rem;
   padding: 0.15em 0.45em;
@@ -252,12 +252,6 @@ kbd {
   border: 1px solid var(--c2);
   border-radius: 3px;
   box-shadow: 0 1px 0 var(--c2);
-}
-
-.filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
 }
 
 .col {
