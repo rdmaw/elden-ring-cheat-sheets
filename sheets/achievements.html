@@ -194,6 +194,10 @@ h1 {
   text-wrap: balance;
 }
 
+p {
+  margin-bottom: 1rem;
+}
+
 h2 {
   margin-top: 1.5rem;
   font-size: 1.45rem;
@@ -211,30 +215,23 @@ h2 {
 }
 
 nav span,
-button.check-all {
+.check-all {
   margin-left: 0.5rem;
-  padding-inline: 0.25em;
+  padding: 0.08em 0.25em;
   background-color: var(--progress);
   color: var(--progress-text);
+  border: none;
   border-radius: 0.3125rem;
+  font: inherit;
   font-size: 0.9em;
   font-weight: 450;
 }
 
-nav span {
-  padding-block: 0.092em;
-}
-
 h2 span {
-  padding-block: 0.13em;
+  font-size: 0.95em;
 }
 
-button.check-all {
-  padding-block: 0.05em;
-}
-
-.d,
-button.d {
+.d {
   background-color: var(--done);
 }
 
@@ -284,21 +281,36 @@ h3 {
   text-wrap: balance;
 }
 
-/* --> */
-
-p {
-  margin-bottom: 1rem;
+.collapse-btn {
+  position: relative;
+  margin-right: 0.5rem;
+  width: 2.2rem;
+  height: 1.8rem;
+  vertical-align: text-bottom;
 }
+
+.collapse-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 0.65rem;
+  height: 0.65rem;
+  margin: auto;
+  border: solid var(--heading);
+  border-width: 0 0.1875rem 0.1875rem 0;
+  transform: translateY(-0.125rem) rotate(45deg);
+}
+
+.collapse-btn[aria-expanded=true]::before {
+  transform: translateY(0.125rem) rotate(-135deg);
+}
+
+/* --> */
 
 #search,
 .btn {
   font-family: inherit;
   font-size: inherit;
-}
-
-.check-all {
-  border: none;
-  font: inherit;
 }
 
 ul {
@@ -322,31 +334,6 @@ kbd {
   border: 1px solid var(--nav-text);
   border-radius: 3px;
   box-shadow: 0 1px 0 var(--nav-text);
-}
-
-.collapse-btn {
-  position: relative;
-  margin-right: 0.5rem;
-  width: 2.2rem;
-  height: 1.75rem;
-  flex-shrink: 0;
-  /* vertical-align: text-bottom; */
-}
-
-.collapse-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 10px;
-  height: 10px;
-  border: solid var(--heading);
-  border-width: 0 3px 3px 0;
-  transform: translateY(-2px) rotate(45deg);
-}
-
-.collapse-btn[aria-expanded=true]::before {
-  transform: translateY(2px) rotate(-135deg);
 }
 
 li {
