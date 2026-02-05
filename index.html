@@ -227,6 +227,14 @@ a {
   text-decoration: none;
 }
 
+.red {
+  color: var(--red);
+}
+
+.green {
+  color: var(--done);
+}
+
 .btn {
   height: 2rem;
   padding: 0.25rem 0.5rem;
@@ -237,13 +245,9 @@ a {
 }
 
 kbd {
-  font-size: 0.9rem;
   padding: 0.15em 0.45em;
-  color: var(--kt);
-  background-color: var(--k);
-  border: 1px solid var(--c2);
-  border-radius: 3px;
-  box-shadow: 0 1px 0 var(--c2);
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 ol {
@@ -275,14 +279,6 @@ ol ul {
   transform: translateY(100px);
 }
 
-.r {
-  color: var(--r);
-}
-
-.g {
-  color: var(--d);
-}
-
 header,
 footer {
   text-align: center;
@@ -303,7 +299,7 @@ h3,
 h4,
 nav a,
 strong {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 nav,
@@ -432,7 +428,7 @@ footer {
 
     <h3 id="included">What's included in the walkthrough?</h3>
 
-    <h4>The walkthrough <span class="r">DOES NOT COVER</span>:</h4>
+    <h4>The walkthrough <span class="red">DOES NOT COVER</span>:</h4>
     <ul class="list">
       <li>Items that require farming, or crafting materials collected from the environment (e.g., <a href="https://eldenring.wiki.gg/wiki/Rowa_Fruit">Rowa Fruit</a>, <a href="https://eldenring.wiki.gg/wiki/Arteria_Leaf">Arteria Leaf</a>).</li>
       <li>Scarabs that respawn, such as <a href="https://eldenring.wiki.gg/wiki/Scarab#Crimson_Teardrop_Scarab-0">Crimson</a> and <a href="https://eldenring.wiki.gg/wiki/Scarab#Cerulean_Teardrop_Scarab-0">Cerulean Tear Scarabs</a> that refill your flasks.</li>
@@ -441,7 +437,7 @@ footer {
       <li><a href="https://eldenring.wiki.gg/wiki/Summoning_Pools">Martyr Effigies</a> that activate co-op summon signs for an area.</li>
     </ul>
 
-    <h4>The walkthrough <span class="g">COVERS</span>:</h4>
+    <h4>The walkthrough <span class="green">COVERS</span>:</h4>
     <ul class="list">
       <li>Every single item pickup in the base game and DLC.</li>
       <li>All achievements, NPCs, questlines, and bosses in progression order.</li>
@@ -459,7 +455,7 @@ footer {
     <p>Yes, you will get every achievement just by following the Walkthrough. No planning needed! If you'd like to track your achievements and legendary items, use the Achievements sheet.</p>
 
     <h3 id="missables">Is there anything missable in Elden Ring?</h3>
-    <p>Unfortunately a ton of things are missable. While some are quest-related, two achievements can be <strong class="r">permanently missed</strong> until your next playthrough. All missable entries are marked with <strong class="r">MISSABLE</strong>, so you can easily use the search bar to filter these steps. Optional steps, or missable entries that don't give any reward, are marked with <strong>Optional</strong>. You won't miss anything if you're following the Walkthrough though.</p>
+    <p>Unfortunately a ton of things are missable. While some are quest-related, two achievements can be <strong class="red">permanently missed</strong> until your next playthrough. All missable entries are marked with <strong class="red">MISSABLE</strong>, so you can easily use the search bar to filter these steps. Optional steps, or missable entries that don't give any reward, are marked with <strong>Optional</strong>. You won't miss anything if you're following the Walkthrough though.</p>
 
     <h3>What level should I be for each area?</h3>
     <p>I provide recommended level ranges for each area based on my walkthrough runs where I intentionally stay underleveled, avoiding all enemies in the open world and only engaging in combat inside of legacy dungeons. These ranges don't necessarily represent the difficulty of an area, but rather the level you're likely to reach naturally when following the walkthrough. They are suggestions based on my own characters, and could help you avoid being over- or under-leveled if you want a fairer experience.</p>
@@ -507,7 +503,7 @@ footer {
     <p>Yep, you can create, edit, and delete profiles on the Options page. Your progress will be saved to the currently selected profile. You can also use the NG+ button to only reset progress for the Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus sheets.</p>
 
     <h3>How is my progress saved?</h3>
-    <p>Your progress is stored locally in your browser. This means that <strong class="r">clearing your browser's cache will destroy any saved progress</strong>.</p>
+    <p>Your progress is stored locally in your browser. This means that <strong class="red">clearing your browser's cache will destroy any saved progress</strong>.</p>
     <p>To back up your data, go to <a href="/options">Options</a> and select <strong>Backup as file</strong>. This will export your data as a JSON file. You can then import your progress on any device by selecting <strong>Restore from file</strong> and choosing the JSON file. On mobile devices, JSON files aren't supported, so use the clipboard options instead to sync your progress.</p>
 
     <h3>I found an error! How can I contribute?</h3>
@@ -520,21 +516,21 @@ footer {
 
     <h4>Status:</h4>
     <ul class="list">
-      <li>Resources - <strong class="g">FINISHED</strong></li>
-      <li>Walkthrough - <strong class="g">FINISHED</strong></li>
-      <li>DLC Walkthrough - <strong class="r">IN PROGRESS</strong></li>
-      <li>NPC Walkthrough - <strong class="g">FINISHED</strong></li>
-      <li>Questlines - <strong class="g">FINISHED</strong></li>
-      <li>Merchants - <strong class="g">FINISHED</strong></li>
-      <li>Bosses - <strong class="g">FINISHED</strong></li>
-      <li>Achievements - <strong class="g">FINISHED</strong></li>
-      <li>Weapons - <strong class="r">IN PROGRESS</strong></li>
-      <li>Armor - <strong class="r">IN PROGRESS</strong></li>
-      <li>Ashes - <strong class="r">IN PROGRESS</strong></li>
-      <li>Spells - <strong class="r">IN PROGRESS</strong></li>
-      <li>Key Items - <strong class="r">PLANNED</strong></li>
-      <li>Miscellaneous Items - <strong class="r">PLANNED</strong></li>
-      <li>New Game Plus - <strong class="r">INCOMPLETE</strong></li>
+      <li>Resources - <strong class="green">FINISHED</strong></li>
+      <li>Walkthrough - <strong class="green">FINISHED</strong></li>
+      <li>DLC Walkthrough - <strong class="red">IN PROGRESS</strong></li>
+      <li>NPC Walkthrough - <strong class="green">FINISHED</strong></li>
+      <li>Questlines - <strong class="green">FINISHED</strong></li>
+      <li>Merchants - <strong class="green">FINISHED</strong></li>
+      <li>Bosses - <strong class="green">FINISHED</strong></li>
+      <li>Achievements - <strong class="green">FINISHED</strong></li>
+      <li>Weapons - <strong class="red">IN PROGRESS</strong></li>
+      <li>Armor - <strong class="red">IN PROGRESS</strong></li>
+      <li>Ashes - <strong class="red">IN PROGRESS</strong></li>
+      <li>Spells - <strong class="red">IN PROGRESS</strong></li>
+      <li>Key Items - <strong class="red">PLANNED</strong></li>
+      <li>Miscellaneous Items - <strong class="red">PLANNED</strong></li>
+      <li>New Game Plus - <strong class="red">INCOMPLETE</strong></li>
     </ul>
 
     <h3>Special Thanks</h3>

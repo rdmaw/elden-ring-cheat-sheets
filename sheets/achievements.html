@@ -293,8 +293,8 @@ h3 {
   content: '';
   position: absolute;
   inset: 0;
-  width: 0.65rem;
-  height: 0.65rem;
+  width: 0.6rem;
+  height: 0.6rem;
   margin: auto;
   border: solid var(--heading);
   border-width: 0 0.1875rem 0.1875rem 0;
@@ -321,12 +321,23 @@ li {
   margin: 0.16rem 0 0.16rem 0.92rem;
 }
 
-/* --> */
+label {
+  display: inline-block;
+  padding-block: 0.16rem;
+  padding-left: clamp(1.625rem, 1.365rem + 1.154vi, 2.75rem);
+}
 
-#search,
-.btn {
-  font-family: inherit;
-  font-size: inherit;
+.c {
+  text-decoration: line-through;
+}
+
+input[type=checkbox] {
+  position: absolute;
+  left: clamp(0.063rem, -0.154rem + 0.962vi, 1rem);
+  top: clamp(0.35rem, 0.373rem + -0.103vi, 0.25rem);
+  width: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
+  height: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
+  accent-color: var(--done);
 }
 
 a {
@@ -334,47 +345,22 @@ a {
   text-decoration: none;
 }
 
+.red {
+  color: var(--red);
+}
+
 kbd {
-  font-size: 0.9rem;
   padding: 0.15em 0.45em;
-  color: var(--text);
-  background-color: var(--button);
-  border: 1px solid var(--nav-text);
-  border-radius: 3px;
-  box-shadow: 0 1px 0 var(--nav-text);
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
-label {
-  display: inline-block;
-  padding: 0.16rem 0 0.16rem 2.75rem;
-}
+/* --> */
 
-input[type=checkbox] {
-  position: absolute;
-  left: 1rem;
-  top: 0.35rem;
-  margin: 0;
-  width: 15px;
-  height: 15px;
-  accent-color: var(--done);
-}
-
-
-@media (min-width: 600px) {
-  input[type=checkbox] {
-    width: 18px;
-    height: 18px;
-  }
-}
-@media (min-width: 1200px) {
-  input[type=checkbox] {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-.c {
-  text-decoration: line-through;
+#search,
+.btn {
+  font-family: inherit;
+  font-size: inherit;
 }
 
 hr {
@@ -426,14 +412,6 @@ hr::after {
 .f,
 .hide-checked .c {
   display: none !important;
-}
-
-.red {
-  color: var(--red);
-}
-
-.g {
-  color: var(--done);
 }
 
 header,
