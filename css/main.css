@@ -123,7 +123,17 @@ kbd {
   border: 0.0625rem solid var(--nav-border);
   border-radius: 0.1875rem;
   box-shadow: 0 0.0625rem 0 var(--nav-border);
+}
 
+#up-btn {
+  position: fixed;
+  inset: auto 1.25rem 1.25rem auto;
+  height: auto;
+  padding: 0.5rem;
+  border: 2px solid var(--nav-border);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(100px);
 }
 
 #up-btn.show {
@@ -131,10 +141,12 @@ kbd {
   transform: translateY(0);
 }
 
-#up-btn svg {
+#up-arrow {
   width: 1.75rem;
   height: 1.75rem;
 }
+
+/* --> */
 
 button,
 .btn {

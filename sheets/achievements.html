@@ -433,18 +433,6 @@ hr::after {
   pointer-events: none;
 }
 
-#up-btn {
-  position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  padding: 0.5rem;
-  height: auto;
-  border: 2px solid var(--nav-border);
-  border-radius: 50%;
-  opacity: 0;
-  transform: translateY(100px);
-}
-
 footer {
   font-size: 0.8rem;
   padding: 1.25rem 0 0.5rem;
@@ -676,7 +664,7 @@ footer a {
   </footer>
 
   <button type="button" id="up-btn" class="btn" aria-label="Scroll to top of page" aria-hidden="true">
-    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+    <svg aria-hidden="true" id="up-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
       <path d="m5 12 7-7 7 7m-7 7V5"/>
     </svg>
   </button>
