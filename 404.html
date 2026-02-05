@@ -90,16 +90,32 @@ body {
   color: var(--text);
 }
 
-/* SHARED
---------- */
-nav a,
-h2 {
-  font-weight: 500;
+h1 {
+  font-size: clamp(2.25rem, 2.077rem + 0.769vi, 3rem);
 }
 
+h2 {
+  font-size: 1.45rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* SHARED
+--------- */
 #menu-icon,
 .nav-list a {
   color: var(--nav-text);
+}
+
+nav a,
+h2 {
+  font-weight: 500;
 }
 
 /* COMPONENTS
@@ -154,10 +170,6 @@ nav {
   line-height: 1;
 }
 
-a {
-  text-decoration: none;
-}
-
 .nav-list svg {
   width: 1.6rem;
   height: 1.6rem;
@@ -172,10 +184,6 @@ a {
   transform: translateX(0);
 }
 
-h2 {
-  font-size: 1.45rem;
-}
-
 main {
   display: flex;
   align-items: center;
@@ -186,18 +194,10 @@ main {
   text-align: center;
 }
 
-h1 {
-  font-size: clamp(2.25rem, 2.077rem + 0.769vi, 3rem);
-}
-
 #lead {
-  margin: 0.75rem 0 1.75rem 0;
+  margin-block: 0.75rem 1.75rem;
   font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
   font-weight: 250;
-}
-
-p {
-  margin-bottom: 1rem;
 }
   </style>
   <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">

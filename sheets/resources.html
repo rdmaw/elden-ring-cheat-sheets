@@ -107,6 +107,11 @@ body {
 
 /* SHARED
 --------- */
+#menu-icon,
+.nav-list a {
+  color: var(--nav-text);
+}
+
 nav a,
 h2,
 h3,
@@ -117,11 +122,6 @@ h4 {
 caption,
 strong {
   font-weight: 600;
-}
-
-#menu-icon,
-.nav-list a {
-  color: var(--nav-text);
 }
 
 header,
@@ -217,7 +217,7 @@ h1 {
 }
 
 #lead {
-  margin: 0.75rem 0 1.75rem 0;
+  margin-block: 0.75rem 1.75rem;
   font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
   font-weight: 250;
   text-wrap: balance;

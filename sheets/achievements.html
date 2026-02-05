@@ -118,6 +118,12 @@ body {
 
 /* SHARED
 --------- */
+/* ha shared for 2 selectors eller mer? */
+#menu-icon,
+.nav-list a {
+  color: var(--nav-text);
+}
+
 nav a,
 h2,
 h3 {
@@ -127,12 +133,6 @@ h3 {
 /* endre til 500? */
 strong {
   font-weight: 600;
-}
-
-/* ha shared for 2 selectors eller mer? */
-#menu-icon,
-.nav-list a {
-  color: var(--nav-text);
 }
 
 header,
@@ -231,7 +231,7 @@ h1 {
 }
 
 #lead {
-  margin: 0.75rem 0 1.75rem 0;
+  margin-block: 0.75rem 1.75rem;
   font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
   font-weight: 250;
   text-wrap: balance;
@@ -284,6 +284,7 @@ h2 span {
   margin-bottom: 0.75rem;
   padding-inline: 0.5em;
   background-color: var(--search);
+  color: var(--text);
   border: 1px solid oklch(from var(--nav-border) l c h / 0.6);
   border-radius: 0.3125rem;
 }

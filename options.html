@@ -41,6 +41,7 @@
 [data-theme=light] {
   color-scheme: light;
   --background: oklch(0.99 0.012 90);
+  --search: oklch(from var(--background) l 0 h);
 
   --heading: oklch(0.29 0.00979 90);
   --text: oklch(from var(--background) 0.2 0.005 h);
@@ -58,6 +59,7 @@
 [data-theme=dark] {
   color-scheme: dark;
   --background: oklch(0.23 0.002 200);
+  --search: oklch(from var(--background) calc(l + 0.09) c h);
 
   --heading: oklch(from var(--background) 0.92 c h);
   --text: oklch(from var(--background) 0.93 c h);
@@ -99,17 +101,35 @@ body {
   color: var(--text);
 }
 
+h1 {
+  font-size: clamp(2rem, 1.942rem + 0.256vi, 2.25rem);
+}
+
+h2 {
+  margin-block: 1.5rem 0.5rem;
+  font-size: 1.45rem;
+}
+
+h3 {
+  margin-block: 1.5rem 0.75rem;
+  font-size: 1.4rem;
+}
+
+a {
+  text-decoration: none;
+}
+
 /* SHARED
 --------- */
+#menu-icon,
+.nav-list a {
+  color: var(--nav-text);
+}
+
 nav a,
 h2,
 h3 {
   font-weight: 500;
-}
-
-#menu-icon,
-.nav-list a {
-  color: var(--nav-text);
 }
 
 select,
@@ -159,6 +179,7 @@ nav {
   display: flex;
   gap: 0.5rem;
   margin-left: auto;
+  list-style-type: none;
 }
 
 .nav-list a {
@@ -193,21 +214,33 @@ header {
   text-align: center;
 }
 
-h1 {
-  color: var(--heading);
-  font-size: clamp(2rem, 1.942rem + 0.256vi, 2.25rem);
-}
-
 #lead {
-  margin: 0.75rem 0 1.75rem 0;
+  margin-block: 0.75rem 1.75rem;
   font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
   font-weight: 250;
   text-wrap: balance;
 }
 
-h2 {
-  margin: 1.5rem 0 0.75rem;
-  font-size: 1.45rem;
+label {
+  display: inline-block;
+  padding-block: 0.3rem;
+}
+
+select {
+  width: 100%;
+  height: 2.375rem;
+  margin-bottom: 0.75rem;
+  padding-inline: 0.5em;
+  background-color: var(--search);
+  color: var(--text);
+  border: 1px solid oklch(from var(--nav-border) l c h / 0.6);
+  border-radius: 0.3125rem;
+}
+
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .btn {
@@ -217,45 +250,6 @@ h2 {
   color: var(--text);
   border: 0.0625rem solid var(--nav-border);
   border-radius: 0.3125rem;
-}
-
-h3 {
-  margin-top: 1.5rem;
-  font-size: 1.4rem;
-}
-
-ul {
-  list-style-type: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-select {
-  width: 100%;
-  height: 2.375rem;
-  margin-bottom: 0.75rem;
-  padding: 0 .5em;
-  color: var(--kt);
-  background-color: var(--s);
-  border: 1px solid grey;
-  border-radius: 5px;
-}
-
-.filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-label {
-  display: inline-block;
-  padding: 0.3rem 0 0.5rem 0;
-}
-
-.mgm {
-  margin-bottom: 1rem;
 }
   </style>
   <!-- <link rel="preload" href="/css/main.2fcf88d44c.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -356,16 +350,16 @@ label {
         <button type="button" id="delete" class="btn">Delete</button>
       </div>
 
-      <h3 id="export-heading" class="mgm">Back up data</h3>
+      <h3 id="export-heading">Back up data</h3>
 
       <div class="filter" role="group" aria-labelledby="export-heading">
         <button type="button" id="export-file" class="btn">Back up as file</button>
         <button type="button" id="export-clipboard" class="btn">Copy to clipboard</button>
       </div>
 
-      <h3 id="import-heading" class="mgm">Restore data</h3>
+      <h3 id="import-heading">Restore data</h3>
 
-      <div class="filter mgm" role="group" aria-labelledby="import-heading">
+      <div class="filter" role="group" aria-labelledby="import-heading">
         <button type="button" id="import-file" class="btn">Restore from file</button>
         <button type="button" id="import-clipboard" class="btn">Paste from clipboard</button>
       </div>
