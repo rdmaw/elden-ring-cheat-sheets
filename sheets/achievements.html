@@ -196,6 +196,11 @@ h1 {
   text-wrap: balance;
 }
 
+h2 {
+  margin-top: 1.5rem;
+  font-size: 1.45rem;
+}
+
 #toc {
   display: block;
   margin-bottom: 1.75rem;
@@ -203,13 +208,36 @@ h1 {
   border-bottom: none;
 }
 
-h2 {
-  margin-top: 1.5rem;
-  font-size: 1.45rem;
-}
-
 #toc a {
   color: var(--text);
+}
+
+nav span,
+button.check-all {
+  margin-left: 0.5rem;
+  padding-inline: 0.25em;
+  background-color: var(--progress);
+  color: var(--progress-text);
+  border-radius: 0.3125rem;
+  font-size: 0.9em;
+  font-weight: 450;
+}
+
+nav span {
+  padding-block: 0.092em;
+}
+
+h2 span {
+  padding-block: 0.13em;
+}
+
+button.check-all {
+  padding-block: 0.05em;
+}
+
+.d,
+button.d {
+  background-color: var(--done);
 }
 
 /* --> */
@@ -284,23 +312,6 @@ kbd {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-}
-
-nav span,
-h2 span,
-.check-all {
-  margin-left: 0.5rem;
-  padding-inline: 0.25em;
-  color: var(--progress-text);
-  background-color: var(--progress);
-  border-radius: 5px;
-  font-size: 0.9em;
-  font-weight: 450;
-}
-
-.d,
-button.d {
-  background-color: var(--done);
 }
 
 #hide-btn {
