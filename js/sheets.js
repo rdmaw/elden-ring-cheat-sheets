@@ -529,7 +529,7 @@ function setCheckboxState(checkbox, checked) {
     const label = checkboxMap.get(checkbox);
 
     if (label) {
-        label.classList.toggle('c', checked);
+        label.classList.toggle('checked', checked);
     }
 }
 
@@ -742,7 +742,7 @@ const checklistMap = new Map();
 
 function setCollapseState(btn, checklist, expanded) {
     btn.ariaExpanded = expanded;
-    checklist.classList.toggle('f', !expanded);
+    checklist.classList.toggle('collapsed', !expanded);
 }
 
 let collapseInitialized = false;
