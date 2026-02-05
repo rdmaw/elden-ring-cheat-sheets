@@ -240,6 +240,16 @@ button.d {
   background-color: var(--done);
 }
 
+#search {
+  width: 100%;
+  height: 2.375rem;
+  margin-bottom: 0.75rem;
+  padding-inline: 0.5em;
+  background-color: var(--search);
+  border: 1px solid oklch(from var(--nav-border) l c h / 0.6);
+  border-radius: 0.3125rem;
+}
+
 /* --> */
 h3 {
   margin: 1.75rem 0 0.5rem;
@@ -252,9 +262,8 @@ p {
   margin-bottom: 1rem;
 }
 
-input,
-button,
-select {
+#search,
+.btn {
   font-family: inherit;
   font-size: inherit;
 }
@@ -283,18 +292,6 @@ a {
   color: var(--button-text);
   background-color: var(--button);
   border: 1px solid var(--nav-border);
-  border-radius: 5px;
-}
-
-#search,
-select {
-  width: 100%;
-  height: 2.375rem;
-  margin-bottom: 0.75rem;
-  padding: 0 0.5em;
-  color: oklch(from var(--text) l c h);
-  background-color: var(--search);
-  border: 1px solid oklch(from var(--nav-border) l c h / 0.6);
   border-radius: 5px;
 }
 

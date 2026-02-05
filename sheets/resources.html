@@ -40,7 +40,6 @@
 [data-theme=light] {
   color-scheme: light;
   --background: oklch(0.99 0.012 90);
-  --search: oklch(from var(--background) l 0 h);
 
   --heading: oklch(0.29 0.00979 90);
   --text: oklch(from var(--background) 0.2 0.005 h);
@@ -50,11 +49,7 @@
   --nav-border: oklch(from var(--nav-text) l c h);
   --sidebar-hover: oklch(from var(--nav) calc(l + 0.15) calc(c - 0.008) h / 0.6);
 
-  --progress-text: oklch(from var(--background) l c h);
-  --progress: oklch(0.54 0.14 50);
-  --done: oklch(0.54 0.14 160);
   --link: oklch(0.54 0.21 260);
-  --red: oklch(0.54 0.21 40);
 
   --button: oklch(from var(--background) calc(l - 0.03) calc(c - 0.010) h);
   --button-text: oklch(from var(--button) 0.1 c h);
@@ -65,7 +60,6 @@
 [data-theme=dark] {
   color-scheme: dark;
   --background: oklch(0.23 0.002 200);
-  --search: oklch(from var(--background) calc(l + 0.09) c h);
 
   --heading: oklch(from var(--background) 0.92 c h);
   --text: oklch(from var(--background) 0.93 c h);
@@ -75,11 +69,8 @@
   --nav-border: oklch(from var(--nav) calc(l + 0.3) c h);
   --sidebar-hover: oklch(from var(--nav) calc(l + 0.05) c h / 0.6);
 
-  --progress-text: oklch(from var(--text) l c h);
-  --progress: oklch(0.48 0.1 25);
   --done: oklch(0.48 0.1 155);
   --link: oklch(0.612 0.1 250);
-  --red: oklch(0.63 0.15 25);
 
   --button: oklch(from var(--background) calc(l + 0.15) c h);
   --button-text: oklch(from var(--button) calc(l + 0.6) c h);
@@ -210,13 +201,6 @@ h2 {
   color: var(--text);
 }
 
-input,
-button,
-select {
-  font-family: inherit;
-  font-size: inherit;
-}
-
 h3 {
   font-size: 1.5rem;
   margin: 1.75rem 0 0.5rem;
@@ -250,12 +234,14 @@ svg {
 }
 
 .btn {
-  padding: 0.25rem 0.5rem;
   height: 2rem;
-  color: var(--kt);
+  padding: 0.25rem 0.5rem;
   background-color: var(--k);
+  color: var(--kt);
   border: 1px solid var(--c2);
   border-radius: 5px;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 kbd {
