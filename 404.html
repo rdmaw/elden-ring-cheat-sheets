@@ -92,6 +92,19 @@ body {
 
 /* SHARED
 --------- */
+nav a,
+h2 {
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 1.45rem;
+}
+
+#menu-icon,
+.nav-list a {
+  color: var(--nav-text);
+}
 
 /* COMPONENTS
 ------------- */
@@ -194,20 +207,6 @@ a {
   padding: 0.25rem 0.5rem;
   border-radius: 0.3125rem;
 }
-
-nav a,
-strong {
-  font-weight: 500;
-}
-
-nav,
-.sh {
-  background-color: var(--c1);
-}
-
-.nav-list a, #menu-icon {
-  color: var(--nav-text);
-}
   </style>
   <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <script defer src="/js/sheets.js"></script>
@@ -280,7 +279,7 @@ nav,
       <h1>404</h1>
       <p id="lead">The cheat sheet you're looking for doesn't exist.</p>
       <p>The URL may be incorrect, or the sheet may have been moved.</p>
-      <p>Open the menu and try a different sheet.</p>
+      <p>Open the sidebar and try a different sheet.</p>
     </header>
   </main>
 

@@ -118,6 +118,23 @@ body {
 
 /* SHARED
 --------- */
+nav a,
+h2,
+h3 {
+  font-weight: 500;
+}
+
+/* endre til 500? */
+strong {
+  font-weight: 600;
+}
+
+/* ha shared for 2 selectors eller mer? */
+#menu-icon,
+.nav-list a {
+  color: var(--nav-text);
+}
+
 header,
 hr,
 footer {
@@ -426,17 +443,6 @@ hr::after {
   border-radius: 50%;
   opacity: 0;
   transform: translateY(100px);
-}
-
-h2,
-h3,
-nav a,
-strong {
-  font-weight: 500;
-}
-
-.nav-list a, #menu-icon {
-  color: var(--nav-text);
 }
 
 footer {
