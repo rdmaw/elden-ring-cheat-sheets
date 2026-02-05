@@ -37,7 +37,7 @@ input[type=checkbox] {
   contain: layout;
   z-index: 2;
   flex-direction: column;
-  top: 0.6875rem;
+  top: 0.6rem;
   width: 17rem;
   max-height: calc(100svh - 1.2rem);
   background-color: var(--background);
@@ -50,7 +50,7 @@ input[type=checkbox] {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 3.3125rem;
+  min-height: 3.4rem;
   background-color: var(--nav);
   border-bottom: 0.125em solid var(--nav-border);
   border-top-right-radius: 0.5rem;
