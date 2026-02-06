@@ -108,6 +108,43 @@ body {
   color: var(--text);
 }
 
+h1 {
+  font-size: clamp(2rem, 1.942rem + 0.256vi, 2.25rem);
+}
+
+h2 {
+  margin-top: 1.5rem;
+  font-size: 1.45rem;
+}
+
+h3 {
+  margin: 1.75rem 0 0.5rem;
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+h4 {
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.red {
+  color: var(--red);
+}
+
+.green {
+  color: var(--done);
+}
+
 /* SHARED
 --------- */
 #menu-icon,
@@ -205,10 +242,6 @@ header {
   margin-top: 2rem;
 }
 
-h1 {
-  font-size: clamp(2rem, 1.942rem + 0.256vi, 2.25rem);
-}
-
 #lead {
   margin-block: 0.75rem 1.75rem;
   font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
@@ -216,28 +249,14 @@ h1 {
   text-wrap: balance;
 }
 
-p {
-  margin-bottom: 1rem;
-}
-
-h2 {
-  margin-top: 1.5rem;
-  font-size: 1.45rem;
-}
-
 #main-content {
-  margin-top: 0.75rem;
+  margin-top: 0.25rem;
 }
 
-h3 {
-  margin: 1.75rem 0 0.5rem;
-  font-size: 1.4rem;
-  line-height: 1.4;
-}
-
-h4 {
-  margin: 0.75rem 0 0.5rem;
-  font-size: 1.125rem;
+kbd {
+  padding: 0.15em 0.45em;
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 ul {
@@ -249,41 +268,13 @@ li ul {
 }
 
 .list {
-  list-style-type: disc;
   margin: 0.75rem 0 0.5rem 1.75rem;
-}
-
-a {
-  color: var(--a);
-  text-decoration: none;
-}
-
-.red {
-  color: var(--red);
-}
-
-.green {
-  color: var(--done);
-}
-
-.btn {
-  height: 2rem;
-  padding: 0.25rem 0.5rem;
-  background-color: var(--button);
-  color: var(--text);
-  border: 0.0625rem solid var(--nav-border);
-  border-radius: 0.3125rem;
-}
-
-kbd {
-  padding: 0.15em 0.45em;
-  font-size: 0.9rem;
-  white-space: nowrap;
+  list-style-type: disc;
 }
 
 ol {
-  font-size: 0.9rem;
   margin: 0.75rem 0 0.5rem 1.75rem;
+  font-size: 0.9rem;
 }
 
 ol ul {
@@ -297,6 +288,13 @@ footer {
 
 footer a {
   color: var(--text);
+}
+
+.btn {
+  padding: 0.25rem 0.5rem;
+  background-color: var(--button);
+  color: var(--text);
+  border-radius: 0.3125rem;
 }
 
 #scroll-observer {
@@ -441,7 +439,7 @@ footer a {
     <h3>Will I get all achievements if I follow the guide?</h3>
     <p>Yes, you will get every achievement just by following the Walkthrough. No planning needed! If you'd like to track your achievements and legendary items, use the Achievements sheet.</p>
 
-    <h3 id="missables">Is there anything missable in Elden Ring?</h3>
+    <h3>Is there anything missable in Elden Ring?</h3>
     <p>Unfortunately a ton of things are missable. While some are quest-related, two achievements can be <strong class="red">permanently missed</strong> until your next playthrough. All missable entries are marked with <strong class="red">MISSABLE</strong>, so you can easily use the search bar to filter these steps. Optional steps, or missable entries that don't give any reward, are marked with <strong>Optional</strong>. You won't miss anything if you're following the Walkthrough though.</p>
 
     <h3>What level should I be for each area?</h3>
