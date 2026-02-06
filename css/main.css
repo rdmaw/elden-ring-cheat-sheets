@@ -1,3 +1,17 @@
+/* DEFAULTS
+----------- */
+h1 {
+  color: var(--heading);
+}
+
+svg {
+  display: block;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
 /* SHARED
 --------- */
 select,
@@ -82,10 +96,6 @@ input[type=checkbox] {
   color: var(--nav-text);
 }
 
-svg {
-  display: block;
-}
-
 #sheets {
   padding: 0.5rem;
   overflow-y: auto;
@@ -104,10 +114,6 @@ svg {
   background-color: var(--sidebar-hover);
   border-radius: 0.25rem;
   text-decoration: none;
-}
-
-h1 {
-  color: var(--heading);
 }
 
 #hideSvg {
@@ -130,10 +136,6 @@ button {
 
 .btn:active {
   background-color: var(--button-hover);
-}
-
-a:active {
-  text-decoration: underline;
 }
 
 kbd {
@@ -200,6 +202,10 @@ footer a:active {
 }
 
 @media (hover: hover) {
+  a:hover {
+    text-decoration: underline;
+  }
+
   .nav-list a:hover {
     background-color: var(--background);
     border-radius: 0.3125rem;
@@ -228,8 +234,9 @@ footer a:active {
     transform: scale(1.1);
   }
 
-  a:hover {
-    text-decoration: underline;
+  tr:hover td,
+  tr:hover th[scope=row] {
+    background-color: var(--sidebar-hover);
   }
 
   footer a:hover {
@@ -248,6 +255,10 @@ footer a:active {
     --button: #fff;
   }
 
+  a {
+    text-decoration: underline;
+  }
+
   #skip-link,
   nav,
   #search,
@@ -263,9 +274,5 @@ footer a:active {
 
   input[type=checkbox] {
     left: 0;
-  }
-
-  a {
-    text-decoration: underline;
   }
 }

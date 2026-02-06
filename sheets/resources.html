@@ -34,7 +34,7 @@
 :root {
   color-scheme: light dark;
   font-family: sheets, system-ui, sans-serif;
-  font-feature-settings: 'liga' 1, 'calt' 1;
+  font-feature-settings: 'liga' 1, 'calt' 1, 'tnum' 1;
 }
 
 /* trenger review */
@@ -49,6 +49,7 @@
   --nav-text: oklch(from var(--nav) calc(l - 0.4) c h);
   --nav-border: oklch(from var(--nav-text) l c h);
   --sidebar-hover: oklch(from var(--nav) calc(l + 0.15) calc(c - 0.008) h / 0.6);
+  --row-even: oklch(from var(--nav) calc(l + 0.27) calc(c - 0.023) h);
 
   --link: oklch(0.54 0.21 260);
 
@@ -67,7 +68,8 @@
   --nav: oklch(0.3 0.002 200);
   --nav-text: oklch(from var(--nav) calc(l + 0.8) c h);
   --nav-border: oklch(from var(--nav) calc(l + 0.3) c h);
-  --sidebar-hover: oklch(from var(--nav) calc(l + 0.05) c h / 0.6);
+  --sidebar-hover: oklch(from var(--nav) calc(l - 0.02) c h);
+  --row-even: oklch(from var(--background) calc(l - 0.012) c h);
 
   --done: oklch(0.48 0.1 155);
   --link: oklch(0.612 0.1 250);
@@ -81,8 +83,8 @@
   outline: 0.125rem solid var(--nav-text);
 }
 
-/* RESETS
---------- */
+/* DEFAULTS
+----------- */
 *,
 *::before,
 *::after {
@@ -103,6 +105,35 @@ html {
 body {
   background-color: var(--background);
   color: var(--text);
+}
+
+h1 {
+  font-size: clamp(2rem, 1.942rem + 0.256vi, 2.25rem);
+}
+
+h2 {
+  margin-top: 1.5rem;
+  font-size: 1.45rem;
+}
+
+h3 {
+  margin-block: 1.75rem 0.5rem;
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+h4 {
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
 }
 
 /* SHARED
@@ -212,24 +243,11 @@ header {
   margin-top: 2rem;
 }
 
-h1 {
-  font-size: clamp(2rem, 1.942rem + 0.256vi, 2.25rem);
-}
-
 #lead {
   margin-block: 0.75rem 1.75rem;
   font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
   font-weight: 250;
   text-wrap: balance;
-}
-
-p {
-  margin-bottom: 1rem;
-}
-
-h2 {
-  margin-top: 1.5rem;
-  font-size: 1.45rem;
 }
 
 #toc {
@@ -260,18 +278,11 @@ h2 {
   font-size: inherit;
 }
 
-h3 {
-  margin: 1.75rem 0 0.5rem;
-  font-size: 1.4rem;
-  line-height: 1.4;
-}
-
 .collapse-btn {
   position: relative;
   margin-right: 0.5rem;
   width: 2.2rem;
   height: 1.8rem;
-  flex-shrink: 0;
   vertical-align: text-bottom;
 }
 
@@ -295,32 +306,7 @@ h3 {
   display: none !important;
 }
 
-h4 {
-  margin-top: 1.5rem;
-  font-size: 1.125rem;
-}
-
-ul {
-  list-style-type: none;
-}
-
-.list {
-  list-style-type: disc;
-  margin: 0.75rem 0 0.5rem 1.75rem;
-}
-
-a {
-  color: var(--link);
-  text-decoration: none;
-}
-
-kbd {
-  padding: 0.15em 0.45em;
-  font-size: 0.9rem;
-  white-space: nowrap;
-}
-
-.tw {
+.table-container {
   overflow-x: auto;
 }
 
@@ -334,24 +320,38 @@ caption {
   margin-bottom: 0.5rem;
 }
 
-th,
-td {
-  padding: 0.7rem;
-  border: 1px solid var(--c2);
-  font-weight: 400;
-}
-
 tr:nth-child(even) {
-  background-color: var(--c4);
-}
-
-tr:hover td,
-tr:hover th[scope=row] {
-  background-color: var(--c3);
+  background-color: var(--row-even);
 }
 
 th[scope=col] {
-  background-color: var(--c1);
+  background-color: var(--nav);
+}
+
+th,
+td {
+  padding: 0.7rem;
+  border: 1px solid var(--nav-border);
+  font-weight: 400;
+}
+
+#vigor {
+  margin-top: 1rem;
+}
+
+kbd {
+  padding: 0.15em 0.45em;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.list {
+  list-style-type: disc;
+  margin: 0.75rem 0 0.5rem 1.75rem;
 }
 
 footer {
@@ -472,7 +472,7 @@ footer a {
     </div>
 
     <h3 id="stats"><button type="button" class="collapse-btn btn" aria-label="Toggle Stats and Build" aria-controls="x1" aria-expanded="true"></button>Stats and Build</h3>
-    <div id="x1" class="tw" role="region" aria-labelledby="stats">
+    <div id="x1" class="table-container" role="region" aria-labelledby="stats">
       <table>
         <caption>Soft Caps</caption>
         <thead>
@@ -572,7 +572,7 @@ footer a {
         </tbody>
       </table>
 
-      <p><strong>Vigor:</strong> Increases your HP. Getting 40 Vigor early makes the early-mid game much easier. Combined with the fact you can always start the game with a +5 Somber weapon and upgraded flasks, you can be tanking and killing most enemies with little investment. It's not recommended to level past 60 due to diminishing returns.</p>
+      <p id="vigor"><strong>Vigor:</strong> Increases your HP. Getting 40 Vigor early makes the early-mid game much easier. Combined with the fact you can always start the game with a +5 Somber weapon and upgraded flasks, you can be tanking and killing most enemies with little investment. It's not recommended to level past 60 due to diminishing returns.</p>
       <p><strong>Mind:</strong> Increases your mana bar. Most builds will be fine around 20-40 Mind depending on how many spells or weapon skills you use.</p>
       <p><strong>Endurance:</strong> Increases your stamina and equip load. Level based on how much stamina and equip load your armor and weapons need. You typically want to end around 40-50 Endurance.</p>
       <p><strong>Strength:</strong> Increases your strength and when two-handing, multiplies your strength by 50% <kbd>Hold △ + R1</kbd> or <kbd>Hold E + Right Click</kbd>. For accurate stats, use a <a href="https://www.tarnished.dev/weapon-calculator">Weapon Calculator</a>, select a weapon with "Heavy" as the affinity, and play with the strength stat until you see diminishing returns.</p>
@@ -592,7 +592,7 @@ footer a {
     </div>
 
     <h3 id="smithing-stones"><button type="button" class="collapse-btn btn" aria-label="Toggle Smithing Stones" aria-controls="x2" aria-expanded="true"></button>Smithing Stones</h3>
-    <div id="x2" class="tw" role="region" aria-labelledby="smithing-stones">
+    <div id="x2" class="table-container" role="region" aria-labelledby="smithing-stones">
       <table>
         <caption>Smithing Stones</caption>
         <thead>
@@ -768,7 +768,7 @@ footer a {
     </div>
 
     <h3 id="gloveworts"><button type="button" class="collapse-btn btn" aria-label="Toggle Gloveworts" aria-controls="x3" aria-expanded="true"></button>Gloveworts</h3>
-    <div id="x3" class="tw" role="region" aria-labelledby="gloveworts">
+    <div id="x3" class="table-container" role="region" aria-labelledby="gloveworts">
       <table>
         <caption>Grave Gloveworts</caption>
         <thead>
@@ -941,7 +941,7 @@ footer a {
     </div>
 
     <h3 id="runes"><button type="button" class="collapse-btn btn" aria-label="Toggle Runes" aria-controls="x4" aria-expanded="true"></button>Runes</h3>
-    <div id="x4" class="tw" role="region" aria-labelledby="runes">
+    <div id="x4" class="table-container" role="region" aria-labelledby="runes">
       <table>
         <caption>Base Game</caption>
         <thead>
@@ -1096,7 +1096,7 @@ footer a {
     </div>
 
     <h3 id="remembrances"><button type="button" class="collapse-btn btn" aria-label="Toggle Remembrances" aria-controls="x5" aria-expanded="true"></button>Remembrances</h3>
-    <div id="x5" class="tw" role="region" aria-labelledby="remembrances">
+    <div id="x5" class="table-container" role="region" aria-labelledby="remembrances">
       <table>
         <caption>Base Game</caption>
         <thead>
@@ -1171,7 +1171,7 @@ footer a {
     </div>
 
     <h3 id="scadu-fragments"><button type="button" class="collapse-btn btn" aria-label="Toggle Scadutree Fragments" aria-controls="x6" aria-expanded="true"></button>Scadutree Fragments</h3>
-    <div id="x6" class="tw" role="region" aria-labelledby="scadu-fragments">
+    <div id="x6" class="table-container" role="region" aria-labelledby="scadu-fragments">
       <table>
         <caption>Scadutree Fragments</caption>
         <thead>
@@ -1329,7 +1329,7 @@ footer a {
     </div>
 
     <h3 id="revered-ashes"><button type="button" class="collapse-btn btn" aria-label="Toggle Revered Spirit Ashes" aria-controls="x7" aria-expanded="true"></button>Revered Spirit Ashes</h3>
-    <div id="x7" class="tw" role="region" aria-labelledby="revered-ashes">
+    <div id="x7" class="table-container" role="region" aria-labelledby="revered-ashes">
       <table>
         <caption>Revered Spirit Ashes</caption>
         <thead>

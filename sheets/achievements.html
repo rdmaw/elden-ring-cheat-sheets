@@ -92,8 +92,8 @@
   outline: 0.125rem solid var(--nav-text);
 }
 
-/* RESETS
---------- */
+/* DEFAULTS
+----------- */
 *,
 *::before,
 *::after {
@@ -114,6 +114,35 @@ html {
 body {
   background-color: var(--background);
   color: var(--text);
+}
+
+h1 {
+  font-size: clamp(2rem, 1.942rem + 0.256vi, 2.25rem);
+}
+
+h2 {
+  margin-top: 1.5rem;
+  font-size: 1.45rem;
+}
+
+h3 {
+  margin-block: 1.75rem 0.5rem;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.red {
+  color: var(--red);
 }
 
 /* SHARED
@@ -226,24 +255,11 @@ header {
   margin-top: 2rem;
 }
 
-h1 {
-  font-size: clamp(2rem, 1.942rem + 0.256vi, 2.25rem);
-}
-
 #lead {
   margin-block: 0.75rem 1.75rem;
   font-size: clamp(1.125rem, 1.096rem + 0.128vi, 1.25rem);
   font-weight: 250;
   text-wrap: balance;
-}
-
-p {
-  margin-bottom: 1rem;
-}
-
-h2 {
-  margin-top: 1.5rem;
-  font-size: 1.45rem;
 }
 
 #toc {
@@ -318,13 +334,6 @@ h2 span {
   border-radius: 0.3125rem;
 }
 
-h3 {
-  margin: 1.75rem 0 0.5rem;
-  font-size: 1.4rem;
-  line-height: 1.4;
-  text-wrap: balance;
-}
-
 .collapse-btn {
   position: relative;
   margin-right: 0.5rem;
@@ -384,15 +393,6 @@ input[type=checkbox] {
   accent-color: var(--done);
 }
 
-a {
-  color: var(--link);
-  text-decoration: none;
-}
-
-.red {
-  color: var(--red);
-}
-
 kbd {
   padding: 0.15em 0.45em;
   font-size: 0.9rem;
@@ -417,7 +417,7 @@ footer a {
 
 hr {
   position: relative;
-  margin: 0.3rem 0;
+  margin-block: 0.3rem;
   width: 15rem;
   border: 0;
 }
@@ -435,7 +435,7 @@ hr::before {
 hr::after {
   content: attr(data-content);
   position: relative;
-  padding: 0 1rem;
+  padding-inline: 1rem;
   color: var(--heading);
   background: var(--background);
 }
