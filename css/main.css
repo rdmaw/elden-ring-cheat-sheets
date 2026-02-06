@@ -1,9 +1,17 @@
-/* DEFAULTS
------------ */
-h1 {
-  color: var(--heading);
+/* VARIABLES
+------------ */
+[data-theme=light] {
+  --sidebar-hover: oklch(from var(--nav) calc(l + 0.14) calc(c - 0.008) h / 0.6);
+  --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
+[data-theme=dark] {
+  --sidebar-hover: oklch(from var(--nav) calc(l + 0.03) c h / 0.5);
+  --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
+}
+
+/* DEFAULTS
+----------- */
 svg {
   display: block;
 }
@@ -248,7 +256,6 @@ footer a:active {
   :root {
     --background: #fff;
     --text: #000;
-    --heading: #000;
     --red: #000;
     --done: #000;
     --link: #000;

@@ -37,45 +37,32 @@
   font-feature-settings: 'liga' 1, 'calt' 1, 'tnum' 1;
 }
 
-/* trenger review */
 [data-theme=light] {
   color-scheme: light;
   --background: oklch(0.99 0.012 90);
-
-  --heading: oklch(0.29 0.00979 90);
   --text: oklch(from var(--background) 0.2 0.005 h);
+  --button: oklch(from var(--background) calc(l - 0.03) calc(c - 0.010) h);
 
-  --nav: oklch(0.7 0.038 90);
+  --nav: oklch(0.72 0.038 90);
   --nav-text: oklch(from var(--nav) calc(l - 0.4) c h);
-  --nav-border: oklch(from var(--nav-text) l c h);
-  --sidebar-hover: oklch(from var(--nav) calc(l + 0.15) calc(c - 0.008) h / 0.6);
-  --row-even: oklch(from var(--nav) calc(l + 0.27) calc(c - 0.023) h);
+  --nav-border: var(--nav-text);
+  --row-even: oklch(from var(--nav) calc(l + 0.25) calc(c - 0.023) h);
 
   --link: oklch(0.54 0.21 260);
-
-  --button: oklch(from var(--background) calc(l - 0.03) calc(c - 0.010) h);
-  --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
-/* trenger review */
 [data-theme=dark] {
   color-scheme: dark;
   --background: oklch(0.23 0.002 200);
-
-  --heading: oklch(from var(--background) 0.92 c h);
-  --text: oklch(from var(--background) 0.93 c h);
+  --text: oklch(from var(--background) 0.926 c h);
+  --button: oklch(from var(--background) calc(l + 0.11) c h);
 
   --nav: oklch(0.3 0.002 200);
-  --nav-text: oklch(from var(--nav) calc(l + 0.8) c h);
-  --nav-border: oklch(from var(--nav) calc(l + 0.3) c h);
-  --sidebar-hover: oklch(from var(--nav) calc(l - 0.02) c h);
+  --nav-text: oklch(from var(--nav) calc(l + 0.65) c h);
+  --nav-border: oklch(from var(--nav) calc(l + 0.25) c h);
   --row-even: oklch(from var(--background) calc(l - 0.012) c h);
 
-  --done: oklch(0.48 0.1 155);
   --link: oklch(0.612 0.1 250);
-
-  --button: oklch(from var(--background) calc(l + 0.13) c h);
-  --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
 :focus-visible {
@@ -293,7 +280,7 @@ header {
   width: 0.6rem;
   height: 0.6rem;
   margin: auto;
-  border: solid var(--heading);
+  border-style: solid;
   border-width: 0 0.1875rem 0.1875rem 0;
   transform: translateY(-0.125rem) rotate(45deg);
 }

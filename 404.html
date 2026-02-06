@@ -30,32 +30,24 @@
   font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
-/* trenger review */
 [data-theme=light] {
   color-scheme: light;
   --background: oklch(0.99 0.012 90);
-
-  --heading: oklch(0.29 0.00979 90);
   --text: oklch(from var(--background) 0.2 0.005 h);
 
-  --nav: oklch(0.7 0.038 90);
+  --nav: oklch(0.72 0.038 90);
   --nav-text: oklch(from var(--nav) calc(l - 0.4) c h);
-  --nav-border: oklch(from var(--nav-text) l c h);
-  --sidebar-hover: oklch(from var(--nav) calc(l + 0.15) calc(c - 0.008) h / 0.6);
+  --nav-border: var(--nav-text);
 }
 
-/* trenger review */
 [data-theme=dark] {
   color-scheme: dark;
   --background: oklch(0.23 0.002 200);
-
-  --heading: oklch(from var(--background) 0.92 c h);
-  --text: oklch(from var(--background) 0.93 c h);
+  --text: oklch(from var(--background) 0.926 c h);
 
   --nav: oklch(0.3 0.002 200);
-  --nav-text: oklch(from var(--nav) calc(l + 0.8) c h);
-  --nav-border: oklch(from var(--nav) calc(l + 0.3) c h);
-  --sidebar-hover: oklch(from var(--nav) calc(l + 0.05) c h / 0.6);
+  --nav-text: oklch(from var(--nav) calc(l + 0.65) c h);
+  --nav-border: oklch(from var(--nav) calc(l + 0.25) c h);
 }
 
 :focus-visible {

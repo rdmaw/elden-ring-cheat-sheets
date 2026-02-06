@@ -606,14 +606,14 @@ function updateProgress(checklistProgress, progressBtns, navSpans) {
         const progress = checklistProgress[checklistId] || { checked: 0, total: 0, done: false };
         const text = progress.total ? (progress.done ? 'DONE' : `${progress.checked}/${progress.total}`) : '0/0';
 
-        progressBtn.classList.toggle('d', progress.done);
+        progressBtn.classList.toggle('done', progress.done);
         progressBtn.textContent = text;
         progressBtn.ariaLabel = progress.done ? 'Uncheck all' : 'Check all';
 
         const navSpan = navSpans[checklistId];
 
         if (navSpan) {
-            navSpan.classList.toggle('d', progress.done);
+            navSpan.classList.toggle('done', progress.done);
             navSpan.textContent = text;
         }
     }
@@ -637,11 +637,11 @@ function updateCurrentProgress(checklistProgress, totalSpan) {
     const text = total ? (checked === total ? 'DONE' : `${checked}/${total}`) : '0/0';
     const done = checked === total && total > 0;
 
-    totalSpan.classList.remove('d');
+    totalSpan.classList.remove('done');
     totalSpan.textContent = text;
 
     if (done) {
-        totalSpan.classList.add('d');
+        totalSpan.classList.add('done');
     }
 }
 
@@ -710,7 +710,7 @@ if (hasCheckboxes) {
         const checklistId = getProgressId(progressBtn.id);
 
         if (checklistId) {
-            setAll(checklistId, !progressBtn.classList.contains('d'));
+            setAll(checklistId, !progressBtn.classList.contains('done'));
         }
     }
 
