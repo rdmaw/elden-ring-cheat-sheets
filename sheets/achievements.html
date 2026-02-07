@@ -70,7 +70,7 @@
   --nav-text: oklch(from var(--nav) calc(l + 0.65) c h);
   --nav-border: oklch(from var(--nav) calc(l + 0.25) c h);
 
-  --progress-text: oklch(from var(--text) l c h);
+  --progress-text: var(--text);
   --progress: oklch(0.48 0.1 25);
   --done: oklch(0.48 0.1 155);
   --link: oklch(0.612 0.1 250);
@@ -152,6 +152,7 @@ strong {
 
 #search,
 .btn {
+  color: inherit;
   border-radius: 0.3125rem;
   font-family: inherit;
   font-size: inherit;
@@ -292,7 +293,6 @@ h2 span {
   margin-bottom: 0.75rem;
   padding-inline: 0.5em;
   background-color: var(--search);
-  color: var(--text);
   border: 1px solid oklch(from var(--nav-border) l c h / 0.6);
 }
 
@@ -320,7 +320,6 @@ h2 span {
   height: 2rem;
   padding: 0.25rem 0.5rem;
   background-color: var(--button);
-  color: var(--text);
   border: 0.0625rem solid var(--nav-border);
 }
 
