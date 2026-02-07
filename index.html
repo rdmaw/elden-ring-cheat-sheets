@@ -50,6 +50,8 @@
   --done: oklch(0.54 0.14 160);
   --link: oklch(0.54 0.21 260);
   --red: oklch(0.54 0.21 40);
+
+  --strong: 550;
 }
 
 [data-theme=dark] {
@@ -65,6 +67,8 @@
   --done: oklch(0.48 0.1 155);
   --link: oklch(0.612 0.1 250);
   --red: oklch(0.63 0.15 25);
+
+  --strong: 600;
 }
 
 :focus-visible {
@@ -153,7 +157,7 @@ h4 {
 }
 
 strong {
-  font-weight: 600;
+  font-weight: var(--strong);
 }
 
 /* COMPONENTS
@@ -256,20 +260,6 @@ ul {
 
 li ul {
   padding-left: 1.75rem;
-}
-
-ol {
-  font-size: 0.95rem;
-}
-
-footer {
-  margin-block: 1rem;
-  font-size: 0.8rem;
-  text-align: center;
-}
-
-footer a {
-  color: var(--text);
 }
 
 .btn {

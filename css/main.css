@@ -157,6 +157,16 @@ kbd {
   box-shadow: 0 0.0625rem 0 var(--nav-border);
 }
 
+footer {
+  margin-block: 1rem;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+footer a {
+  color: var(--text);
+}
+
 footer a:active {
   color: var(--link);
 }

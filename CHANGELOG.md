@@ -19,7 +19,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 - New Check/Uncheck all buttons for each checklist.
 - New Talismans sheet.
 - New content in the Miscellaneous Items, Key Items, and New Game Plus sheets (will receive more updates after the DLC is written).
-- New "SOTE" tags on all items from the DLC.
+- All steps and items related to the DLC are now marked with "SOTE".
 - New "System" color theme option applies light or dark mode automatically based on your operating system's theme.
 - New keyboard shortcut "t" will click the to-top button for you, moving you to the top of the page.
 - Now uses the "Inter" variable font for all users instead of using the default system fonts, which resulted in misaligned text and checkboxes all across platforms.
@@ -27,6 +27,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 - Note to a Golden Rune [11] in Leyndell Catacombs that may be bugged and not show for all players.
 - Note to the Endings section in the walkthrough that all endings can still be gotten without Miquella's Needle.
 - Links to the DLC sheet where mentioned in the walkthrough.
+- Resources tabs now have tabular numbers.
 
 #### Accessibility Features
 - Added skip links to all pages for keyboard users that want to skip navigation links.

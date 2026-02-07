@@ -55,6 +55,8 @@
   --done: oklch(0.54 0.13 160);
   --link: oklch(0.54 0.21 260);
   --red: oklch(0.54 0.21 40);
+
+  --strong: 550;
 }
 
 [data-theme=dark] {
@@ -73,6 +75,8 @@
   --done: oklch(0.48 0.1 155);
   --link: oklch(0.612 0.1 250);
   --red: oklch(0.63 0.15 25);
+
+  --strong: 600;
 }
 
 :focus-visible {
@@ -142,7 +146,7 @@ h3 {
 }
 
 strong {
-  font-weight: 600;
+  font-weight: var(--strong);
 }
 
 #search,
@@ -276,9 +280,9 @@ h2 span {
 .dlc {
   display: inline-block;
   padding-left: 0.6em;
-  color: oklch(from var(--text) l c h / 0.75);
-  font-size: 0.65rem;
+  font-size: 0.6875rem;
   text-decoration: none;
+  opacity: 0.8;
 }
 
 #search {
@@ -381,16 +385,6 @@ kbd {
   padding: 0.15em 0.45em;
   font-size: 0.9rem;
   white-space: nowrap;
-}
-
-footer {
-  margin-block: 1rem;
-  font-size: 0.8rem;
-  text-align: center;
-}
-
-footer a {
-  color: var(--text);
 }
 
 #scroll-observer {

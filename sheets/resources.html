@@ -49,6 +49,8 @@
   --row-even: oklch(from var(--nav) calc(l + 0.25) calc(c - 0.023) h);
 
   --link: oklch(0.54 0.21 260);
+
+  --strong: 550;
 }
 
 [data-theme=dark] {
@@ -63,6 +65,8 @@
   --row-even: oklch(from var(--background) calc(l - 0.012) c h);
 
   --link: oklch(0.612 0.1 250);
+
+  --strong: 600;
 }
 
 :focus-visible {
@@ -128,21 +132,20 @@ a {
 nav a,
 h2,
 h3,
-h4 {
+h4,
+caption {
   font-weight: 500;
 }
 
-caption,
 strong {
-  font-weight: 600;
+  font-weight: var(--strong);
 }
 
 header,
 th,
 td,
 #x6 th[scope=row],
-#x7 th[scope=row],
-footer {
+#x7 th[scope=row] {
   text-align: center;
 }
 
@@ -336,15 +339,6 @@ ul {
 .list {
   list-style-type: disc;
   margin: 0.75rem 0 0.5rem 1.75rem;
-}
-
-footer {
-  margin-block: 1rem;
-  font-size: 0.8rem;
-}
-
-footer a {
-  color: var(--text);
 }
 
 #scroll-observer {
