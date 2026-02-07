@@ -135,9 +135,14 @@ a {
 
 /* SHARED
 --------- */
-#menu-icon,
-.nav-list a {
-  color: var(--nav-text);
+.list,
+ol {
+  margin: 0.75rem 0 0.5rem 1.75rem;
+}
+
+.list,
+ol ul {
+  list-style-type: disc;
 }
 
 nav a,
@@ -149,11 +154,6 @@ h4 {
 
 strong {
   font-weight: 600;
-}
-
-header,
-footer {
-  text-align: center;
 }
 
 /* COMPONENTS
@@ -191,6 +191,7 @@ nav {
 #menu-icon {
   width: 2.125rem;
   height: 2.125rem;
+  color: var(--nav-text);
 }
 
 .nav-list {
@@ -204,6 +205,7 @@ nav {
   align-items: center;
   gap: 0.2rem;
   padding-inline: 0.5rem;
+  color: var(--nav-text);
   line-height: 1;
 }
 
@@ -228,6 +230,7 @@ main {
 
 header {
   margin-top: 2rem;
+  text-align: center;
 }
 
 #lead {
@@ -255,23 +258,14 @@ li ul {
   padding-left: 1.75rem;
 }
 
-.list {
-  margin: 0.75rem 0 0.5rem 1.75rem;
-  list-style-type: disc;
-}
-
 ol {
-  margin: 0.75rem 0 0.5rem 1.75rem;
-  font-size: 0.9rem;
-}
-
-ol ul {
-  list-style-type: disc;
+  font-size: 0.95rem;
 }
 
 footer {
   margin-block: 1rem;
   font-size: 0.8rem;
+  text-align: center;
 }
 
 footer a {
