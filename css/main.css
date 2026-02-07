@@ -6,7 +6,7 @@
 }
 
 [data-theme=dark] {
-  --sidebar-hover: oklch(from var(--nav) calc(l + 0.03) c h / 0.5);
+  --sidebar-hover: oklch(from var(--nav) calc(l + 0.01) c h);
   --button-hover: oklch(from var(--button) calc(l - 0.08) c h);
 }
 
@@ -146,6 +146,10 @@ button {
   background-color: var(--button-hover);
 }
 
+.check-all:active {
+  filter: brightness(1.1);
+}
+
 kbd {
   background-color: var(--button);
   border: 0.0625rem solid var(--nav-border);
@@ -254,12 +258,13 @@ footer a:active {
 
 @media print {
   :root {
+    color-scheme: light;
     --background: #fff;
     --text: #000;
-    --red: #000;
+    --button: #fff;
     --done: #000;
     --link: #000;
-    --button: #fff;
+    --red: #000;
   }
 
   a {
