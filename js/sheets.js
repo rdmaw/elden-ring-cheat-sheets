@@ -372,7 +372,7 @@ if (dropdown) {
         const currentProfile = dropdown.value;
         const profileName = currentProfile === DEFAULT_PROFILE ? 'the default profile' : currentProfile;
 
-        if (!confirm(`Reset all progress in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus for ${profileName}?`)) return;
+        if (!confirm(`Reset progress for ${profileName} in Walkthrough, DLC-Walkthrough, NPC-Walkthrough, Questlines, Bosses, and New Game Plus? Progress on other sheets will not be affected.`)) return;
 
         const result = profile.resetToNGPlus(currentProfile);
 
@@ -384,7 +384,7 @@ if (dropdown) {
     deleteBtn.addEventListener('click', () => {
         const currentProfile = dropdown.value;
         const isProfileDefault = currentProfile === DEFAULT_PROFILE;
-        const action = isProfileDefault ? 'reset the default profile' : `delete ${currentProfile}`;
+        const action = isProfileDefault ? 'reset all progress for the default profile' : `delete ${currentProfile}`;
 
         if (!confirm(`Are you sure you want to ${action}?`)) return;
 
