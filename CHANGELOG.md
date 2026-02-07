@@ -28,6 +28,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 - Note to the Endings section in the walkthrough that all endings can still be gotten without Miquella's Needle.
 - Links to the DLC sheet where mentioned in the walkthrough.
 - Resources tabs now have tabular numbers.
+- Improved wording of some sentences across various sheets.
 
 #### Accessibility Features
 - Added skip links to all pages for keyboard users that want to skip navigation links.
