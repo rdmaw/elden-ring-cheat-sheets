@@ -274,10 +274,12 @@ const profile = {
 
         if (data.current && data.current !== DEFAULT_PROFILE) {
             activeProfile = data.current;
+
             localStorage.setItem('active-profile', activeProfile);
 
         } else {
             activeProfile = DEFAULT_PROFILE;
+
             localStorage.removeItem('active-profile');
         }
 
@@ -773,6 +775,7 @@ function setupCollapseUI() {
     }
 
     collapseInitialized = true;
+
     // Clean up style tag injected by inline script.
     document.getElementById('fouc')?.remove();
 }
