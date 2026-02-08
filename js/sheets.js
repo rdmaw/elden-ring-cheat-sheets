@@ -1172,6 +1172,24 @@ for (let i = 0; i < linksLen; i++) {
     link.target = '_blank';
 }
 
+let missableIsFocused = false;
+
+document.addEventListener('pointerdown', event => {
+    if (event.target.classList.contains('missable')) {
+        missableIsFocused = document.activeElement === event.target;
+    }
+});
+
+document.addEventListener('click', event => {
+    if (event.target.classList.contains('missable')) {
+        event.preventDefault();
+
+        if (missableIsFocused) {
+            event.target.blur();
+        }
+    }
+});
+
 //! Keep? Test live with phone using forward cache before removing.
 // window.addEventListener('pageshow', event => {
 //     if (event.persisted && hasCheckboxes) {

@@ -41,6 +41,7 @@
   color-scheme: light;
   --background: oklch(0.99 0.012 90);
   --text: oklch(from var(--background) 0.2 0.005 h);
+  --search: oklch(from var(--background) l 0 h);
   --button: oklch(from var(--background) calc(l - 0.03) calc(c - 0.010) h);
 
   --nav: oklch(0.72 0.038 90);
@@ -58,6 +59,7 @@
   color-scheme: dark;
   --background: oklch(0.23 0.002 200);
   --text: oklch(from var(--background) 0.926 c h);
+  --search: oklch(from var(--background) calc(l + 0.09) c h);
   --button: oklch(from var(--background) calc(l + 0.11) c h);
 
   --nav: oklch(from var(--background) calc(l + 0.05) c h);
@@ -129,6 +131,7 @@ a {
   text-decoration: none;
 }
 
+.missable,
 .red {
   color: var(--red);
 }
@@ -413,8 +416,9 @@ li ul {
     <p>Yes, you will get every achievement just by following the Walkthrough. No planning needed! If you'd like to track your achievements and legendary items, use the Achievements sheet.</p>
 
     <h3>Is there anything missable in Elden Ring?</h3>
-    <p>Unfortunately a ton of things are missable. While some are quest-related, two achievements can be <strong class="red">permanently missed</strong> until your next playthrough.</p>
-    <p>All missable entries are marked with <strong class="red">MISSABLE</strong>, so you can easily use the search bar to filter these steps. Optional steps, or missable entries that don't give any reward, are marked with <strong>Optional</strong>. You won't miss anything if you're following the Walkthrough though.</p>
+    <p>Unfortunately a ton of things are missable. While some are quest-related, three achievements can be <strong class="red">permanently missed</strong> until your next playthrough.</p>
+    <p>Every <strong class="missable" data-tooltip="This is a missable tag." tabindex="0">MISSABLE</strong> tag can be hovered over to see why that step is missable. If you're on mobile, you can tap the tag to see the explanation. Feel free to try it with the above tag.</p>
+    <p>Optional steps, or missable entries that don't give any reward, are marked as <strong>Optional</strong>. You won't miss anything if you're following the Walkthrough though.</p>
 
     <h3>What level should I be for each area?</h3>
     <p>I provide recommended level ranges for each area based on my walkthrough runs where I intentionally stay underleveled, avoiding all enemies in the open world and only engaging in combat inside of legacy dungeons.</p>

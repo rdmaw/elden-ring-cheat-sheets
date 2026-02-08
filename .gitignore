@@ -21,7 +21,7 @@ legacy.css
 main.*.css
 options.css
 resources.css
-sheets.css
+# sheets.css
 
 # JS
 goatcounter.js

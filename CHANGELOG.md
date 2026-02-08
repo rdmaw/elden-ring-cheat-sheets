@@ -16,38 +16,38 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
 ### Added
 - All section progress numbers are now CLICKABLE BUTTONS! Clicking them will check all unchecked checkboxes in that section, or uncheck them if the progress shows as "DONE".
-- New Check/Uncheck all buttons for each checklist.
+- MISSABLE tags can now be hovered over to see why they're missable. For users on mobile, simply tapping on the tag will toggle its visibility.
 - New Talismans sheet.
 - New content in the Miscellaneous Items, Key Items, and New Game Plus sheets (will receive more updates after the DLC is written).
 - All steps and items related to the DLC are now marked with "SOTE".
+- Collapsed checklists and color theme now sync across multiple open tabs, no longer requiring a page reload.
 - New "System" color theme option applies light or dark mode automatically based on your operating system's theme.
 - New keyboard shortcut "t" will click the to-top button for you, moving you to the top of the page.
 - Now uses the "Inter" variable font for all users instead of using the default system fonts, which resulted in misaligned text and checkboxes all across platforms.
-- Collapsed checklists and color theme now sync across multiple open tabs, no longer requiring a page reload.
 - Note to a Golden Rune [11] in Leyndell Catacombs that may be bugged and not show for all players.
 - Note to the Endings section in the walkthrough that all endings can still be gotten without Miquella's Needle.
 - Links to the DLC sheet where mentioned in the walkthrough.
-- Resources tabs now have tabular numbers.
+- The Resources sheet now has tabular numbers.
 - Improved wording of some sentences across various sheets.
 
 #### Accessibility Features
 - Added skip links to all pages for keyboard users that want to skip navigation links.
-- Now scales with the browser's font size.
+- Everything now scales with the browser's font size, whereas before users would have to manually zoom in/out.
 - Screen readers should now announce the action of keyboard shortcuts.
 - Keyboard users can now call the sidebar from any focused element with the "s" keybind and return where they were (no longer forces focus to the menu).
 
 ### Changed
-- Keyboard shortcut "q" for toggling the sidebar has been replaced by the more obvious "s" for "Sheets".
+- Keyboard shortcut "q" for toggling the sidebar has been replaced by the more obvious "s" for "Sheets" or "sidebar".
 - The color theme now defaults to the user's system preference if not set on the Options page.
 - Heavily modified the colors in both light and dark mode for better contrast and readability. Dark mode now has a warmer and less cool tone, but most importantly the progress numbers are now white instead of dark.
-- Complete code refactor. Unnecessary code will no longer run unless needed so the website should feel slightly faster, at least on phones using the Walkthrough sheet on Vodafone 3G.
-- Heavily reduced the amount of inline styles required to load the website, which should result in faster load for slower networks.
+- Complete code refactor. Unnecessary code will no longer run unless needed so the website should feel slightly faster, at least on phones loading the Walkthrough sheet with Vodafone 3G.
+- Reduced the amount of inline styles required to load the website, which should result in faster load for slower connections.
 - Simplified the way the search bar filters checklists, so searching should feel quite a bit faster.
 - Searching on the Walkthrough sheet specifically is now slightly delayed on purpose to prevent your phone from overheating (Eh, it's still fast).
 - Text should now be a lot bigger on mobile than before. Similarly, text has been increased on desktop sizes for readability.
 - DLC in the NG+ Prep section now links to the DLC sheet.
 - Achievement links in the walkthrough now go to Eldenpedia instead of the Achievements sheet.
-- Change group password from "ERSHEET" to "ERSHEETS".
+- Changed group password from "ERSHEET" to "ERSHEETS".
 
 ### Removed
 - "Hide checked steps" button no longer persists across page reload; you'll need to click it or use the "h" shortcut every time. This was done to prevent FOUC and potential confusion.
