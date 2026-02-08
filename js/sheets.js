@@ -143,13 +143,6 @@ const profile = {
     },
 
     create(name) {
-        if (!name) {
-            return {
-                success: false,
-                error: 'The profile name cannot be empty.'
-            };
-        }
-
         if (name.toLowerCase() === 'default') {
             return {
                 success: false,
@@ -217,6 +210,7 @@ const profile = {
             }
         }
 
+        // w = Walkthrough, d = DLC Walkthrough, n = NPC Walkthrough, q = Questlines, b = Bosses, p = New Game Plus
         const sheetsToReset = new Set(['w', 'd', 'n', 'q', 'b', 'p'])
 
         const preservedData = Object.entries(profiles[name].checked)
@@ -334,6 +328,9 @@ if (dropdown) {
 
     createBtn.addEventListener('click', () => {
         const name = prompt('Enter a name for the profile:')?.trim();
+
+        if (!name) return;
+
         const result = profile.create(name);
 
         if (!result.success) {
@@ -434,18 +431,15 @@ if (dropdown) {
         fileInput.click();
     });
 
-    fileInput.addEventListener('change', async event => {
-        const file = event.target.files[0];
-
-        if (!file) return;
-
+    function handleProfileImport(data) {
         try {
-            const text = await file.text();
-            const data = JSON.parse(text);
+            const parsed = JSON.parse(data);
 
-            if (!confirm('Importing a new profile will overwrite all current data.')) return;
+            if (!confirm('Importing a new profile will overwrite all current data.')) {
+                return;
+            }
 
-            const result = profile.importAll(data);
+            const result = profile.importAll(parsed);
 
             if (result.success) {
                 refreshDropdown(dropdown, activeProfile);
@@ -455,6 +449,23 @@ if (dropdown) {
             } else {
                 alert(result.error);
             }
+        } catch (error) {
+            alert('Invalid profile data.');
+
+            console.error(error);
+        }
+    }
+
+    fileInput.addEventListener('change', async event => {
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        try {
+            const text = await file.text();
+
+            handleProfileImport(text);
+
         } catch (error) {
             alert('Invalid profile data.');
 
@@ -480,20 +491,9 @@ if (dropdown) {
     importClipboardBtn.addEventListener('click', async () => {
         try {
             const text = await navigator.clipboard.readText();
-            const data = JSON.parse(text);
 
-            if (!confirm('Importing a new profile will overwrite all current data.')) return;
+            handleProfileImport(text);
 
-            const result = profile.importAll(data);
-
-            if (result.success) {
-                refreshDropdown(dropdown, activeProfile);
-
-                alert('Successfully imported profile data.');
-
-            } else {
-                alert(result.error);
-            }
         } catch (error) {
             alert('Invalid clipboard data.');
 
@@ -811,7 +811,6 @@ localStorage.removeItem('hide-checked');
 
 if (hideBtn) {
     root.classList.remove('hide-checked');
-    hideBtn.ariaPressed = 'false';
 
     hideBtn.addEventListener('click', () => {
         const isHidden = !root.classList.contains('hide-checked');
@@ -828,7 +827,7 @@ if (hideBtn) {
 const searchInput = document.getElementById('search');
 
 if (searchInput) {
-    const walkthrough = document.getElementById('w-sheet')
+    const walkthrough = document.getElementById('w-sheet');
     const debounceDelay = walkthrough ? 60 : 20;
 
     const headers = Array.from(document.querySelectorAll('main h3'));
@@ -916,8 +915,10 @@ const closeBtn = document.getElementById('close-btn');
 let lastFocusedElement = menuBtn;
 
 function openSidebar() {
-    if (document.activeElement && document.activeElement !== document.body && typeof document.activeElement.focus === 'function') {
-        lastFocusedElement = document.activeElement;
+    const active = document.activeElement;
+
+    if (active && active !== document.body && typeof active.focus === 'function') {
+        lastFocusedElement = active;
     }
 
     sidebar.ariaHidden = 'false';
@@ -1004,7 +1005,7 @@ const shortcuts = {
             return;
         }
 
-        search.focus();
+        searchInput.focus();
 
         announce('Search focused');
     },
@@ -1033,14 +1034,15 @@ const shortcuts = {
 
 document.addEventListener('keydown', event => {
     const active = document.activeElement;
-    const inputTag = active.tagName === 'INPUT';
+    const userIsTyping = active.tagName === 'INPUT';
 
-    if (inputTag) return;
+    if (userIsTyping) return;
 
     const action = shortcuts[event.key.toLowerCase()];
 
     if (action && !event.ctrlKey && !event.metaKey) {
         event.preventDefault();
+
         action();
     }
 });
@@ -1065,6 +1067,7 @@ function setTheme(theme) {
     }
 
     const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     root.setAttribute('data-theme', isSystemDark ? 'dark' : 'light');
 }
 
@@ -1129,7 +1132,6 @@ window.addEventListener('storage', event => {
             if (expandAllBtn) {
                 setupCollapseUI();
             }
-
         } catch (error) {
             console.error('Error syncing profile:', error);
         }
@@ -1170,6 +1172,7 @@ for (let i = 0; i < linksLen; i++) {
     const link = links[i];
 
     link.target = '_blank';
+    link.rel = 'noopener noreferrer';
 }
 
 let missableIsFocused = false;
