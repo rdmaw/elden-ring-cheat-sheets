@@ -3,21 +3,22 @@
 This document lists notable changes to the site with each deployment.
 Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
-## Unknown...
+## 2026-02-10
 
 ### Breaking Changes!
 - Large rewrite of profile logic. If you were previously on your own created profile, you may have to manually switch back. Make sure to create a new backup, and consider deleting your old ones since they might be invalid.
+- If you lost your progress due to the rewrite, you can now click the section totals (e.g. Tutorial [0/14]) to quickly complete entire sections at a time.
 - Split the Legendary Equipment checklist on the Achievements sheet into separate sections. You may need to recheck several items you had already completed.
 
 ### Fixed
 - Users on Android or other devices that force true dark mode should now see the website's actual color scheme, and not be met with inverted brown/black colors.
 - Checkbox-related keyboard shortcuts "/" and "h" can no longer be used on pages without checkboxes.
-- Closing the sidebar on mobile would keep a background-color in the navbar to linger.
+- Closing the sidebar on mobile would trigger a background color in the navbar to linger until tapped away.
 
 ### Added
-- All section progress numbers are now CLICKABLE BUTTONS! Clicking them will check all unchecked checkboxes in that section, or uncheck them if the progress shows as "DONE".
+- All section progress numbers are now CLICKABLE BUTTONS! Clicking them will check all unchecked checkboxes in that section, or uncheck them if a section is "DONE".
 - MISSABLE tags can now be hovered over to see why they're missable. For users on mobile, simply tapping on the tag will toggle its visibility.
-- New Talismans sheet.
+- New Talismans sheet with all talismans in the base game and DLC.
 - New content in the Miscellaneous Items, Key Items, and New Game Plus sheets (will receive more updates after the DLC is written).
 - All steps and items related to the DLC are now marked with "SOTE".
 - Collapsed checklists and color theme now sync across multiple open tabs, no longer requiring a page reload.
@@ -27,7 +28,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 - Note to a Golden Rune [11] in Leyndell Catacombs that may be bugged and not show for all players.
 - Note to the Endings section in the walkthrough that all endings can still be gotten without Miquella's Needle.
 - Links to the DLC sheet where mentioned in the walkthrough.
-- The Resources sheet now has tabular numbers.
+- The Resources sheet now uses tabular numbers for tables.
 - Improved wording of some sentences across various sheets.
 
 #### Accessibility Features
@@ -44,13 +45,13 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 - Reduced the amount of inline styles required to load the website, which should result in faster load for slower connections.
 - Simplified the way the search bar filters checklists, so searching should feel quite a bit faster.
 - Searching on the Walkthrough sheet specifically is now slightly delayed on purpose to prevent your phone from overheating (Eh, it's still fast).
-- Text should now be a lot bigger on mobile than before. Similarly, text has been increased on desktop sizes for readability.
+- Text should now be a lot bigger on mobile than before. Similarly, text has been slightly increased on desktop for readability.
 - DLC in the NG+ Prep section now links to the DLC sheet.
 - Achievement links in the walkthrough now go to Eldenpedia instead of the Achievements sheet.
-- Changed group password from "ERSHEET" to "ERSHEETS".
+- Changed group password from "ERSHEET" to "ERSHEETS" to fit the new name.
 
 ### Removed
-- "Hide checked steps" button no longer persists across page reload; you'll need to click it or use the "h" shortcut every time. This was done to prevent FOUC and potential confusion.
+- "Hide checked steps" button no longer persists across page reload; you'll need to click it or use the "h" shortcut every time. This was done to prevent FOUC and potential confusion for returning users.
 - Old or unused localStorage keys should be automatically cleaned up the next time you load the website, freeing up some used space.
 
 ## 2026-01-16
