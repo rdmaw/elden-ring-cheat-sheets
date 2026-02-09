@@ -1,32 +1,8 @@
-# Tools
-_headers
-.assetsignore
-.wrangler
+dist
+fonts
+404.*
+sheets.*.css
+sheets.*.js
 wrangler.jsonc
 
-# Crawling
-robots.txt
-sitemap.xml
-
-# Assets
-images/*
-apple-touch-icon.png
-favicon.ico
-favicon.svg
-
-# CSS
-404.css
-index.css
-legacy.css
-main.*.css
-options.css
-resources.css
-# sheets.css
-
-# JS
-goatcounter.js
-main.*.js
-
-# HTML
-# 404.html
-# index.html
+# .wrangler

@@ -3,7 +3,7 @@ description: Report missing items or content.
 title: "missing: "
 labels: [missing]
 body:
-  - type: markdown 
+  - type: markdown
     attributes:
       value: |
         Thanks for helping improve the website! Please fill out the form below.
@@ -11,21 +11,22 @@ body:
     attributes:
       label: Which sheet does this relate to?
       options:
-        - Resources
         - Walkthrough
         - DLC Walkthrough
         - NPC Walkthrough
         - Questlines
-        - Merchants
         - Bosses
+        - Merchants
         - Achievements
-        - Armaments
+        - Weapons
         - Armor
         - Ashes
         - Spells
+        - Talismans
         - Key Items
-        - Miscellaneous
-        - New Game+
+        - Miscellaneous Items
+        - New Game Plus
+        - Resources
       multiple: true
     validations:
       required: true

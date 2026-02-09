@@ -3,31 +3,32 @@ description: Report unclear, confusing or hard-to-follow descriptions.
 title: "clarify: "
 labels: [clarify]
 body:
-  - type: markdown 
+  - type: markdown
     attributes:
       value: |
         Thanks for helping improve the website! Please fill out the form below.
 
-        You can also use this to report typos or grammatical errors.
+        You can also use this template to report typos or grammatical errors.
   - type: dropdown
     attributes:
       label: Which sheet does this relate to?
       options:
-        - Resources
         - Walkthrough
         - DLC Walkthrough
         - NPC Walkthrough
         - Questlines
-        - Merchants
         - Bosses
+        - Merchants
         - Achievements
-        - Armaments
+        - Weapons
         - Armor
         - Ashes
         - Spells
+        - Talismans
         - Key Items
-        - Miscellaneous
-        - New Game+
+        - Miscellaneous Items
+        - New Game Plus
+        - Resources
       multiple: true
     validations:
       required: true

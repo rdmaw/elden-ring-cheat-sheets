@@ -3,7 +3,7 @@ description: Suggest an idea for this project.
 title: "feature: "
 labels: [enhancement]
 body:
-  - type: markdown 
+  - type: markdown
     attributes:
       value: |
         Thanks for helping improve the website! Please fill out the form below.

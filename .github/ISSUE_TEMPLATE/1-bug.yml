@@ -3,7 +3,7 @@ description: Report a bug on the website.
 title: "bug: "
 labels: [bug]
 body:
-  - type: markdown 
+  - type: markdown
     attributes:
       value: |
         Thanks for helping improve the website! Please fill out the form below.
@@ -21,9 +21,9 @@ body:
       label: Steps to reproduce
       description: How did you trigger this bug?
       value: |
-        1. 
-        2. 
-        3. 
+        1.
+        2.
+        3.
       render: bash
     validations:
       required: true
