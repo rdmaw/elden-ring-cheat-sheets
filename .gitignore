@@ -4,5 +4,4 @@ fonts
 sheets.*.css
 sheets.*.js
 wrangler.jsonc
-
-# .wrangler
+.wrangler
