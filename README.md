@@ -16,14 +16,12 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 
 ## Special Thanks
 
-- [@zkjellberg](https://github.com/zkjellberg) dark souls 3 cheat sheet used as inspiration
+- [@ZKjellberg](https://github.com/zkjellberg) dark souls 3 cheat sheet used as inspiration
 - [@small_little_artist](https://smalllittleartist.carrd.co) for designing the favicon and open graph images
+- [@NamelessBandicoot](https://www.youtube.com/@NamelessBandicoot) for helping with video-based content
 
 ## To Do
 
-- [x] Ashen Capital
-- [x] Endings
-- [x] New Game Plus Preparation
 - [x] Missables in Outskirts, Leyndell, Shunning Grounds & Forbidden Lands
 - [x] Rewrite old sections
 - [x] Remove SVG sprite
@@ -39,5 +37,8 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 - [x] Key Items
 - [x] New Game Plus
 - [x] Talismans
+- [x] Large codebase restructure
+- [ ] Add tooltips to all remaining missables
 - [ ] East Gravesite Plain
 - [ ] Belurat
+- [ ] Ellac River
