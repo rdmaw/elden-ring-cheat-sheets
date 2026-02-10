@@ -6,10 +6,12 @@ See the [Changelog](CHANGELOG.md) for a list of notable changes with each update
 ## Features
 
 - Multiple checklists for 100% completion of Elden Ring
+- Quickly check/uncheck all checkboxes in a section
+- Explanation of every missable item/action by hovering over MISSABLE tags
 - Search to filter checklists
 - Automatically saves your progress
 - Create, edit, and delete profiles
-- Import and export profiles to transfer progress between all devices
+- Import and export profiles to transfer progress between devices
 
 ## Found a bug?
 Please open an issue or leave a comment on the [Steam Guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3626235146).
