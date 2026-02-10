@@ -19,6 +19,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 ### Added
 - All section progress numbers are now CLICKABLE BUTTONS! Clicking them will check all unchecked checkboxes in that section, or uncheck them if a section is "DONE".
 - MISSABLE tags can now be hovered over to see why they're missable. For users on mobile, simply tapping on the tag will toggle its visibility. I am still in the process of writing these, so it could be some time until they all have explanations.
+- Table of contents can now be collapsed for returning users. The preference is stored and synced across all pages, meaning collapsing it on one page will collapse it everywhere else.
 - New Talismans sheet with all talismans in the base game and DLC.
 - New content in the Miscellaneous Items, Key Items, and New Game Plus sheets (will receive more updates after the DLC is written).
 - All steps and items related to the DLC are now marked with "SOTE".
