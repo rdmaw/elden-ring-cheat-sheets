@@ -1198,6 +1198,8 @@ document.addEventListener('click', event => {
 
 window.addEventListener('pageshow', event => {
     if (event.persisted && hasCheckboxes) {
-        refreshCheckboxUI();
+        requestAnimationFrame(() => {
+            requestAnimationFrame(refreshCheckboxUI)
+        });
     }
 });
