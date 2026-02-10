@@ -1,6 +1,6 @@
 # Changelog
 
-This document lists notable changes to the site with each deployment.
+This document lists all notable changes to Elden Ring Cheat Sheets with each deployment.
 Dates follow the ISO 8601 standard (YYYY-MM-DD).
 
 ## 2026-02-10
