@@ -1196,16 +1196,8 @@ document.addEventListener('click', event => {
     }
 });
 
-//! Keep? Test live with phone using forward cache before removing.
-// window.addEventListener('pageshow', event => {
-//     if (event.persisted && hasCheckboxes) {
-//         refreshCheckboxUI();
-//     }
-// });
-
-// window.addEventListener('pageshow', event => {
-//     if (event.persisted) {
-//         window.location.reload();
-//     }
-// });
-//! End of: Keep?
+window.addEventListener('pageshow', event => {
+    if (event.persisted && hasCheckboxes) {
+        refreshCheckboxUI();
+    }
+});
