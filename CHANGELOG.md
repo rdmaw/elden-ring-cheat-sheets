@@ -11,6 +11,7 @@ Dates follow the ISO 8601 standard (YYYY-MM-DD).
 - Split the Legendary Equipment checklist on the Achievements sheet into separate sections. You may need to recheck several items you had already completed.
 
 ### Fixed
+- Mobile users can now benefit from back/forward-caching. All pages will now correctly restore visual checkbox states when switching between pages (previously worked around by forcing a full page refresh on each load).
 - Users on Android or other devices that force true dark mode should now see the website's actual color scheme, and not be met with inverted brown/black colors.
 - Checkbox-related keyboard shortcuts "/" and "h" can no longer be used on pages without checkboxes.
 - Closing the sidebar on mobile would trigger a background color in the navbar to linger until tapped away.
