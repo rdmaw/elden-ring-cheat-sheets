@@ -336,12 +336,12 @@ li {
 }
 
 .top-note {
-  margin: 0.16rem 0 0.16rem 0.92rem;
+  margin: 0.16rem 0 0.16rem 0.2rem;
 }
 
 label {
   display: inline-block;
-  padding: 0.16rem 0 0.16rem 2.75rem;
+  padding: 0.16rem 0 0.16rem 1.85rem;
 }
 
 .checked {
@@ -350,7 +350,7 @@ label {
 
 input[type=checkbox] {
   position: absolute;
-  left: 1rem;
+  left: 0.2rem;
   top: 0.3rem;
   width: 1.5em;
   height: 1.5em;
@@ -366,4 +366,20 @@ kbd {
 #scroll-observer {
   position: absolute;
   top: 31.25rem;
+}
+
+/* MEDIA QUERIES
+---------------- */
+@media (min-width: 37.5em) {
+  .top-note {
+    margin-left: 0.92rem;
+  }
+
+  label {
+    padding-left: 2.75rem;
+  }
+
+  input[type=checkbox] {
+    left: 1rem;
+  }
 }
