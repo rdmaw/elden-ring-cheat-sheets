@@ -151,7 +151,6 @@ button {
 }
 
 .missable {
-  position: relative;
   cursor: help;
 }
 
@@ -162,8 +161,7 @@ button {
   position: absolute;
   inset: auto auto 100% 0;
   width: max-content;
-  max-width: min(26rem, 80vw);
-  margin-bottom: 0.2rem;
+  max-width: min(26rem, 60vw);
   padding: 0.35em 0.55em;
   background-color: var(--search);
   color: var(--text);
