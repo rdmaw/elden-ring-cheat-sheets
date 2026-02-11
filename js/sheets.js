@@ -1,6 +1,6 @@
 /* PROFILE AND STORAGE
 ---------------------- */
-const key = 'er'; //! To be removed
+const key = 'er'; // To be removed
 const PROFILES_KEY = 'eldenring-profiles';
 const DEFAULT_PROFILE = 'default';
 const PROFILE_TEMPLATE = { [DEFAULT_PROFILE]: { checked: {}, collapsed: {} } };
@@ -10,11 +10,15 @@ const root = document.documentElement;
 let activeProfile = localStorage.getItem('active-profile') || DEFAULT_PROFILE;
 let profiles = loadProfiles();
 
-if (!profiles[activeProfile]) {
-    profiles[activeProfile] = { checked: {}, collapsed: {} };
+ensureProfileExists();
+
+function ensureProfileExists() {
+    if (!profiles[activeProfile]) {
+        profiles[activeProfile] = { checked: {}, collapsed: {} };
+    }
 }
 
-//! To be removed
+// To be removed
 cleanLocalStorage();
 
 function cleanLocalStorage() {
@@ -50,7 +54,7 @@ function cleanLocalStorage() {
     }
     localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
 }
-//! End of: To be removed
+// End of: To be removed
 
 function loadProfiles() {
     try {
@@ -1124,9 +1128,7 @@ window.addEventListener('storage', event => {
         try {
             profiles = JSON.parse(event.newValue);
 
-            if (!profiles[activeProfile]) {
-                activeProfile = DEFAULT_PROFILE;
-            }
+            ensureProfileExists();
 
             if (hasCheckboxes) {
                 refreshCheckboxUI();
@@ -1196,10 +1198,27 @@ document.addEventListener('click', event => {
     }
 });
 
+/* BACK/FORWARD CACHE
+--------------------- */
 window.addEventListener('pageshow', event => {
-    if (event.persisted && hasCheckboxes) {
+    if (!event.persisted) return;
+
+    activeProfile = localStorage.getItem('active-profile') || DEFAULT_PROFILE;
+    profiles = loadProfiles();
+
+    ensureProfileExists();
+
+    setTheme(localStorage.getItem('theme') || 'system');
+
+    if (hasCheckboxes) {
         requestAnimationFrame(() => {
-            requestAnimationFrame(refreshCheckboxUI)
+            requestAnimationFrame(() => {
+                refreshCheckboxUI();
+            });
         });
+    }
+
+    if (expandAllBtn) {
+        setupCollapseUI();
     }
 });
