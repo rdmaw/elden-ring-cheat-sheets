@@ -1,3 +1,5 @@
+'use strict';
+
 /* PROFILE AND STORAGE
 ---------------------- */
 const PROFILES_KEY = 'eldenring-profiles';
