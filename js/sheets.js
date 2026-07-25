@@ -1105,21 +1105,23 @@ window.addEventListener('pageshow', event => {
 
 /* REGISTER WORKER
 ------------------ */
-let serviceWorkerUrl = '/service-worker.js';
+const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 
-if (typeof trustedTypes !== 'undefined') {
-    const swPolicy = trustedTypes.createPolicy('service-worker', {
-        createScriptURL: (url) => {
-            if (url === '/service-worker.js') {
-                return url;
+if ('serviceWorker' in navigator && !isLocalhost) {
+    let serviceWorkerUrl = '/service-worker.js';
+
+    if (typeof trustedTypes !== 'undefined') {
+        const swPolicy = trustedTypes.createPolicy('service-worker', {
+            createScriptURL: (url) => {
+                if (url === '/service-worker.js') {
+                    return url;
+                }
+                throw new TypeError('Blocked Service Worker URL: ' + url);
             }
-            throw new TypeError('Blocked Service Worker URL: ' + url);
-        }
-    });
-    serviceWorkerUrl = swPolicy.createScriptURL(serviceWorkerUrl);
-}
+        });
+        serviceWorkerUrl = swPolicy.createScriptURL(serviceWorkerUrl);
+    }
 
-if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register(serviceWorkerUrl)
             .catch((error) => {
