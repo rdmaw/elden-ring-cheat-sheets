@@ -4,6 +4,21 @@ This document lists all notable changes to [Elden Ring Completion Sheets](https:
 
 Dates use the `YYYY-MM-DD` format.
 
+## 2026-07-27
+
+### Fixed
+- Corrected Rogier's questline note skip link on the Questlines sheet.
+- Fixed some grammar mistakes on the FAQ, DLC Walkthrough, Miscellaneous Items, and Resources sheets.
+- Fixed Ash of War: Igon's Drake Hunt not marked as a missable on the Ashes sheet.
+
+### Added
+- Added Rauh Ruins to the DLC Walkthrough, NPC Walkthrough, Questlines, and Bosses sheets.
+- Added Romina's remembrance to the New Game Plus and Resources sheets.
+- Added info about installing as app to the FAQ.
+
+### Removed
+- Removed trailing "each" on prices for items available in quantities.
+
 ## 2026-07-13
 
 ### Added
