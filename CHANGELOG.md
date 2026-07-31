@@ -4,6 +4,24 @@ This document lists all notable changes to [Elden Ring Completion Sheets](https:
 
 Dates use the `YYYY-MM-DD` format.
 
+## 2026-08-01
+
+### Fixed
+- Golden Lion Shield missing a MISSABLE badge in the DLC Walkthrough.
+
+### Added
+- Added Enir-Ilim to the DLC Walkthrough, NPC Walkthrough, Questlines, and Bosses sheets.
+- Finished Leda's, Dane's, Freyja's, Ansbach's, Moore's, and Thiollier's questlines.
+- New step in Moore's questline that covers not making his choice in time.
+- Consort Radahn's remembrance and its items has been added to the Resources, NG+, and Merchants sheets.
+- St. Trina's Smile is now marked as a MISSABLE item on all sheets.
+- Watchful Spirit is now marked as a MISSABLE item on the Spells sheet.
+- Expanded the Letter for Freyja missable text to include a way to get it even after Ansbach has left the Shadow Keep.
+
+### Changed
+- Ash of War: Palm Blast is now marked as a Missable instead of Optional.
+- Updated Enia's Merchants inventory to use the full boss titles instead of just the name.
+
 ## 2026-07-27
 
 ### Fixed
