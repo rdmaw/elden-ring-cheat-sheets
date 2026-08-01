@@ -13,6 +13,7 @@ Dates use the `YYYY-MM-DD` format.
 - Added Enir-Ilim to the DLC Walkthrough, NPC Walkthrough, Questlines, and Bosses sheets.
 - Finished Leda's, Dane's, Freyja's, Ansbach's, Moore's, and Thiollier's questlines.
 - New step in Moore's questline that covers not making his choice in time.
+- New Varre note in Mohgwyn Palace that covers a bug I discovered in 2025, where you can duplicate Varre's Bouquet. It will be removed if it doesn't work consistently.
 - Consort Radahn's remembrance and its items has been added to the Resources, NG+, and Merchants sheets.
 - St. Trina's Smile is now marked as a MISSABLE item on all sheets.
 - Watchful Spirit is now marked as a MISSABLE item on the Spells sheet.
