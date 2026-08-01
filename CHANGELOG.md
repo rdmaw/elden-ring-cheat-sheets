@@ -8,6 +8,7 @@ Dates use the `YYYY-MM-DD` format.
 
 ### Fixed
 - Golden Lion Shield missing a MISSABLE badge in the DLC Walkthrough.
+- Added that Ansbach's dialogue must be exhausted after giving him the Secret Rite Scroll, instead of just giving him the scroll.
 
 ### Added
 - Added Enir-Ilim to the DLC Walkthrough, NPC Walkthrough, Questlines, and Bosses sheets.
