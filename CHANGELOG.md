@@ -4,6 +4,16 @@ This document lists all notable changes to [Elden Ring Completion Sheets](https:
 
 Dates use the `YYYY-MM-DD` format.
 
+## 2026-08-16
+
+### Added
+- Added a note to the Walkthrough regarding two missing Cracked Pots in Auriza Side Tomb if the Cracked Pot keepsake is chosen.
+- Added previously invisible sections on the Miscellaneous Items, Key Items, and NG+ sheets. These will slowly be filled out during the next updates. The sections include Sacred Tears, Golden Seeds, Ancient and Somber Smithing Stones, and so on.
+
+### Changed
+- Revised and completed the New Game Plus Preparation section in the Walkthrough.
+- Renamed several Url-fragments for some of the sections linked to in the NG preparation.
+
 ## 2026-08-01
 
 ### Fixed
