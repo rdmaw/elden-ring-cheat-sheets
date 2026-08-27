@@ -24,8 +24,6 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 
 <h2>To-Do</h2>
 
-- [x] Steam Guide Polish `(May 30, 79ff8f3)`
-- [x] Recluses' River `(Jun 4, b591907)`
 - [x] Abyssal Woods `(Jun 5, 080b70b)`
 - [x] Midra's Manse `(Jun 7, 564642e)`
 - [x] Jagged Peak `(Jun 8, af6bd48)`
@@ -34,6 +32,8 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 - [x] Rauh Ruins `(Jul 12, 699b9a1)`
 - [x] Enir-Ilim `(Jul 30, 45936ea)`
 - [x] Update NG+ Prep `(Aug 16, 60e3c70)`
+- [ ] Add content from the Tarnished Edition DLC
+- [ ] Update DLC Walkthrough with updated item locations
 
 <details>
   <summary><h2>To-Do History</h2></summary>
