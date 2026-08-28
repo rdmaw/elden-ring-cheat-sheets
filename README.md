@@ -1,4 +1,5 @@
 # Elden Ring Completion Sheets
+
 A checklist-based website intended to help you 100% complete Elden Ring.
 
 See the [Changelog](CHANGELOG.md) for a list of notable changes with each update.
@@ -14,6 +15,7 @@ See the [Changelog](CHANGELOG.md) for a list of notable changes with each update
 - Import and export profiles to transfer progress between devices
 
 ## Found a bug?
+
 Please open an issue or leave a comment on the [Steam Guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3626235146).
 
 ## Special Thanks
@@ -22,7 +24,7 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 - [@small_little_artist](https://smalllittleartist.carrd.co) for designing the favicon and open graph images
 - [@NamelessBandicoot](https://www.youtube.com/@NamelessBandicoot) for helping with video-based content
 
-<h2>To-Do</h2>
+## To-Do
 
 - [x] Abyssal Woods `(Jun 5, 080b70b)`
 - [x] Midra's Manse `(Jun 7, 564642e)`
@@ -32,7 +34,7 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 - [x] Rauh Ruins `(Jul 12, 699b9a1)`
 - [x] Enir-Ilim `(Jul 30, 45936ea)`
 - [x] Update NG+ Prep `(Aug 16, 60e3c70)`
-- [ ] Add content from the Tarnished Edition DLC
+- [x] Add content from the Tarnished Edition DLC `(Aug 28, b662c23)`
 - [ ] Update DLC Walkthrough with updated item locations
 
 <details>
@@ -156,5 +158,6 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
   - [x] Rauh Ruins `(Jul 12, 699b9a1)`
   - [x] Enir-Ilim `(Jul 30, 45936ea)`
   - [x] Update NG+ Prep `(Aug 16, 60e3c70)`
+  - [x] Add content from the Tarnished Edition DLC `(Aug 28, b662c23)`
 
 </details>
