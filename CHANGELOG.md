@@ -4,6 +4,18 @@ This document lists all notable changes to [Elden Ring Completion Sheets](https:
 
 Dates use the `YYYY-MM-DD` format.
 
+## 2026-08-30
+
+### Changed
+
+- Added every new item change introduced with the 1.17 patch to the DLC Walkthrough.
+- Moved the Message from Leda step to occur earlier to avoid the user finding it before it appears in the DLC Walkthrough.
+- Split the step in Enir-Ilim where you grab two items near a tree into two steps for simplicity.
+- Updated Melina's questline to include three more sites of grace where she can be first talked to after accepting her accord.
+- Updated Blaidd's questline to specifically enter Ranni's service, and add in parenthesis to talk to him if Radahn has not been killed.
+- Updated the note about the interaction between Jolan's ashes and the puppet of Anna in NG+ now that I've tested this myself.
+- Added to optionally mark locations on your map for all Mausoleum and duplication coffin steps.
+
 ## 2026-08-28
 
 ### Added

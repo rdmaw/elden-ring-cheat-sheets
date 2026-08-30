@@ -35,7 +35,7 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 - [x] Enir-Ilim `(Jul 30, 45936ea)`
 - [x] Update NG+ Prep `(Aug 16, 60e3c70)`
 - [x] Add content from the Tarnished Edition DLC `(Aug 28, b662c23)`
-- [ ] Update DLC Walkthrough with updated item locations
+- [x] Update DLC Walkthrough with patch 1.17 changed items `(Aug 30, 9b23375)`
 
 <details>
   <summary><h2>To-Do History</h2></summary>
@@ -159,5 +159,6 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
   - [x] Enir-Ilim `(Jul 30, 45936ea)`
   - [x] Update NG+ Prep `(Aug 16, 60e3c70)`
   - [x] Add content from the Tarnished Edition DLC `(Aug 28, b662c23)`
+  - [x] Update DLC Walkthrough with patch 1.17 changed items `(Aug 30, 9b23375)`
 
 </details>
