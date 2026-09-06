@@ -16,3 +16,4 @@ apple-touch-icon.png
 favicon.*
 robots.txt
 sitemap.xml
+server.py
