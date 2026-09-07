@@ -4,9 +4,31 @@ This document lists all notable changes to [Elden Ring Completion Sheets](https:
 
 Dates use the `YYYY-MM-DD` format.
 
+## 2026-09-07
+
+### Fixes
+
+- Minor fixes to typos, duplicate words, and item names thanks to @rahulkaushal04. (#12)
+
+### Features
+
+- Igon's Bell Bearing and Igon's Harpoon have been added to the Twin Maiden Husks inventory on the Merchants sheet.
+- Added additional text to the Gelmir's Fury missable badge to cover a niche scenario, where it can drop from Bernahl in Farum Azula.
+- Added that Bernahl's extra two ashes of war also unlock after killing Rykard.
+- New step in Melina's questline that covers the other sites of grace where you can meet her.
+- 9 New steps in New Game Plus Preparation for deciding what multiple choice rewards to go for in NG+.
+
+### Changes
+
+- Moved Remembrance items from the NG+ sheet to Merchants (where it belongs) to avoid them resetting with the NG+ button.
+
+### Removals
+
+- Removed Patches' Bell Bearing from the NPC Bell Bearings checklist on the NG+ sheet.
+
 ## 2026-08-30
 
-### Changed
+### Changes
 
 - Added every new item change introduced with the 1.17 patch to the DLC Walkthrough.
 - Moved the Message from Leda step to occur earlier to avoid the user finding it before it appears in the DLC Walkthrough.
@@ -18,7 +40,7 @@ Dates use the `YYYY-MM-DD` format.
 
 ## 2026-08-28
 
-### Added
+### Features
 
 - Added note about the 1.17 patch changing certain item locations in the Shadow of the Erdtree DLC.
 - Added all purchasable items from the Tarnished Pack to the Merchants sheet.
@@ -27,31 +49,31 @@ Dates use the `YYYY-MM-DD` format.
 - Added Tarnished Pack DLC steps to Stormveil Castle, Caria Manor, Sellia, Redmane Castle, Capital Outskirts, Leyndell, and Dragonbarrow on the Walkthrough sheet.
 - Added steps for entering each colosseum, making PVP available from Roundtable Hold.
 
-### Changed
+### Changes
 
 - Updated Melina's questline to specify which sites of grace in Leyndell where Melina leaves you.
 - Combined the two Cookbook checklists into a single section on the Key Items sheet.
 
 ## 2026-08-16
 
-### Added
+### Features
 
 - Added a note to the Walkthrough regarding two missing Cracked Pots in Auriza Side Tomb if the Cracked Pot keepsake is chosen.
 - Added previously invisible sections on the Miscellaneous Items, Key Items, and NG+ sheets. These will slowly be filled out during the next updates. The sections include Sacred Tears, Golden Seeds, Ancient and Somber Smithing Stones, and so on.
 
-### Changed
+### Changes
 
 - Revised and completed the New Game Plus Preparation section in the Walkthrough.
 - Renamed several Url-fragments for some of the sections linked to in the NG preparation.
 
 ## 2026-08-01
 
-### Fixed
+### Fixes
 
 - Golden Lion Shield missing a MISSABLE badge in the DLC Walkthrough.
 - Added that Ansbach's dialogue must be exhausted after giving him the Secret Rite Scroll, instead of just giving him the scroll.
 
-### Added
+### Features
 
 - Added Enir-Ilim to the DLC Walkthrough, NPC Walkthrough, Questlines, and Bosses sheets.
 - Finished Leda's, Dane's, Freyja's, Ansbach's, Moore's, and Thiollier's questlines.
@@ -62,36 +84,36 @@ Dates use the `YYYY-MM-DD` format.
 - Watchful Spirit is now marked as a MISSABLE item on the Spells sheet.
 - Expanded the Letter for Freyja missable text to include a way to get it even after Ansbach has left the Shadow Keep.
 
-### Changed
+### Changes
 
 - Ash of War: Palm Blast is now marked as a Missable instead of Optional.
 - Updated Enia's Merchants inventory to use the full boss titles instead of just the name.
 
 ## 2026-07-27
 
-### Fixed
+### Fixes
 
 - Corrected Rogier's questline note skip link on the Questlines sheet.
 - Fixed some grammar mistakes on the FAQ, DLC Walkthrough, Miscellaneous Items, and Resources sheets.
 - Fixed Ash of War: Igon's Drake Hunt not marked as a missable on the Ashes sheet.
 
-### Added
+### Features
 
 - Added Rauh Ruins to the DLC Walkthrough, NPC Walkthrough, Questlines, and Bosses sheets.
 - Added Romina's remembrance to the New Game Plus and Resources sheets.
 - Added info about installing as app to the FAQ.
 
-### Removed
+### Removals
 
 - Removed trailing "each" on prices for items available in quantities.
 
 ## 2026-07-13
 
-### Added
+### Features
 
 - In the Walkthrough, Endings section: Specify the tab Miquella's Needle is in to avoid confusion. Add that the following steps assume that the Frenzied Flame ending is picked first, and then tamed.
 
-### Changed
+### Changes
 
 - Updated pages' titles and branding. This was done to clarify that the website is written for Elden Ring, avoiding future confusion when I copy the structure for other souls games. The intention is also to separate the site from the classic "cheat sheet" websites and its forks to not conflict with those in recognition when it comes to having almost identical names.
 - Updated all pages' descriptions to account for the title change.
@@ -99,14 +121,14 @@ Dates use the `YYYY-MM-DD` format.
 - Updated the Heads up! on the Merchants sheet to have note styling.
 - Various wording updates in several places on the Walkthrough sheet.
 
-### Removed
+### Removals
 
 - Removed the Legendary Ashen Remains achievement note, as this info is now inside a same-sentence trophy badge.
 - Removed a random Demi-Human loot step from First Steps in Limgrave due to being an inconsistent drop (#11).
 
 ## 2026-06-19
 
-### Fixed
+### Fixes
 
 - Hide info button removing missables from the walkthrough and other pages where it shouldn't.
 - Added missing SOTE tags to the table of content sections on the Weapons, Ashes, and Spells sheets.
@@ -118,7 +140,7 @@ Dates use the `YYYY-MM-DD` format.
 - Slash shortcut now correctly goes to the search bar if a checkbox is focused.
 - Weird font hinting on Linux, resulting in distorted text, as well as many other font-related problems.
 
-### Added
+### Features
 
 - Replaced the Directions and Wise Beasts screenshots with higher-quality ones that show more of the area.
 - New group passwords screenshot in the Tutorial section.
@@ -136,7 +158,7 @@ Dates use the `YYYY-MM-DD` format.
 - Hovering over the FAQ or Options links in the navigation bar now also shows a border.
 - To-Do history log in the README file (for nostalgic purposes).
 
-### Changed
+### Changes
 
 - Turned achievement notes into achievement steps.
 - Renamed "Spiral Incantations" to "Hornsent Incantations" on the Spells sheet.
@@ -146,7 +168,7 @@ Dates use the `YYYY-MM-DD` format.
 - Table of contents links are now blue to indicate that they're clickable.
 - Updated steps with Ashes of Wars that are only obtained alongside some weapons. Changed their wording to clarify that they are made available for other weapons when removed, not obtained.
 
-### Removed
+### Removals
 
 - Text like "Requires..." used for steps requiring Stonesword Keys and other prerequisites. These increase the length of sentences without adding much value. In-game you can tell by the Imp Seal how many keys are required, and the walkthrough is routed in a way that you shouldn't have to bother with counting or buying extras anyways. Steps that actually require an item have been given an additional step that collects these items beforehand instead of relying on a "Requires" text as a prerequisite.
 
@@ -156,7 +178,7 @@ Dates use the `YYYY-MM-DD` format.
 
 - Added an invisible placeholder for an Irises section on the Miscellaneous page for the future. I have updated the category numbers for each existing section to accommodate for this change. You may need to re-check some steps on the Miscellaneous sheet.
 
-### Added
+### Features
 
 - New DLC section: Scaduview.
 - Finished Ymir's and Jolan's questlines.
@@ -165,7 +187,7 @@ Dates use the `YYYY-MM-DD` format.
 - Remaining duplication coffins to the NG+ sheet.
 - Added Key Items and Misc Items sections to the Steam Guide, alongside many adjustments and refinements.
 
-### Changed
+### Changes
 
 - Updated question-marked optional tags from recent questline testing.
 
@@ -173,7 +195,7 @@ Dates use the `YYYY-MM-DD` format.
 
 ## 2026-05-06
 
-### Added
+### Features
 
 - Shadow Keep consisting of two separate sections: Shadow Keep and Church District
 - Sunflower, Gaius, and Messmer's remembrance items and rune values.
@@ -183,14 +205,14 @@ Dates use the `YYYY-MM-DD` format.
 
 ## 2026-04-25
 
-### Added
+### Features
 
 - Stone Coffin Fissure with 28 walkthrough steps, 4 npc steps, and 1 boss.
 - Remembrance of Putrescence items to NG+ sheet and rune value to Resources.
 
 ## 2026-04-23
 
-### Added
+### Features
 
 - East Scadu Altus, 77 walkthrough steps, 25 npc steps, and 1 boss step.
 - Trophy emojis to mark all 42 achievement-earning steps in the Walkthrough (and also to the Bosses sheet to highlight all trophy bosses).
@@ -198,7 +220,7 @@ Dates use the `YYYY-MM-DD` format.
 - New merchant: Count Ymir.
 - Greasemonger's Bell Bearing to Twin Maiden Husks' inventory.
 
-### Changed
+### Changes
 
 - Rewritten several steps in Limgrave to sound better.
 - Rewritten some questline steps to sound better.
@@ -206,20 +228,20 @@ Dates use the `YYYY-MM-DD` format.
 
 ## 2026-04-08
 
-### Added
+### Features
 
 - Rauh Base, 88 walkthrough steps, 1npc step, and 3 boss steps.
 
 ## 2026-03-27
 
-### Added
+### Features
 
 - West Scadu Altus, 97 walkthrough steps and 11 npc steps.
 - New unfinished questline: Dryleaf Dane.
 
 ## 2026-03-17
 
-### Added
+### Features
 
 - Ellac River.
 - Cerulean Coast.
@@ -229,13 +251,13 @@ Dates use the `YYYY-MM-DD` format.
 - Added Ghostflame Breath spell to the Merchants sheet.
 - Added Rellana's remembrance and its items to the Resources, Merchants, and NG+ sheets.
 
-### Changed
+### Changes
 
 - Split the Cathedral of Dragon Communion step in the base game Walkthrough into three easier-to-follow steps.
 
 ## 2026-03-06
 
-### Added
+### Features
 
 - Belurat, Tower Settlement.
 - New unfinished questlines: Hornsent Grandam, Fire Knight Queelign.
@@ -243,24 +265,24 @@ Dates use the `YYYY-MM-DD` format.
 - New missable in Hornsent's questline.
 - Remembrance of the Dancing Lion added to NG+ sheet.
 
-### Changed
+### Changes
 
 - Updated some of the uncertain questline steps in Gravesite Plain that had question marks now that I've completed some testing.
 
 ## 2026-03-04
 
-### Added
+### Features
 
 - East Gravesite Plain.
 - Thiollier's inventory to the Merchants sheet.
 
 ## 2026-02-26
 
-### Fixed
+### Fixes
 
 - Missable tag on the FAQ page not showing when hovered.
 
-### Added
+### Features
 
 - Extensively tested and added tooltip explanations for all MISSABLE tags. These can be viewed when hovered over.
 - New Show/Hide info button on sheets with lists of items. With the addition of many MISSABLE tags and item descriptions, the UI can get cluttered on smaller sizes. The Hide info button hides all MISSABLE tags and item location descriptions for a cleaner UI.
@@ -274,7 +296,7 @@ Dates use the `YYYY-MM-DD` format.
 - With the updates to missable tags, some items in the list-style sheets (Weapons, Armor, Spells, etc.) now have text describing how it can be obtained. With time, all items will have descriptions, but I'll most likely keep adding missable ones over time, then add the rest once the DLC Walkthrough is finished.
 - Various other changes like removing incorrect Optional and Missable tags, as well as updates to existing Missables too many to name here.
 
-### Changed
+### Changes
 
 - Rewritten Diallos's step in Liurnia to make it a lot easier to find him in Academy Gate Town.
 
@@ -286,13 +308,13 @@ Dates use the `YYYY-MM-DD` format.
 - If you lost your progress due to the rewrite, you can now click the section totals (e.g. Tutorial [0/14]) to quickly complete entire sections at a time.
 - Split the Legendary Equipment checklist on the Achievements sheet into separate sections. You may need to recheck several items you had already completed.
 
-### Fixed
+### Fixes
 
 - Mobile users can now benefit from back/forward-caching. All pages will now correctly restore visual checkbox, collapse states, profiles, and color themes when switching between pages (previously worked around by forcing a full page refresh on each load).
 - Checkbox-related keyboard shortcuts "/" and "h" can no longer be used on pages without checkboxes.
 - Closing the sidebar on mobile would trigger a background color in the navbar to linger until tapped away.
 
-### Added
+### Features
 
 - All section progress numbers are now CLICKABLE BUTTONS! Clicking them will check all unchecked checkboxes in that section, or uncheck them if a section is "DONE".
 - MISSABLE tags can now be hovered over to see why they're missable. For users on mobile, simply tapping on the tag will toggle its visibility. I am still in the process of writing these, so it could be some time until they all have explanations.
@@ -317,7 +339,7 @@ Dates use the `YYYY-MM-DD` format.
 - Screen readers should now announce the action of keyboard shortcuts.
 - Keyboard users can now call the sidebar from any focused element with the "s" keybind and return where they were (no longer forces focus to the menu).
 
-### Changed
+### Changes
 
 - Keyboard shortcut "q" for toggling the sidebar has been replaced by the more obvious "s" for "Sheets" or "sidebar".
 - The color theme now defaults to the user's system preference if not set on the Options page.
@@ -331,14 +353,14 @@ Dates use the `YYYY-MM-DD` format.
 - Achievement links in the walkthrough now go to Eldenpedia instead of the Achievements sheet.
 - Changed group password from "ERSHEET" to "ERSHEETS" to fit the new name.
 
-### Removed
+### Removals
 
 - "Hide checked steps" button no longer persists across page reload; you'll need to click it or use the "h" shortcut every time. This was done to prevent FOUC and potential confusion for returning users.
 - Old or unused localStorage keys should be automatically cleaned up the next time you load the website, freeing up some used space.
 
 ## 2026-01-16
 
-### Added
+### Features
 
 - All sorceries and incantations to the Spells sheet.
 - All Spirit Ashes and Ashes of War to the Ashes sheet.
@@ -346,7 +368,7 @@ Dates use the `YYYY-MM-DD` format.
 
 ## 2026-01-12
 
-### Added
+### Features
 
 - All remaining armor pieces.
 - All chest pieces to the Armor sheet.
@@ -354,7 +376,7 @@ Dates use the `YYYY-MM-DD` format.
 
 ## 2026-01-09
 
-### Added
+### Features
 
 - Sticky notes to multiple Walkthrough, NPC Walkthrough, Questline, Merchant, and New Game Plus sections.
 - Night labels to night bosses in Bosses.
@@ -363,11 +385,11 @@ Dates use the `YYYY-MM-DD` format.
 
 ## 2026-01-07
 
-### Added
+### Features
 
 - Scadutree Fragment and Revered Spirit Ash tables to Resources.
 
-### Changed
+### Changes
 
 - Moved Remembrance table out of Runes section in Resources.
 - Text should be slightly denser for legibility.
@@ -375,13 +397,13 @@ Dates use the `YYYY-MM-DD` format.
 - Links to regular font weight to improve readability.
 - Sidebar will should no longer extend past the viewport height on smaller screens.
 
-### Fixed
+### Fixes
 
 - Missable tags to Margit, Draconic Tree Sentinel, and steps in Fia's questline.
 - First column links in tables on the Resources sheet are no longer bold.
 - Collapse buttons appearing too low on mobile.
 
-### Removed
+### Removals
 
 - Multiple duplicate links across all sheets.
 - Optional tags in Diallos's and Yura's questline.
@@ -391,35 +413,35 @@ Dates use the `YYYY-MM-DD` format.
 
 ## 2026-01-03
 
-### Changed
+### Changes
 
 - Armaments sheet renamed to Weapons.
 - Miscellaneous sheet renamed to Miscellaneous Items.
 
 ## 2026-01-01
 
-### Changed
+### Changes
 
 - Site name (Elden Ring Cheat Sheet: 100% Completion Guide & Checklists -> Elden Ring Cheat Sheets).
 - Page descriptions and lead text below the title.
 
-### Removed
+### Removals
 
 - Site name from each individual page (Walkthrough - Elden Ring Cheat Sheet -> Walkthrough).
 
 ## 2025-12-29
 
-### Added
+### Features
 
 - Parenthesis behind every painting reward.
 
-### Changed
+### Changes
 
 - Use stele as a more accurate term for the map pillars.
 - Slightly increased space between steps.
 - Slightly decreased sidebar width.
 
-### Fixed
+### Fixes
 
 - Missing reference to Seluvis in Nepheli's questline.
 - Blurry checkboxes.
@@ -427,18 +449,18 @@ Dates use the `YYYY-MM-DD` format.
 
 ## 2025-12-28
 
-### Added
+### Features
 
 - West Gravesite Plain (DLC Walkthrough, NPC Walkthrough, Questlines, Bosses).
 - Moore's inventory (Merchants).
 - DLC divider in each Current Progress section.
 
-### Changed
+### Changes
 
 - Shortened URL fragments (e.g. /questlines#ranni-the-witch -> /questlines#ranni).
 - Corrected all sentences where camp and campsite were used interchangeably.
 
-### Fixed
+### Fixes
 
 - Missing mention of the Questlines sheet in the FAQ.
 

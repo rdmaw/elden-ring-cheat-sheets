@@ -26,16 +26,16 @@ Please open an issue or leave a comment on the [Steam Guide](https://steamcommun
 
 ## To-Do
 
-- [x] Abyssal Woods `(Jun 5, 080b70b)`
-- [x] Midra's Manse `(Jun 7, 564642e)`
-- [x] Jagged Peak `(Jun 8, af6bd48)`
-- [x] Styled badges `(Jun 9, ed43b56)`
-- [x] Website CSS redesign `(Jun 14, 9d290c9)`
-- [x] Rauh Ruins `(Jul 12, 699b9a1)`
-- [x] Enir-Ilim `(Jul 30, 45936ea)`
-- [x] Update NG+ Prep `(Aug 16, 60e3c70)`
-- [x] Add content from the Tarnished Edition DLC `(Aug 28, b662c23)`
 - [x] Update DLC Walkthrough with patch 1.17 changed items `(Aug 30, 9b23375)`
+- [ ] Rewrite the Walkthrough to its final version
+- [ ] Rewrite the DLC Walkthrough to its final version
+- [ ] Rewrite the NPC Walkthrough to its final version
+- [ ] Edgar, Varre, Millicent, Melina, and Diallos missable testing
+- [ ] Finalize the Questlines sheet
+- [ ] Finalize the Bosses sheet
+- [ ] Finalize the Merchants sheet
+- [ ] Finalize the Achievements sheet
+- [ ] Add all weapon locations and finalize the Weapons sheet
 
 <details>
   <summary><h2>To-Do History</h2></summary>
